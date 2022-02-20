@@ -10,14 +10,14 @@ The spaiot library must be associated with an electronic board which is placed b
 The spaiot library:  
 - is designed in C ++ for Esp8266 and ESP32 chips,  
 - uses the Arduino framework,  
-- is part of the PLATFORMIO register,  
+- is part of the PlatformIO register,  
 - has been modularly designed to adapt to a large number of hardware and software choices.
 
-Personally I use the IDE Visual Studio Code with Platformio, but it is quite possible to use spaiot-lib in the IDE Arduino.
+Personally I use Visual Studio Code with Platformio, but it is quite possible to use spaiot-lib in the Arduino IDE.
 
 spaiot-lib allows the integration of your Intxx PxxxSPA into your home automation (Internet of things).
 
-For example, associated with Sinricpro, spaiot-Lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
+For example, associated with SinricPro, spaiot-Lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img src="https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/by-nc-sa-small.png" alt="by-nc-sa.png" align="right" valign="top">
@@ -31,16 +31,16 @@ It is distributed in the hope it will be useful but WITHOUT ANY WARRANTY.
 Any damaged on your spa or lost of original product warranty is in your own responsibility, including any consequences of using this project.
 
 spaiot-lib provides the following features:  
-- decoding frames on the connection between the control block and the engine block to monitor the condition of the spa,  
+- decoding frames on the connection between the control panel and the motor block to monitor the status of the spa,  
 - remote control of push buttons
 
 It is documented using doxygen and delivered with examples. Unit tests provide continuous integration and diffusion (CI / CD)
 
-### decoding frames
+### Decoding frames
 
-Decoding requires only 3 GPIO pins of the ESP chip. These pins are connected to the SDATA, SCLK clock and nWR write signals of the link between the control block and the engine block.
+Decoding requires only 3 GPIO pins of the ESP chip. These pins are connected to the SDATA, SCLK clock and nWR write signals of the bus between the control panel and the motor block.
 These 3 signals constitutes a synchronous serial bus (similar to the SPI bus) that transmits frames consisting of 16-bit words.
-The words are transmitted higher weight first (MSB on the left) and consisting of 2 bytes, that of higher weight is noted b (on the left) and the weak weight has (right).
+The words are composed of 2 bytes A and B. B is the most significant byte and it is transmitted first. Bytes are transmitted with the most significant bit first (left).
 
 We can see in the image below the frame that corresponds to the command of the LEDs:
 
@@ -51,7 +51,7 @@ Decoding is implemented by the FrameDecoder class. This class makes it possible 
 - measured water and desired temperature using the FrameDecoder::waterTemp() et FrameDecoder::desiredTemp(),
 - error code displayed using the FrameDecoder::error() function
 
-The GPIO pins connected to the SCLK and NWR signals are used in interruption. That's why the Framedecoder class is a singleton.
+The GPIO pins connected to the SCLK and nWR signals are used in interruption. That's why the Framedecoder class is a singleton.
 It is designed to be a base class and can not be instantiated directly. It will be used thanks to its ControlPanel derived class.
 
 ### Control of push buttons
@@ -64,7 +64,7 @@ To find out how to do it, simply study the diagram below:
 ![sch1_sregister](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/sch1_sregister.png)
 
 It is possible to see 2 integrated circuits, U1 and U2 which will store the 16 bits of the frame and apply their logic level to the correditional pins of U1 / U2.
-U1 memorizes low weight byte, u2 of high weight.
+U1 memorizes least significant byte A, U2 the most significant byte B.
 
 To play a push button:
 1. The button must be selected by transmitting a 16-bit word that applies a low level to a pin of this push button,
@@ -73,7 +73,7 @@ To play a push button:
 4. Toggle the signal SDATA input,
 5. Then after a delay of a few microseconds, to read the state of SDATA, which is connected to the other pin of the button.
     
-If SDATA is in the low state, the button selected in step 1 is pressed.
+If SDATA is in the low level, the button selected in step 1 is pressed.
 For example, if we want to test if the S1-Filter button is pressed, you have to send a word with bit A1 to 0.
 
 To be able to emulate pressing a button, it is necessary to reproduce this scheme on a board and replace the buttons with electronic switches.

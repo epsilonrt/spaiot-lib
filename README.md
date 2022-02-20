@@ -20,7 +20,7 @@ spaiot-lib allows the integration of your Intxx PxxxSPA into your home automatio
 For example, associated with Sinricpro, spaiot-Lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="by-nc-sa.png" align="right" valign="top">
+  <img src="https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/by-nc-sa-small.png" alt="by-nc-sa.png" align="right" valign="top">
 </a>
 
 spaiot-lib is based on Geoffroy Hubert's work on the DIYSCIP project. 
@@ -44,7 +44,7 @@ The words are transmitted higher weight first (MSB on the left) and consisting o
 
 We can see in the image below the frame that corresponds to the command of the LEDs:
 
-![ledframe](images/ledframe.png)
+![ledframe](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/ledframe.png)
 
 Decoding is implemented by the FrameDecoder class. This class makes it possible to recover mainly the following information:
 - LED status using FrameDecoder::isPowerOn(), FrameDecoder::isFilterOn() ...
@@ -61,7 +61,7 @@ Of course, this is not what is done because it would be necessary in this case t
 
 To find out how to do it, simply study the diagram below:
 
-![sch1_sregister](images/sch1_sregister.png)
+![sch1_sregister](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/sch1_sregister.png)
 
 It is possible to see 2 integrated circuits, U1 and U2 which will store the 16 bits of the frame and apply their logic level to the correditional pins of U1 / U2.
 U1 memorizes low weight byte, u2 of high weight.

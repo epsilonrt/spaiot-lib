@@ -8,14 +8,14 @@
 using namespace SpaIot;
 
 const std::map<int, ButtonSettings> TestButtons = {
-  { Filter,   ButtonSettings ("DiyScip2CtrlA", 1) },
-  { Bubble,   ButtonSettings ("DiyScip2CtrlA", 3) },
-  { TempDown, ButtonSettings ("DiyScip2CtrlA", 7) },
+  { Filter,   ButtonSettings ("Scip2CtrlA", 1) },
+  { Bubble,   ButtonSettings ("Scip2CtrlA", 3) },
+  { TempDown, ButtonSettings ("Scip2CtrlA", 7) },
 
-  { Power,    ButtonSettings ("DiyScip2CtrlB", 2) },
-  { TempUp,   ButtonSettings ("DiyScip2CtrlB", 4) },
-  { TempUnit, ButtonSettings ("DiyScip2CtrlB", 5) },
-  { Heater,   ButtonSettings ("DiyScip2CtrlB", 7) }
+  { Power,    ButtonSettings ("Scip2CtrlB", 2) },
+  { TempUp,   ButtonSettings ("Scip2CtrlB", 4) },
+  { TempUnit, ButtonSettings ("Scip2CtrlB", 5) },
+  { Heater,   ButtonSettings ("Scip2CtrlB", 7) }
 };
 
 // void setUp(void) {
@@ -74,8 +74,8 @@ void test_assignation (void) {
 void test_global (void) {
   ButtonSettings s (TestButtons.at (Filter).controllerName(), TestButtons.at (Filter).id());
 
-  TEST_ASSERT (DiyScip2SspButtons.at (Filter) == TestButtons.at (Filter));
-  TEST_ASSERT (DiyScip2SspButtons == TestButtons);
+  TEST_ASSERT (Scip2SspButtons.at (Filter) == TestButtons.at (Filter));
+  TEST_ASSERT (Scip2SspButtons == TestButtons);
 }
 
 void setup() {

@@ -62,7 +62,7 @@ namespace SpaIot {
       uint8_t m_order;
   };
 
-  extern const BusSettings DiyScipBus;
+  extern const BusSettings ScipBus;
   extern const std::map<int, LedSettings> SspLeds;
   extern const std::map<int, LedSettings> SjbLeds;
 }

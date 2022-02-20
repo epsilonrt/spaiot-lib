@@ -8,7 +8,7 @@
 
 using namespace SpaIot;
 
-// DiyScipBus
+// ScipBus
 const BusSettings TestBus (12, 14, 13);
 // SspLeds
 const std::map<int, LedSettings> TestSspLeds = {
@@ -28,29 +28,29 @@ const std::map<int, LedSettings> TestSjbLeds = {
   { Filter,         LedSettings (12) },
   { Sanitizer,      LedSettings (13) }
 };
-// DiyScip2SspButtons
+// Scip2SspButtons
 const std::map<int, ButtonSettings> TestSspButtons = {
-  { Filter,   ButtonSettings ("DiyScip2CtrlA", 1) },
-  { Bubble,   ButtonSettings ("DiyScip2CtrlA", 3) },
-  { TempDown, ButtonSettings ("DiyScip2CtrlA", 7) },
+  { Filter,   ButtonSettings ("Scip2CtrlA", 1) },
+  { Bubble,   ButtonSettings ("Scip2CtrlA", 3) },
+  { TempDown, ButtonSettings ("Scip2CtrlA", 7) },
 
-  { Power,    ButtonSettings ("DiyScip2CtrlB", 2) },
-  { TempUp,   ButtonSettings ("DiyScip2CtrlB", 4) },
-  { TempUnit, ButtonSettings ("DiyScip2CtrlB", 5) },
-  { Heater,   ButtonSettings ("DiyScip2CtrlB", 7) }
+  { Power,    ButtonSettings ("Scip2CtrlB", 2) },
+  { TempUp,   ButtonSettings ("Scip2CtrlB", 4) },
+  { TempUnit, ButtonSettings ("Scip2CtrlB", 5) },
+  { Heater,   ButtonSettings ("Scip2CtrlB", 7) }
 };
-// DiyScip2SjbButtons
+// Scip2SjbButtons
 const std::map<int, ButtonSettings> TestSjbButtons = {
-  { Sanitizer,  ButtonSettings ("DiyScip2CtrlA", 0) },
-  { Jet,        ButtonSettings ("DiyScip2CtrlA", 1) }, // this will have to be checked
-  { Bubble,     ButtonSettings ("DiyScip2CtrlA", 3) }, // this will have to be checked
-  { Filter,     ButtonSettings ("DiyScip2CtrlA", 7) },
+  { Sanitizer,  ButtonSettings ("Scip2CtrlA", 0) },
+  { Jet,        ButtonSettings ("Scip2CtrlA", 1) }, // this will have to be checked
+  { Bubble,     ButtonSettings ("Scip2CtrlA", 3) }, // this will have to be checked
+  { Filter,     ButtonSettings ("Scip2CtrlA", 7) },
 
-  { TempDown,   ButtonSettings ("DiyScip2CtrlB", 1) },
-  { Power,      ButtonSettings ("DiyScip2CtrlB", 2) },
-  { TempUp,     ButtonSettings ("DiyScip2CtrlB", 4) },
-  { TempUnit,   ButtonSettings ("DiyScip2CtrlB", 5) }, // this will have to be checked
-  { Heater,     ButtonSettings ("DiyScip2CtrlB", 7) },
+  { TempDown,   ButtonSettings ("Scip2CtrlB", 1) },
+  { Power,      ButtonSettings ("Scip2CtrlB", 2) },
+  { TempUp,     ButtonSettings ("Scip2CtrlB", 4) },
+  { TempUnit,   ButtonSettings ("Scip2CtrlB", 5) }, // this will have to be checked
+  { Heater,     ButtonSettings ("Scip2CtrlB", 7) },
 };
 
 const HardwareSettings TestSSP (TestBus, TestSspLeds, TestSspButtons);

@@ -127,8 +127,8 @@ namespace SpaIot {
   //                            Settings
   //
   //----------------------------------------------------------------------------
-  const HardwareSettings Scip2Ssp (DiyScipBus, SspLeds, DiyScip2SspButtons);
-  const HardwareSettings Scip2Sjb (DiyScipBus, SjbLeds, DiyScip2SjbButtons);
+  const HardwareSettings Scip2Ssp (ScipBus, SspLeds, Scip2SspButtons);
+  const HardwareSettings Scip2Sjb (ScipBus, SjbLeds, Scip2SjbButtons);
 
   /*
    * WARNING

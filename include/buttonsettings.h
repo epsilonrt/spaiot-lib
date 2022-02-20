@@ -40,6 +40,6 @@ namespace SpaIot {
       std::string  m_controllerName;
   };
 
-  extern const std::map<int, ButtonSettings> DiyScip2SspButtons;
-  extern const std::map<int, ButtonSettings> DiyScip2SjbButtons;
+  extern const std::map<int, ButtonSettings> Scip2SspButtons;
+  extern const std::map<int, ButtonSettings> Scip2SjbButtons;
 }

@@ -93,15 +93,15 @@ namespace SpaIot {
    *
    * BUT_SSP |  H |  0 |  C |  U |  0 |  P |  X | BZ |  D |  0 |  0 |  X |  B |  0 |  F |  X |
    ---------------------------------------------------------------------------*/
-  const std::map<int, ButtonSettings> DiyScip2SspButtons = {
-    { Filter,   ButtonSettings ("DiyScip2CtrlA", 1) },
-    { Bubble,   ButtonSettings ("DiyScip2CtrlA", 3) },
-    { TempDown, ButtonSettings ("DiyScip2CtrlA", 7) },
+  const std::map<int, ButtonSettings> Scip2SspButtons = {
+    { Filter,   ButtonSettings ("Scip2CtrlA", 1) },
+    { Bubble,   ButtonSettings ("Scip2CtrlA", 3) },
+    { TempDown, ButtonSettings ("Scip2CtrlA", 7) },
 
-    { Power,    ButtonSettings ("DiyScip2CtrlB", 2) },
-    { TempUp,   ButtonSettings ("DiyScip2CtrlB", 4) },
-    { TempUnit, ButtonSettings ("DiyScip2CtrlB", 5) },
-    { Heater,   ButtonSettings ("DiyScip2CtrlB", 7) }
+    { Power,    ButtonSettings ("Scip2CtrlB", 2) },
+    { TempUp,   ButtonSettings ("Scip2CtrlB", 4) },
+    { TempUnit, ButtonSettings ("Scip2CtrlB", 5) },
+    { Heater,   ButtonSettings ("Scip2CtrlB", 7) }
   };
 
   /*         |-------------------------------------------------------------------------------|
@@ -111,17 +111,17 @@ namespace SpaIot {
    * BUT_SJB |  H |  0 | *C |  U |  0 |  P |  D | BZ |  F |  0 |  0 |  X | *B |  0 | *J |  S |
    *        * hypothesis that must be verified !
    ---------------------------------------------------------------------------*/
-  const std::map<int, ButtonSettings> DiyScip2SjbButtons = {
-    { Sanitizer,  ButtonSettings ("DiyScip2CtrlA", 0) },
-    { Jet,        ButtonSettings ("DiyScip2CtrlA", 1) }, // this will have to be checked
-    { Bubble,     ButtonSettings ("DiyScip2CtrlA", 3) }, // this will have to be checked
-    { Filter,     ButtonSettings ("DiyScip2CtrlA", 7) },
+  const std::map<int, ButtonSettings> Scip2SjbButtons = {
+    { Sanitizer,  ButtonSettings ("Scip2CtrlA", 0) },
+    { Jet,        ButtonSettings ("Scip2CtrlA", 1) }, // this will have to be checked
+    { Bubble,     ButtonSettings ("Scip2CtrlA", 3) }, // this will have to be checked
+    { Filter,     ButtonSettings ("Scip2CtrlA", 7) },
 
-    { TempDown,   ButtonSettings ("DiyScip2CtrlB", 1) },
-    { Power,      ButtonSettings ("DiyScip2CtrlB", 2) },
-    { TempUp,     ButtonSettings ("DiyScip2CtrlB", 4) },
-    { TempUnit,   ButtonSettings ("DiyScip2CtrlB", 5) }, // this will have to be checked
-    { Heater,     ButtonSettings ("DiyScip2CtrlB", 7) },
+    { TempDown,   ButtonSettings ("Scip2CtrlB", 1) },
+    { Power,      ButtonSettings ("Scip2CtrlB", 2) },
+    { TempUp,     ButtonSettings ("Scip2CtrlB", 4) },
+    { TempUnit,   ButtonSettings ("Scip2CtrlB", 5) }, // this will have to be checked
+    { Heater,     ButtonSettings ("Scip2CtrlB", 7) },
   };
 }
 //------------------------------------------------------------------------------

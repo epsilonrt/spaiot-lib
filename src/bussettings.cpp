@@ -152,7 +152,7 @@ namespace SpaIot {
   //                            Settings
   //
   //----------------------------------------------------------------------------
-  const BusSettings DiyScipBus (12, 14, 13);
+  const BusSettings ScipBus (12, 14, 13);
 
   /*
    * POWER        = P

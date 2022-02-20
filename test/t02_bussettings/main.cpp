@@ -72,7 +72,7 @@ void test_assignation (void) {
 void test_global (void) {
   BusSettings s (DataPin, ClkPin, HoldPin);
 
-  TEST_ASSERT (DiyScipBus == s);
+  TEST_ASSERT (ScipBus == s);
 }
 
 void setup() {

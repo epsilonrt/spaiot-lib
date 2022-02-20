@@ -1,17 +1,13 @@
 {
     "name": "spaiot-lib",
     "version": "0.1",
-    "description": "library to manage communication with the SPI 284XX protocol (slave side)",
-    "keywords": "SPI, SPA, 284XX protocol",
+    "description": "Supervision and Control library for Intxx PxxxSPA with an ESP8266 or ESP32",
+    "keywords": "SPA, 284XX protocol",
     "repository": {
         "type": "git",
         "url": "https://github.com/epsilonrt/spaiot-lib"
     },
     "authors": [
-        {
-            "name": "Geoffroy HUBERT",
-            "email": "yorffoeg@gmail.com"
-        }, 
         {
             "name": "Pascal JEAN aka epsilonrt",
             "email": "epsilonrt@gmail.com",
@@ -21,12 +17,6 @@
     ],
     "license": "CC-BY-NC-SA-4.0",
     "homepage": "https://github.com/epsilonrt/spaiot",
-    "build": {
-        "flags": [
-            "-I$PROJECT_DIRECTORY",
-            "-I."
-        ]
-    },
     "frameworks": "arduino",
     "platforms": ["espressif8266", "espressif32"]
 }

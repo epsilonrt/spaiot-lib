@@ -23,7 +23,7 @@
             "base": "examples/SpaSimple",
             "files": [
                 "platformio.ini",
-                "src/main.c"
+                "src/main.cpp"
             ]
         }
     ],

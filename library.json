@@ -16,7 +16,7 @@
         }
     ],
     "license": "CC-BY-NC-SA-4.0",
-    "homepage": "https://github.com/epsilonrt/spaiot",
+    "homepage": "https://github.com/epsilonrt/spaiot-lib",
     "examples":[
       "examples/*/*.ino",
       "examples/*/*/*.ino"

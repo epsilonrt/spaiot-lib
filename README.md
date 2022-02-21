@@ -1,6 +1,11 @@
 # spaiot-lib
 Supervision and Control library for Intxx PxxxSPA with an ESP8266 or ESP32
 
+[![Build](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml)
+[![Platform ESP8266](https://img.shields.io/badge/Platform-Espressif8266-orange)](#)
+[![Platform ESP32](https://img.shields.io/badge/Platform-Espressif32-orange)](#)
+[![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
+
 ---
 
 This projet aims to add remote supervision and control ability to the Intxx PxxxSPA without altering the initial product. 

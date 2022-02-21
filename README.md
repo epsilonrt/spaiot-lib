@@ -8,16 +8,16 @@ This projet aims to add remote supervision and control ability to the Intxx Pxxx
 The spaiot library must be associated with an electronic board which is placed between the control panel and the motor block, through its specific 5 pins connector.
 
 The spaiot library:  
-- is designed in C ++ for Esp8266 and ESP32 chips,  
+- is designed in C++ for ESP8266 and ESP32 chips,  
 - uses the Arduino framework,  
-- is part of the [PlatformIO registery](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib),  
+- is part of the [PlatformIO registry](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib),  
 - has been modularly designed to adapt to a large number of hardware and software choices.
 
-Personally I use Visual Studio Code with Platformio, but it is quite possible to use spaiot-lib in the Arduino IDE.
+Personally I use [Visual Studio Code](https://code.visualstudio.com/)  with [PlatformIO](https://platformio.org/), but it is quite possible to use spaiot-lib in the Arduino IDE.
 
 spaiot-lib allows the integration of your Intxx PxxxSPA into your home automation (Internet of things).
 
-For example, associated with SinricPro, spaiot-Lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
+For example, associated with [SinricPro](https://sinric.pro/), spaiot-lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img src="https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/by-nc-sa-small.png" alt="by-nc-sa.png" align="right" valign="top">
@@ -34,11 +34,12 @@ spaiot-lib provides the following features:
 - decoding frames on the connection between the control panel and the motor block to monitor the status of the spa,  
 - remote control of push buttons
 
-It is documented using doxygen and delivered with examples. Unit tests provide continuous integration and diffusion (CI / CD)
+It is documented using [doxygen](https://www.doxygen.nl/index.html) and delivered with [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples). 
+[Unit tests](https://github.com/epsilonrt/spaiot-lib/tree/master/test) provide continuous integration and diffusion ([CI/CD](https://en.wikipedia.org/wiki/CI/CD))
 
 ### Decoding frames
 
-Decoding requires only 3 GPIO pins of the ESP chip. These pins are connected to the SDATA, SCLK clock and nWR write signals of the bus between the control panel and the motor block.
+Decoding requires only 3 GPIO pins of the ESP chip. These pins are connected to the SDATA, SCLK and nWR signals of the bus between the control panel and the motor block.
 These 3 signals constitutes a synchronous serial bus (similar to the SPI bus) that transmits frames consisting of 16-bit words.
 The words are composed of 2 bytes A and B. B is the most significant byte and it is transmitted first. Bytes are transmitted with the most significant bit first (left).
 

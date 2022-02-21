@@ -10,7 +10,7 @@ The spaiot library must be associated with an electronic board which is placed b
 The spaiot library:  
 - is designed in C ++ for Esp8266 and ESP32 chips,  
 - uses the Arduino framework,  
-- is part of the PlatformIO register,  
+- is part of the [PlatformIO registery](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib),  
 - has been modularly designed to adapt to a large number of hardware and software choices.
 
 Personally I use Visual Studio Code with Platformio, but it is quite possible to use spaiot-lib in the Arduino IDE.
@@ -68,7 +68,7 @@ U1 memorizes least significant byte A, U2 the most significant byte B.
 
 To play a push button:
 1. The button must be selected by transmitting a 16-bit word that applies a low level to a pin of this push button,
-2. Then she put nWR in the top state,
+2. Then put nWR in the top state,
 3. Activates a pull-up resistance on SDATA,
 4. Toggle the signal SDATA input,
 5. Then after a delay of a few microseconds, to read the state of SDATA, which is connected to the other pin of the button.

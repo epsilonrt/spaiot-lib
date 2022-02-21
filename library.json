@@ -1,6 +1,6 @@
 {
     "name": "spaiot-lib",
-    "version": "0.11",
+    "version": "0.12",
     "description": "Supervision and Control library for Intxx PxxxSPA with an ESP8266 or ESP32",
     "keywords": "SPA, 284XX protocol",
     "repository": {
@@ -21,6 +21,22 @@
         {
             "name": "SpaSimple",
             "base": "examples/SpaSimple",
+            "files": [
+                "platformio.ini",
+                "src/main.cpp"
+            ]
+        },
+        {
+            "name": "SpaStatus",
+            "base": "examples/SpaStatus",
+            "files": [
+                "platformio.ini",
+                "src/main.cpp"
+            ]
+        },
+        {
+            "name": "SpaHwCustom",
+            "base": "examples/SpaHwCustom",
             "files": [
                 "platformio.ini",
                 "src/main.cpp"

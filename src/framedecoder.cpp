@@ -28,7 +28,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   // protected constructor
   FrameDecoder::FrameDecoder (const BusSettings & settings,
-                          const std::map <int, LedSettings> & leds) :
+                              const std::map <int, LedSettings> & leds) :
     m_busSettings (settings), m_ledSettings (leds), m_isopened (false) {
 
     m_dataPin = m_busSettings.dataPin();
@@ -90,7 +90,16 @@ namespace SpaIot {
                        FrameDecoder::clkRisingInterrupt, RISING);
       attachInterrupt (digitalPinToInterrupt (m_busSettings.holdPin()),
                        FrameDecoder::holdRisingInterrupt, RISING);
-      m_isopened = true;
+      int timer = 0;
+      while ( (m_rawStatus == UnsetValue16) && (timer < 1000)) {
+
+        delay (10);
+        timer += 10;
+      }
+      m_isopened = (m_rawStatus != UnsetValue8);
+
+      DBG ("FrameDecoder::begin(): m_isopened: %d - rawStatus(): 0x%04X (%dms)",
+           m_isopened, rawStatus(), timer);
     }
   }
 

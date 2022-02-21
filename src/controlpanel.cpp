@@ -57,9 +57,9 @@ namespace SpaIot {
     m_buttonSettings (hwsettings.buttons()), m_isopened (false) {
 
     // We create the buttons from their settings...
-    for (const auto& [ key, settings ] : hwsettings.buttons()) {
+    for (const auto & button : hwsettings.buttons()) {
 
-      m_button.emplace (key, Button (settings));
+      m_button.emplace (button.first, Button (button.second));
     }
   }
 
@@ -76,12 +76,12 @@ namespace SpaIot {
       bool b_isopened = true;
 
       DBG ("ControlPanel::begin(): opening");
-      for (auto& [ k, b ] : m_button) {
+      for (auto & button : m_button) {
 
-        if (b.isOpened() == false) {
+        if (button.second.isOpened() == false) {
 
-          b.begin();
-          b_isopened = b_isopened && b.isOpened();
+          button.second.begin();
+          b_isopened = b_isopened && button.second.isOpened();
         }
       }
 

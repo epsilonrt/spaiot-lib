@@ -33,30 +33,30 @@ namespace SpaIot {
 
     m_dataPin = m_busSettings.dataPin();
 
-    for (auto& [ k, b ] : m_ledSettings) {
+    for (auto & led : m_ledSettings) {
 
-      switch (k) {
+      switch (led.first) {
 
         case Power:
-          m_frameLedPower = b.frame();
+          m_frameLedPower = led.second.frame();
           break;
         case Filter:
-          m_frameLedFilter = b.frame();
+          m_frameLedFilter = led.second.frame();
           break;
         case HeatReached:
-          m_frameLedHeaterReached = b.frame();
+          m_frameLedHeaterReached = led.second.frame();
           break;
         case Heater:
-          m_frameLedHeater = b.frame();
+          m_frameLedHeater = led.second.frame();
           break;
         case Bubble:
-          m_frameLedBubble = b.frame();
+          m_frameLedBubble = led.second.frame();
           break;
         case Jet:
-          m_frameLedJet = b.frame();
+          m_frameLedJet = led.second.frame();
           break;
         case Sanitizer:
-          m_frameLedSanitizer = b.frame();
+          m_frameLedSanitizer = led.second.frame();
           break;
         default:
           break;

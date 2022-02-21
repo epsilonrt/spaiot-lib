@@ -17,31 +17,9 @@
     ],
     "license": "CC-BY-NC-SA-4.0",
     "homepage": "https://github.com/epsilonrt/spaiot",
-    "examples": [
-        {
-            "name": "SpaSimple",
-            "base": "examples/SpaSimple",
-            "files": [
-                "platformio.ini",
-                "src/main.cpp"
-            ]
-        },
-        {
-            "name": "SpaStatus",
-            "base": "examples/SpaStatus",
-            "files": [
-                "platformio.ini",
-                "src/main.cpp"
-            ]
-        },
-        {
-            "name": "SpaHwCustom",
-            "base": "examples/SpaHwCustom",
-            "files": [
-                "platformio.ini",
-                "src/main.cpp"
-            ]
-        }
+    "examples":[
+      "examples/*/*.ino",
+      "examples/*/*/*.ino"
     ],
     "frameworks": "arduino",
     "platforms": ["espressif8266", "espressif32"]

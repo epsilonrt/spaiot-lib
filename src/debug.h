@@ -1,79 +1,57 @@
 /**
- * DIYSCIP (c) by Geoffroy HUBERT - yorffoeg@gmail.com
- * This file is part of DIYSCIP <https://github.com/yorffoeg/diyscip>.
- * 
- * DIYSCIP is licensed under a
+ * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
+ * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
+ *
+ * SpaIot library is licensed under a
  * Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
- * 
+ *
  * You should have received a copy of the license along with this
  * work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
- * 
- * DIYSCIP is distributed in the hope that it will be useful,
+ *
+ * SpaIot library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY;
- */ 
+ */
 
 #pragma once
+
 #include <Arduino.h>
 
-#if ! defined(DBG_SERIAL_ENABLED) && ! defined(DBG_TCP_ENABLED)
-#   define NODEBUG
-#endif 
-
-#if DBG_LED_ENABLED
-#define DLED_INIT() { \
-  pinMode(LED_BUILTIN, OUTPUT); \
-  digitalWrite(LED_BUILTIN, HIGH); \
-}
-#define DLED_SET() { \
-  digitalWrite(LED_BUILTIN, LOW); \
-}
-#define DLED_CLR() { \
-  digitalWrite(LED_BUILTIN, HIGH); \
-}
-#else
-#define DLED_INIT()
-#define DLED_SET()
-#define DLED_CLR()
-#endif
-
-#ifndef NODEBUG
-
-    #ifdef DBG_TCP_ENABLED
-        #include "ESP8266WiFi.h"
-
-        extern WiFiClient clientDebug;
-
-        #define DBG_TCP_CLIENT_PING     "%!PING#"
-        #define DBG_TCP_CLIENT_PONG     "%!PONG#"
-
-        #ifdef DBG_SERIAL_ENABLED
-
-            #define DBG(str, ...)   { \
-                Serial.printf(str, ##__VA_ARGS__); Serial.println("");  \
-                clientDebug.printf(str, ##__VA_ARGS__); clientDebug.println(""); \
-            }
-
-            #define DBGNOLN(str, ...)   { \
-                Serial.printf(str, ##__VA_ARGS__);  \
-                clientDebug.printf(str, ##__VA_ARGS__); \
-            }
-
-        #else
-
-            #define DBG(str, ...)   {  clientDebug.printf(str, ##__VA_ARGS__); clientDebug.println("");  }
-            #define DBGNOLN(str, ...)   {  clientDebug.printf(str, ##__VA_ARGS__); }
-
-        #endif // DBG_SERIAL_ENABLED
-
-    #else
-
-        #define DBG(str, ...)   { Serial.printf(str, ##__VA_ARGS__); Serial.println(""); }
-        #define DBGNOLN(str, ...)   {  Serial.printf(str, ##__VA_ARGS__);   }
-
-    #endif // DBG_TCP_ENABLED
+#if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_ESP_PORT)
+  #define DBG(str, ...)   { DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__); DEBUG_ESP_PORT.println(""); }
+  #define DBGNOLN(str, ...)   {  DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__);   }
 
 #else 
     #define DBG(str, ...)
     #define DBGNOLN(str, ...)
+#endif
 
+#if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_LED)
+  #ifndef DEBUG_LED_ONSTATE
+    #define DLED_LOW HIGH
+    #define DLED_HIGH LOW
+  #else
+    #if DEBUG_LED_ONSTATE == HIGH
+      #define DLED_LOW LOW
+      #define DLED_HIGH HIGH
+    #else
+      #define DLED_LOW HIGH
+      #define DLED_HIGH LOW
+    #endif
+  #endif
+  
+  #define DLED_INIT() { \
+    pinMode(DEBUG_LED, OUTPUT); \
+    digitalWrite(DEBUG_LED, DLED_LOW); \
+  }
+  #define DLED_SET() { \
+    digitalWrite(DEBUG_LED, DLED_HIGH); \
+  }
+  #define DLED_CLR() { \
+    digitalWrite(DEBUG_LED, DLED_LOW); \
+  }
+
+#else
+#define DLED_INIT()
+#define DLED_SET()
+#define DLED_CLR()
 #endif

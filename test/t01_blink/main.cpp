@@ -15,19 +15,19 @@
 
 // Vérifie que le numéro de la led par défaut est 2
 void test_led_builtin_pin_number (void) {
-  TEST_ASSERT_EQUAL (2, LED_BUILTIN);
+  TEST_ASSERT_EQUAL (2, DEBUG_LED);
 }
 
 // Allume la led, active à l'état bas et vérifie que la broche est bien à l'état bas
 void test_led_state_high (void) {
-  digitalWrite (LED_BUILTIN, LOW);
-  TEST_ASSERT_EQUAL (LOW, digitalRead (LED_BUILTIN));
+  digitalWrite (DEBUG_LED, LOW);
+  TEST_ASSERT_EQUAL (LOW, digitalRead (DEBUG_LED));
 }
 
 // Eteint la led en mettant la broche à l'état haut et vérifie que la broche est bien à l'état haut
 void test_led_state_low (void) {
-  digitalWrite (LED_BUILTIN, HIGH);
-  TEST_ASSERT_EQUAL (HIGH, digitalRead (LED_BUILTIN));
+  digitalWrite (DEBUG_LED, HIGH);
+  TEST_ASSERT_EQUAL (HIGH, digitalRead (DEBUG_LED));
 }
 
 void setup() {
@@ -39,7 +39,7 @@ void setup() {
   RUN_TEST (test_led_builtin_pin_number);
   
   // broche de la led en sortie
-  pinMode (LED_BUILTIN, OUTPUT);
+  pinMode (DEBUG_LED, OUTPUT);
 }
 
 uint8_t i = 0;

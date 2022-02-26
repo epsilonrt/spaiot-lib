@@ -15,15 +15,11 @@ This projet aims to add remote supervision and control ability to the Intxx Pxxx
 The spaiot library must be associated with an electronic board which is placed between the control panel and the motor block, through its specific 5 pins connector.
 
 The spaiot library:  
-- is designed in C++ for ESP8266 and ESP32 chips,  
-- uses the Arduino framework,  
-- is part of the [PlatformIO registry](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib),  
-- has been modularly designed to adapt to a large number of hardware and software choices.
-
-Personally I use [Visual Studio Code](https://code.visualstudio.com/)  with [PlatformIO](https://platformio.org/), but it is quite possible to use spaiot-lib in the Arduino IDE.
+- is designed in C++ using the Arduino framework for ESP8266 and ESP32 chips,  
+- has been modularly designed to adapt to a large number of hardware and software choices,  
+- available in the [PlatformIO Library Manager](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib) and as a ZIP file for the Arduino IDE.
 
 spaiot-lib allows the integration of your Intxx PxxxSPA into your home automation (Internet of things).
-
 For example, associated with [SinricPro](https://sinric.pro/), spaiot-lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
@@ -43,6 +39,158 @@ spaiot-lib provides the following features:
 
 It is documented using [doxygen](https://www.doxygen.nl/index.html) and delivered with [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples). 
 [Unit tests](https://github.com/epsilonrt/spaiot-lib/tree/master/test) provide continuous integration and delivery ([CI/CD](https://en.wikipedia.org/wiki/CI/CD))
+
+---
+
+## Installation
+
+### VS Code & PlatformIO:
+1. Install [VS Code](https://code.visualstudio.com/)  
+2. Install [PlatformIO](https://platformio.org/platformio-ide)  
+3. Install **spaiot-lib** by using [Library Manager](https://docs.platformio.org/en/latest/librarymanager/)  
+4. Use included [platformio.ini](https://github.com/epsilonrt/spaiot-lib/blob/master/examples/platformio/platformio.ini) file from examples to ensure that all dependent libraries will installed automaticly.
+
+![spaiot-lib library manager](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/platformio-install-spaiot.png)
+
+### ArduinoIDE:  
+1. Install [Arduino IDE](https://www.arduino.cc/en/software)  
+2. Install Arduino core for [ESP8266](https://github.com/esp8266/Arduino#installing-with-boards-manager) or [ESP32](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html)  
+3. Download from GitHub, you should navigate to the top level of the [spaiot-lib project](https://github.com/epsilonrt/spaiot-lib) and then a green "Code" download button will be visible on the right. 
+Choose the Download ZIP option from the Code pull-down menu.  
+4. Since you have downloaded the ZIP file, open your Arduino IDE, click on Sketch > Include Library > Add .ZIP Library. 
+Choose the ZIP file you just downloaded，and if the library install correct, you will see Library added to your libraries in the notice window. Which means the library is installed successfully.  
+
+Then let's check if the library install correctly.
+
+When you add the library successfully, there will be a demo in the Example. In this case, click on File > Example > spaiot-lib > SpaSimple to open an example.
+Choose the highest CPU frequency (160MHz for ESP8266, 240MHz for ESP32) from the Tools > CPU Frequency menu, click on the Verify button, if there's no error, congratulation, the library is installed perfectly.
+
+![arduino ide](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/arduino-example.png)
+
+---
+
+## Full user documentation
+Please see here for [full user documentation](https://espilonrt.github.io/spaiot-lib)
+
+---
+
+## Examples
+See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on GitHub
+
+---
+
+## Usage  
+### Include SpaIot-Library (SpaIot.h) and use the SpaIot namespace
+```C++
+#include <SpaIot.h>
+
+using namespace SpaIot;
+```
+
+### Declare a global pointer on the spa control panel
+```C++
+ControlPanel * spa; // pointer on the control panel
+```
+Warning ! only one control panel instance may exist.
+
+### In setup()
+```C++
+  // Get the instance for your SPA configuration (SCIP2SSP)
+  spa = ControlPanel::getInstance ("SCIP2SSP");
+  
+  // Start the control panel
+  spa->begin();  // IMPORTANT LINE!
+```
+
+### In loop()
+```C++
+  uint16_t w;
+
+  w = spa->waterTemp(); // Reading the temperature of the water
+  if (waterTemp != w) { // If modified, it is displayed
+    waterTemp = w;
+    Serial.printf ("waterTemp=%d'C\n", waterTemp);
+  }
+
+  if (Serial.available() > 0) { // If the key pressed...
+    // read the incoming byte:
+    int c = Serial.read();
+    
+    if ((c == 'P')||(c == 'p')) { // If the 'P' key pressed, push the power button
+      spa->pushButton(Power);
+    }
+  }
+```
+
+---
+
+## Configure the library according to the electronic part and the spa model
+
+spaiot-lib comes with hardware configurations of DIYSCIP boards and SSP-XXX and SJB-XXX SPA models :  
+1. **SCIP2SSP** > DIYSCIP v2 and SSP-XXX spa
+2. **SCIP2SJB** > DIYSCIP v2 and SJB-XXX spa  
+
+But it possible to adapt the hardware configuration with the HardwareSettings class which is an aggregation of classes:
+- BusSettings that defines the configuration of the synchronous serial link,
+- LedSettings that defines the configuration of the LEDs of the spa,
+- ButtonSettings that defines the configuration of the buttons.
+
+You can see how to create your own configuration with the [SpaHwCustom example](https://github.com/epsilonrt/spaiot-lib/blob/master/examples/SpaHwCustom/SpaHwCustom.ino)
+
+Before declare a global pointer on the spa control panel:  
+
+### Describe the pins used by the bus using a BusSettings constant  
+```C++
+// My bus configuration :
+// SCLK   -> GPIO12
+// SDATA  -> GPIO14
+// nWR    -> GPIO13
+const BusSettings MyBus (12, 14, 13);
+```
+
+### Describe the bits of the frame used by LEDs using a list of LedSettings type constants  
+```C++
+// My leds configuration (SSP)
+const std::map<int, LedSettings> MyLeds = {
+  { Power,          LedSettings (0) },  // Power        -> A0
+  { Heater,         LedSettings (7) },  // Heater       -> A7
+  { HeatReached,    LedSettings (9) },  // HeatReached  -> B1
+  { Bubble,         LedSettings (10) }, // Bubble       -> B2
+  { Filter,         LedSettings (12) }  // Filter       -> B4
+};
+```
+
+### Describe buttons controllers and their pins with the corresponding class (here Cd4051)  
+```C++
+// My button controllers
+Cd4051 CustomCtrlA (5, 4, 15, 16); // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO16
+Cd4051 CustomCtrlB (5, 4, 15, 0);  // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO0
+```
+
+### Describe the (bits used in the frame and controller) using a List of ButtonSettings constants  
+```C++
+// My buttons configuration (SSP)
+const std::map<int, ButtonSettings> MyButtons = {
+  { Filter,   ButtonSettings ("MyCtrlA", 1) },  // Filter   -> A1
+  { Bubble,   ButtonSettings ("MyCtrlA", 3) },  // Bubble   -> A3
+  { TempDown, ButtonSettings ("MyCtrlA", 7) },  // TempDown -> A7
+
+  { Power,    ButtonSettings ("MyCtrlB", 2) },  // Power    -> B2
+  { TempUp,   ButtonSettings ("MyCtrlB", 4) },  // TempUp   -> B4
+  { TempUnit, ButtonSettings ("MyCtrlB", 5) },  // TempUnit -> B5
+  { Heater,   ButtonSettings ("MyCtrlB", 7) }   // Heater   -> B7
+};
+```
+
+### Finally Create the hardware configuration  
+```C++
+// My custom configuration
+const HardwareSettings MyConfig (MyBus, MyLeds, MyButtons);
+```
+
+---
+
+## How does SpaIot work ?
 
 ### Decoding frames
 
@@ -93,84 +241,4 @@ spaiot-lib implements the button control with the Button class.
 Button uses the Abstract ButtonController class to make the connection between the button of the button and SDATA (SCOM actually).
 Thus, the developer will be able to create a derived class of ButtonController to implement his solution.
 
-### Configuration of the library according to the electronic part and the spa model
-
-spaiot-lib comes with hardware configurations of DIYSCIP boards and SSP-XXX and SJB-XXX SPA models.
-But it possible to adapt the hardware configuration with the HardwareSettings class which is an aggregation of classes:
-- BusSettings that defines the configuration of the synchronous serial link,
-- LedSettings that defines the configuration of the LEDs of the spa,
-- ButtonSettings that defines the configuration of the buttons.
-
-### Example
-
-This example displays the temperature of the water and resets the filtration of the spa, if it is started, to prevent the filtration from stopping after 24 hours.
-
-```cpp
-//
-// SpaIot Simple Example
-//
-#include <Arduino.h>
-#include <SpaIot.h>
-
-using namespace SpaIot;
-
-// It's a SCIP2 controller connected to a PXXXSPA SSP-XXX
-// If your configuration is different, see SpaHwCustom Example
-const char ConfigName[] = "SCIP2SSP"; 
-const unsigned long TimerTime = (12 * 60 * 60); // 12 hours in seconds
-const unsigned long SerialBaudrate = 115200;
-
-ControlPanel * spa; // pointer on the control panel
-unsigned long timer;
-uint16_t waterTemp;
-
-void setup() {
-
-  delay (2000);
-  Serial.begin (SerialBaudrate);
-  Serial.println ("\nSpaIot Simple Example");
-
-  spa = ControlPanel::getInstance (ConfigName);
-  if (spa == nullptr) { // check if the requested configuration has been found
-    Serial.println ("Harware settings not found");
-    for(;;); // loop always, to stop 
-  }
-
-  spa->begin();  // IMPORTANT LINE!
-  if (spa->isOpened() == false) { // check if the connection to the spa has been open
-    Serial.println ("No spa connection found");
-    for(;;); // loop always, to stop 
-  }
-  
-  // Wait to read the temperature of the water, it can take 20 seconds ...
-  waterTemp = spa->waitForWaterTemp();
-  Serial.printf ("waterTemp=%d'C\n", waterTemp);
-  Serial.printf ("Waiting to reset filter every %lu seconds...", TimerTime);
-}
-
-
-void loop() {
-
-  uint16_t t = spa->waterTemp(); // Reading the temperature of the water
-  if (waterTemp != t) { // If modified, it is displayed
-    waterTemp = t;
-    Serial.printf ("waterTemp=%d'C\n", waterTemp);
-  }
-
-  if (timer >= TimerTime) { // If the time has been reached, 
-    if (spa->isFilterOn()) { // you check if the filtering is running, 
-      Serial.println ("I rearm the spa filter");
-      // if so, it is stopped and restarts.
-      spa->setFilter (false);
-      delay (1000);
-      spa->setFilter (true);
-    }
-  }
-
-  delay (1000);
-}
-```
-
-### Documentation
-
-To do.
+---

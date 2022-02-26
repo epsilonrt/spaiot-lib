@@ -16,7 +16,7 @@ const unsigned long SerialBaudrate = 115200;
 
 ControlPanel * spa; // pointer on the control spa
 uint16_t waterTemp;
-uint16_t desiredTemp;
+uint16_t desiredTemp = UnsetValue16;
 uint16_t rawStatus;
 
 void setup() {
@@ -36,13 +36,8 @@ void setup() {
     Serial.println ("No spa connection found");
     for (;;); // loop always, to stop
   }
-  spa->setPower (true); // Comment this line if the spa is already started
+  spa->setPower (false);
 
-  // Wait to read the temperature of the water, it can take 20 seconds ...
-  waterTemp = spa->waitForWaterTemp();
-  Serial.printf ("waterTemp=%d'C\n", waterTemp);
-  desiredTemp = spa->waitForDesiredTemp();
-  Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
   Serial.println("You can press a key to press a spa button:");
   Serial.println("Key   Button");
   Serial.println("P     Power");
@@ -52,6 +47,11 @@ void setup() {
   Serial.println("U     Temp. Up");
   Serial.println("D     Temp. Down");
   Serial.println("C     Temp. Unit");
+  Serial.println("Waiting for reading temperatures, it can take up to 20 seconds...");
+  
+  // Wait to read the temperature of the water, it can take 20 seconds ...
+  waterTemp = spa->waitForWaterTemp();
+  Serial.printf ("waterTemp=%d'C\n", waterTemp);
 }
 
 
@@ -65,7 +65,7 @@ void loop() {
   }
 
   w = spa->desiredTemp(); // Reading the desired temperature
-  if (desiredTemp != w) { // If modified, it is displayed
+  if ((desiredTemp != w) && (spa->isPowerOn())) { // If modified, it is displayed
     desiredTemp = w;
     Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
   }

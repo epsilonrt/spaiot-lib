@@ -27,7 +27,7 @@ spaiot-lib allows the integration of your Intxx PxxxSPA into your home automatio
 For example, associated with [SinricPro](https://sinric.pro/), spaiot-lib will order its spa in the voice using a Google Assistant, Amazon Alexa...
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-  <img src="https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/by-nc-sa-small.png" alt="by-nc-sa.png" align="right" valign="top">
+  <img src="https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/by-nc-sa-small.png" alt="by-nc-sa.png" align="right" valign="top">
 </a>
 
 spaiot-lib is based on Geoffroy Hubert's work on the DIYSCIP project. 
@@ -42,7 +42,7 @@ spaiot-lib provides the following features:
 - remote control of push buttons
 
 It is documented using [doxygen](https://www.doxygen.nl/index.html) and delivered with [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples). 
-[Unit tests](https://github.com/epsilonrt/spaiot-lib/tree/master/test) provide continuous integration and diffusion ([CI/CD](https://en.wikipedia.org/wiki/CI/CD))
+[Unit tests](https://github.com/epsilonrt/spaiot-lib/tree/master/test) provide continuous integration and delivery ([CI/CD](https://en.wikipedia.org/wiki/CI/CD))
 
 ### Decoding frames
 
@@ -52,7 +52,7 @@ The words are composed of 2 bytes A and B. B is the most significant byte and it
 
 We can see in the image below the frame that corresponds to the command of the LEDs:
 
-![ledframe](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/ledframe.png)
+![ledframe](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/ledframe.png)
 
 Decoding is implemented by the FrameDecoder class. This class makes it possible to recover mainly the following information:
 - LED status using FrameDecoder::isPowerOn(), FrameDecoder::isFilterOn() ...
@@ -69,7 +69,7 @@ Of course, this is not what is done because it would be necessary in this case t
 
 To find out how to do it, simply study the diagram below:
 
-![sch1_sregister](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/docs/images/sch1_sregister.png)
+![sch1_sregister](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/sch1_sregister.png)
 
 It is possible to see 2 integrated circuits, U1 and U2 which will store the 16 bits of the frame and apply their logic level to the correditional pins of U1 / U2.
 U1 memorizes least significant byte A, U2 the most significant byte B.

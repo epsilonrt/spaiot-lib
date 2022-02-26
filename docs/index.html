@@ -161,18 +161,18 @@ Usage</h1>
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_spa_iot.html">SpaIot</a>;</div>
 <div class="ttc" id="anamespace_spa_iot_html"><div class="ttname"><a href="namespace_spa_iot.html">SpaIot</a></div><div class="ttdef"><b>Definition:</b> bussettings.h:21</div></div>
 </div><!-- fragment --></li>
-<li><p class="startli">Declare a global pointer on the spa control panel</p>
+<li><p class="startli">Declare a global pointer on the <code>spa</code> control panel</p>
 <div class="fragment"><div class="line">ControlPanel * spa; <span class="comment">// pointer on the control panel</span></div>
 </div><!-- fragment --><p class="startli"><b>Warning !</b> only one control panel instance may exist.</p>
 </li>
-<li><p class="startli">In setup()</p>
+<li><p class="startli">In <code>setup()</code></p>
 <div class="fragment"><div class="line"><span class="comment">// Get the instance for your SPA configuration (SCIP2SSP)</span></div>
 <div class="line">spa = ControlPanel::getInstance (<span class="stringliteral">&quot;SCIP2SSP&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Start the control panel</span></div>
 <div class="line">spa-&gt;begin();  <span class="comment">// IMPORTANT LINE!</span></div>
 </div><!-- fragment --></li>
-<li><p class="startli">In loop()</p>
+<li><p class="startli">In <code>loop()</code></p>
 <div class="fragment"><div class="line">uint16_t w;</div>
 <div class="line"> </div>
 <div class="line">w = spa-&gt;waterTemp(); <span class="comment">// Reading the temperature of the water</span></div>

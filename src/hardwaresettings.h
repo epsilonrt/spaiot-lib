@@ -35,7 +35,7 @@ namespace SpaIot {
       const std::map <int, ButtonSettings> & buttons() const;
       bool operator== (const HardwareSettings &other) const;
       bool operator!= (const HardwareSettings &other) const;
-#ifndef NDEBUG
+#ifndef NODEBUG_SPAIOT
       void print(Print &out) const;
 #endif
       static bool addToRegister (const std::string & name, const HardwareSettings & settings);

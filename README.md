@@ -44,7 +44,7 @@ It is documented using [doxygen](https://www.doxygen.nl/index.html) and delivere
 
 ## Installation
 
-### VS Code & PlatformIO:
+### VS Code & PlatformIO  
 1. Install [VS Code](https://code.visualstudio.com/)  
 2. Install [PlatformIO](https://platformio.org/platformio-ide)  
 3. Install **spaiot-lib** by using [Library Manager](https://docs.platformio.org/en/latest/librarymanager/)  
@@ -52,7 +52,7 @@ It is documented using [doxygen](https://www.doxygen.nl/index.html) and delivere
 
 ![spaiot-lib library manager](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/platformio-install-spaiot.png)
 
-### ArduinoIDE:  
+### ArduinoIDE  
 1. Install [Arduino IDE](https://www.arduino.cc/en/software)  
 2. Install Arduino core for [ESP8266](https://github.com/esp8266/Arduino#installing-with-boards-manager) or [ESP32](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html)  
 3. Download from GitHub, you should navigate to the top level of the [spaiot-lib project](https://github.com/epsilonrt/spaiot-lib) and then a green "Code" download button will be visible on the right. 
@@ -62,7 +62,7 @@ Choose the ZIP file you just downloaded，and if the library install correct, yo
 
 Then let's check if the library install correctly.
 
-When you add the library successfully, there will be a demo in the Example. In this case, click on File > Example > spaiot-lib > SpaSimple to open an example.
+When you add the library successfully, there will be a demo in the Example. In this case, click on File > Example > spaiot-lib > SpaSimple to open an example.  
 Choose the highest CPU frequency (160MHz for ESP8266, 240MHz for ESP32) from the Tools > CPU Frequency menu, click on the Verify button, if there's no error, congratulation, the library is installed perfectly.
 
 ![arduino ide](https://raw.githubusercontent.com/epsilonrt/spaiot-lib/master/extras/images/arduino-example.png)
@@ -80,47 +80,53 @@ See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on 
 ---
 
 ## Usage  
-### Include SpaIot-Library (SpaIot.h) and use the SpaIot namespace
-```C++
-#include <SpaIot.h>
 
-using namespace SpaIot;
-```
+1. Include SpaIot-Library (SpaIot.h) and use the SpaIot namespace
 
-### Declare a global pointer on the spa control panel
-```C++
-ControlPanel * spa; // pointer on the control panel
-```
-Warning ! only one control panel instance may exist.
+  ```cpp
+  #include <SpaIot.h>
 
-### In setup()
-```C++
-  // Get the instance for your SPA configuration (SCIP2SSP)
-  spa = ControlPanel::getInstance ("SCIP2SSP");
-  
-  // Start the control panel
-  spa->begin();  // IMPORTANT LINE!
-```
+  using namespace SpaIot;
+  ```
 
-### In loop()
-```C++
-  uint16_t w;
+2. Declare a global pointer on the spa control panel
 
-  w = spa->waterTemp(); // Reading the temperature of the water
-  if (waterTemp != w) { // If modified, it is displayed
-    waterTemp = w;
-    Serial.printf ("waterTemp=%d'C\n", waterTemp);
-  }
+  ```cpp
+  ControlPanel * spa; // pointer on the control panel
+  ```
 
-  if (Serial.available() > 0) { // If the key pressed...
-    // read the incoming byte:
-    int c = Serial.read();
+  **Warning !** only one control panel instance may exist.
+
+3. In setup()
+
+  ```cpp
+    // Get the instance for your SPA configuration (SCIP2SSP)
+    spa = ControlPanel::getInstance ("SCIP2SSP");
     
-    if ((c == 'P')||(c == 'p')) { // If the 'P' key pressed, push the power button
-      spa->pushButton(Power);
+    // Start the control panel
+    spa->begin();  // IMPORTANT LINE!
+  ```
+
+4. In loop()
+
+  ```cpp
+    uint16_t w;
+
+    w = spa->waterTemp(); // Reading the temperature of the water
+    if (waterTemp != w) { // If modified, it is displayed
+      waterTemp = w;
+      Serial.printf ("waterTemp=%d'C\n", waterTemp);
     }
-  }
-```
+
+    if (Serial.available() > 0) { // If the key pressed...
+      // read the incoming byte:
+      int c = Serial.read();
+      
+      if ((c == 'P')||(c == 'p')) { // If the 'P' key pressed, push the power button
+        spa->pushButton(Power);
+      }
+    }
+  ```
 
 ---
 
@@ -139,54 +145,59 @@ You can see how to create your own configuration with the [SpaHwCustom example](
 
 Before declare a global pointer on the spa control panel:  
 
-### Describe the pins used by the bus using a BusSettings constant  
-```C++
-// My bus configuration :
-// SCLK   -> GPIO12
-// SDATA  -> GPIO14
-// nWR    -> GPIO13
-const BusSettings MyBus (12, 14, 13);
-```
+1. Describe the pins used by the bus using a BusSettings constant 
 
-### Describe the bits of the frame used by LEDs using a list of LedSettings type constants  
-```C++
-// My leds configuration (SSP)
-const std::map<int, LedSettings> MyLeds = {
-  { Power,          LedSettings (0) },  // Power        -> A0
-  { Heater,         LedSettings (7) },  // Heater       -> A7
-  { HeatReached,    LedSettings (9) },  // HeatReached  -> B1
-  { Bubble,         LedSettings (10) }, // Bubble       -> B2
-  { Filter,         LedSettings (12) }  // Filter       -> B4
-};
-```
+  ```cpp
+  // My bus configuration :
+  // SCLK   -> GPIO12
+  // SDATA  -> GPIO14
+  // nWR    -> GPIO13
+  const BusSettings MyBus (12, 14, 13);
+  ```
 
-### Describe buttons controllers and their pins with the corresponding class (here Cd4051)  
-```C++
-// My button controllers
-Cd4051 CustomCtrlA (5, 4, 15, 16); // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO16
-Cd4051 CustomCtrlB (5, 4, 15, 0);  // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO0
-```
+2. Describe the bits of the frame used by LEDs using a list of LedSettings type constants
 
-### Describe the (bits used in the frame and controller) using a List of ButtonSettings constants  
-```C++
-// My buttons configuration (SSP)
-const std::map<int, ButtonSettings> MyButtons = {
-  { Filter,   ButtonSettings ("MyCtrlA", 1) },  // Filter   -> A1
-  { Bubble,   ButtonSettings ("MyCtrlA", 3) },  // Bubble   -> A3
-  { TempDown, ButtonSettings ("MyCtrlA", 7) },  // TempDown -> A7
+  ```cpp
+  // My leds configuration (SSP)
+  const std::map<int, LedSettings> MyLeds = {
+    { Power,          LedSettings (0) },  // Power        -> A0
+    { Heater,         LedSettings (7) },  // Heater       -> A7
+    { HeatReached,    LedSettings (9) },  // HeatReached  -> B1
+    { Bubble,         LedSettings (10) }, // Bubble       -> B2
+    { Filter,         LedSettings (12) }  // Filter       -> B4
+  };
+  ```
 
-  { Power,    ButtonSettings ("MyCtrlB", 2) },  // Power    -> B2
-  { TempUp,   ButtonSettings ("MyCtrlB", 4) },  // TempUp   -> B4
-  { TempUnit, ButtonSettings ("MyCtrlB", 5) },  // TempUnit -> B5
-  { Heater,   ButtonSettings ("MyCtrlB", 7) }   // Heater   -> B7
-};
-```
+3. Describe buttons controllers and their pins with the corresponding class (here Cd4051)  
 
-### Finally Create the hardware configuration  
-```C++
-// My custom configuration
-const HardwareSettings MyConfig (MyBus, MyLeds, MyButtons);
-```
+  ```cpp
+  // My button controllers
+  Cd4051 CustomCtrlA (5, 4, 15, 16); // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO16
+  Cd4051 CustomCtrlB (5, 4, 15, 0);  // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO0
+  ```
+
+4. Describe the (bits used in the frame and controller) using a List of ButtonSettings constants  
+
+  ```cpp
+  // My buttons configuration (SSP)
+  const std::map<int, ButtonSettings> MyButtons = {
+    { Filter,   ButtonSettings ("MyCtrlA", 1) },  // Filter   -> A1
+    { Bubble,   ButtonSettings ("MyCtrlA", 3) },  // Bubble   -> A3
+    { TempDown, ButtonSettings ("MyCtrlA", 7) },  // TempDown -> A7
+
+    { Power,    ButtonSettings ("MyCtrlB", 2) },  // Power    -> B2
+    { TempUp,   ButtonSettings ("MyCtrlB", 4) },  // TempUp   -> B4
+    { TempUnit, ButtonSettings ("MyCtrlB", 5) },  // TempUnit -> B5
+    { Heater,   ButtonSettings ("MyCtrlB", 7) }   // Heater   -> B7
+  };
+  ```
+
+5. Finally Create the hardware configuration  
+
+  ```cpp
+  // My custom configuration
+  const HardwareSettings MyConfig (MyBus, MyLeds, MyButtons);
+  ```
 
 ---
 

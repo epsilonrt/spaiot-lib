@@ -1,0 +1,4 @@
+<map id="FrameDecoder" name="FrameDecoder">
+<area shape="rect" id="node1" title="This class decodes information from the technical block of the spa." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node2" href="$class_spa_iot_1_1_control_panel.html" title="It is a singleton class that can only be instantiated through getInstance()" alt="" coords="11,80,107,107"/>
+</map>

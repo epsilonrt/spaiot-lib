@@ -15,6 +15,10 @@
 
 #include <Arduino.h>
 
+/**
+ * @brief 
+ * @return 
+ */
 template <class T>
 String type_name (const T&) {
   String s = __PRETTY_FUNCTION__;

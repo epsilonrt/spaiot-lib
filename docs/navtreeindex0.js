@@ -1,0 +1,25 @@
+var NAVTREEINDEX0 =
+{
+"annotated.html":[1,0],
+"class_spa_iot_1_1_control_panel.html":[1,0,0,0],
+"class_spa_iot_1_1_control_panel.html#af3e62bc72cac71ae9c1d380057a77996":[1,0,0,0,0],
+"class_spa_iot_1_1_frame_decoder.html":[1,0,0,1],
+"class_spa_iot_1_1_frame_decoder.html#af3e62bc72cac71ae9c1d380057a77996":[1,0,0,1,0],
+"classes.html":[1,1],
+"functions.html":[1,3,0],
+"functions_func.html":[1,3,1],
+"hierarchy.html":[1,2],
+"index.html":[],
+"index.html":[0],
+"index.html#autotoc_md11":[0,3],
+"index.html#autotoc_md13":[0,4],
+"index.html#autotoc_md15":[0,5],
+"index.html#autotoc_md16":[0,5,0],
+"index.html#autotoc_md17":[0,5,1],
+"index.html#autotoc_md3":[0,0],
+"index.html#autotoc_md4":[0,0,0],
+"index.html#autotoc_md5":[0,0,1],
+"index.html#autotoc_md7":[0,1],
+"index.html#autotoc_md9":[0,2],
+"pages.html":[]
+};

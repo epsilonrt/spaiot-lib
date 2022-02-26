@@ -89,7 +89,7 @@ See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on 
   using namespace SpaIot;
   ```
 
-2. Declare a global pointer on the spa control panel
+2. Declare a global pointer on the `spa` control panel
 
   ```cpp
   ControlPanel * spa; // pointer on the control panel
@@ -97,7 +97,7 @@ See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on 
 
   **Warning !** only one control panel instance may exist.
 
-3. In setup()
+3. In `setup()`
 
   ```cpp
     // Get the instance for your SPA configuration (SCIP2SSP)
@@ -107,7 +107,7 @@ See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on 
     spa->begin();  // IMPORTANT LINE!
   ```
 
-4. In loop()
+4. In `loop()`
 
   ```cpp
     uint16_t w;

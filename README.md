@@ -75,7 +75,7 @@ Please see here for [full user documentation](https://epsilonrt.github.io/spaiot
 ---
 
 ## Examples
-See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on GitHub
+See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on GitHub
 
 ---
 

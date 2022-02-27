@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  *
@@ -25,14 +25,50 @@ namespace SpaIot {
    */
   class ButtonSettings {
     public:
+      /**
+       * @brief 
+       */
       ButtonSettings();
+      /**
+       * @brief 
+       * @param controllerName
+       * @param buttonId
+       */
       ButtonSettings (const std::string & controllerName, int buttonId);
+      /**
+       * @brief 
+       * @return 
+       */
       const std::string & controllerName() const;
+      /**
+       * @brief 
+       * @param name
+       */
       void setControllerName (const std::string & name);
+      /**
+       * @brief 
+       * @return 
+       */
       int id() const;
+      /**
+       * @brief 
+       * @param id
+       */
       void setId (int id);
+      /**
+       * @brief 
+       * @return 
+       */
       bool isNull() const;
+      /**
+       * @brief 
+       * @param other
+       */
       bool operator== (const ButtonSettings &other) const;
+      /**
+       * @brief 
+       * @param other
+       */
       bool operator!= (const ButtonSettings &other) const;
 
     private:
@@ -40,6 +76,12 @@ namespace SpaIot {
       std::string  m_controllerName;
   };
 
+  /**
+   * @brief 
+   */
   extern const std::map<int, ButtonSettings> Scip2SspButtons;
+  /**
+   * @brief 
+   */
   extern const std::map<int, ButtonSettings> Scip2SjbButtons;
 }

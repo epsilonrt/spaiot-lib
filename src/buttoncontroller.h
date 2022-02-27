@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  *
@@ -25,19 +25,72 @@ namespace SpaIot {
    */
   class ButtonController {
     public:
+      /**
+       * @brief 
+       */
       ButtonController();
+      /**
+       * @brief 
+       * @return 
+       */
       virtual ~ButtonController() {}
+      /**
+       * @brief 
+       */
       virtual void begin() = 0;
+      /**
+       * @brief 
+       * @param button
+       * @return 
+       */
       virtual int select (int button) = 0;
+      /**
+       * @brief 
+       */
       virtual void deselect () = 0;
+      /**
+       * @brief 
+       * @return 
+       */
       virtual int selected() const;
+      /**
+       * @brief 
+       * @return 
+       */
       virtual bool isOpened() const;
+      /**
+       * @brief 
+       * @return 
+       */
       virtual bool isNull() const;
+      /**
+       * @brief 
+       * @return 
+       */
       virtual bool isSelected() const;
+      /**
+       * @brief 
+       * @param other
+       */
       virtual bool operator== (const ButtonController &other) const;
+      /**
+       * @brief 
+       * @param other
+       */
       virtual bool operator!= (const ButtonController &other) const;
       
+      /**
+       * @brief 
+       * @param name
+       * @param controller
+       * @return 
+       */
       static bool addToRegister (const std::string & name, ButtonController & controller);
+      /**
+       * @brief 
+       * @param name
+       * @return 
+       */
       static ButtonController & getFromRegister (const std::string & name);
 
     protected:

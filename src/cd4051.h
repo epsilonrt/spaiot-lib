@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  *
@@ -28,6 +28,9 @@ namespace SpaIot {
     public:
       enum { S0 = 0, S1, S2, En };
 
+      /**
+       * @brief 
+       */
       Cd4051 ();
       Cd4051 (const std::initializer_list<int>& pins);
       Cd4051 (int s0Pin, int s1Pin, int s2Pin, int enPin);

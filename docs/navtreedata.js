@@ -39,6 +39,12 @@ var NAVTREE =
         [ "Control of push buttons", "index.html#autotoc_md17", null ]
       ] ]
     ] ],
+    [ "Namespace Members", "namespacemembers.html", [
+      [ "All", "namespacemembers.html", null ],
+      [ "Variables", "namespacemembers_vars.html", null ],
+      [ "Enumerations", "namespacemembers_enum.html", null ],
+      [ "Enumerator", "namespacemembers_eval.html", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

@@ -1,4 +1,27 @@
 var class_spa_iot_1_1_frame_decoder =
 [
-    [ "isSetupModeTriggered", "class_spa_iot_1_1_frame_decoder.html#af3e62bc72cac71ae9c1d380057a77996", null ]
+    [ "begin", "class_spa_iot_1_1_frame_decoder.html#ab0bdf5cca484fb2ba637c39384b27fb2", null ],
+    [ "busSettings", "class_spa_iot_1_1_frame_decoder.html#a8d96749ddadbdc4b6abb0ce0afcb308b", null ],
+    [ "desiredTemp", "class_spa_iot_1_1_frame_decoder.html#aef17042c6b4f4e66f6d1dc9601c3c9b3", null ],
+    [ "error", "class_spa_iot_1_1_frame_decoder.html#a5ad01d21d24a75d824a9324128397dda", null ],
+    [ "frameCounter", "class_spa_iot_1_1_frame_decoder.html#af82c7372098e63660fcc7f90e59dc96d", null ],
+    [ "frameDropped", "class_spa_iot_1_1_frame_decoder.html#a120ae0296f78c6a91654be000443c4c4", null ],
+    [ "hasLed", "class_spa_iot_1_1_frame_decoder.html#a95b0143560288c60031292a1f13d8e45", null ],
+    [ "isBubbleOn", "class_spa_iot_1_1_frame_decoder.html#af7946b11f0e30aebc01bdc0bacf84d74", null ],
+    [ "isDisplayBlink", "class_spa_iot_1_1_frame_decoder.html#affda69d6b0bf4696589df89ef8b9abe9", null ],
+    [ "isFilterOn", "class_spa_iot_1_1_frame_decoder.html#abbce1904db6b4fa65e8b26ad02e34212", null ],
+    [ "isHeaterOn", "class_spa_iot_1_1_frame_decoder.html#aa85d5a722386920e6a91f8f6dc6969d9", null ],
+    [ "isHeatReached", "class_spa_iot_1_1_frame_decoder.html#a91aa59204d6f258d330035c63c76a4d9", null ],
+    [ "isJetOn", "class_spa_iot_1_1_frame_decoder.html#a5385938e1512d9e0f43a055f58acb7ad", null ],
+    [ "isLedOn", "class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32", null ],
+    [ "isOpened", "class_spa_iot_1_1_frame_decoder.html#a6403a2e2e1f4f8b27cf4da929892ff85", null ],
+    [ "isPowerOn", "class_spa_iot_1_1_frame_decoder.html#aec7e8d3fb148e49eee619cdb211619b8", null ],
+    [ "isSanitizerOn", "class_spa_iot_1_1_frame_decoder.html#a2da94470fc952e0f495720bb498672ca", null ],
+    [ "isSetupModeTriggered", "class_spa_iot_1_1_frame_decoder.html#af3e62bc72cac71ae9c1d380057a77996", null ],
+    [ "ledSettings", "class_spa_iot_1_1_frame_decoder.html#a09fbfc38167de08c0bfb3d9f51c13ea8", null ],
+    [ "rawStatus", "class_spa_iot_1_1_frame_decoder.html#a70365ebc789a1477bd407f85b455e317", null ],
+    [ "sanitizerTime", "class_spa_iot_1_1_frame_decoder.html#a9e0e53a6325c94bae1d12d4e6d50b042", null ],
+    [ "waitForWaterTemp", "class_spa_iot_1_1_frame_decoder.html#afc81d1184a6ba8679f0b50bb9a3745e5", null ],
+    [ "waitUntilDisplayBlink", "class_spa_iot_1_1_frame_decoder.html#affc9bab24442456da5e8963940682f93", null ],
+    [ "waterTemp", "class_spa_iot_1_1_frame_decoder.html#a8f2736a5a5214106730658dfc54cf19e", null ]
 ];

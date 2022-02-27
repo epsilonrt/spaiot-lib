@@ -85,7 +85,19 @@ $(document).ready(function(){initNavTree('hardwaresettings_8h_source.html',''); 
   <div class="headertitle"><div class="title">hardwaresettings.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * This file is part of SpaIot library &lt;https://github.com/epsilonrt/spaiot-lib&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SpaIot library is licensed under a</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * You should have received a copy of the license along with this</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * work. If not, see &lt;http://creativecommons.org/licenses/by-nc-sa/4.0/&gt;.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * SpaIot library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * but WITHOUT ANY WARRANTY;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
@@ -96,34 +108,35 @@ $(document).ready(function(){initNavTree('hardwaresettings_8h_source.html',''); 
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">class </span>HardwareSettings {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      HardwareSettings();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      HardwareSettings (<span class="keyword">const</span> BusSettings &amp; bus,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                        <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; &amp; leds,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                        <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; &amp; buttons);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordtype">bool</span> isNull() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      <span class="keyword">const</span> BusSettings  &amp; bus() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; &amp; leds() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; &amp; buttons() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> HardwareSettings &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> HardwareSettings &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#ifndef NODEBUG_SPAIOT</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <span class="keywordtype">void</span> print(Print &amp;out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> addToRegister (<span class="keyword">const</span> std::string &amp; name, <span class="keyword">const</span> HardwareSettings &amp; settings);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keyword">static</span> <span class="keyword">const</span> HardwareSettings &amp; getFromRegister (<span class="keyword">const</span> std::string &amp; name);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> registerContains (<span class="keyword">const</span> std::string &amp; name);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keyword">const</span> BusSettings * m_bus;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; * m_leds;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; * m_buttons;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keyword">static</span> std::map&lt;std::string, const HardwareSettings *&gt; Register;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Ssp;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Sjb;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
-<div class="ttc" id="anamespace_spa_iot_html"><div class="ttname"><a href="namespace_spa_iot.html">SpaIot</a></div><div class="ttdef"><b>Definition:</b> bussettings.h:21</div></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      HardwareSettings();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      HardwareSettings (<span class="keyword">const</span> BusSettings &amp; bus,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                        <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; &amp; leds,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                        <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; &amp; buttons);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordtype">bool</span> isNull() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keyword">const</span> BusSettings  &amp; bus() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; &amp; leds() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; &amp; buttons() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> HardwareSettings &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> HardwareSettings &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#ifndef NODEBUG_SPAIOT</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordtype">void</span> print(Print &amp;out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> addToRegister (<span class="keyword">const</span> std::string &amp; name, <span class="keyword">const</span> HardwareSettings &amp; settings);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keyword">static</span> <span class="keyword">const</span> HardwareSettings &amp; getFromRegister (<span class="keyword">const</span> std::string &amp; name);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> registerContains (<span class="keyword">const</span> std::string &amp; name);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> BusSettings * m_bus;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; * m_leds;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; * m_buttons;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keyword">static</span> std::map&lt;std::string, const HardwareSettings *&gt; Register;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  };</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Ssp;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Sjb;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
+<div class="ttc" id="anamespace_spa_iot_html"><div class="ttname"><a href="namespace_spa_iot.html">SpaIot</a></div><div class="ttdoc">SpaIot name space.</div><div class="ttdef"><b>Definition:</b> bussettings.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

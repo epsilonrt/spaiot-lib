@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  *
@@ -15,27 +15,34 @@
 
 #include <cstdint>
 
+//! SpaIot name space
 namespace SpaIot {
 
-  enum  {
-    Power = 0,
-    Filter,
-    Bubble,
-    Jet,
-    Sanitizer,
-    Heater,
-    HeatReached, // led only
-    TempUp, // button only
-    TempDown, // button only
-    TempUnit, // button only
+  /**
+   * @enum Key
+   * @brief LED and push buttons identification keys 
+   */
+  enum Key {
+    Power = 0,  //!< Power Led or Button
+    Filter,     //!< Filter Led or Button
+    Bubble,     //!< Bubble Led or Button
+    Jet,        //!< Jet Led or Button
+    Sanitizer,  //!< Sanitizer Led or Button
+    Heater,     //!< Heater Led (Red) or Button
+    HeatReached,//!< Heat Reached Led (Green)
+    TempUp,     //!< Temperature Up Button
+    TempDown,   //!< Temperature Down Button
+    TempUnit,   //!< Temperature Unity Button (°C/°F)
   };
 
-  const uint16_t UnsetValue16 = 0xFFFF;
-  const uint8_t UnsetValue8 = 0xFF;
-  const unsigned long ButtonIntervalMs = 500;
-  const uint16_t DesiredTempMax = 40;
-  const uint16_t DesiredTempMin = 20;
-  const uint16_t SetupTrigUnitChangeMin = 5;
-  const unsigned long SetupTrigUnitChangeStepMaxMs = 1000;
-  const unsigned long HoldPressedMs = 300;
+  const uint16_t UnsetValue16 = 0xFFFF; //!< Indeterminate value on 16 bits
+  const uint8_t UnsetValue8 = 0xFF; //!< Indeterminate value on 8 bits
+  const unsigned long ButtonIntervalMs = 500; //!< Time between 2 successive actions on the buttons
+  const uint16_t DesiredTempMax = 40; //!< Maximum desired temperature in °C
+  const uint16_t DesiredTempMin = 20; //!< Minimum desired temperature in °C
+  const uint16_t SetupTrigUnitChangeMin = 5; //!< Number of changes in temperature unit corresponding to the reset request
+  const unsigned long SetupTrigUnitChangeStepMaxMs = 1000; //!< Maximum time separating successive actions on the unit change button to trigger reset request
+  const unsigned long HoldPressedMs = 300; //!< Time between press and release a button
+  const unsigned long BeginWaitingTimeMs = 3000; //!< \c begin() waiting time in milliseconds
+  const unsigned long ResetErrorTimeMs = 4000; //!< Time after which an error can be erased
 }

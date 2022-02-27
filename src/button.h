@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  *
@@ -26,22 +26,76 @@ namespace SpaIot {
   class Button {
 
     public:
+      /**
+       * @brief 
+       */
       Button ();
+      /**
+       * @brief 
+       */
       Button (const ButtonSettings & settings);
 
+      /**
+       * @brief 
+       * @return 
+       */
       int id() const;
+      /**
+       * @brief 
+       * @return 
+       */
       const ButtonController & ctrl() const;
+      /**
+       * @brief 
+       * @return 
+       */
       ButtonController & ctrl();
+      /**
+       * @brief 
+       * @return 
+       */
       const ButtonSettings & settings() const;
 
+      /**
+       * @brief 
+       */
       void begin();
+      /**
+       * @brief 
+       */
       void press();
+      /**
+       * @brief 
+       */
       void release();
+      /**
+       * @brief 
+       */
       void push();
+      /**
+       * @brief 
+       * @return 
+       */
       bool isOpened() const;
+      /**
+       * @brief 
+       * @return 
+       */
       bool isNull() const;
+      /**
+       * @brief 
+       * @return 
+       */
       bool isPressed() const;
+      /**
+       * @brief 
+       * @param other
+       */
       bool operator== (const Button &other) const;
+      /**
+       * @brief 
+       * @param other
+       */
       bool operator!= (const Button &other) const;
 
     private:

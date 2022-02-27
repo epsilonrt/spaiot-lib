@@ -70,7 +70,7 @@ Choose the highest CPU frequency (160MHz for ESP8266, 240MHz for ESP32) from the
 ---
 
 ## Full user documentation
-Please see here for [full user documentation](https://espilonrt.github.io/spaiot-lib)
+Please see here for [full user documentation](https://epsilonrt.github.io/spaiot-lib/)
 
 ---
 
@@ -81,7 +81,7 @@ See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on 
 
 ## Usage  
 
-1. Include SpaIot-Library (SpaIot.h) and use the SpaIot namespace
+1. Include SpaIot-Library (`SpaIot.h`) and use the SpaIot namespace
 
   ```cpp
   #include <SpaIot.h>
@@ -107,7 +107,7 @@ See [examples](https://github.com/espilonrt/spaiot-lib/tree/master/examples) on 
     spa->begin();  // IMPORTANT LINE!
   ```
 
-4. In `loop()`
+4. In `loop()`, use API of the [ControlPanel](https://epsilonrt.github.io/spaiot-lib/class_spa_iot_1_1_control_panel.html) class to do or read what you want
 
   ```cpp
     uint16_t w;

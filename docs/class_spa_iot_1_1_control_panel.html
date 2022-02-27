@@ -84,12 +84,13 @@ $(document).ready(function(){initNavTree('class_spa_iot_1_1_control_panel.html',
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_spa_iot_1_1_control_panel-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ControlPanel</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>It is a singleton class that can only be instantiated through getInstance()  
+<p>Control Panel.  
  <a href="class_spa_iot_1_1_control_panel.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="controlpanel_8h_source.html">controlpanel.h</a>&gt;</code></p>
@@ -98,20 +99,738 @@ Inheritance diagram for ControlPanel:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_spa_iot_1_1_control_panel__inherit__graph.png" border="0" usemap="#a_control_panel_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_control_panel_inherit__map" id="a_control_panel_inherit__map">
-<area shape="rect" title="It is a singleton class that can only be instantiated through getInstance()" alt="" coords="11,80,107,107"/>
+<area shape="rect" title="Control Panel." alt="" coords="11,80,107,107"/>
 <area shape="rect" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa." alt="" coords="5,5,112,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ab0bdf5cca484fb2ba637c39384b27fb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#ab0bdf5cca484fb2ba637c39384b27fb2">begin</a> ()</td></tr>
+<tr class="memdesc:ab0bdf5cca484fb2ba637c39384b27fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures each of the buttons and initializes and connect with the spa.  <a href="class_spa_iot_1_1_control_panel.html#ab0bdf5cca484fb2ba637c39384b27fb2">More...</a><br /></td></tr>
+<tr class="separator:ab0bdf5cca484fb2ba637c39384b27fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6403a2e2e1f4f8b27cf4da929892ff85"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a6403a2e2e1f4f8b27cf4da929892ff85">isOpened</a> () const</td></tr>
+<tr class="memdesc:a6403a2e2e1f4f8b27cf4da929892ff85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the connection with the spa is established.  <a href="class_spa_iot_1_1_control_panel.html#a6403a2e2e1f4f8b27cf4da929892ff85">More...</a><br /></td></tr>
+<tr class="separator:a6403a2e2e1f4f8b27cf4da929892ff85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa7504db059607b5b10125c66913c45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a4fa7504db059607b5b10125c66913c45">hasButton</a> (int key) const</td></tr>
+<tr class="memdesc:a4fa7504db059607b5b10125c66913c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the hardware configuration has the button.  <a href="class_spa_iot_1_1_control_panel.html#a4fa7504db059607b5b10125c66913c45">More...</a><br /></td></tr>
+<tr class="separator:a4fa7504db059607b5b10125c66913c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c6313f2948812d3bc8f0399430c7108"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a1c6313f2948812d3bc8f0399430c7108">pushButton</a> (int key)</td></tr>
+<tr class="memdesc:a1c6313f2948812d3bc8f0399430c7108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Press and release a button.  <a href="class_spa_iot_1_1_control_panel.html#a1c6313f2948812d3bc8f0399430c7108">More...</a><br /></td></tr>
+<tr class="separator:a1c6313f2948812d3bc8f0399430c7108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98e310a89b14710c67c42b7dc38fb645"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, ButtonSettings &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a98e310a89b14710c67c42b7dc38fb645">buttonSettings</a> () const</td></tr>
+<tr class="memdesc:a98e310a89b14710c67c42b7dc38fb645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buttons settings provides at the instantiation.  <a href="class_spa_iot_1_1_control_panel.html#a98e310a89b14710c67c42b7dc38fb645">More...</a><br /></td></tr>
+<tr class="separator:a98e310a89b14710c67c42b7dc38fb645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ef4f0e56543afba2359789f3ab162f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a41ef4f0e56543afba2359789f3ab162f">setPower</a> (bool v=true)</td></tr>
+<tr class="memdesc:a41ef4f0e56543afba2359789f3ab162f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start or stop the spa.  <a href="class_spa_iot_1_1_control_panel.html#a41ef4f0e56543afba2359789f3ab162f">More...</a><br /></td></tr>
+<tr class="separator:a41ef4f0e56543afba2359789f3ab162f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a604a2e1bb3584ff43dc4271165c4dd9c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a604a2e1bb3584ff43dc4271165c4dd9c">setFilter</a> (bool v=true)</td></tr>
+<tr class="memdesc:a604a2e1bb3584ff43dc4271165c4dd9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start or stop the water filtration.  <a href="class_spa_iot_1_1_control_panel.html#a604a2e1bb3584ff43dc4271165c4dd9c">More...</a><br /></td></tr>
+<tr class="separator:a604a2e1bb3584ff43dc4271165c4dd9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d0bc259fbffd552e6367cb6da460f08"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a3d0bc259fbffd552e6367cb6da460f08">setHeater</a> (bool v=true)</td></tr>
+<tr class="memdesc:a3d0bc259fbffd552e6367cb6da460f08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start or stop water heating.  <a href="class_spa_iot_1_1_control_panel.html#a3d0bc259fbffd552e6367cb6da460f08">More...</a><br /></td></tr>
+<tr class="separator:a3d0bc259fbffd552e6367cb6da460f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a980c3543c6d6977d6b1c72dda9c44210"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a980c3543c6d6977d6b1c72dda9c44210">setBubble</a> (bool v=true)</td></tr>
+<tr class="memdesc:a980c3543c6d6977d6b1c72dda9c44210"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start or stop the the bubble generator.  <a href="class_spa_iot_1_1_control_panel.html#a980c3543c6d6977d6b1c72dda9c44210">More...</a><br /></td></tr>
+<tr class="separator:a980c3543c6d6977d6b1c72dda9c44210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50d1f15c5a5d97bb66f964d9fcc9956"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#af50d1f15c5a5d97bb66f964d9fcc9956">setJet</a> (bool v=true)</td></tr>
+<tr class="memdesc:af50d1f15c5a5d97bb66f964d9fcc9956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start or stop the water jets.  <a href="class_spa_iot_1_1_control_panel.html#af50d1f15c5a5d97bb66f964d9fcc9956">More...</a><br /></td></tr>
+<tr class="separator:af50d1f15c5a5d97bb66f964d9fcc9956"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de2da0fa5dcb8bb3bbdddfa4d1f7c92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a1de2da0fa5dcb8bb3bbdddfa4d1f7c92">setDesiredTemp</a> (uint16_t temp)</td></tr>
+<tr class="memdesc:a1de2da0fa5dcb8bb3bbdddfa4d1f7c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the desired water temperature.  <a href="class_spa_iot_1_1_control_panel.html#a1de2da0fa5dcb8bb3bbdddfa4d1f7c92">More...</a><br /></td></tr>
+<tr class="separator:a1de2da0fa5dcb8bb3bbdddfa4d1f7c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09546027f2034493e8c8bec853116b72"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a09546027f2034493e8c8bec853116b72">setSanitizerTime</a> (uint16_t time)</td></tr>
+<tr class="memdesc:a09546027f2034493e8c8bec853116b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the water sanitation time.  <a href="class_spa_iot_1_1_control_panel.html#a09546027f2034493e8c8bec853116b72">More...</a><br /></td></tr>
+<tr class="separator:a09546027f2034493e8c8bec853116b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d1c5333960a81927b6cf2a64001b26c"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a1d1c5333960a81927b6cf2a64001b26c">waitForDesiredTemp</a> (unsigned long MaxWaitingTimeMs=5000)</td></tr>
+<tr class="memdesc:a1d1c5333960a81927b6cf2a64001b26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Press the TempUp button to read the desired temperature.  <a href="class_spa_iot_1_1_control_panel.html#a1d1c5333960a81927b6cf2a64001b26c">More...</a><br /></td></tr>
+<tr class="separator:a1d1c5333960a81927b6cf2a64001b26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b0143560288c60031292a1f13d8e45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a95b0143560288c60031292a1f13d8e45">hasLed</a> (int key) const</td></tr>
+<tr class="memdesc:a95b0143560288c60031292a1f13d8e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the hardware configuration has the LED.  <a href="class_spa_iot_1_1_frame_decoder.html#a95b0143560288c60031292a1f13d8e45">More...</a><br /></td></tr>
+<tr class="separator:a95b0143560288c60031292a1f13d8e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d96749ddadbdc4b6abb0ce0afcb308b"><td class="memItemLeft" align="right" valign="top">const BusSettings &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a8d96749ddadbdc4b6abb0ce0afcb308b">busSettings</a> () const</td></tr>
+<tr class="memdesc:a8d96749ddadbdc4b6abb0ce0afcb308b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bus settings provides at the instantiation.  <a href="class_spa_iot_1_1_frame_decoder.html#a8d96749ddadbdc4b6abb0ce0afcb308b">More...</a><br /></td></tr>
+<tr class="separator:a8d96749ddadbdc4b6abb0ce0afcb308b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09fbfc38167de08c0bfb3d9f51c13ea8"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, LedSettings &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a09fbfc38167de08c0bfb3d9f51c13ea8">ledSettings</a> () const</td></tr>
+<tr class="memdesc:a09fbfc38167de08c0bfb3d9f51c13ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leds settings provides at the instantiation.  <a href="class_spa_iot_1_1_frame_decoder.html#a09fbfc38167de08c0bfb3d9f51c13ea8">More...</a><br /></td></tr>
+<tr class="separator:a09fbfc38167de08c0bfb3d9f51c13ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70365ebc789a1477bd407f85b455e317"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a70365ebc789a1477bd407f85b455e317">rawStatus</a> () const</td></tr>
+<tr class="memdesc:a70365ebc789a1477bd407f85b455e317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the LEDs received.  <a href="class_spa_iot_1_1_frame_decoder.html#a70365ebc789a1477bd407f85b455e317">More...</a><br /></td></tr>
+<tr class="separator:a70365ebc789a1477bd407f85b455e317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac9a7674e682b91c3c15e165f4b1c32"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">isLedOn</a> (int key) const</td></tr>
+<tr class="memdesc:acac9a7674e682b91c3c15e165f4b1c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state received from an LED.  <a href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">More...</a><br /></td></tr>
+<tr class="separator:acac9a7674e682b91c3c15e165f4b1c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7e8d3fb148e49eee619cdb211619b8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#aec7e8d3fb148e49eee619cdb211619b8">isPowerOn</a> () const</td></tr>
+<tr class="memdesc:aec7e8d3fb148e49eee619cdb211619b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the Power LED.  <a href="class_spa_iot_1_1_frame_decoder.html#aec7e8d3fb148e49eee619cdb211619b8">More...</a><br /></td></tr>
+<tr class="separator:aec7e8d3fb148e49eee619cdb211619b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbce1904db6b4fa65e8b26ad02e34212"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#abbce1904db6b4fa65e8b26ad02e34212">isFilterOn</a> () const</td></tr>
+<tr class="memdesc:abbce1904db6b4fa65e8b26ad02e34212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the Filter LED.  <a href="class_spa_iot_1_1_frame_decoder.html#abbce1904db6b4fa65e8b26ad02e34212">More...</a><br /></td></tr>
+<tr class="separator:abbce1904db6b4fa65e8b26ad02e34212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7946b11f0e30aebc01bdc0bacf84d74"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#af7946b11f0e30aebc01bdc0bacf84d74">isBubbleOn</a> () const</td></tr>
+<tr class="memdesc:af7946b11f0e30aebc01bdc0bacf84d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the Bubble LED.  <a href="class_spa_iot_1_1_frame_decoder.html#af7946b11f0e30aebc01bdc0bacf84d74">More...</a><br /></td></tr>
+<tr class="separator:af7946b11f0e30aebc01bdc0bacf84d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91aa59204d6f258d330035c63c76a4d9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a91aa59204d6f258d330035c63c76a4d9">isHeatReached</a> () const</td></tr>
+<tr class="memdesc:a91aa59204d6f258d330035c63c76a4d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the HeatReached LED.  <a href="class_spa_iot_1_1_frame_decoder.html#a91aa59204d6f258d330035c63c76a4d9">More...</a><br /></td></tr>
+<tr class="separator:a91aa59204d6f258d330035c63c76a4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5385938e1512d9e0f43a055f58acb7ad"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a5385938e1512d9e0f43a055f58acb7ad">isJetOn</a> () const</td></tr>
+<tr class="memdesc:a5385938e1512d9e0f43a055f58acb7ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the Jet LED.  <a href="class_spa_iot_1_1_frame_decoder.html#a5385938e1512d9e0f43a055f58acb7ad">More...</a><br /></td></tr>
+<tr class="separator:a5385938e1512d9e0f43a055f58acb7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2da94470fc952e0f495720bb498672ca"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a2da94470fc952e0f495720bb498672ca">isSanitizerOn</a> () const</td></tr>
+<tr class="memdesc:a2da94470fc952e0f495720bb498672ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last state of the Sanitizer LED.  <a href="class_spa_iot_1_1_frame_decoder.html#a2da94470fc952e0f495720bb498672ca">More...</a><br /></td></tr>
+<tr class="separator:a2da94470fc952e0f495720bb498672ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85d5a722386920e6a91f8f6dc6969d9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#aa85d5a722386920e6a91f8f6dc6969d9">isHeaterOn</a> () const</td></tr>
+<tr class="memdesc:aa85d5a722386920e6a91f8f6dc6969d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of water heating.  <a href="class_spa_iot_1_1_frame_decoder.html#aa85d5a722386920e6a91f8f6dc6969d9">More...</a><br /></td></tr>
+<tr class="separator:aa85d5a722386920e6a91f8f6dc6969d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f2736a5a5214106730658dfc54cf19e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a8f2736a5a5214106730658dfc54cf19e">waterTemp</a> () const</td></tr>
+<tr class="memdesc:a8f2736a5a5214106730658dfc54cf19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Water temperature in °C.  <a href="class_spa_iot_1_1_frame_decoder.html#a8f2736a5a5214106730658dfc54cf19e">More...</a><br /></td></tr>
+<tr class="separator:a8f2736a5a5214106730658dfc54cf19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef17042c6b4f4e66f6d1dc9601c3c9b3"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#aef17042c6b4f4e66f6d1dc9601c3c9b3">desiredTemp</a> () const</td></tr>
+<tr class="memdesc:aef17042c6b4f4e66f6d1dc9601c3c9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Water temperature desired in °C.  <a href="class_spa_iot_1_1_frame_decoder.html#aef17042c6b4f4e66f6d1dc9601c3c9b3">More...</a><br /></td></tr>
+<tr class="separator:aef17042c6b4f4e66f6d1dc9601c3c9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0e53a6325c94bae1d12d4e6d50b042"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a9e0e53a6325c94bae1d12d4e6d50b042">sanitizerTime</a> () const</td></tr>
+<tr class="memdesc:a9e0e53a6325c94bae1d12d4e6d50b042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remaining sanitation time.  <a href="class_spa_iot_1_1_frame_decoder.html#a9e0e53a6325c94bae1d12d4e6d50b042">More...</a><br /></td></tr>
+<tr class="separator:a9e0e53a6325c94bae1d12d4e6d50b042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af82c7372098e63660fcc7f90e59dc96d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#af82c7372098e63660fcc7f90e59dc96d">frameCounter</a> () const</td></tr>
+<tr class="memdesc:af82c7372098e63660fcc7f90e59dc96d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of frames received from startup.  <a href="class_spa_iot_1_1_frame_decoder.html#af82c7372098e63660fcc7f90e59dc96d">More...</a><br /></td></tr>
+<tr class="separator:af82c7372098e63660fcc7f90e59dc96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a120ae0296f78c6a91654be000443c4c4"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a120ae0296f78c6a91654be000443c4c4">frameDropped</a> () const</td></tr>
+<tr class="memdesc:a120ae0296f78c6a91654be000443c4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of dropped frames.  <a href="class_spa_iot_1_1_frame_decoder.html#a120ae0296f78c6a91654be000443c4c4">More...</a><br /></td></tr>
+<tr class="separator:a120ae0296f78c6a91654be000443c4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad01d21d24a75d824a9324128397dda"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a5ad01d21d24a75d824a9324128397dda">error</a> ()</td></tr>
+<tr class="memdesc:a5ad01d21d24a75d824a9324128397dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code displayed by the control panel.  <a href="class_spa_iot_1_1_frame_decoder.html#a5ad01d21d24a75d824a9324128397dda">More...</a><br /></td></tr>
+<tr class="separator:a5ad01d21d24a75d824a9324128397dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3e62bc72cac71ae9c1d380057a77996"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#af3e62bc72cac71ae9c1d380057a77996">isSetupModeTriggered</a> () const</td></tr>
-<tr class="memdesc:af3e62bc72cac71ae9c1d380057a77996"><td class="mdescLeft">&#160;</td><td class="mdescRight">AP request triggered.  <a href="class_spa_iot_1_1_frame_decoder.html#af3e62bc72cac71ae9c1d380057a77996">More...</a><br /></td></tr>
+<tr class="memdesc:af3e62bc72cac71ae9c1d380057a77996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset request triggered.  <a href="class_spa_iot_1_1_frame_decoder.html#af3e62bc72cac71ae9c1d380057a77996">More...</a><br /></td></tr>
 <tr class="separator:af3e62bc72cac71ae9c1d380057a77996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affda69d6b0bf4696589df89ef8b9abe9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#affda69d6b0bf4696589df89ef8b9abe9">isDisplayBlink</a> () const</td></tr>
+<tr class="memdesc:affda69d6b0bf4696589df89ef8b9abe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the display blink.  <a href="class_spa_iot_1_1_frame_decoder.html#affda69d6b0bf4696589df89ef8b9abe9">More...</a><br /></td></tr>
+<tr class="separator:affda69d6b0bf4696589df89ef8b9abe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc9bab24442456da5e8963940682f93"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#affc9bab24442456da5e8963940682f93">waitUntilDisplayBlink</a> (unsigned long MaxWaitingTimeMs=5000) const</td></tr>
+<tr class="memdesc:affc9bab24442456da5e8963940682f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until the display blink.  <a href="class_spa_iot_1_1_frame_decoder.html#affc9bab24442456da5e8963940682f93">More...</a><br /></td></tr>
+<tr class="separator:affc9bab24442456da5e8963940682f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc81d1184a6ba8679f0b50bb9a3745e5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#afc81d1184a6ba8679f0b50bb9a3745e5">waitForWaterTemp</a> (unsigned long MaxWaitingTimeMs=25000) const</td></tr>
+<tr class="memdesc:afc81d1184a6ba8679f0b50bb9a3745e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until the water temperature could be read.  <a href="class_spa_iot_1_1_frame_decoder.html#afc81d1184a6ba8679f0b50bb9a3745e5">More...</a><br /></td></tr>
+<tr class="separator:afc81d1184a6ba8679f0b50bb9a3745e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a9c51048ee513ccf6f9b3464cdfe87b34"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_spa_iot_1_1_control_panel.html">ControlPanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a9c51048ee513ccf6f9b3464cdfe87b34">getInstance</a> (const HardwareSettings &amp;hwsettings)</td></tr>
+<tr class="memdesc:a9c51048ee513ccf6f9b3464cdfe87b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the control panel instance with the provided settings.  <a href="class_spa_iot_1_1_control_panel.html#a9c51048ee513ccf6f9b3464cdfe87b34">More...</a><br /></td></tr>
+<tr class="separator:a9c51048ee513ccf6f9b3464cdfe87b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae04131301107dccc516311b49e4fa2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_spa_iot_1_1_control_panel.html">ControlPanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_control_panel.html#a8ae04131301107dccc516311b49e4fa2">getInstance</a> (const std::string &amp;hwSettingsName)</td></tr>
+<tr class="separator:a8ae04131301107dccc516311b49e4fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >It is a singleton class that can only be instantiated through getInstance() </p>
+<div class="textblock"><p >Control Panel. </p>
+<p >This class is the programming interface of the application (API). It allows to monitor and control the spa.<br  />
+It is a singleton class that can only be instantiated through <a class="el" href="class_spa_iot_1_1_control_panel.html#a9c51048ee513ccf6f9b3464cdfe87b34" title="Create the control panel instance with the provided settings.">getInstance()</a> </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab0bdf5cca484fb2ba637c39384b27fb2" name="ab0bdf5cca484fb2ba637c39384b27fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0bdf5cca484fb2ba637c39384b27fb2">&#9670;&nbsp;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configures each of the buttons and initializes and connect with the spa. </p>
+<p ><code><a class="el" href="class_spa_iot_1_1_control_panel.html#a6403a2e2e1f4f8b27cf4da929892ff85" title="Indicates whether the connection with the spa is established.">isOpened()</a></code> lets you know if the connection has been successfully completed </p>
+
+</div>
+</div>
+<a id="a8d96749ddadbdc4b6abb0ce0afcb308b" name="a8d96749ddadbdc4b6abb0ce0afcb308b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d96749ddadbdc4b6abb0ce0afcb308b">&#9670;&nbsp;</a></span>busSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const BusSettings &amp; busSettings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bus settings provides at the instantiation. </p>
+<dl class="section return"><dt>Returns</dt><dd>constant reference on settings </dd></dl>
+
+</div>
+</div>
+<a id="a98e310a89b14710c67c42b7dc38fb645" name="a98e310a89b14710c67c42b7dc38fb645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98e310a89b14710c67c42b7dc38fb645">&#9670;&nbsp;</a></span>buttonSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt; int, ButtonSettings &gt; buttonSettings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buttons settings provides at the instantiation. </p>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference on the <a href="https://en.cppreference.com/w/cpp/container/map">std::map</a> containing the buttons settings. The different key values are defined by <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73" title="LED and push buttons identification keys.">SpaIot::Key</a> </dd></dl>
+
+</div>
+</div>
+<a id="aef17042c6b4f4e66f6d1dc9601c3c9b3" name="aef17042c6b4f4e66f6d1dc9601c3c9b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef17042c6b4f4e66f6d1dc9601c3c9b3">&#9670;&nbsp;</a></span>desiredTemp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t desiredTemp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Water temperature desired in °C. </p>
+<p >The desired temperature can only be known if the user has made a setting. Indeed, this temperature is only displayed when the user presses the <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73af4c241af1950160cb628201ec73b8348" title="Temperature Up Button.">SpaIot::TempUp</a> or <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73ab3f90263145168306f573b54c69abf35" title="Temperature Down Button.">SpaIot::TempDown</a> buttons (blinking the display).<br  />
+ We can use <a class="el" href="class_spa_iot_1_1_control_panel.html#a1d1c5333960a81927b6cf2a64001b26c" title="Press the TempUp button to read the desired temperature.">ControlPanel::waitForDesiredTemp()</a> to perform this operation and can read a correct value. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature desired in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
+
+</div>
+</div>
+<a id="a5ad01d21d24a75d824a9324128397dda" name="a5ad01d21d24a75d824a9324128397dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ad01d21d24a75d824a9324128397dda">&#9670;&nbsp;</a></span>error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t error </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Error code displayed by the control panel. </p>
+<p >For example, the E90 value can be displayed to indicate a water circulation problem. The user manual must be consulted for the meaning of this code.<br  />
+This value is reset when calling this function if no error code has been displayed for more than 4 seconds (<a class="el" href="namespace_spa_iot.html#a968e3cff6dfb21abe3ebcaf6db493971" title="Time after which an error can be erased.">SpaIot::ResetErrorTimeMs</a>). </p><dl class="section return"><dt>Returns</dt><dd>The error code, 0 in normal situation </dd></dl>
+
+</div>
+</div>
+<a id="af82c7372098e63660fcc7f90e59dc96d" name="af82c7372098e63660fcc7f90e59dc96d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af82c7372098e63660fcc7f90e59dc96d">&#9670;&nbsp;</a></span>frameCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t frameCounter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of frames received from startup. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of frames received including the frames dropped </dd></dl>
+
+</div>
+</div>
+<a id="a120ae0296f78c6a91654be000443c4c4" name="a120ae0296f78c6a91654be000443c4c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a120ae0296f78c6a91654be000443c4c4">&#9670;&nbsp;</a></span>frameDropped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t frameDropped </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of dropped frames. </p>
+<p >If a new frame is received before decoding the previous frame is complete, this frame is lost. If the value of this counter increases rapidly is that the number of operations running under interruption by the CPU is important (the real time constraint is too high).<br  />
+ It is important to adjust the frequency of the CPU to its maximum value (160MHz for ESP8266). </p><dl class="section return"><dt>Returns</dt><dd>Number of frames dropped </dd></dl>
+
+</div>
+</div>
+<a id="a9c51048ee513ccf6f9b3464cdfe87b34" name="a9c51048ee513ccf6f9b3464cdfe87b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c51048ee513ccf6f9b3464cdfe87b34">&#9670;&nbsp;</a></span>getInstance() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_spa_iot_1_1_control_panel.html">ControlPanel</a> * getInstance </td>
+          <td>(</td>
+          <td class="paramtype">const HardwareSettings &amp;&#160;</td>
+          <td class="paramname"><em>hwsettings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create the control panel instance with the provided settings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hwsettings</td><td>Description of hardware settings </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the created instance, nullptr if failure </dd></dl>
+
+</div>
+</div>
+<a id="a8ae04131301107dccc516311b49e4fa2" name="a8ae04131301107dccc516311b49e4fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ae04131301107dccc516311b49e4fa2">&#9670;&nbsp;</a></span>getInstance() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_spa_iot_1_1_control_panel.html">ControlPanel</a> * getInstance </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>hwSettingsName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hwSettingsName</td><td>configuration name in the register of hardware settings </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4fa7504db059607b5b10125c66913c45" name="a4fa7504db059607b5b10125c66913c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa7504db059607b5b10125c66913c45">&#9670;&nbsp;</a></span>hasButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hasButton </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the hardware configuration has the button. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>button identification key in the possible values of <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73" title="LED and push buttons identification keys.">SpaIot::Key</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the button exists, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a95b0143560288c60031292a1f13d8e45" name="a95b0143560288c60031292a1f13d8e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b0143560288c60031292a1f13d8e45">&#9670;&nbsp;</a></span>hasLed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hasLed </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the hardware configuration has the LED. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>LED identification key in the possible values of <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73" title="LED and push buttons identification keys.">SpaIot::Key</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the LED exists </dd></dl>
+
+</div>
+</div>
+<a id="af7946b11f0e30aebc01bdc0bacf84d74" name="af7946b11f0e30aebc01bdc0bacf84d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7946b11f0e30aebc01bdc0bacf84d74">&#9670;&nbsp;</a></span>isBubbleOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isBubbleOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the Bubble LED. </p>
+<p >Lets you know if the bubble generator is started. </p><dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">References <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a2bd4f97892c8b7d060e9f67527f0b9ef">SpaIot::Bubble</a>, and <a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">FrameDecoder::isLedOn()</a>.</p>
+
+</div>
+</div>
+<a id="affda69d6b0bf4696589df89ef8b9abe9" name="affda69d6b0bf4696589df89ef8b9abe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affda69d6b0bf4696589df89ef8b9abe9">&#9670;&nbsp;</a></span>isDisplayBlink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isDisplayBlink </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the display blink. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if blinking, false if not, UnsetValue8 if no frame has been received. </dd></dl>
+
+</div>
+</div>
+<a id="abbce1904db6b4fa65e8b26ad02e34212" name="abbce1904db6b4fa65e8b26ad02e34212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbce1904db6b4fa65e8b26ad02e34212">&#9670;&nbsp;</a></span>isFilterOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isFilterOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the Filter LED. </p>
+<p >Lets you know if the water filtration pump is started. </p><dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">References <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aca86b959750c1c1a2eb5da1129de7147">SpaIot::Filter</a>, and <a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">FrameDecoder::isLedOn()</a>.</p>
+
+</div>
+</div>
+<a id="aa85d5a722386920e6a91f8f6dc6969d9" name="aa85d5a722386920e6a91f8f6dc6969d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85d5a722386920e6a91f8f6dc6969d9">&#9670;&nbsp;</a></span>isHeaterOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isHeaterOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>State of water heating. </p>
+<p >Indicates that the heating is started, that the temperature of the water is reached or not</p>
+<dl class="section return"><dt>Returns</dt><dd>true if the heater is started, false if it is off, UnsetValue8 if no frame has been received. </dd></dl>
+
+</div>
+</div>
+<a id="a91aa59204d6f258d330035c63c76a4d9" name="a91aa59204d6f258d330035c63c76a4d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91aa59204d6f258d330035c63c76a4d9">&#9670;&nbsp;</a></span>isHeatReached()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isHeatReached </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the HeatReached LED. </p>
+<p >Lets you know if the water temperature is greater than or equal to the desired temperature. </p><dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">References <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a84825dd817ea1a6c9ed6a17a87f55936">SpaIot::HeatReached</a>, and <a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">FrameDecoder::isLedOn()</a>.</p>
+
+</div>
+</div>
+<a id="a5385938e1512d9e0f43a055f58acb7ad" name="a5385938e1512d9e0f43a055f58acb7ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5385938e1512d9e0f43a055f58acb7ad">&#9670;&nbsp;</a></span>isJetOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isJetOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the Jet LED. </p>
+<p >Lets you know if the water jets are activated. </p><dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">References <a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">FrameDecoder::isLedOn()</a>, and <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73ae373ee57c1b7d83f867162ac0b2948fb">SpaIot::Jet</a>.</p>
+
+</div>
+</div>
+<a id="acac9a7674e682b91c3c15e165f4b1c32" name="acac9a7674e682b91c3c15e165f4b1c32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acac9a7674e682b91c3c15e165f4b1c32">&#9670;&nbsp;</a></span>isLedOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isLedOn </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state received from an LED. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>LED identification key in the possible values of <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73" title="LED and push buttons identification keys.">SpaIot::Key</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="class_spa_iot_1_1_frame_decoder.html#af7946b11f0e30aebc01bdc0bacf84d74">FrameDecoder::isBubbleOn()</a>, <a class="el" href="class_spa_iot_1_1_frame_decoder.html#abbce1904db6b4fa65e8b26ad02e34212">FrameDecoder::isFilterOn()</a>, <a class="el" href="class_spa_iot_1_1_frame_decoder.html#a91aa59204d6f258d330035c63c76a4d9">FrameDecoder::isHeatReached()</a>, <a class="el" href="class_spa_iot_1_1_frame_decoder.html#a5385938e1512d9e0f43a055f58acb7ad">FrameDecoder::isJetOn()</a>, <a class="el" href="class_spa_iot_1_1_frame_decoder.html#aec7e8d3fb148e49eee619cdb211619b8">FrameDecoder::isPowerOn()</a>, and <a class="el" href="class_spa_iot_1_1_frame_decoder.html#a2da94470fc952e0f495720bb498672ca">FrameDecoder::isSanitizerOn()</a>.</p>
+
+</div>
+</div>
+<a id="a6403a2e2e1f4f8b27cf4da929892ff85" name="a6403a2e2e1f4f8b27cf4da929892ff85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6403a2e2e1f4f8b27cf4da929892ff85">&#9670;&nbsp;</a></span>isOpened()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isOpened </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates whether the connection with the spa is established. </p>
+<dl class="section return"><dt>Returns</dt><dd>If <code><a class="el" href="class_spa_iot_1_1_control_panel.html#ab0bdf5cca484fb2ba637c39384b27fb2" title="Configures each of the buttons and initializes and connect with the spa.">begin()</a></code> succeeded and everything works returns true. Returns false if the connection to the spa is not established and no frame is received. </dd></dl>
+
+</div>
+</div>
+<a id="aec7e8d3fb148e49eee619cdb211619b8" name="aec7e8d3fb148e49eee619cdb211619b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec7e8d3fb148e49eee619cdb211619b8">&#9670;&nbsp;</a></span>isPowerOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isPowerOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the Power LED. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">References <a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">FrameDecoder::isLedOn()</a>, and <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aeaf106a8b179fcfe2585c7efd72ed55a">SpaIot::Power</a>.</p>
+
+</div>
+</div>
+<a id="a2da94470fc952e0f495720bb498672ca" name="a2da94470fc952e0f495720bb498672ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da94470fc952e0f495720bb498672ca">&#9670;&nbsp;</a></span>isSanitizerOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t isSanitizerOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the Sanitizer LED. </p>
+<p >Lets you know if the sanitation of the water is in progress. </p><dl class="section return"><dt>Returns</dt><dd>true if the LED is lit, false if it is off, UnsetValue8 if this LED does not exist or if no frame has been received. </dd></dl>
+
+<p class="reference">References <a class="el" href="class_spa_iot_1_1_frame_decoder.html#acac9a7674e682b91c3c15e165f4b1c32">FrameDecoder::isLedOn()</a>, and <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a1d08bff14c0c8f11611ce0016ee18ea7">SpaIot::Sanitizer</a>.</p>
+
+</div>
+</div>
 <a id="af3e62bc72cac71ae9c1d380057a77996" name="af3e62bc72cac71ae9c1d380057a77996"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af3e62bc72cac71ae9c1d380057a77996">&#9670;&nbsp;</a></span>isSetupModeTriggered()</h2>
 
@@ -135,8 +854,440 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>AP request triggered. </p>
-<p >Press the FC units change button for 6 times to switch to AP mode to reconfigure the settings. </p><dl class="section return"><dt>Returns</dt><dd>true if triggered </dd></dl>
+<p>Reset request triggered. </p>
+<p >The user can trigger a reset of settings by quickly changing <a class="el" href="namespace_spa_iot.html#a693b25932ff9356cadb671bff7809896" title="Number of changes in temperature unit corresponding to the reset request.">SpaIot::SetupTrigUnitChangeMin</a> times the temperature unit. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="namespace_spa_iot.html#a693b25932ff9356cadb671bff7809896" title="Number of changes in temperature unit corresponding to the reset request.">SpaIot::SetupTrigUnitChangeMin</a> </dd>
+<dd>
+<a class="el" href="namespace_spa_iot.html#ac4eeb1258b462161a8408f96ec93a6b3" title="Maximum time separating successive actions on the unit change button to trigger reset request.">SpaIot::SetupTrigUnitChangeStepMaxMs</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if triggered </dd></dl>
+
+</div>
+</div>
+<a id="a09fbfc38167de08c0bfb3d9f51c13ea8" name="a09fbfc38167de08c0bfb3d9f51c13ea8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09fbfc38167de08c0bfb3d9f51c13ea8">&#9670;&nbsp;</a></span>ledSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt; int, LedSettings &gt; ledSettings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Leds settings provides at the instantiation. </p>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference on the <a href="https://en.cppreference.com/w/cpp/container/map">std::map</a> containing the LED settings. The different key values are defined by <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73" title="LED and push buttons identification keys.">SpaIot::Key</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1c6313f2948812d3bc8f0399430c7108" name="a1c6313f2948812d3bc8f0399430c7108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6313f2948812d3bc8f0399430c7108">&#9670;&nbsp;</a></span>pushButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool pushButton </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Press and release a button. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>button identification key in the possible values of <a class="el" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73" title="LED and push buttons identification keys.">SpaIot::Key</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the button exists, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a70365ebc789a1477bd407f85b455e317" name="a70365ebc789a1477bd407f85b455e317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70365ebc789a1477bd407f85b455e317">&#9670;&nbsp;</a></span>rawStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t rawStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last state of the LEDs received. </p>
+<p >Pour la mise au point uniquement. </p><dl class="section return"><dt>Returns</dt><dd>The value corresponding to the last control frame of the LEDs, the value is the binary complement of the frame signal. UnsetValue16 is returned if no frame has been received. </dd></dl>
+
+</div>
+</div>
+<a id="a9e0e53a6325c94bae1d12d4e6d50b042" name="a9e0e53a6325c94bae1d12d4e6d50b042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e0e53a6325c94bae1d12d4e6d50b042">&#9670;&nbsp;</a></span>sanitizerTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t sanitizerTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remaining sanitation time. </p>
+<dl class="section return"><dt>Returns</dt><dd>Remaining sanitation time in hours, UnsetValue16 if it has not been determined yet. </dd></dl>
+
+</div>
+</div>
+<a id="a980c3543c6d6977d6b1c72dda9c44210" name="a980c3543c6d6977d6b1c72dda9c44210"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a980c3543c6d6977d6b1c72dda9c44210">&#9670;&nbsp;</a></span>setBubble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t setBubble </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>v</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start or stop the the bubble generator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>true for ON, false for OFF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the state returned by <a class="el" href="class_spa_iot_1_1_frame_decoder.html#af7946b11f0e30aebc01bdc0bacf84d74" title="Last state of the Bubble LED.">isBubbleOn()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1de2da0fa5dcb8bb3bbdddfa4d1f7c92" name="a1de2da0fa5dcb8bb3bbdddfa4d1f7c92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de2da0fa5dcb8bb3bbdddfa4d1f7c92">&#9670;&nbsp;</a></span>setDesiredTemp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool setDesiredTemp </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>temp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setting the desired water temperature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temp</td><td>temperature in °C </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a604a2e1bb3584ff43dc4271165c4dd9c" name="a604a2e1bb3584ff43dc4271165c4dd9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a604a2e1bb3584ff43dc4271165c4dd9c">&#9670;&nbsp;</a></span>setFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t setFilter </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>v</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start or stop the water filtration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>true for ON, false for OFF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the state returned by <a class="el" href="class_spa_iot_1_1_frame_decoder.html#abbce1904db6b4fa65e8b26ad02e34212" title="Last state of the Filter LED.">isFilterOn()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a3d0bc259fbffd552e6367cb6da460f08" name="a3d0bc259fbffd552e6367cb6da460f08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d0bc259fbffd552e6367cb6da460f08">&#9670;&nbsp;</a></span>setHeater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t setHeater </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>v</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start or stop water heating. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>true for ON, false for OFF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the state returned by <a class="el" href="class_spa_iot_1_1_frame_decoder.html#aa85d5a722386920e6a91f8f6dc6969d9" title="State of water heating.">isHeaterOn()</a> </dd></dl>
+
+</div>
+</div>
+<a id="af50d1f15c5a5d97bb66f964d9fcc9956" name="af50d1f15c5a5d97bb66f964d9fcc9956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50d1f15c5a5d97bb66f964d9fcc9956">&#9670;&nbsp;</a></span>setJet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t setJet </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>v</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start or stop the water jets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>true for ON, false for OFF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the state returned by <a class="el" href="class_spa_iot_1_1_frame_decoder.html#a5385938e1512d9e0f43a055f58acb7ad" title="Last state of the Jet LED.">isJetOn()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a41ef4f0e56543afba2359789f3ab162f" name="a41ef4f0e56543afba2359789f3ab162f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41ef4f0e56543afba2359789f3ab162f">&#9670;&nbsp;</a></span>setPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t setPower </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>v</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start or stop the spa. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>true for ON, false for OFF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the state returned by <a class="el" href="class_spa_iot_1_1_frame_decoder.html#aec7e8d3fb148e49eee619cdb211619b8" title="Last state of the Power LED.">isPowerOn()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a09546027f2034493e8c8bec853116b72" name="a09546027f2034493e8c8bec853116b72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09546027f2034493e8c8bec853116b72">&#9670;&nbsp;</a></span>setSanitizerTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool setSanitizerTime </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the water sanitation time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Sanitation time in hours, the possible values are {0, 3, 5, 8}. 0 Disables sanitation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the setting has been made, false if the requested value is invalid. </dd></dl>
+
+</div>
+</div>
+<a id="a1d1c5333960a81927b6cf2a64001b26c" name="a1d1c5333960a81927b6cf2a64001b26c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d1c5333960a81927b6cf2a64001b26c">&#9670;&nbsp;</a></span>waitForDesiredTemp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t waitForDesiredTemp </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>MaxWaitingTimeMs</em> = <code>5000</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Press the TempUp button to read the desired temperature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">MaxWaitingTimeMs</td><td>Maximum waiting time in milliseconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Water temperature desired in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
+
+</div>
+</div>
+<a id="afc81d1184a6ba8679f0b50bb9a3745e5" name="afc81d1184a6ba8679f0b50bb9a3745e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc81d1184a6ba8679f0b50bb9a3745e5">&#9670;&nbsp;</a></span>waitForWaterTemp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t waitForWaterTemp </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>MaxWaitingTimeMs</em> = <code>25000</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wait until the water temperature could be read. </p>
+<p >Framedecoder must wait to be sure that the display does not blink and the value is stable before determining the temperature of the water.<br  />
+ <br  />
+ It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#afc81d1184a6ba8679f0b50bb9a3745e5" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">MaxWaitingTimeMs</td><td>Maximum waiting time in milliseconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Water temperature in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
+
+</div>
+</div>
+<a id="affc9bab24442456da5e8963940682f93" name="affc9bab24442456da5e8963940682f93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc9bab24442456da5e8963940682f93">&#9670;&nbsp;</a></span>waitUntilDisplayBlink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t waitUntilDisplayBlink </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>MaxWaitingTimeMs</em> = <code>5000</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wait until the display blink. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">MaxWaitingTimeMs</td><td>Maximum waiting time in milliseconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if blinking, false if not, UnsetValue8 if no frame has been received. </dd></dl>
+
+</div>
+</div>
+<a id="a8f2736a5a5214106730658dfc54cf19e" name="a8f2736a5a5214106730658dfc54cf19e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f2736a5a5214106730658dfc54cf19e">&#9670;&nbsp;</a></span>waterTemp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t waterTemp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Water temperature in °C. </p>
+<p >Framedecoder must wait to be sure that the display does not blink and the value is stable before determining the temperature of the water.<br  />
+ <br  />
+ It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#afc81d1184a6ba8679f0b50bb9a3745e5" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  * This file is based on DIYSCIP (c) by Geoffroy HUBERT
@@ -132,7 +132,7 @@
 
 #define UNITCHANGE_FRAME_COUNTER_MAX  2500
 
-#define RST_ERROR_FRAME_COUNTER       10000
+#define ResetErrorFrameCounter       10000
 #define MIN_SANITIZER_FRAME_COUNTER   1500
 
 #define PUSH_COUNTER_MAX          25

@@ -1,4 +1,4 @@
-/**
+/*
  * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  * This file is based on DIYSCIP (c) by Geoffroy HUBERT
@@ -90,15 +90,15 @@ namespace SpaIot {
                        FrameDecoder::clkRisingInterrupt, RISING);
       attachInterrupt (digitalPinToInterrupt (m_busSettings.holdPin()),
                        FrameDecoder::holdRisingInterrupt, RISING);
-      int timer = 0;
-      while ( (m_rawStatus == UnsetValue16) && (timer < 1000)) {
+      unsigned long timer = 0;
+      while ( (m_rawStatus == UnsetValue16) && (timer < BeginWaitingTimeMs)) {
 
         delay (10);
         timer += 10;
       }
       m_isopened = (m_rawStatus != UnsetValue8);
 
-      DBG ("FrameDecoder::begin(): m_isopened: %d - rawStatus(): 0x%04X (%dms)",
+      DBG ("FrameDecoder::begin(): m_isopened: %d - rawStatus(): 0x%04X (%lums)",
            m_isopened, rawStatus(), timer);
     }
   }
@@ -145,8 +145,8 @@ namespace SpaIot {
   uint16_t FrameDecoder::error() {
 
     if ( (m_errorValue != 0) &&
-         ( (m_frameCounter - m_lastErrorChangeFrameCounter) > RST_ERROR_FRAME_COUNTER)) {
-      // no error displayed since RST_ERROR_FRAME_COUNTER, so error has disappeared
+         ( (m_frameCounter - m_lastErrorChangeFrameCounter) > ResetErrorFrameCounter)) {
+      // no error displayed since ResetErrorFrameCounter, so error has disappeared
       m_errorValue = 0;
     }
 

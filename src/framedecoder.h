@@ -1,5 +1,5 @@
 /*
- * SpaIot Library (c) by espilonrt - epsilonrt@gmail.com
+ * SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
  * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
  * This file is based on DIYSCIP (c) by Geoffroy HUBERT
  *

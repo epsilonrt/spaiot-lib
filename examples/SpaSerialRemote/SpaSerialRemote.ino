@@ -6,7 +6,7 @@
 // It also allows you to press a key on the keypad to control a spa button.
 #include <Arduino.h>
 #include <SpaIot.h>
-
+#include <debug.h>
 using namespace SpaIot;
 
 // It's a SCIP2 controller connected to a PXXXSPA SSP-XXX
@@ -18,6 +18,7 @@ ControlPanel * spa; // pointer on the control spa
 uint16_t waterTemp;
 uint16_t desiredTemp = UnsetValue16;
 uint16_t rawStatus;
+bool isSetupModeTriggered;
 
 void setup() {
 
@@ -57,6 +58,7 @@ void setup() {
 
 void loop() {
   uint16_t w;
+  bool b;
 
   w = spa->waterTemp(); // Reading the temperature of the water
   if (waterTemp != w) { // If modified, it is displayed
@@ -68,6 +70,12 @@ void loop() {
   if ((desiredTemp != w) && (spa->isPowerOn())) { // If modified, it is displayed
     desiredTemp = w;
     Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
+  }
+
+  b = spa->isSetupModeTriggered(); // Check if setup mode triggered
+  if (isSetupModeTriggered != b) {
+    isSetupModeTriggered = b;
+     Serial.printf ("isSetupModeTriggered=%d\n", isSetupModeTriggered);
   }
 
   w = spa->rawStatus();

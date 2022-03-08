@@ -1,9 +1,24 @@
 //
-// Test de la led du module ESP (bleue)
+// Test de la led de test ESP (bleue)
 //
 
 #include <Arduino.h>
 #include <unity.h>
+
+#define LED_PIN LED_BUILTIN
+
+#ifndef DEBUG_LED_ONSTATE
+  #define LED_OFF HIGH
+  #define LED_ON LOW
+#else
+  #if DEBUG_LED_ONSTATE == HIGH
+    #define LED_OFF LOW
+    #define LED_ON HIGH
+  #else
+    #define LED_OFF HIGH
+    #define LED_ON LOW
+  #endif
+#endif
 
 // void setUp(void) {
 // // set stuff up here
@@ -13,21 +28,21 @@
 // // clean stuff up here
 // }
 
-// Vérifie que le numéro de la led par défaut est 2
+// Vérifie que le numéro de la led par défaut est LED_BUILTIN
 void test_led_builtin_pin_number (void) {
-  TEST_ASSERT_EQUAL (2, DEBUG_LED);
+  TEST_ASSERT_EQUAL (LED_BUILTIN, DEBUG_LED);
 }
 
-// Allume la led, active à l'état bas et vérifie que la broche est bien à l'état bas
+// Allume la led, et vérifie que la broche est bien à l'état correspondant
 void test_led_state_high (void) {
-  digitalWrite (DEBUG_LED, LOW);
-  TEST_ASSERT_EQUAL (LOW, digitalRead (DEBUG_LED));
+  digitalWrite (DEBUG_LED, LED_ON);
+  TEST_ASSERT_EQUAL (LED_ON, digitalRead (DEBUG_LED));
 }
 
-// Eteint la led en mettant la broche à l'état haut et vérifie que la broche est bien à l'état haut
+// Eteint la led et vérifie que la broche est bien à l'état correspondant
 void test_led_state_low (void) {
-  digitalWrite (DEBUG_LED, HIGH);
-  TEST_ASSERT_EQUAL (HIGH, digitalRead (DEBUG_LED));
+  digitalWrite (DEBUG_LED, LED_OFF);
+  TEST_ASSERT_EQUAL (LED_OFF, digitalRead (DEBUG_LED));
 }
 
 void setup() {

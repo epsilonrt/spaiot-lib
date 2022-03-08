@@ -14,8 +14,8 @@ const unsigned long TimerTime = (12 * 60 * 60); // 12 hours in seconds
 const unsigned long SerialBaudrate = 115200;
 
 // My bus configuration :
-// SCLK   -> GPIO12
-// SDATA  -> GPIO14
+// SDATA  -> GPIO12
+// SCLK   -> GPIO14
 // nWR    -> GPIO13
 const BusSettings MyBus (12, 14, 13);
 // My leds configuration (SSP)

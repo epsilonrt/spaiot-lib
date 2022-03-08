@@ -3,14 +3,44 @@
 //
 // This example displays the condition of the spa: water temperature, desired 
 // temperature and LED status.
+// We use a DIY board connected to a SSP spa, the configuration  is as follows:
+//
+//  const BusSettings MyBus (12, 14, 13); // for ESP8266
+//  const BusSettings MyBus (18, 16, 17); // for ESP32
+//
+//  const std::map<int, LedSettings> SspLeds = {
+//    { Power,          LedSettings (0) },
+//    { Heater,         LedSettings (7) },
+//    { HeatReached,    LedSettings (9) },
+//    { Bubble,         LedSettings (10) },
+//    { Filter,         LedSettings (12) }
+//  };
 #include <Arduino.h>
 #include <SpaIot.h>
 
 using namespace SpaIot;
 
-// It's a SCIP2 controller connected to a PXXXSPA SSP-XXX
+// My bus configuration :
+#if defined(ESP8266)
+// SDATA  -> GPIO12
+// SCLK   -> GPIO14
+// nWR    -> GPIO13
+const BusSettings MyBus (12, 14, 13);
+#elif defined(ESP32)
+// SDATA  -> GPIO18
+// SCLK   -> GPIO16
+// nWR    -> GPIO17
+const BusSettings MyBus (18, 16, 17);
+#else
+#error unsupported platform
+#endif
+
+// My buttons : no buttons !
+const std::map<int, ButtonSettings> NoButtons;
+// My custom configuration
+const HardwareSettings MyConfig (MyBus, SspLeds, NoButtons);
+
 // If your configuration is different, see SpaHwCustom Example
-const char ConfigName[] = "SCIP2SSP";
 const unsigned long SerialBaudrate = 115200;
 
 ControlPanel * spa; // pointer on the control spa
@@ -24,7 +54,7 @@ void setup() {
   Serial.begin (SerialBaudrate);
   Serial.println ("\nSpaIot Status Example");
 
-  spa = ControlPanel::getInstance (ConfigName);
+  spa = ControlPanel::getInstance (MyConfig);
   if (spa == nullptr) { // check if the requested configuration has been found
     Serial.println ("Harware settings not found");
     for(;;); // loop always, to stop 
@@ -35,13 +65,6 @@ void setup() {
     Serial.println ("No spa connection found");
     for(;;); // loop always, to stop 
   }
-  spa->setPower (true); // Comment this line if the spa is already started
-
-  // Wait to read the temperature of the water, it can take 20 seconds ...
-  waterTemp = spa->waitForWaterTemp();
-  Serial.printf ("waterTemp=%d'C\n", waterTemp);
-  desiredTemp = spa->waitForDesiredTemp();
-  Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
 }
 
 
@@ -49,13 +72,13 @@ void loop() {
   uint16_t w;
 
   w = spa->waterTemp(); // Reading the temperature of the water
-  if (waterTemp != w) { // If modified, it is displayed
+  if ((w != UnsetValue16) && (waterTemp != w)) { // If modified, it is displayed
     waterTemp = w;
     Serial.printf ("waterTemp=%d'C\n", waterTemp);
   }
 
   w = spa->desiredTemp(); // Reading the desired temperature
-  if (desiredTemp != w) { // If modified, it is displayed
+  if ((w != UnsetValue16) && (desiredTemp != w)) { // If modified, it is displayed
     desiredTemp = w;
     Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
   }

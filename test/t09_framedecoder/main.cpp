@@ -3,7 +3,8 @@
 //
 // We use a DIY board connected to a SSP spa, the configuration  is as follows:
 //
-//  const BusSettings ScipBus (12, 14, 13);
+//  const BusSettings MyBus (12, 14, 13); // for ESP8266
+//  const BusSettings MyBus (18, 16, 17); // for ESP32
 //
 //  const std::map<int, LedSettings> SspLeds = {
 //    { Power,          LedSettings (0) },
@@ -19,7 +20,23 @@
 
 //#define LOOP_ENABLED 1
 
+
 using namespace SpaIot;
+
+// My bus configuration :
+#if defined(ESP8266)
+// SDATA  -> GPIO12
+// SCLK   -> GPIO14
+// nWR    -> GPIO13
+const BusSettings MyBus (12, 14, 13);
+#elif defined(ESP32)
+// SDATA  -> GPIO18
+// SCLK   -> GPIO16
+// nWR    -> GPIO17
+const BusSettings MyBus (18, 16, 17);
+#else
+#error unsupported platform
+#endif
 
 class TestBusDecoder : public FrameDecoder {
   public:
@@ -45,7 +62,6 @@ uint8_t   isHeaterOn;
 uint8_t   isHeatReached;
 uint8_t   isJetOn;
 uint8_t   isSanitizerOn;
-uint8_t   isHeaterOn;
 
 // void setUp(void) {
 // // set stuff up here
@@ -57,13 +73,13 @@ uint8_t   isHeaterOn;
 
 void test_constructor () {
 
-  decoder = new TestBusDecoder (ScipBus, SspLeds);
+  decoder = new TestBusDecoder (MyBus, SspLeds);
   TEST_ASSERT_FALSE (decoder->isOpened());
 }
 
 void test_getters () {
 
-  TEST_ASSERT (ScipBus == decoder->busSettings());
+  TEST_ASSERT (MyBus == decoder->busSettings());
   TEST_ASSERT (SspLeds == decoder->ledSettings());
 
   frameCounter = decoder->frameCounter();
@@ -83,10 +99,10 @@ void test_getters () {
   isSetupModeTriggered = decoder->isSetupModeTriggered();
   TEST_ASSERT_FALSE (isSetupModeTriggered);
 
-  for (const auto& [ key, led ] : SspLeds) {
+  for (const auto & led : SspLeds) {
 
-    TEST_ASSERT_TRUE (decoder->hasLed (key));
-    TEST_ASSERT_EQUAL (UnsetValue8, decoder->isLedOn (key));
+    TEST_ASSERT_TRUE (decoder->hasLed (led.first));
+    TEST_ASSERT_EQUAL (UnsetValue8, decoder->isLedOn (led.first));
   }
 
   isPowerOn = decoder->isPowerOn();
@@ -117,10 +133,13 @@ void test_begin () {
   TEST_ASSERT_TRUE (decoder->isOpened ());
   delay (100);
   TEST_ASSERT (decoder->rawStatus() != UnsetValue16);
-  for (const auto& [ key, led ] : SspLeds) {
+  
+  // check if all leds are off
+  for (const auto & led : SspLeds) {
 
-    TEST_ASSERT_EQUAL (false, decoder->isLedOn (key));
+    TEST_ASSERT_EQUAL (false, decoder->isLedOn (led.first));
   }
+
   isPowerOn = decoder->isPowerOn();
   TEST_ASSERT_EQUAL (false, isPowerOn);
   isFilterOn = decoder->isFilterOn();
@@ -148,7 +167,7 @@ void setup() {
   // NOTE!!! Wait for >2 secs
   // if board doesn't support software reset via Serial.DTR/RTS
   delay (2000);
-
+  TEST_ASSERT_MESSAGE(true, "<IMPORTANT> The spa MUST be OFF.");
   UNITY_BEGIN();    // IMPORTANT LINE!
   RUN_TEST (test_constructor);
   RUN_TEST (test_getters);

@@ -55,7 +55,7 @@ void test_type_name (void) {
   A &a = b;
 
   String message = "type_name(b) = " + type_name (b) + " --- type_name(a) = " + type_name (a);
-  TEST_PASS_MESSAGE (message.c_str());
+  TEST_ASSERT_MESSAGE (true, message.c_str()); // see https://github.com/platformio/platform-espressif32/issues/726
   TEST_ASSERT (type_name (b) == "B");
   TEST_ASSERT (type_name (a) == "A");
 }

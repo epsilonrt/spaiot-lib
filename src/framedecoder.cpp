@@ -80,14 +80,16 @@ namespace SpaIot {
   void FrameDecoder::begin() {
 
     if (m_isopened == false)  {
-      DBG ("FrameDecoder::begin(): opening");
+      SPAIOT_DBG ("FrameDecoder::begin(): opening");
 
       pinMode (m_busSettings.dataPin(), INPUT);
       pinMode (m_busSettings.clkPin(), INPUT);
       pinMode (m_busSettings.holdPin(), INPUT);
 
+      SPAIOT_DBG ("Configure the CLK pin (%d) in interruption mode on the rising edge", m_busSettings.clkPin());
       attachInterrupt (digitalPinToInterrupt (m_busSettings.clkPin()),
                        FrameDecoder::clkRisingInterrupt, RISING);
+      SPAIOT_DBG ("Configure the HOLD pin (%d) in interruption mode on the rising edge", m_busSettings.holdPin());
       attachInterrupt (digitalPinToInterrupt (m_busSettings.holdPin()),
                        FrameDecoder::holdRisingInterrupt, RISING);
       unsigned long timer = 0;
@@ -98,7 +100,7 @@ namespace SpaIot {
       }
       m_isopened = (m_rawStatus != UnsetValue8);
 
-      DBG ("FrameDecoder::begin(): m_isopened: %d - rawStatus(): 0x%04X (%lums)",
+      SPAIOT_DBG ("FrameDecoder::begin(): m_isopened: %d - rawStatus(): 0x%04X (%lums)",
            m_isopened, rawStatus(), timer);
     }
   }

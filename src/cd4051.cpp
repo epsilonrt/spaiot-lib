@@ -54,7 +54,7 @@ namespace SpaIot {
   void Cd4051::begin() {
 
     if (isOpened() == false)  {
-      DBG("Cd4051::begin(): opening");
+      SPAIOT_DBG("Cd4051::begin(): opening");
 
       pinMode (m_pin.at (En), OUTPUT);
       digitalWrite (m_pin.at (En), HIGH);

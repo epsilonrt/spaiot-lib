@@ -74,7 +74,7 @@ namespace SpaIot {
     if (isNull() == false) {
       if (m_ctrl->isOpened() == false) {
 
-        DBG ("Button::begin: button(%d) opening %s controller", id(),
+        SPAIOT_DBG ("Button::begin: button(%d) opening %s controller", id(),
              m_settings->controllerName().c_str());
         m_ctrl->begin();
       }

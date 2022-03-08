@@ -75,7 +75,7 @@ namespace SpaIot {
     if (m_isopened == false)  {
       bool b_isopened = true;
 
-      DBG ("ControlPanel::begin(): opening");
+      SPAIOT_DBG ("ControlPanel::begin(): opening");
       for (auto & button : m_button) {
 
         if (button.second.isOpened() == false) {

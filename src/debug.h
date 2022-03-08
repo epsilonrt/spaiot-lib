@@ -17,11 +17,11 @@
 #include <Arduino.h>
 
 #if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_ESP_PORT)
-  #define DBG(str, ...)   { DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__); DEBUG_ESP_PORT.println(""); }
+  #define SPAIOT_DBG(str, ...)   { DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__); DEBUG_ESP_PORT.println(""); }
   #define DBGNOLN(str, ...)   {  DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__);   }
 
 #else 
-    #define DBG(str, ...)
+    #define SPAIOT_DBG(str, ...)
     #define DBGNOLN(str, ...)
 #endif
 

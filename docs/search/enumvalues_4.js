@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['power_0',['Power',['../namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aeaf106a8b179fcfe2585c7efd72ed55a',1,'SpaIot']]]
+  ['power_0',['Power',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85afcf90bcaffa16815d107f79744841ecc',1,'SpaIot']]]
 ];

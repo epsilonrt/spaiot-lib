@@ -70,6 +70,11 @@ Choose the highest CPU frequency (160MHz for ESP8266, 240MHz for ESP32) from the
 ---
 
 ## Full user documentation
+
+The first-level API consists of the [SpaIot::ControlPanel](https://epsilonrt.github.io/spaiot-lib/class_spa_iot_1_1_control_panel.html) class.
+For simply use, so just read the [documentation](https://epsilonrt.github.io/spaiot-lib/class_spa_iot_1_1_control_panel.html) of this class.
+
+For more advanced development, full documentation is available.  
 Please see here for [full user documentation](https://epsilonrt.github.io/spaiot-lib/)
 
 ---
@@ -95,7 +100,7 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
   ControlPanel * spa; // pointer on the control panel
   ```
 
-  **Warning !** only one control panel instance may exist.
+  :warning: **disclaimer:** only one control panel instance may exist.
 
 3. In `setup()`
 
@@ -149,8 +154,8 @@ Before declare a global pointer on the spa control panel:
 
   ```cpp
   // My bus configuration :
-  // SCLK   -> GPIO12
-  // SDATA  -> GPIO14
+  // SDATA  -> GPIO12
+  // SCLK   -> GPIO14
   // nWR    -> GPIO13
   const BusSettings MyBus (12, 14, 13);
   ```

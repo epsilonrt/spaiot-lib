@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bubble_0',['Bubble',['../namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a2bd4f97892c8b7d060e9f67527f0b9ef',1,'SpaIot']]]
+  ['bubble_0',['Bubble',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df',1,'SpaIot']]]
 ];

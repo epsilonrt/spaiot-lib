@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['beginwaitingtimems_0',['BeginWaitingTimeMs',['../namespace_spa_iot.html#a3d351e435bcce742804ff60c4c898430',1,'SpaIot']]],
-  ['buttonintervalms_1',['ButtonIntervalMs',['../namespace_spa_iot.html#a9be330c0b7866d09b4a0c63f036ed3a1',1,'SpaIot']]]
+  ['beginwaitingtimems_0',['BeginWaitingTimeMs',['../namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd',1,'SpaIot']]],
+  ['buttonintervalms_1',['ButtonIntervalMs',['../namespace_spa_iot.html#a32b05afcdb8f134e47ae0575698c1919',1,'SpaIot']]]
 ];

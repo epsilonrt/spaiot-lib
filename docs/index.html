@@ -146,11 +146,13 @@ ArduinoIDE</h2>
 <hr  />
 <h1><a class="anchor" id="autotoc_md7"></a>
 Full user documentation</h1>
-<p >Please see here for <a href="https://epsilonrt.github.io/spaiot-lib/">full user documentation</a></p>
+<p >The first-level API consists of the <a href="https://epsilonrt.github.io/spaiot-lib/class_spa_iot_1_1_control_panel.html">SpaIot::ControlPanel</a> class. For simply use, so just read the <a href="https://epsilonrt.github.io/spaiot-lib/class_spa_iot_1_1_control_panel.html">documentation</a> of this class.</p>
+<p >For more advanced development, full documentation is available. <br  />
+ Please see here for <a href="https://epsilonrt.github.io/spaiot-lib/">full user documentation</a></p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md9"></a>
 Examples</h1>
-<p >See <a href="https://github.com/espilonrt/spaiot-lib/tree/master/examples">examples</a> on GitHub</p>
+<p >See <a href="https://github.com/epsilonrt/spaiot-lib/tree/master/examples">examples</a> on GitHub</p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md11"></a>
 Usage</h1>
@@ -163,7 +165,7 @@ Usage</h1>
 </div><!-- fragment --></li>
 <li><p class="startli">Declare a global pointer on the <code>spa</code> control panel</p>
 <div class="fragment"><div class="line">ControlPanel * spa; <span class="comment">// pointer on the control panel</span></div>
-</div><!-- fragment --><p class="startli"><b>Warning !</b> only one control panel instance may exist.</p>
+</div><!-- fragment --><p class="startli">:warning: <b>disclaimer:</b> only one control panel instance may exist.</p>
 </li>
 <li><p class="startli">In <code>setup()</code></p>
 <div class="fragment"><div class="line"><span class="comment">// Get the instance for your SPA configuration (SCIP2SSP)</span></div>
@@ -211,25 +213,25 @@ Configure the library according to the electronic part and the spa model</h1>
 <ol type="1">
 <li><p class="startli">Describe the pins used by the bus using a BusSettings constant</p>
 <div class="fragment"><div class="line"><span class="comment">// My bus configuration :</span></div>
-<div class="line"><span class="comment">// SCLK   -&gt; GPIO12</span></div>
-<div class="line"><span class="comment">// SDATA  -&gt; GPIO14</span></div>
+<div class="line"><span class="comment">// SDATA  -&gt; GPIO12</span></div>
+<div class="line"><span class="comment">// SCLK   -&gt; GPIO14</span></div>
 <div class="line"><span class="comment">// nWR    -&gt; GPIO13</span></div>
 <div class="line"><span class="keyword">const</span> BusSettings MyBus (12, 14, 13);</div>
 </div><!-- fragment --></li>
 <li><p class="startli">Describe the bits of the frame used by LEDs using a list of LedSettings type constants</p>
 <div class="fragment"><div class="line"><span class="comment">// My leds configuration (SSP)</span></div>
 <div class="line"><span class="keyword">const</span> std::map&lt;int, LedSettings&gt; MyLeds = {</div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aeaf106a8b179fcfe2585c7efd72ed55a">Power</a>,          LedSettings (0) },  <span class="comment">// Power        -&gt; A0</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aecf754a8e14529a67d419eb3de07783f">Heater</a>,         LedSettings (7) },  <span class="comment">// Heater       -&gt; A7</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a84825dd817ea1a6c9ed6a17a87f55936">HeatReached</a>,    LedSettings (9) },  <span class="comment">// HeatReached  -&gt; B1</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a2bd4f97892c8b7d060e9f67527f0b9ef">Bubble</a>,         LedSettings (10) }, <span class="comment">// Bubble       -&gt; B2</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aca86b959750c1c1a2eb5da1129de7147">Filter</a>,         LedSettings (12) }  <span class="comment">// Filter       -&gt; B4</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85afcf90bcaffa16815d107f79744841ecc">Power</a>,          LedSettings (0) },  <span class="comment">// Power        -&gt; A0</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae82e0f1d2e9f28c5f6e079fb0f4699f4">Heater</a>,         LedSettings (7) },  <span class="comment">// Heater       -&gt; A7</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ac32b9779afa1f7482ebbb43678c6010c">HeatReached</a>,    LedSettings (9) },  <span class="comment">// HeatReached  -&gt; B1</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df">Bubble</a>,         LedSettings (10) }, <span class="comment">// Bubble       -&gt; B2</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9016590d668a7ba7c7757b2f523e0813">Filter</a>,         LedSettings (12) }  <span class="comment">// Filter       -&gt; B4</span></div>
 <div class="line">};</div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73a2bd4f97892c8b7d060e9f67527f0b9ef"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a2bd4f97892c8b7d060e9f67527f0b9ef">SpaIot::Bubble</a></div><div class="ttdeci">@ Bubble</div><div class="ttdoc">Bubble Led or Button.</div><div class="ttdef"><b>Definition:</b> global.h:28</div></div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73a84825dd817ea1a6c9ed6a17a87f55936"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a84825dd817ea1a6c9ed6a17a87f55936">SpaIot::HeatReached</a></div><div class="ttdeci">@ HeatReached</div><div class="ttdoc">Heat Reached Led (Green)</div><div class="ttdef"><b>Definition:</b> global.h:32</div></div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73aca86b959750c1c1a2eb5da1129de7147"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aca86b959750c1c1a2eb5da1129de7147">SpaIot::Filter</a></div><div class="ttdeci">@ Filter</div><div class="ttdoc">Filter Led or Button.</div><div class="ttdef"><b>Definition:</b> global.h:27</div></div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73aeaf106a8b179fcfe2585c7efd72ed55a"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aeaf106a8b179fcfe2585c7efd72ed55a">SpaIot::Power</a></div><div class="ttdeci">@ Power</div><div class="ttdoc">Power Led or Button.</div><div class="ttdef"><b>Definition:</b> global.h:26</div></div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73aecf754a8e14529a67d419eb3de07783f"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aecf754a8e14529a67d419eb3de07783f">SpaIot::Heater</a></div><div class="ttdeci">@ Heater</div><div class="ttdoc">Heater Led (Red) or Button.</div><div class="ttdef"><b>Definition:</b> global.h:31</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85a9016590d668a7ba7c7757b2f523e0813"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9016590d668a7ba7c7757b2f523e0813">SpaIot::Filter</a></div><div class="ttdeci">@ Filter</div><div class="ttdoc">Filter Led or Button.</div><div class="ttdef"><b>Definition:</b> global.h:27</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85ac32b9779afa1f7482ebbb43678c6010c"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ac32b9779afa1f7482ebbb43678c6010c">SpaIot::HeatReached</a></div><div class="ttdeci">@ HeatReached</div><div class="ttdoc">Heat Reached Led (Green)</div><div class="ttdef"><b>Definition:</b> global.h:32</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df">SpaIot::Bubble</a></div><div class="ttdeci">@ Bubble</div><div class="ttdoc">Bubble Led or Button.</div><div class="ttdef"><b>Definition:</b> global.h:28</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85ae82e0f1d2e9f28c5f6e079fb0f4699f4"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae82e0f1d2e9f28c5f6e079fb0f4699f4">SpaIot::Heater</a></div><div class="ttdeci">@ Heater</div><div class="ttdoc">Heater Led (Red) or Button.</div><div class="ttdef"><b>Definition:</b> global.h:31</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85afcf90bcaffa16815d107f79744841ecc"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85afcf90bcaffa16815d107f79744841ecc">SpaIot::Power</a></div><div class="ttdeci">@ Power</div><div class="ttdoc">Power Led or Button.</div><div class="ttdef"><b>Definition:</b> global.h:26</div></div>
 </div><!-- fragment --></li>
 <li><p class="startli">Describe buttons controllers and their pins with the corresponding class (here Cd4051) <br  />
 </p>
@@ -241,18 +243,18 @@ Configure the library according to the electronic part and the spa model</h1>
 </p>
 <div class="fragment"><div class="line"><span class="comment">// My buttons configuration (SSP)</span></div>
 <div class="line"><span class="keyword">const</span> std::map&lt;int, ButtonSettings&gt; MyButtons = {</div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aca86b959750c1c1a2eb5da1129de7147">Filter</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlA&quot;</span>, 1) },  <span class="comment">// Filter   -&gt; A1</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a2bd4f97892c8b7d060e9f67527f0b9ef">Bubble</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlA&quot;</span>, 3) },  <span class="comment">// Bubble   -&gt; A3</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73ab3f90263145168306f573b54c69abf35">TempDown</a>, ButtonSettings (<span class="stringliteral">&quot;MyCtrlA&quot;</span>, 7) },  <span class="comment">// TempDown -&gt; A7</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9016590d668a7ba7c7757b2f523e0813">Filter</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlA&quot;</span>, 1) },  <span class="comment">// Filter   -&gt; A1</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df">Bubble</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlA&quot;</span>, 3) },  <span class="comment">// Bubble   -&gt; A3</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9a63f5b3808bb64caed3029d755bb5eb">TempDown</a>, ButtonSettings (<span class="stringliteral">&quot;MyCtrlA&quot;</span>, 7) },  <span class="comment">// TempDown -&gt; A7</span></div>
 <div class="line"> </div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aeaf106a8b179fcfe2585c7efd72ed55a">Power</a>,    ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 2) },  <span class="comment">// Power    -&gt; B2</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73af4c241af1950160cb628201ec73b8348">TempUp</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 4) },  <span class="comment">// TempUp   -&gt; B4</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a7fc071ae450b5bfd16cd543d606a19ba">TempUnit</a>, ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 5) },  <span class="comment">// TempUnit -&gt; B5</span></div>
-<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73aecf754a8e14529a67d419eb3de07783f">Heater</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 7) }   <span class="comment">// Heater   -&gt; B7</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85afcf90bcaffa16815d107f79744841ecc">Power</a>,    ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 2) },  <span class="comment">// Power    -&gt; B2</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae032fffb62d7b3fad28a346f68a32668">TempUp</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 4) },  <span class="comment">// TempUp   -&gt; B4</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a827dbec1053cf0675186f0e4d4f72e9c">TempUnit</a>, ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 5) },  <span class="comment">// TempUnit -&gt; B5</span></div>
+<div class="line">  { <a class="code hl_enumvalue" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae82e0f1d2e9f28c5f6e079fb0f4699f4">Heater</a>,   ButtonSettings (<span class="stringliteral">&quot;MyCtrlB&quot;</span>, 7) }   <span class="comment">// Heater   -&gt; B7</span></div>
 <div class="line">};</div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73a7fc071ae450b5bfd16cd543d606a19ba"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73a7fc071ae450b5bfd16cd543d606a19ba">SpaIot::TempUnit</a></div><div class="ttdeci">@ TempUnit</div><div class="ttdoc">Temperature Unity Button (°C/°F)</div><div class="ttdef"><b>Definition:</b> global.h:35</div></div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73ab3f90263145168306f573b54c69abf35"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73ab3f90263145168306f573b54c69abf35">SpaIot::TempDown</a></div><div class="ttdeci">@ TempDown</div><div class="ttdoc">Temperature Down Button.</div><div class="ttdef"><b>Definition:</b> global.h:34</div></div>
-<div class="ttc" id="anamespace_spa_iot_html_ab3c7af4820830f9166ede9e5623c4e73af4c241af1950160cb628201ec73b8348"><div class="ttname"><a href="namespace_spa_iot.html#ab3c7af4820830f9166ede9e5623c4e73af4c241af1950160cb628201ec73b8348">SpaIot::TempUp</a></div><div class="ttdeci">@ TempUp</div><div class="ttdoc">Temperature Up Button.</div><div class="ttdef"><b>Definition:</b> global.h:33</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85a827dbec1053cf0675186f0e4d4f72e9c"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a827dbec1053cf0675186f0e4d4f72e9c">SpaIot::TempUnit</a></div><div class="ttdeci">@ TempUnit</div><div class="ttdoc">Temperature Unity Button (°C/°F)</div><div class="ttdef"><b>Definition:</b> global.h:35</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85a9a63f5b3808bb64caed3029d755bb5eb"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9a63f5b3808bb64caed3029d755bb5eb">SpaIot::TempDown</a></div><div class="ttdeci">@ TempDown</div><div class="ttdoc">Temperature Down Button.</div><div class="ttdef"><b>Definition:</b> global.h:34</div></div>
+<div class="ttc" id="anamespace_spa_iot_html_a02d4a743082b78154c3be333d5b0fc85ae032fffb62d7b3fad28a346f68a32668"><div class="ttname"><a href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae032fffb62d7b3fad28a346f68a32668">SpaIot::TempUp</a></div><div class="ttdeci">@ TempUp</div><div class="ttdoc">Temperature Up Button.</div><div class="ttdef"><b>Definition:</b> global.h:33</div></div>
 </div><!-- fragment --></li>
 <li><p class="startli">Finally Create the hardware configuration <br  />
 </p>

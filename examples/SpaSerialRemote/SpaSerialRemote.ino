@@ -9,9 +9,42 @@
 #include <debug.h>
 using namespace SpaIot;
 
-// It's a SCIP2 controller connected to a PXXXSPA SSP-XXX
-// If your configuration is different, see SpaHwCustom Example
-const char ConfigName[] = "SCIP2SSP";
+// My bus configuration :
+#if defined(ESP8266)
+// SDATA  -> GPIO12
+// SCLK   -> GPIO14
+// nWR    -> GPIO13
+const BusSettings MyBus (12, 14, 13);
+// My button controllers
+Cd4051 CustomCtrlA (5, 4, 15, 16); // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO16
+Cd4051 CustomCtrlB (5, 4, 15, 0);  // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO0
+
+#elif defined(ESP32)
+// SDATA  -> GPIO23
+// SCLK   -> GPIO18
+// nWR    -> GPIO19
+const BusSettings MyBus (23, 18, 19);
+// My button controllers
+Cd4051 CustomCtrlA (27, 16, 17, 25); // S0->GPIO27, S1->GPIO16, S2->GPIO17, En->GPIO25
+Cd4051 CustomCtrlB (27, 16, 17, 26); // S0->GPIO27, S1->GPIO16, S2->GPIO17, En->GPIO26
+#else
+#error unsupported platform
+#endif
+
+// My buttons configuration (SSP)
+const std::map<int, ButtonSettings> MyButtons = {
+  { Filter,   ButtonSettings ("MyCtrlA", 1) },  // Filter   -> A1
+  { Bubble,   ButtonSettings ("MyCtrlA", 3) },  // Bubble   -> A3
+  { TempDown, ButtonSettings ("MyCtrlA", 7) },  // TempDown -> A7
+
+  { Power,    ButtonSettings ("MyCtrlB", 2) },  // Power    -> B2
+  { TempUp,   ButtonSettings ("MyCtrlB", 4) },  // TempUp   -> B4
+  { TempUnit, ButtonSettings ("MyCtrlB", 5) },  // TempUnit -> B5
+  { Heater,   ButtonSettings ("MyCtrlB", 7) }   // Heater   -> B7
+};
+// My custom configuration
+const HardwareSettings MyConfig (MyBus, SspLeds, MyButtons);
+
 const unsigned long SerialBaudrate = 115200;
 
 ControlPanel * spa; // pointer on the control spa
@@ -26,7 +59,11 @@ void setup() {
   Serial.begin (SerialBaudrate);
   Serial.println ("\nSpaIot Serial Remote Example");
 
-  spa = ControlPanel::getInstance (ConfigName);
+  // The button controllers must be registered before getInstance() call
+  ButtonController::addToRegister ("MyCtrlA", CustomCtrlA);
+  ButtonController::addToRegister ("MyCtrlB", CustomCtrlB);
+
+  spa = ControlPanel::getInstance (MyConfig);
   if (spa == nullptr) { // check if the requested configuration has been found
     Serial.println ("Harware settings not found");
     for (;;); // loop always, to stop

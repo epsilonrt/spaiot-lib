@@ -18,11 +18,13 @@
 
 #if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_ESP_PORT)
   #define SPAIOT_DBG(str, ...)   { DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__); DEBUG_ESP_PORT.println(""); }
-  #define DBGNOLN(str, ...)   {  DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__);   }
+  #define SPAIOT_DBGNOLN(str, ...)   {  DEBUG_ESP_PORT.printf(str, ##__VA_ARGS__);   }
+  #define SPAIOT_ASSERT(cond, str, ...) { if (!(cond)) SPAIOT_DBG(str, ##__VA_ARGS__); }
 
 #else 
-    #define SPAIOT_DBG(str, ...)
-    #define DBGNOLN(str, ...)
+  #define SPAIOT_DBG(str, ...)
+  #define SPAIOT_DBGNOLN(str, ...)
+  #define SPAIOT_ASSERT(cond, str, ...)
 #endif
 
 #if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_LED)

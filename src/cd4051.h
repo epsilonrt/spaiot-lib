@@ -13,10 +13,7 @@
  */
 #pragma once
 
-#include <vector>
-#include <string>
-#include <initializer_list>
-#include "buttoncontroller.h"
+#include "multiplexer.h"
 
 namespace SpaIot {
 
@@ -24,30 +21,21 @@ namespace SpaIot {
    * @class Cd4051
    * @brief
    */
-  class Cd4051 : public ButtonController {
+  class Cd4051 : public Multiplexer<8> {
     public:
-      enum { S0 = 0, S1, S2, En };
+      Cd4051 () :
+        Multiplexer<8> ()
+      {}
 
-      /**
-       * @brief 
-       */
-      Cd4051 ();
-      Cd4051 (const std::initializer_list<int>& pins);
-      Cd4051 (int s0Pin, int s1Pin, int s2Pin, int enPin);
+      Cd4051 (const std::initializer_list<int>& spins, int inhPin) :
+        Multiplexer<8> (spins, inhPin) 
+      {}
 
-      int pin (int key) const;
-      void setPin (int key, int pin);
-
-      void begin();
-      int select (int button);
-      void deselect ();
-      bool isNull() const;
-      virtual bool operator== (const ButtonController &other) const;
-
-    private:
-      std::vector<int> m_pin;
+      Cd4051 (int A, int B, int C, int INH) :
+        Multiplexer<8> ( {A, B, C}, INH)
+      {}
   };
-  
+
   extern Cd4051 Scip1Ctrl;
   extern Cd4051 Scip2CtrlA;
   extern Cd4051 Scip2CtrlB;

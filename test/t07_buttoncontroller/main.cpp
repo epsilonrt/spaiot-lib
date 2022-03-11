@@ -7,24 +7,21 @@
 
 using namespace SpaIot;
 
-/*
-  Cd4051 Scip2CtrlA (5, 4, 15, 16);
-  Cd4051 Scip2CtrlB (5, 4, 15, 0);
-  const std::map<int, ButtonSettings> Scip2SspButtons = {
-    { Filter,   ButtonSettings ("Scip2CtrlA", 1) },
-    { Bubble,   ButtonSettings ("Scip2CtrlA", 3) },
-    { TempDown, ButtonSettings ("Scip2CtrlA", 7) },
+#if defined(ESP8266)
+const std::initializer_list<int> CtrlSelectPin {5, 4, 15}; // A->GPIO5, B->GPIO4, C->GPIO15
+const int CtrlAInhPin = 16; // INH->GPIO16
+const int CtrlBInhPin = 0;  // INH->GPIO0
 
-    { Power,    ButtonSettings ("Scip2CtrlB", 2) },
-    { TempUp,   ButtonSettings ("Scip2CtrlB", 4) },
-    { TempUnit, ButtonSettings ("Scip2CtrlB", 5) },
-    { Heater,   ButtonSettings ("Scip2CtrlB", 7) }
-  };
- */
+#elif defined(ESP32)
+const std::initializer_list<int> CtrlSelectPin {27, 16, 17}; // A->GPIO27, B->GPIO16, C->GPIO17
+const int CtrlAInhPin = 25; // INH->GPIO25
+const int CtrlBInhPin = 26; // INH->GPIO26
 
-std::initializer_list<int> CtrlAPin {5, 4, 15, 16};
+#else
+#error unsupported platform
+#endif
+
 std::initializer_list<int> CtrlABut {1, 3, 7};
-std::initializer_list<int> CtrlBPin {5, 4, 15, 0};
 std::initializer_list<int> CtrlBBut {2, 4, 5, 7};
 
 // void setUp(void) {
@@ -38,40 +35,42 @@ std::initializer_list<int> CtrlBBut {2, 4, 5, 7};
 void test_constructor_null (void) {
   Cd4051 ctrl;
 
+  TEST_ASSERT_EQUAL (8, ctrl.size ());
   TEST_ASSERT_TRUE (ctrl.isNull());
 }
 
 void test_constructor_notnull (void) {
-  Cd4051 ctrl (CtrlAPin);
+  Cd4051 ctrl (CtrlSelectPin, CtrlAInhPin);
 
   TEST_ASSERT_FALSE (ctrl.isNull());
 }
 
 void test_getters (void) {
-  Cd4051 ctrl (CtrlAPin);
-  int key = Cd4051::S0;
+  Cd4051 ctrl (CtrlSelectPin, CtrlAInhPin);
+  int key = 0;
 
-  for (auto pin : CtrlAPin) {
+  TEST_ASSERT_EQUAL (ctrl.size(), 8);
+  for (auto pin : CtrlSelectPin) {
 
-    TEST_ASSERT_EQUAL (pin, ctrl.pin (key++));
+    TEST_ASSERT_EQUAL (pin, ctrl.selectPin (key++));
   }
 }
 
 void test_setters (void) {
-  Cd4051 ctrl (CtrlAPin);
-  int key = Cd4051::S0;
+  Cd4051 ctrl (CtrlSelectPin, CtrlAInhPin);
+  int key = 0;
 
-  for (auto pin : CtrlBPin) {
+  for (auto pin : CtrlSelectPin) {
 
-    ctrl.setPin (key, pin);
-    TEST_ASSERT_EQUAL (pin, ctrl.pin (key++));
+    ctrl.setSelectPin (key, pin);
+    TEST_ASSERT_EQUAL (pin, ctrl.selectPin (key++));
   }
 }
 
 void test_comparison (void) {
-  Cd4051 ctrl1 (CtrlAPin);
-  Cd4051 ctrl2 (CtrlAPin);
-  Cd4051 ctrl3 (CtrlBPin);
+  Cd4051 ctrl1 (CtrlSelectPin, CtrlAInhPin);
+  Cd4051 ctrl2 (CtrlSelectPin, CtrlAInhPin);
+  Cd4051 ctrl3 (CtrlSelectPin, CtrlBInhPin);
 
   TEST_ASSERT (ctrl1 == ctrl2);
   TEST_ASSERT (ctrl1 != ctrl3);
@@ -79,31 +78,26 @@ void test_comparison (void) {
 
 void test_assignation (void) {
   Cd4051 ctrl1;
-  Cd4051 ctrl2 (CtrlAPin);
+  Cd4051 ctrl2 (CtrlSelectPin, CtrlAInhPin);
 
   ctrl1 = ctrl2;
   TEST_ASSERT (ctrl1 == ctrl2);
 }
 
 void test_global (void) {
-  Cd4051 ctrl1 (CtrlAPin);
-  Cd4051 ctrl2 (CtrlBPin);
+  Cd4051 ctrl1 (CtrlSelectPin, CtrlAInhPin);
+  Cd4051 ctrl2 (CtrlSelectPin, CtrlBInhPin);
 
-  TEST_ASSERT (ctrl1 == Scip2CtrlA);
-  TEST_ASSERT (ctrl2 == Scip2CtrlB);
+  TEST_ASSERT_TRUE (ButtonController::addToRegister ("CtrlA", ctrl1));
+  TEST_ASSERT_TRUE (ButtonController::addToRegister ("CtrlB", ctrl2));
+  TEST_ASSERT_FALSE (ButtonController::addToRegister ("CtrlA", ctrl1));
 
-  TEST_ASSERT_TRUE (ButtonController::addToRegister ("TEST", ctrl1));
-  TEST_ASSERT_FALSE (ButtonController::addToRegister ("TEST", ctrl1));
-  TEST_ASSERT_FALSE (ButtonController::addToRegister ("Scip2CtrlA", ctrl2));
-  TEST_ASSERT_FALSE (ButtonController::addToRegister ("Scip2CtrlB", ctrl2));
-
-  TEST_ASSERT (ctrl1 == ButtonController::getFromRegister ("TEST"));
-  TEST_ASSERT (ctrl1 == ButtonController::getFromRegister ("Scip2CtrlA"));
-  TEST_ASSERT (ctrl2 == ButtonController::getFromRegister ("Scip2CtrlB"));
+  TEST_ASSERT (ctrl1 == ButtonController::getFromRegister ("CtrlA"));
+  TEST_ASSERT (ctrl2 == ButtonController::getFromRegister ("CtrlB"));
 }
 
-void test_begin (std::initializer_list<int> pins) {
-  Cd4051 ctrl (pins);
+void test_begin (std::initializer_list<int> spins, int inh) {
+  Cd4051 ctrl (spins, inh);
 
   TEST_ASSERT_FALSE (ctrl.isOpened ());
   ctrl.begin();
@@ -113,40 +107,42 @@ void test_begin (std::initializer_list<int> pins) {
 
 void test_begin_ctrla (void) {
 
-  test_begin (CtrlAPin);
+  test_begin (CtrlSelectPin, CtrlAInhPin);
 }
 
 void test_begin_ctrlb (void) {
 
-  test_begin (CtrlBPin);
+  test_begin (CtrlSelectPin, CtrlBInhPin);
 }
 
-void test_select (std::initializer_list<int> pins, std::initializer_list<int> buttons) {
-  Cd4051 ctrl (pins);
-  std::vector<int> pin = pins;
+void test_select (std::initializer_list<int> spins, int inh, std::initializer_list<int> buttons) {
+  Cd4051 ctrl (spins, inh);
+  std::vector<int> pin = spins;
 
   ctrl.begin();
   for (auto button : buttons) {
 
     TEST_ASSERT_FALSE (ctrl.isSelected ());
-    TEST_ASSERT_EQUAL (HIGH, digitalRead (pin[Cd4051::En]));
+    TEST_ASSERT_EQUAL (HIGH, digitalRead (inh));
     TEST_ASSERT_EQUAL (button, ctrl.select (button));
-    TEST_ASSERT_EQUAL (LOW, digitalRead (pin[Cd4051::En]));
-    TEST_ASSERT_EQUAL ( (button & 0x01) ? HIGH : LOW, digitalRead (pin[Cd4051::S0]));
-    TEST_ASSERT_EQUAL ( (button & 0x02) ? HIGH : LOW, digitalRead (pin[Cd4051::S1]));
-    TEST_ASSERT_EQUAL ( (button & 0x04) ? HIGH : LOW, digitalRead (pin[Cd4051::S2]));
+    TEST_ASSERT_EQUAL (LOW, digitalRead (inh));
+
+    for (int i = 0; i < pin.size(); i++) {
+
+      TEST_ASSERT_EQUAL ( (button & (1 << i)) ? HIGH : LOW, digitalRead (pin[i]));
+    }
     ctrl.deselect ();
   }
 }
 
 void test_select_ctrla (void) {
 
-  test_select (CtrlAPin, CtrlABut);
+  test_select (CtrlSelectPin, CtrlAInhPin, CtrlABut);
 }
 
 void test_select_ctrlb (void) {
 
-  test_select (CtrlBPin, CtrlBBut);
+  test_select (CtrlSelectPin, CtrlBInhPin, CtrlBBut);
 }
 
 void setup() {

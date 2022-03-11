@@ -6,7 +6,7 @@
 // We use a DIY board connected to a SSP spa, the configuration  is as follows:
 //
 //  const BusSettings MyBus (12, 14, 13); // for ESP8266
-//  const BusSettings MyBus (18, 16, 17); // for ESP32
+//  const BusSettings MyBus (23, 18, 19); // for ESP32
 //
 //  const std::map<int, LedSettings> SspLeds = {
 //    { Power,          LedSettings (0) },
@@ -26,11 +26,12 @@ using namespace SpaIot;
 // SCLK   -> GPIO14
 // nWR    -> GPIO13
 const BusSettings MyBus (12, 14, 13);
+
 #elif defined(ESP32)
-// SDATA  -> GPIO18
-// SCLK   -> GPIO16
-// nWR    -> GPIO17
-const BusSettings MyBus (18, 16, 17);
+// SDATA  -> GPIO23
+// SCLK   -> GPIO18
+// nWR    -> GPIO19
+const BusSettings MyBus (23, 18, 19);
 #else
 #error unsupported platform
 #endif

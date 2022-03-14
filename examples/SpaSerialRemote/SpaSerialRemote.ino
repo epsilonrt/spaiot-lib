@@ -50,7 +50,7 @@ const unsigned long SerialBaudrate = 115200;
 ControlPanel * spa; // pointer on the control spa
 uint16_t waterTemp;
 uint16_t desiredTemp = UnsetValue16;
-uint16_t rawStatus;
+uint16_t rawStatus; 
 bool isSetupModeTriggered;
 
 void setup() {

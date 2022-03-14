@@ -26,7 +26,6 @@ using namespace SpaIot;
 // SCLK   -> GPIO14
 // nWR    -> GPIO13
 const BusSettings MyBus (12, 14, 13);
-
 #elif defined(ESP32)
 // SDATA  -> GPIO23
 // SCLK   -> GPIO18
@@ -35,7 +34,6 @@ const BusSettings MyBus (23, 18, 19);
 #else
 #error unsupported platform
 #endif
-
 // My buttons : no buttons !
 const std::map<int, ButtonSettings> NoButtons;
 // My custom configuration

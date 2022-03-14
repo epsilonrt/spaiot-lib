@@ -14,13 +14,15 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
+#include <map>
 
 //! SpaIot name space
 namespace SpaIot {
 
   /**
    * @enum Key
-   * @brief LED and push buttons identification keys 
+   * @brief LED and push buttons identification keys
    */
   enum Key {
     Power = 0,  //!< Power Led or Button
@@ -33,6 +35,19 @@ namespace SpaIot {
     TempUp,     //!< Temperature Up Button
     TempDown,   //!< Temperature Down Button
     TempUnit,   //!< Temperature Unity Button (°C/°F)
+  };
+
+  const std::map<int, std::string> KeyName = {
+    {Power, "Power"},
+    {Filter, "Filter"},
+    {Bubble, "Bubble"},
+    {Jet, "Jet"},
+    {Sanitizer, "Sanitizer"},
+    {Heater, "Heater"},
+    {HeatReached, "HeatReached"},
+    {TempUp, "TempUp"},
+    {TempDown, "TempDown"},
+    {TempUnit, "TempUnit"}
   };
 
   const uint16_t UnsetValue16 = 0xFFFF; //!< Indeterminate value on 16 bits

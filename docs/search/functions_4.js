@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['getinstance_0',['getInstance',['../class_spa_iot_1_1_control_panel.html#aa3216a0fb757644da164e6671579c2f6',1,'SpaIot::ControlPanel::getInstance(const HardwareSettings &amp;hwsettings)'],['../class_spa_iot_1_1_control_panel.html#aed4531a4a993e35c9bdce61477ff6c31',1,'SpaIot::ControlPanel::getInstance(const std::string &amp;hwSettingsName)']]]
+  ['framecounter_0',['frameCounter',['../class_spa_iot_1_1_frame_decoder.html#aa5e532978a87f69b1dc771f2665ca118',1,'SpaIot::FrameDecoder']]],
+  ['framedropped_1',['frameDropped',['../class_spa_iot_1_1_frame_decoder.html#a0bab36480d078ac14bb228b31f125b9b',1,'SpaIot::FrameDecoder']]]
 ];

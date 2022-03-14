@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['isbubbleon_0',['isBubbleOn',['../class_spa_iot_1_1_frame_decoder.html#a23bf97d4e6c15ffa24cbbcbdb0a781c9',1,'SpaIot::FrameDecoder']]],
-  ['isdisplayblink_1',['isDisplayBlink',['../class_spa_iot_1_1_frame_decoder.html#a566a7acd1acb1105a0ea43b9b25fd1c0',1,'SpaIot::FrameDecoder']]],
-  ['isfilteron_2',['isFilterOn',['../class_spa_iot_1_1_frame_decoder.html#aab6840e4dc0886ea86d4aac0c22bf8a1',1,'SpaIot::FrameDecoder']]],
-  ['isheateron_3',['isHeaterOn',['../class_spa_iot_1_1_frame_decoder.html#a4149e57353b461d868c6a65f3b3de2ab',1,'SpaIot::FrameDecoder']]],
-  ['isheatreached_4',['isHeatReached',['../class_spa_iot_1_1_frame_decoder.html#ab75a483f132bc76bf9dad9f56099ed66',1,'SpaIot::FrameDecoder']]],
-  ['isjeton_5',['isJetOn',['../class_spa_iot_1_1_frame_decoder.html#a5d83bdf4370cc6b3274aa1671c1400a3',1,'SpaIot::FrameDecoder']]],
-  ['isledon_6',['isLedOn',['../class_spa_iot_1_1_frame_decoder.html#a8d257c11732cb364f59e70d1866db95b',1,'SpaIot::FrameDecoder']]],
-  ['isopened_7',['isOpened',['../class_spa_iot_1_1_control_panel.html#acb11be5e9aa310fcd16ea758694821d6',1,'SpaIot::ControlPanel::isOpened()'],['../class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58',1,'SpaIot::FrameDecoder::isOpened() const']]],
-  ['ispoweron_8',['isPowerOn',['../class_spa_iot_1_1_frame_decoder.html#a1c32e6b74bd35f2f644928e6b28877b1',1,'SpaIot::FrameDecoder']]],
-  ['issanitizeron_9',['isSanitizerOn',['../class_spa_iot_1_1_frame_decoder.html#ac83665bc798876d1c1c5d7f2ad77be18',1,'SpaIot::FrameDecoder']]],
-  ['issetupmodetriggered_10',['isSetupModeTriggered',['../class_spa_iot_1_1_frame_decoder.html#a66d69701030fbd8f231f4ff9616740cb',1,'SpaIot::FrameDecoder']]]
+  ['hasbutton_0',['hasButton',['../class_spa_iot_1_1_control_panel.html#a05fb161a91adeb8ce472ac25cbacf9e0',1,'SpaIot::ControlPanel']]],
+  ['hasled_1',['hasLed',['../class_spa_iot_1_1_frame_decoder.html#af5badf7db3b0aa3d335283dfbb3f0c80',1,'SpaIot::FrameDecoder']]],
+  ['heater_2',['Heater',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae82e0f1d2e9f28c5f6e079fb0f4699f4',1,'SpaIot']]],
+  ['heatreached_3',['HeatReached',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ac32b9779afa1f7482ebbb43678c6010c',1,'SpaIot']]],
+  ['holdpressedms_4',['HoldPressedMs',['../namespace_spa_iot.html#af7e5d9f35123d2516a04a929dcc986bf',1,'SpaIot']]]
 ];

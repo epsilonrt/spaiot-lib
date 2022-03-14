@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['controlpanel_0',['ControlPanel',['../class_spa_iot_1_1_control_panel.html',1,'SpaIot']]]
+  ['begin_0',['begin',['../class_spa_iot_1_1_control_panel.html#a8c5cdef5cdc5586623fdae2ed03ab096',1,'SpaIot::ControlPanel::begin()'],['../class_spa_iot_1_1_frame_decoder.html#a4489788f0761d3710aea40d1d3ad0b6c',1,'SpaIot::FrameDecoder::begin()']]],
+  ['beginwaitingtimems_1',['BeginWaitingTimeMs',['../namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd',1,'SpaIot']]],
+  ['bubble_2',['Bubble',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df',1,'SpaIot']]],
+  ['bus_3',['bus',['../class_spa_iot_1_1_two_wire_slave.html#a575247ecdce5ad27250729b984f513c9',1,'SpaIot::TwoWireSlave']]],
+  ['bussettings_4',['busSettings',['../class_spa_iot_1_1_frame_decoder.html#a5a1d150198ff8e4f52e235b36b2220bf',1,'SpaIot::FrameDecoder']]],
+  ['buttonintervalms_5',['ButtonIntervalMs',['../namespace_spa_iot.html#a32b05afcdb8f134e47ae0575698c1919',1,'SpaIot']]],
+  ['buttonsettings_6',['buttonSettings',['../class_spa_iot_1_1_control_panel.html#ac24bf4d917a3be33120f83d9e377c2c3',1,'SpaIot::ControlPanel']]]
 ];

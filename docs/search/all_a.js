@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ledsettings_0',['ledSettings',['../class_spa_iot_1_1_frame_decoder.html#ab61ddbc0cb7c118ebdf0f4d466d11c73',1,'SpaIot::FrameDecoder']]]
+  ['key_0',['Key',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85',1,'SpaIot']]]
 ];

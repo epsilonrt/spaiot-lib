@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rawstatus_0',['rawStatus',['../class_spa_iot_1_1_frame_decoder.html#aa178cc819094b5a2bf8fb3413640a664',1,'SpaIot::FrameDecoder']]]
+  ['multiplexer_0',['Multiplexer',['../class_spa_iot_1_1_multiplexer.html#a5af5c0ff2a9a5dd187ab623078e908dc',1,'SpaIot::Multiplexer']]]
 ];

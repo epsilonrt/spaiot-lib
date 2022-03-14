@@ -13,15 +13,9 @@
  */
 #pragma once
 
-#include <vector>
-#include <string>
-#include <initializer_list>
-#include <type_traits>
-#include <Arduino.h>
-#include "debug.h"
-
 #include "buttoncontroller.h"
 #include "twowireslave.h"
+
 namespace SpaIot {
 
   /**

@@ -6,7 +6,7 @@
 // It also allows you to press a key on the keypad to control a spa button.
 #include <Arduino.h>
 #include <SpaIot.h>
-#include <debug.h>
+
 using namespace SpaIot;
 
 // My bus configuration :

@@ -29,31 +29,31 @@
 
 #if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_LED)
   #ifndef DEBUG_LED_ONSTATE
-    #define DLED_LOW HIGH
-    #define DLED_HIGH LOW
+    #define SPAIOT_DBGLED_LOW HIGH
+    #define SPAIOT_DBGLED_HIGH LOW
   #else
     #if DEBUG_LED_ONSTATE == HIGH
-      #define DLED_LOW LOW
-      #define DLED_HIGH HIGH
+      #define SPAIOT_DBGLED_LOW LOW
+      #define SPAIOT_DBGLED_HIGH HIGH
     #else
-      #define DLED_LOW HIGH
-      #define DLED_HIGH LOW
+      #define SPAIOT_DBGLED_LOW HIGH
+      #define SPAIOT_DBGLED_HIGH LOW
     #endif
   #endif
   
-  #define DLED_INIT() { \
+  #define SPAIOT_DBGLED_INIT() { \
     pinMode(DEBUG_LED, OUTPUT); \
-    digitalWrite(DEBUG_LED, DLED_LOW); \
+    digitalWrite(DEBUG_LED, SPAIOT_DBGLED_LOW); \
   }
-  #define DLED_SET() { \
-    digitalWrite(DEBUG_LED, DLED_HIGH); \
+  #define SPAIOT_DBGLED_SET() { \
+    digitalWrite(DEBUG_LED, SPAIOT_DBGLED_HIGH); \
   }
-  #define DLED_CLR() { \
-    digitalWrite(DEBUG_LED, DLED_LOW); \
+  #define SPAIOT_DBGLED_CLR() { \
+    digitalWrite(DEBUG_LED, SPAIOT_DBGLED_LOW); \
   }
 
 #else
-#define DLED_INIT()
-#define DLED_SET()
-#define DLED_CLR()
+#define SPAIOT_DBGLED_INIT()
+#define SPAIOT_DBGLED_SET()
+#define SPAIOT_DBGLED_CLR()
 #endif

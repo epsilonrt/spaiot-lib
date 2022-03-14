@@ -13,7 +13,7 @@
  */
 #include <Arduino.h>
 #include <button.h>
-#include "debug.h"
+#include "spaiotdebug.h"
 
 namespace SpaIot {
 

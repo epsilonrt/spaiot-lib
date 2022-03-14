@@ -13,7 +13,6 @@
  */
 #include <hardwaresettings.h>
 #include <type_name.h>
-#include "debug.h"
 
 
 namespace SpaIot {

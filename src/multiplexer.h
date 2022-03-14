@@ -18,7 +18,7 @@
 #include <initializer_list>
 #include <type_traits>
 #include <Arduino.h>
-#include "debug.h"
+#include "spaiotdebug.h"
 
 #include "buttoncontroller.h"
 

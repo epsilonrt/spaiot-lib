@@ -7,7 +7,7 @@
 #include <Arduino.h>
 #include <unity.h>
 #include <button.h>
-#include <debug.h>
+#include <spaiotdebug.h>
 
 using namespace SpaIot;
 

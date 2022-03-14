@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY;
  */
 #include "twowireslave.h"
-#include "debug.h"
+#include "spaiotdebug.h"
 
 namespace SpaIot {
 

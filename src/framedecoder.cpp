@@ -15,7 +15,7 @@
 #include <Arduino.h>
 #include <framedecoder.h>
 #include "defines_p.h"
-#include "debug.h"
+#include "spaiotdebug.h"
 
 namespace SpaIot {
 
@@ -255,16 +255,16 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void FrameDecoder::clkRisingInterrupt() {
 
-    DLED_SET();
+    SPAIOT_DBGLED_SET();
     m_frameValue = (m_frameValue << 1) + ! digitalRead (m_dataPin);
     m_frameShift ++;
-    DLED_CLR();
+    SPAIOT_DBGLED_CLR();
   }
 
   //----------------------------------------------------------------------------
   void FrameDecoder::holdRisingInterrupt() {
 
-    DLED_SET();
+    SPAIOT_DBGLED_SET();
     m_frameCounter ++;
 
     if (m_frameShift == FRAME_BITS_SIZE) {
@@ -511,7 +511,7 @@ namespace SpaIot {
       m_frameDropped ++;
       m_frameShift = 0;
     }
-    DLED_CLR();
+    SPAIOT_DBGLED_CLR();
   }
 
   //----------------------------------------------------------------------------

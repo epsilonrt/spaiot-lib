@@ -16,7 +16,7 @@
 #include <Arduino.h>
 #include <unity.h>
 #include <framedecoder.h>
-#include <debug.h>
+#include <spaiotdebug.h>
 
 //#define LOOP_ENABLED 1
 
@@ -29,14 +29,18 @@ using namespace SpaIot;
 // SCLK   -> GPIO14
 // nWR    -> GPIO13
 const BusSettings MyBus (12, 14, 13);
+
 #elif defined(ESP32)
-// SDATA  -> GPIO18
-// SCLK   -> GPIO16
-// nWR    -> GPIO17
-const BusSettings MyBus (18, 16, 17);
+// SDATA  -> GPIO23
+// SCLK   -> GPIO18
+// nWR    -> GPIO19
+const BusSettings MyBus (23, 18, 19);
+
 #else
 #error unsupported platform
 #endif
+
+
 
 class TestBusDecoder : public FrameDecoder {
   public:
@@ -163,7 +167,7 @@ void test_begin () {
 }
 
 void setup() {
-  DLED_INIT();
+  SPAIOT_DBGLED_INIT();
   // NOTE!!! Wait for >2 secs
   // if board doesn't support software reset via Serial.DTR/RTS
   delay (2000);

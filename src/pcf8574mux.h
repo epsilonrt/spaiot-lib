@@ -20,46 +20,59 @@ namespace SpaIot {
 
   /**
    * @class Pcf8574Mux
-   * @brief 
+   * @brief Multiplexer controlled by a PCF8574
+   *
+   *  Inheriting from the ButtonController class.
    */
   class Pcf8574Mux : public ButtonController {
     public:
 
       /**
-       * @brief 
-       * @param slaveAddress
-       * @param bus
-       * @param idleValue
+       * It creates a new Pcf8574Mux object.
+       *
+       * @param slaveAddress The address of the PCF8574 chip.
+       * @param bus The TwoWire object that is used to communicate with the PCF8574.
+       * @param idleValue The value that the pins will be set to when the device is not
+       * in use.
        */
       Pcf8574Mux (uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
 
       /**
-       * @brief
+       * It opens the PCF8574 chip.
        */
       virtual void begin();
+      
+      virtual void end();
 
       /**
-       * @brief
-       * @param button
-       * @return
+       * It writes the value of the button to the PCF8574 chip.
+       *
+       * @param button the button to be selected.
+       *
+       * @return the value return by selected()
        */
       virtual int select (int button);
 
       /**
-       * @brief
+       * It deselects the mux.
        */
       virtual void deselect ();
 
       /**
-       * @brief
-       * @return
+       * This function returns true if the object is a null pointer
+       *
+       * @return The return value is a boolean value.  The return value is true if the
+       *         device is null, and false if the device is not null.
        */
       virtual bool isNull() const;
 
       /**
-       * @brief
-       * @param other
-       * @return
+       * This function is called when the ButtonController is compared to another
+       * ButtonController
+       *
+       * @param other The ButtonController to compare against.
+       *
+       * @return true if equal
        */
       virtual bool operator== (const ButtonController &other) const;
 

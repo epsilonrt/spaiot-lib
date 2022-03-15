@@ -39,8 +39,8 @@ namespace SpaIot {
        */
       Multiplexer (const std::initializer_list<int>& spins, int inhPin) :
         ButtonController(), m_spin (spins), m_inh (inhPin) {
-          
-        SPAIOT_ASSERT ((1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);
+
+        SPAIOT_ASSERT ( (1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);
       }
 
       Multiplexer () :
@@ -67,13 +67,22 @@ namespace SpaIot {
           pinMode (m_inh, OUTPUT);
           digitalWrite (m_inh, HIGH);
 
-          for (int i = 0; i < m_spin.size(); i++) {
+          for (unsigned int i = 0; i < m_spin.size(); i++) {
 
             pinMode (m_spin.at (i), OUTPUT);
             digitalWrite (m_spin.at (i), LOW);
           }
           m_isopened = true;
         }
+      }
+
+      virtual void end() {
+        
+        for (unsigned int i = 0; i < m_spin.size(); i++) {
+
+          pinMode (m_spin.at (i), INPUT_PULLUP);
+        }
+        ButtonController::end();
       }
 
       /**
@@ -85,7 +94,7 @@ namespace SpaIot {
 
         if (isOpened() && (button >= 0) && (button <= W)) {
 
-          for (int i = 0; i < m_spin.size(); i++) {
+          for (unsigned int i = 0; i < m_spin.size(); i++) {
 
             digitalWrite (m_spin.at (i), (button & (1 << i)) ? HIGH : LOW);
 

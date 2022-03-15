@@ -27,17 +27,23 @@ namespace SpaIot {
   {}
 
   //----------------------------------------------------------------------------
+  ButtonController::~ButtonController() {
+    
+    end();
+  }
+
+  //----------------------------------------------------------------------------
   bool ButtonController::isOpened() const {
 
     return m_isopened;
   }
-  
+
   //----------------------------------------------------------------------------
   bool ButtonController::isSelected() const {
 
     return selected() != -1;
   }
-  
+
   //----------------------------------------------------------------------------
   int ButtonController::selected() const {
 
@@ -77,6 +83,12 @@ namespace SpaIot {
   bool ButtonController::isNull() const {
 
     return true;
+  }
+
+  //----------------------------------------------------------------------------
+  void ButtonController::end() {
+    
+    m_isopened = false;
   }
 }
 //------------------------------------------------------------------------------

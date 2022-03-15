@@ -39,6 +39,13 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  void Pcf8574Mux::end() {
+    
+    m_pcf.write (m_idle);
+    ButtonController::end();
+  }
+
+  //----------------------------------------------------------------------------
   int Pcf8574Mux::select (int button) {
 
     if (isOpened()) {

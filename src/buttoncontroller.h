@@ -33,11 +33,15 @@ namespace SpaIot {
        * @brief 
        * @return 
        */
-      virtual ~ButtonController() {}
+      virtual ~ButtonController();
       /**
        * @brief 
        */
       virtual void begin() = 0;
+      /**
+       * @brief 
+       */
+      virtual void end();
       /**
        * @brief 
        * @param button

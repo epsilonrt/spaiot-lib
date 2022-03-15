@@ -127,7 +127,7 @@ void test_select (std::initializer_list<int> spins, int inh, std::initializer_li
     TEST_ASSERT_EQUAL (button, ctrl.select (button));
     TEST_ASSERT_EQUAL (LOW, digitalRead (inh));
 
-    for (int i = 0; i < pin.size(); i++) {
+    for (unsigned int i = 0; i < pin.size(); i++) {
 
       TEST_ASSERT_EQUAL ( (button & (1 << i)) ? HIGH : LOW, digitalRead (pin[i]));
     }

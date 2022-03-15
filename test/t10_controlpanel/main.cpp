@@ -1,38 +1,55 @@
 //
 // Unit Test for the class SpaIot::ControlPanel
 //
-// We use a DIY board connected to a SSP spa, the configuration  is as follows:
-//
-//  const HardwareSettings Scip2Ssp (ScipBus, SspLeds, Scip2SspButtons);
-//
-//  const BusSettings ScipBus (12, 14, 13);
-//  const std::map<int, LedSettings> SspLeds = {
-//    { Power,          LedSettings (0) },
-//    { Heater,         LedSettings (7) },
-//    { HeatReached,    LedSettings (9) },
-//    { Bubble,         LedSettings (10) },
-//    { Filter,         LedSettings (12) }//  };
-//  const std::map<int, ButtonSettings> Scip2SspButtons = {
-//    { Filter,   ButtonSettings ("Scip2CtrlA", 1) },
-//    { Bubble,   ButtonSettings ("Scip2CtrlA", 3) },
-//    { TempDown, ButtonSettings ("Scip2CtrlA", 7) },
-//
-//    { Power,    ButtonSettings ("Scip2CtrlB", 2) },
-//    { TempUp,   ButtonSettings ("Scip2CtrlB", 4) },
-//    { TempUnit, ButtonSettings ("Scip2CtrlB", 5) },
-//    { Heater,   ButtonSettings ("Scip2CtrlB", 7) }
-//  };
+// We use a DIY board connected to a SSP spa.
+
 #include <Arduino.h>
 #include <unity.h>
 #include <controlpanel.h>
-#include <debug.h>
+#include <spaiotdebug.h>
 
 using namespace SpaIot;
 
-const HardwareSettings & hwSettings                   = Scip2Ssp;
-const BusSettings & busSettings                       = ScipBus;
+//#define DISABLE_DESIRED_TEMP
+
+// My bus configuration :
+#if defined(ESP8266)
+// SDATA  -> GPIO12
+// SCLK   -> GPIO14
+// nWR    -> GPIO13
+const BusSettings busSettings (12, 14, 13);
+// My button controllers
+Cd4051 MuxA (5, 4, 15, 16); // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO16
+Cd4051 MuxB (5, 4, 15, 0);  // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO0
+
+#elif defined(ESP32)
+// SDATA  -> GPIO23
+// SCLK   -> GPIO18
+// nWR    -> GPIO19
+const BusSettings busSettings (23, 18, 19);
+// My button controllers
+Cd4051 MuxA (27, 16, 17, 25); // S0->GPIO27, S1->GPIO16, S2->GPIO17, En->GPIO25
+Cd4051 MuxB (27, 16, 17, 26); // S0->GPIO27, S1->GPIO16, S2->GPIO17, En->GPIO26
+#else
+#error unsupported platform
+#endif
+
 const std::map<int, LedSettings> & ledSettings        = SspLeds;
-const std::map<int, ButtonSettings> & buttonSettings  = Scip2SspButtons;
+
+// My buttons configuration (SSP)
+const std::map<int, ButtonSettings> buttonSettings = {
+  { Filter,   ButtonSettings ("MuxA", 1) },  // Filter   -> A1
+  { Bubble,   ButtonSettings ("MuxA", 3) },  // Bubble   -> A3
+  { TempDown, ButtonSettings ("MuxA", 7) },  // TempDown -> A7
+
+  { Power,    ButtonSettings ("MuxB", 2) },  // Power    -> B2
+  { TempUp,   ButtonSettings ("MuxB", 4) },  // TempUp   -> B4
+  { TempUnit, ButtonSettings ("MuxB", 5) },  // TempUnit -> B5
+  { Heater,   ButtonSettings ("MuxB", 7) }   // Heater   -> B7
+};
+
+// My custom configuration
+const HardwareSettings hwSettings (busSettings, ledSettings, buttonSettings);
 
 ControlPanel * panel;
 uint32_t frameCounter;
@@ -51,15 +68,19 @@ uint8_t   isSanitizerOn;
 uint16_t waterTemp = UnsetValue16;
 uint16_t desiredTemp = UnsetValue16;
 
-// void setUp(void) {
-// // set stuff up here
-// }
+void setUp (void) {
+
+  // The button controllers must be registered before getInstance() call
+  ButtonController::addToRegister ("MuxA", MuxA);
+  ButtonController::addToRegister ("MuxB", MuxB);
+}
 
 // void tearDown(void) {
 // // clean stuff up here
 // }
 
 void test_constructor () {
+  SPAIOT_DBG ("---> test_constructor <---");
 
   panel = ControlPanel::getInstance (hwSettings);
   TEST_ASSERT_FALSE (panel->isOpened());
@@ -67,17 +88,20 @@ void test_constructor () {
 
 
 void test_getters () {
+  SPAIOT_DBG ("---> test_getters <---");
 
   TEST_ASSERT (busSettings == panel->busSettings());
 
   TEST_ASSERT (buttonSettings == panel->buttonSettings());
-  for (const auto& [ key, cfg ] : panel->buttonSettings()) {
+  for (const auto& elmt : panel->buttonSettings()) {
+    const int key = elmt.first;
 
     TEST_ASSERT_TRUE (panel->hasButton (key));
   }
 
   TEST_ASSERT (ledSettings == panel->ledSettings());
-  for (const auto& [ key, led ] : panel->ledSettings()) {
+  for (const auto& elmt : panel->ledSettings()) {
+    const int key = elmt.first;
 
     TEST_ASSERT_TRUE (panel->hasLed (key));
   }
@@ -99,7 +123,8 @@ void test_getters () {
   isSetupModeTriggered = panel->isSetupModeTriggered();
   TEST_ASSERT_FALSE (isSetupModeTriggered);
 
-  for (const auto& [ key, led ] : panel->ledSettings()) {
+  for (const auto& elmt : panel->ledSettings()) {
+    const int key = elmt.first;
 
     TEST_ASSERT_EQUAL (UnsetValue8, panel->isLedOn (key));
   }
@@ -125,124 +150,162 @@ void test_getters () {
 }
 
 void test_begin () {
+  SPAIOT_DBG ("---> test_begin <---");
 
   panel->begin();
   TEST_ASSERT_TRUE (panel->isOpened ());
   delay (100);
   TEST_ASSERT (panel->rawStatus() != UnsetValue16);
-  for (const auto& [ key, led ] : SspLeds) {
+  for (const auto& elmt : SspLeds) {
+    const int key = elmt.first;
 
-    TEST_ASSERT_EQUAL (false, panel->isLedOn (key));
+    TEST_ASSERT_FALSE (panel->isLedOn (key));
   }
   isPowerOn = panel->isPowerOn();
-  TEST_ASSERT_EQUAL (false, isPowerOn);
+  TEST_ASSERT_FALSE (isPowerOn);
   isFilterOn = panel->isFilterOn();
-  TEST_ASSERT_EQUAL (false, isFilterOn);
+  TEST_ASSERT_FALSE (isFilterOn);
   isBubbleOn = panel->isBubbleOn();
-  TEST_ASSERT_EQUAL (false, isBubbleOn);
+  TEST_ASSERT_FALSE (isBubbleOn);
   isHeaterOn = panel->isHeaterOn();
-  TEST_ASSERT_EQUAL (false, isHeaterOn);
+  TEST_ASSERT_FALSE (isHeaterOn);
   isHeatReached = panel->isHeatReached();
-  TEST_ASSERT_EQUAL (false, isHeatReached);
+  TEST_ASSERT_FALSE (isHeatReached);
   if (panel->hasLed (Jet)) {
     isJetOn = panel->isJetOn();
-    TEST_ASSERT_EQUAL (false, isJetOn);
+    TEST_ASSERT_FALSE (isJetOn);
   }
   if (panel->hasLed (Sanitizer)) {
     isSanitizerOn = panel->isSanitizerOn();
-    TEST_ASSERT_EQUAL (false, isSanitizerOn);
+    TEST_ASSERT_FALSE (isSanitizerOn);
   }
 }
 
 void test_power_on () {
+  SPAIOT_DBG ("---> test_power_on <---");
 
   if (panel->isPowerOn()) {
 
     TEST_ASSERT_FALSE (panel->setPower (false));
   }
+
+  SPAIOT_DBG ("Set power on !");
   TEST_ASSERT_TRUE (panel->setPower ());
 }
 
 void test_filter () {
-
+  
+  SPAIOT_DBG ("---> test_filter <---");
+  
   if (panel->isFilterOn()) {
 
     TEST_ASSERT_FALSE (panel->setFilter (false));
-    delay (100);
+    delay (1000);
   }
+
+  SPAIOT_DBG ("Set filter on !");
   TEST_ASSERT_TRUE (panel->setFilter ());
-  delay (100);
+  delay (2000);
+
+  SPAIOT_DBG ("Set filter off !");
   TEST_ASSERT_FALSE (panel->setFilter (false));
-  delay (5000);
 }
 
 void test_bubble () {
+  
+  SPAIOT_DBG ("---> test_bubble <---");
   if (panel->isBubbleOn()) {
 
     TEST_ASSERT_FALSE (panel->setBubble (false));
-    delay (100);
+    delay (1000);
   }
+
+  SPAIOT_DBG ("Set bubble on !");
   TEST_ASSERT_TRUE (panel->setBubble ());
-  delay (150);
+  delay (2000);
+
+  SPAIOT_DBG ("Set bubble off !");
   TEST_ASSERT_FALSE (panel->setBubble (false));
-  delay (5000);
 }
 
 void test_heater () {
+  
+  SPAIOT_DBG ("---> test_heater <---");
   if (panel->isHeaterOn()) {
 
     TEST_ASSERT_FALSE (panel->setHeater (false));
+    delay (1000);
   }
-  TEST_MESSAGE ("Set heater on !");
+
+  SPAIOT_DBG ("Set heater on !");
   TEST_ASSERT_TRUE (panel->setHeater ());
   TEST_ASSERT_TRUE (panel->isFilterOn());
-  TEST_MESSAGE ("Set heater off !");
+  delay (2000);
+
+  SPAIOT_DBG ("Set heater off !");
   TEST_ASSERT_FALSE (panel->setHeater (false));
-  panel->setFilter (false);
-  delay (5000);
+  SPAIOT_DBG ("Set filter off !");
+  TEST_ASSERT_FALSE (panel->setFilter (false));
 }
 
 void test_watertemp () {
+  SPAIOT_DBG ("---> test_watertemp <---");
 
   unsigned long t = millis();
   waterTemp = panel->waitForWaterTemp();
   if (waterTemp != UnsetValue16) {
 
     t = millis() - t;
-    Serial.printf ("waterTemp: %d'C (response time %lu ms)\n", waterTemp, t);
+    SPAIOT_DBG ("waterTemp: %d'C (response time %lu ms)\n", waterTemp, t);
   }
   TEST_ASSERT (waterTemp != UnsetValue16);
 }
 
 void test_get_desiredtemp () {
+  SPAIOT_DBG ("---> test_get_desiredtemp <---");
 
+#ifndef DISABLE_DESIRED_TEMP
   unsigned long t = millis();
   desiredTemp = panel->waitForDesiredTemp();
   if (desiredTemp != UnsetValue16) {
 
     t = millis() - t;
-    Serial.printf ("desiredTemp: %d'C (response time %lu ms)\n", desiredTemp, t);
+    SPAIOT_DBG ("desiredTemp: %d'C (response time %lu ms)\n", desiredTemp, t);
   }
   panel->waitUntilDisplayBlink();
+#else
+  TEST_IGNORE_MESSAGE ("DISABLE_DESIRED_TEMP defined, nothing was done");
+#endif
 }
 
 void test_set_desiredtemp () {
+  SPAIOT_DBG ("---> test_set_desiredtemp <---");
 
+#ifndef DISABLE_DESIRED_TEMP
   TEST_ASSERT_FALSE (panel->setDesiredTemp (10));
   TEST_ASSERT_FALSE (panel->setDesiredTemp (50));
+  
   TEST_ASSERT_TRUE (panel->setDesiredTemp (38));
+  TEST_ASSERT_EQUAL (panel->desiredTemp(), 38); 
   panel->waitUntilDisplayBlink();
+
   TEST_ASSERT_TRUE (panel->setDesiredTemp (22));
+  TEST_ASSERT_EQUAL (panel->desiredTemp(), 22); 
   panel->waitUntilDisplayBlink();
+#else
+  TEST_IGNORE_MESSAGE ("DISABLE_DESIRED_TEMP defined, nothing was done");
+#endif
 }
 
 void test_power_off () {
+  SPAIOT_DBG ("---> test_power_off <---");
 
+  SPAIOT_DBG ("Set heater off !");
   TEST_ASSERT_FALSE (panel->setPower (false));
 }
 
 void setup() {
-  DLED_INIT();
+  SPAIOT_DBGLED_INIT();
   // NOTE!!! Wait for >2 secs
   // if board doesn't support software reset via Serial.DTR/RTS
   delay (2000);
@@ -258,17 +321,28 @@ void loop() {
 
     RUN_TEST (test_constructor);
     RUN_TEST (test_getters);
+    
     RUN_TEST (test_begin);
+    delay (5000);
+    
     RUN_TEST (test_power_on);
+    delay (5000);
 
     RUN_TEST (test_watertemp);
+    delay (5000);
 
     RUN_TEST (test_get_desiredtemp);
     RUN_TEST (test_set_desiredtemp);
+    delay (5000);
 
     RUN_TEST (test_filter);
+    delay (5000);
+    
     RUN_TEST (test_bubble);
+    delay (5000);
+    
     RUN_TEST (test_heater);
+    delay (5000);
 
     RUN_TEST (test_power_off);
 

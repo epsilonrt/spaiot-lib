@@ -52,7 +52,7 @@ namespace SpaIot {
 
   const uint16_t UnsetValue16 = 0xFFFF; //!< Indeterminate value on 16 bits
   const uint8_t UnsetValue8 = 0xFF; //!< Indeterminate value on 8 bits
-  const unsigned long ButtonIntervalMs = 500; //!< Time between 2 successive actions on the buttons
+  const unsigned long ButtonIntervalMs = 800; //!< Time between 2 successive actions on the buttons
   const uint16_t DesiredTempMax = 40; //!< Maximum desired temperature in °C
   const uint16_t DesiredTempMin = 20; //!< Minimum desired temperature in °C
   const uint16_t SetupTrigUnitChangeMin = 5; //!< Number of changes in temperature unit corresponding to the reset request

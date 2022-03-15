@@ -38,14 +38,14 @@ namespace SpaIot {
     }
     return m_instance;
   }
-  
+
   //----------------------------------------------------------------------------
   // static
   ControlPanel * ControlPanel::getInstance (const std::string & hwSettingsName) {
 
-    if (HardwareSettings::registerContains(hwSettingsName)) {
+    if (HardwareSettings::registerContains (hwSettingsName)) {
 
-      m_instance = new ControlPanel (HardwareSettings::getFromRegister(hwSettingsName));
+      m_instance = new ControlPanel (HardwareSettings::getFromRegister (hwSettingsName));
     }
     return m_instance;
   }
@@ -104,9 +104,9 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   bool ControlPanel::pushButton (int key)  {
-    
+
     if (hasButton (key)) {
-      
+
       m_button[key].push();
       return true;
     }
@@ -233,36 +233,78 @@ namespace SpaIot {
          (temp <= DesiredTempMax) &&
          hasButton (TempUp) && hasButton (TempDown) && isOpened()) {
 
-      if ( (m_rawStatus != UnsetValue16) &&
-           ( (m_rawStatus & m_frameLedPower) != 0) && (m_errorValue == 0)) {
-        uint16_t  uint16DesiredTemp, pushCounter = 0;
+      if ( (waitForDesiredTemp() != UnsetValue16) && (m_errorValue == 0)) {
+        uint16_t  uint16DesiredTemp = desiredTemp();
+        int  pushCounter = temp - uint16DesiredTemp;
 
-        while ( (desiredTemp() == UnsetValue16) &&
-                (pushCounter < PUSH_COUNTER_MAX)) {
-
-          m_button[TempUp].push();
-          delay (ButtonIntervalMs);
-          pushCounter++;
-        }
-
-        while ( (pushCounter < PUSH_COUNTER_MAX) &&
-                ( (uint16DesiredTemp = desiredTemp()) != temp)) {
-
-          if (uint16DesiredTemp > temp) {
-
-            m_button[TempDown].push();
+        SPAIOT_DBG ("%s:%d: desiredTemp: %d'C -> %d'C > %+d'C",
+                    __PRETTY_FUNCTION__, __LINE__,
+                    desiredTemp(), temp, pushCounter);
+                    
+        if (pushCounter != 0) {
+          
+          // faster version
+          while (pushCounter != 0) {
+            
+            if (pushCounter > 0) {
+              
+              m_button[TempUp].push();
+              pushCounter--;
+            }
+            else {
+              
+              m_button[TempDown].push();
+              pushCounter++;
+            }
+            delay (HoldPressedMs);
           }
-          else {
 
-            m_button[TempUp].push();
+          // Adjust if necessery
+          pushCounter = 0;
+          while ( (pushCounter < PUSH_COUNTER_MAX) &&
+                  ( (uint16DesiredTemp = desiredTemp()) != temp)) {
+
+            if (uint16DesiredTemp > temp) {
+
+              m_button[TempDown].push();
+            }
+            else {
+
+              m_button[TempUp].push();
+            }
+            delay (ButtonIntervalMs);
+            SPAIOT_DBG ("%s:%d: pushCounter %d - desiredTemp %d'C",
+                        __PRETTY_FUNCTION__, __LINE__,
+                        pushCounter, desiredTemp());
+            pushCounter++;
           }
-          delay (ButtonIntervalMs);
-          pushCounter++;
+
+          if ( (pushCounter >= PUSH_COUNTER_MAX) ||
+               ( (uint16DesiredTemp = desiredTemp()) != temp)) {
+
+            SPAIOT_DBG ("%s:%d: Unable to set desiredTemp to %d'C: pushCounter %d - desiredTemp %d'C",
+                        __PRETTY_FUNCTION__, __LINE__,
+                        temp, pushCounter, desiredTemp());
+            return false;
+          }
         }
       }
-      return true;
+      else {
+
+        SPAIOT_DBG ("%s:%d: Unable to read desiredTemp to %d'C",
+                    __PRETTY_FUNCTION__, __LINE__,
+                    desiredTemp());
+        return false;
+      }
     }
-    return false;
+    else {
+
+      SPAIOT_DBG ("%s:%d: Unable to set desiredTemp to %d'C: is_opened %d - min %d'C - max %d'C",
+                  __PRETTY_FUNCTION__, __LINE__,
+                  temp, isOpened(), DesiredTempMin, DesiredTempMax);
+      return false;
+    }
+    return true;
   }
 
   //----------------------------------------------------------------------------

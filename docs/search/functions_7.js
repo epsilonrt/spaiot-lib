@@ -7,7 +7,7 @@ var searchData=
   ['isheatreached_4',['isHeatReached',['../class_spa_iot_1_1_frame_decoder.html#ab75a483f132bc76bf9dad9f56099ed66',1,'SpaIot::FrameDecoder']]],
   ['isjeton_5',['isJetOn',['../class_spa_iot_1_1_frame_decoder.html#a5d83bdf4370cc6b3274aa1671c1400a3',1,'SpaIot::FrameDecoder']]],
   ['isledon_6',['isLedOn',['../class_spa_iot_1_1_frame_decoder.html#a8d257c11732cb364f59e70d1866db95b',1,'SpaIot::FrameDecoder']]],
-  ['isnull_7',['isNull',['../class_spa_iot_1_1_multiplexer.html#ab6edf9522531b1c653d01f02868af6a1',1,'SpaIot::Multiplexer']]],
+  ['isnull_7',['isNull',['../class_spa_iot_1_1_multiplexer.html#ab6edf9522531b1c653d01f02868af6a1',1,'SpaIot::Multiplexer::isNull()'],['../class_spa_iot_1_1_pcf8574_mux.html#ad1c7ded5f43a9b8bdefc9d6f82597a38',1,'SpaIot::Pcf8574Mux::isNull()']]],
   ['isopened_8',['isOpened',['../class_spa_iot_1_1_control_panel.html#acb11be5e9aa310fcd16ea758694821d6',1,'SpaIot::ControlPanel::isOpened()'],['../class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58',1,'SpaIot::FrameDecoder::isOpened() const']]],
   ['ispoweron_9',['isPowerOn',['../class_spa_iot_1_1_frame_decoder.html#a1c32e6b74bd35f2f644928e6b28877b1',1,'SpaIot::FrameDecoder']]],
   ['issanitizeron_10',['isSanitizerOn',['../class_spa_iot_1_1_frame_decoder.html#ac83665bc798876d1c1c5d7f2ad77be18',1,'SpaIot::FrameDecoder']]],

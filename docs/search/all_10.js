@@ -2,7 +2,7 @@ var searchData=
 [
   ['sanitizer_0',['Sanitizer',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85aa11dfc631537c84414ed9a7d3d333962',1,'SpaIot']]],
   ['sanitizertime_1',['sanitizerTime',['../class_spa_iot_1_1_frame_decoder.html#ae79e931ea6f1951029d27be05c8d54d9',1,'SpaIot::FrameDecoder']]],
-  ['select_2',['select',['../class_spa_iot_1_1_multiplexer.html#afb697d25e320ccaf6bb37365cb4cc83f',1,'SpaIot::Multiplexer']]],
+  ['select_2',['select',['../class_spa_iot_1_1_multiplexer.html#afb697d25e320ccaf6bb37365cb4cc83f',1,'SpaIot::Multiplexer::select()'],['../class_spa_iot_1_1_pcf8574_mux.html#aaf3874cfc555e6ce09df7ef89dc412e9',1,'SpaIot::Pcf8574Mux::select()']]],
   ['selectpin_3',['selectPin',['../class_spa_iot_1_1_multiplexer.html#adbe41958cbb85709e04def3dfc100b88',1,'SpaIot::Multiplexer']]],
   ['setaddress_4',['setAddress',['../class_spa_iot_1_1_two_wire_slave.html#a4c074a6d44452f650f04992a7fe3dc27',1,'SpaIot::TwoWireSlave']]],
   ['setbubble_5',['setBubble',['../class_spa_iot_1_1_control_panel.html#a12195536f6c76b1c077f7d790609d97a',1,'SpaIot::ControlPanel']]],

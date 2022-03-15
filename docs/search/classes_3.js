@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['twowireslave_0',['TwoWireSlave',['../class_spa_iot_1_1_two_wire_slave.html',1,'SpaIot']]]
+  ['pcf8574mux_0',['Pcf8574Mux',['../class_spa_iot_1_1_pcf8574_mux.html',1,'SpaIot']]]
 ];

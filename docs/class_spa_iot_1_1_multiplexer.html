@@ -108,10 +108,18 @@ Inheritance diagram for SpaIot::Multiplexer&lt; W &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5af5c0ff2a9a5dd187ab623078e908dc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#a5af5c0ff2a9a5dd187ab623078e908dc">Multiplexer</a> (const std::initializer_list&lt; int &gt; &amp;spins, int inhPin)</td></tr>
 <tr class="separator:a5af5c0ff2a9a5dd187ab623078e908dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505dfce5d92f2d1dac4262f6a39401a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#a505dfce5d92f2d1dac4262f6a39401a3">Multiplexer</a> ()</td></tr>
+<tr class="separator:a505dfce5d92f2d1dac4262f6a39401a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a422cd666ba5bb62735d37a980254f5dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#a422cd666ba5bb62735d37a980254f5dd">size</a> () const</td></tr>
 <tr class="separator:a422cd666ba5bb62735d37a980254f5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8d413d085e07018c07e67c3bb54823"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#aac8d413d085e07018c07e67c3bb54823">begin</a> ()</td></tr>
+<tr class="separator:aac8d413d085e07018c07e67c3bb54823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b049dca854204655b0561b8d17aaee1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#a6b049dca854204655b0561b8d17aaee1">end</a> ()</td></tr>
+<tr class="separator:a6b049dca854204655b0561b8d17aaee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb697d25e320ccaf6bb37365cb4cc83f"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#afb697d25e320ccaf6bb37365cb4cc83f">select</a> (int button)</td></tr>
 <tr class="separator:afb697d25e320ccaf6bb37365cb4cc83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef342f0d9f42dbdf9c99c64ae4720297"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#aef342f0d9f42dbdf9c99c64ae4720297">deselect</a> ()</td></tr>
+<tr class="separator:aef342f0d9f42dbdf9c99c64ae4720297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6edf9522531b1c653d01f02868af6a1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#ab6edf9522531b1c653d01f02868af6a1">isNull</a> () const</td></tr>
 <tr class="separator:ab6edf9522531b1c653d01f02868af6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dc10b882a873f2d860e276fafd18162"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_multiplexer.html#a4dc10b882a873f2d860e276fafd18162">operator==</a> (const ButtonController &amp;other) const</td></tr>
@@ -141,7 +149,7 @@ Static Public Member Functions</h2></td></tr>
 class SpaIot::Multiplexer&lt; W &gt;</div><p >Analog multiplexer template. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5af5c0ff2a9a5dd187ab623078e908dc" name="a5af5c0ff2a9a5dd187ab623078e908dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5af5c0ff2a9a5dd187ab623078e908dc">&#9670;&nbsp;</a></span>Multiplexer()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5af5c0ff2a9a5dd187ab623078e908dc">&#9670;&nbsp;</a></span>Multiplexer() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,13 +183,42 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The constructor of <a class="el" href="class_spa_iot_1_1_multiplexer.html" title="Analog multiplexer template.">Multiplexer</a> takes a list of integers and an integer as input. The list of integers represents the selection pins that are connected to the multiplexer. The integer represents the pin that is connected to the inhibit pin</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spins</td><td>The list of selection pins, in ascending order of weight </td></tr>
-    <tr><td class="paramname">inhPin</td><td>Inhibition pin (active in high level) </td></tr>
+    <tr><td class="paramname">spins</td><td>a list of integers that represent the pins that are connected to the multiplexer, in ascending order of weight </td></tr>
+    <tr><td class="paramname">inhPin</td><td>The pin number of the inhibit pin ((active in high level) </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a505dfce5d92f2d1dac4262f6a39401a3" name="a505dfce5d92f2d1dac4262f6a39401a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a505dfce5d92f2d1dac4262f6a39401a3">&#9670;&nbsp;</a></span>Multiplexer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int W&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_spa_iot_1_1_multiplexer.html">SpaIot::Multiplexer</a>&lt; W &gt;::<a class="el" href="class_spa_iot_1_1_multiplexer.html">Multiplexer</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Default constructor The <a class="el" href="class_spa_iot_1_1_multiplexer.html" title="Analog multiplexer template.">Multiplexer</a> class is a subclass of ButtonController </p>
 
 </div>
 </div>
@@ -227,6 +264,94 @@ template&lt;int W&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aac8d413d085e07018c07e67c3bb54823" name="aac8d413d085e07018c07e67c3bb54823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8d413d085e07018c07e67c3bb54823">&#9670;&nbsp;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int W&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_spa_iot_1_1_multiplexer.html">SpaIot::Multiplexer</a>&lt; W &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >It opens the multiplexer.</p>
+<p >Selection pins are low logic state, the inihibition pin in the high logic state. </p>
+
+<p class="reference">References <a class="el" href="class_spa_iot_1_1_multiplexer.html#ab6edf9522531b1c653d01f02868af6a1">SpaIot::Multiplexer&lt; W &gt;::isNull()</a>.</p>
+
+</div>
+</div>
+<a id="aef342f0d9f42dbdf9c99c64ae4720297" name="aef342f0d9f42dbdf9c99c64ae4720297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef342f0d9f42dbdf9c99c64ae4720297">&#9670;&nbsp;</a></span>deselect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int W&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_spa_iot_1_1_multiplexer.html">SpaIot::Multiplexer</a>&lt; W &gt;::deselect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >It deselects the current selected item. </p>
+
+</div>
+</div>
+<a id="a6b049dca854204655b0561b8d17aaee1" name="a6b049dca854204655b0561b8d17aaee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b049dca854204655b0561b8d17aaee1">&#9670;&nbsp;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int W&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_spa_iot_1_1_multiplexer.html">SpaIot::Multiplexer</a>&lt; W &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >This function is called when the program ends.</p>
+<p >It sets the pins to be inputs with pullups </p>
 
 </div>
 </div>
@@ -287,7 +412,10 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p >This function returns true if default construting</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean value. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="class_spa_iot_1_1_multiplexer.html#aac8d413d085e07018c07e67c3bb54823">SpaIot::Multiplexer&lt; W &gt;::begin()</a>.</p>
 
 </div>
 </div>
@@ -400,13 +528,14 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The <a class="el" href="class_spa_iot_1_1_multiplexer.html" title="Analog multiplexer template.">Multiplexer</a> class has an operator== function that takes one argument, a <a class="el" href="class_spa_iot_1_1_multiplexer.html" title="Analog multiplexer template.">Multiplexer</a> object.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td></td></tr>
+    <tr><td class="paramname">other</td><td>the other object being compared to this one. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison of the two objects. </dd></dl>
 
 </div>
 </div>
@@ -435,13 +564,14 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >If the button is pressed, the corresponding pin is set to high, and the other pins are set to low</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">button</td><td></td></tr>
+    <tr><td class="paramname">button</td><td>The button number to be selected. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ButtonController::selected() </dd></dl>
 
 </div>
 </div>
@@ -496,13 +626,14 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Given a key, return the corresponding value</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">key</td><td>The key of the parameter. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The pin number for the given key. </dd></dl>
 
 </div>
 </div>
@@ -541,10 +672,11 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >It sets the pin number for the select pin of the given key.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td></td></tr>
-    <tr><td class="paramname">pin</td><td></td></tr>
+    <tr><td class="paramname">key</td><td>the key to be used for the pin </td></tr>
+    <tr><td class="paramname">pin</td><td>the pin number </td></tr>
   </table>
   </dd>
 </dl>
@@ -575,7 +707,8 @@ template&lt;int W&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p >Return the number of multiplexer channels.</p>
+<dl class="section return"><dt>Returns</dt><dd>the number of multiplexer channels </dd></dl>
 
 </div>
 </div>

@@ -33,9 +33,13 @@ namespace SpaIot {
     public:
 
       /**
-       * @brief
-       * @param spins The list of selection pins, in ascending order of weight
-       * @param inhPin Inhibition pin (active in high level)
+       * The constructor of Multiplexer takes a list of integers and an integer as input.
+       * The list of integers represents the selection pins that are connected to the multiplexer. The
+       * integer represents the pin that is connected to the inhibit pin
+       *
+       * @param spins a list of integers that represent the pins that are connected to
+       * the multiplexer, in ascending order of weight
+       * @param inhPin The pin number of the inhibit pin ((active in high level)
        */
       Multiplexer (const std::initializer_list<int>& spins, int inhPin) :
         ButtonController(), m_spin (spins), m_inh (inhPin) {
@@ -43,13 +47,18 @@ namespace SpaIot {
         SPAIOT_ASSERT ( (1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);
       }
 
+      /**
+       * Default constructor
+       * The Multiplexer class is a subclass of ButtonController
+       */
       Multiplexer () :
         ButtonController(), m_inh (-1) {
       }
 
       /**
-       * @brief
-       * @return
+       * Return the number of multiplexer channels.
+       *
+       * @return the number of multiplexer channels
        */
       int size() const {
 
@@ -57,7 +66,9 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
+       * It opens the multiplexer.
+       * 
+       * Selection pins are low logic state, the inihibition pin in the high logic state.
        */
       virtual void begin() {
 
@@ -76,8 +87,13 @@ namespace SpaIot {
         }
       }
 
+      /**
+       * This function is called when the program ends. 
+       * 
+       * It sets the pins to be inputs with pullups
+       */
       virtual void end() {
-        
+
         for (unsigned int i = 0; i < m_spin.size(); i++) {
 
           pinMode (m_spin.at (i), INPUT_PULLUP);
@@ -86,9 +102,11 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
-       * @param button
-       * @return
+       * If the button is pressed, the corresponding pin is set to high, and the other
+       * pins are set to low
+       *
+       * @param button The button number to be selected.
+       * @return ButtonController::selected()
        */
       virtual int select (int button) {
 
@@ -106,7 +124,7 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
+       * It deselects the current selected item.
        */
       virtual void deselect () {
 
@@ -118,8 +136,9 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
-       * @return
+       * This function returns true if default construting
+       *
+       * @return A boolean value.
        */
       virtual bool isNull() const {
 
@@ -127,9 +146,11 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
-       * @param other
-       * @return
+       * The Multiplexer class has an operator== function that takes one argument,
+       * a Multiplexer object.
+       *
+       * @param other the other object being compared to this one.
+       * @return The result of the comparison of the two objects.
        */
       virtual bool operator== (const ButtonController &other) const {
 
@@ -142,9 +163,10 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
-       * @param key
-       * @return
+       * Given a key, return the corresponding value
+       *
+       * @param key The key of the parameter.
+       * @return The pin number for the given key.
        */
       int selectPin (int key) const {
 
@@ -152,9 +174,10 @@ namespace SpaIot {
       }
 
       /**
-       * @brief
-       * @param key
-       * @param pin
+       * It sets the pin number for the select pin of the given key.
+       *
+       * @param key the key to be used for the pin
+       * @param pin the pin number
        */
       void setSelectPin (int key, int pin) {
 

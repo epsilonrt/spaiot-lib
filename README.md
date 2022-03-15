@@ -1,9 +1,11 @@
 # spaiot-lib
 Supervision and Control library for Intxx PxxxSPA with an ESP8266 or ESP32
 
-[![Build](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml)
-[![PlatformIO Registry](https://badges.registry.platformio.org/packages/epsilonrt/library/spaiot-lib.svg)](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/epsilonrt/spaiot-lib?include_prereleases)](https://github.com/epsilonrt/spaiot-lib/releases)
+[![Build](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml)
+[![BuildTest](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build-test.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build-test.yml)
+
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/epsilonrt/library/spaiot-lib.svg)](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib)
 [![Platform ESP8266](https://img.shields.io/badge/Platform-Espressif8266-orange)](#)
 [![Platform ESP32](https://img.shields.io/badge/Platform-Espressif32-orange)](#)
 [![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)

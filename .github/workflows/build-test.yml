@@ -1,4 +1,4 @@
-name: Build
+name: BuildTest
 
 on:
   push:
@@ -12,9 +12,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        example: [examples/SpaSimple, examples/SpaStatus, examples/SpaSerialRemote, examples/SpaSerialRemoteI2c , examples/SpaHwCustom]
 
     steps:
 
@@ -37,7 +34,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install --upgrade platformio
-    - name: Step 6 - Run build examples using PlatformIO
-      run: pio ci --lib="." -b esp12e -b esp32dev
-      env:
-        PLATFORMIO_CI_SRC: ${{ matrix.example }}
+    - name: Step 6 - Run build ESP8266 test using PlatformIO
+      run: pio test -e ESP8266 --without-testing --without-uploading
+    - name: Step 7 - Run build ESP32 test using PlatformIO
+      run: pio test -e ESP32 --without-testing --without-uploading

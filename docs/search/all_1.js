@@ -4,7 +4,9 @@ var searchData=
   ['beginwaitingtimems_1',['BeginWaitingTimeMs',['../namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd',1,'SpaIot']]],
   ['bubble_2',['Bubble',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae0eb81dc75fac0a1701e8aa87917d8df',1,'SpaIot']]],
   ['bus_3',['bus',['../class_spa_iot_1_1_two_wire_slave.html#a575247ecdce5ad27250729b984f513c9',1,'SpaIot::TwoWireSlave']]],
-  ['bussettings_4',['busSettings',['../class_spa_iot_1_1_frame_decoder.html#a5a1d150198ff8e4f52e235b36b2220bf',1,'SpaIot::FrameDecoder']]],
-  ['buttonintervalms_5',['ButtonIntervalMs',['../namespace_spa_iot.html#a32b05afcdb8f134e47ae0575698c1919',1,'SpaIot']]],
-  ['buttonsettings_6',['buttonSettings',['../class_spa_iot_1_1_control_panel.html#ac24bf4d917a3be33120f83d9e377c2c3',1,'SpaIot::ControlPanel']]]
+  ['bussettings_4',['BusSettings',['../class_spa_iot_1_1_bus_settings.html#a90be9019a2c721fc054d2d513814fed6',1,'SpaIot::BusSettings::BusSettings(const int dataPin, const int clkPin, const int holdPin)'],['../class_spa_iot_1_1_bus_settings.html#a003b0dbcfffb09241614fa3032f28b3f',1,'SpaIot::BusSettings::BusSettings(const std::initializer_list&lt; int &gt; &amp;pins)'],['../class_spa_iot_1_1_bus_settings.html#a204fa594c5385060b3e7362611036725',1,'SpaIot::BusSettings::BusSettings()']]],
+  ['bussettings_5',['busSettings',['../class_spa_iot_1_1_frame_decoder.html#a5a1d150198ff8e4f52e235b36b2220bf',1,'SpaIot::FrameDecoder']]],
+  ['bussettings_6',['BusSettings',['../class_spa_iot_1_1_bus_settings.html',1,'SpaIot']]],
+  ['buttonintervalms_7',['ButtonIntervalMs',['../namespace_spa_iot.html#a32b05afcdb8f134e47ae0575698c1919',1,'SpaIot']]],
+  ['buttonsettings_8',['buttonSettings',['../class_spa_iot_1_1_control_panel.html#ac24bf4d917a3be33120f83d9e377c2c3',1,'SpaIot::ControlPanel']]]
 ];

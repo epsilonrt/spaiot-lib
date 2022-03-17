@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['controlpanel_0',['ControlPanel',['../class_spa_iot_1_1_control_panel.html',1,'SpaIot']]]
+  ['clkpin_0',['clkPin',['../class_spa_iot_1_1_bus_settings.html#a91bc9f9a87c7efcbaee8aaac791257cd',1,'SpaIot::BusSettings']]],
+  ['controlpanel_1',['ControlPanel',['../class_spa_iot_1_1_control_panel.html',1,'SpaIot']]]
 ];

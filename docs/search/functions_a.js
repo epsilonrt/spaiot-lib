@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3d_3d_0',['operator==',['../class_spa_iot_1_1_multiplexer.html#a4dc10b882a873f2d860e276fafd18162',1,'SpaIot::Multiplexer::operator==()'],['../class_spa_iot_1_1_pcf8574_mux.html#a099c93a5a15cc58660e789318269bfe4',1,'SpaIot::Pcf8574Mux::operator==()']]]
+  ['multiplexer_0',['Multiplexer',['../class_spa_iot_1_1_multiplexer.html#a5af5c0ff2a9a5dd187ab623078e908dc',1,'SpaIot::Multiplexer::Multiplexer(const std::initializer_list&lt; int &gt; &amp;spins, int inhPin)'],['../class_spa_iot_1_1_multiplexer.html#a505dfce5d92f2d1dac4262f6a39401a3',1,'SpaIot::Multiplexer::Multiplexer()']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['multiplexer_0',['Multiplexer',['../class_spa_iot_1_1_multiplexer.html#a5af5c0ff2a9a5dd187ab623078e908dc',1,'SpaIot::Multiplexer::Multiplexer(const std::initializer_list&lt; int &gt; &amp;spins, int inhPin)'],['../class_spa_iot_1_1_multiplexer.html#a505dfce5d92f2d1dac4262f6a39401a3',1,'SpaIot::Multiplexer::Multiplexer()']]]
+  ['ledsettings_0',['ledSettings',['../class_spa_iot_1_1_frame_decoder.html#ab61ddbc0cb7c118ebdf0f4d466d11c73',1,'SpaIot::FrameDecoder']]],
+  ['ledsettings_1',['LedSettings',['../class_spa_iot_1_1_led_settings.html#ae73186faf74254705d5b180f9b110320',1,'SpaIot::LedSettings::LedSettings()'],['../class_spa_iot_1_1_led_settings.html#ac54a3811b55b5d15bd55c58db72257ed',1,'SpaIot::LedSettings::LedSettings(const uint8_t order)']]]
 ];

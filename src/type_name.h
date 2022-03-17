@@ -16,8 +16,7 @@
 #include <Arduino.h>
 
 /**
- * @brief 
- * @return 
+ *  A template function that returns the type name of the parameter. 
  */
 template <class T>
 String type_name (const T&) {

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pcf8574mux_0',['Pcf8574Mux',['../class_spa_iot_1_1_pcf8574_mux.html',1,'SpaIot']]]
+  ['ledsettings_0',['LedSettings',['../class_spa_iot_1_1_led_settings.html',1,'SpaIot']]]
 ];

@@ -13,6 +13,7 @@
  */
 #include <buttoncontroller.h>
 #include <type_name.h>
+#include <sstream>
 
 namespace SpaIot {
 
@@ -23,12 +24,17 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
 
   //----------------------------------------------------------------------------
-  ButtonController::ButtonController() : m_isopened (false), m_selected (-1)
+  ButtonController::ButtonController() :  m_isopened (false), m_selected (-1)
+  {}
+
+  //----------------------------------------------------------------------------
+  ButtonController::ButtonController (const std::string & name) :
+    m_isopened (false), m_selected (-1), m_name (name)
   {}
 
   //----------------------------------------------------------------------------
   ButtonController::~ButtonController() {
-    
+
     end();
   }
 
@@ -63,20 +69,30 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  // static
   bool ButtonController::addToRegister (const std::string & name, ButtonController & controller) {
 
     if (Register.count (name) == 0) {
 
       Register.emplace (name, controller);
+      controller.m_name = name;
       return true;
     }
     return false;
   }
 
   //----------------------------------------------------------------------------
+  // static
   ButtonController & ButtonController::getFromRegister (const std::string & name) {
 
     return Register.at (name);
+  }
+
+  //----------------------------------------------------------------------------
+  // static
+  bool ButtonController::registerContains (const std::string & name) {
+
+    return Register.count (name) == 1;
   }
 
   //----------------------------------------------------------------------------
@@ -87,8 +103,21 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   void ButtonController::end() {
-    
+
     m_isopened = false;
   }
+
+  //----------------------------------------------------------------------------
+  const std::string & ButtonController::name() const {
+
+    if (m_name.empty()) {
+      std::stringstream ss;
+      
+      ss << "ButCtrl" << reinterpret_cast<uintptr_t> (this);
+      m_name =  ss.str();
+    }
+    return m_name;
+  }
+
 }
 //------------------------------------------------------------------------------

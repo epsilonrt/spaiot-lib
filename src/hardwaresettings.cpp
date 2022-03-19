@@ -51,13 +51,18 @@ namespace SpaIot {
     out.printf ("\t{%d,%d,%d}\n", bus().dataPin(), bus().clkPin(), bus().holdPin());
 
     out.println (type_name (leds().cbegin()->second));
-    for (const auto & led : leds()) {
-      out.printf ("\t{%d,%d}\n", led.first, led.second.order());
+    for (const auto & elmt : leds()) {
+      int key = elmt.first;
+      const LedSettings & led = elmt.second;
+      
+      out.printf ("\t{%d,%d}\n", key, led.order());
     }
 
     out.println (type_name (buttons().cbegin()->second));
-    for (const auto & button : buttons()) {
-      out.printf ("\t{%d,%s,%d}\n", button.first, button.second.controllerName().c_str(), button.second.id());
+    for (const auto & elmt : buttons()) {
+      int key = elmt.first;
+      const ButtonSettings & but = elmt.second;
+      out.printf ("\t{%d,%s,%d}\n", key, but.controllerName().c_str(), but.id());
     }
     out.printf ("--------------------------------------------------------------------------------\n\n");
   }

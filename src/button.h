@@ -100,7 +100,6 @@ namespace SpaIot {
       bool operator!= (const Button &other) const;
 
     private:
-      ButtonController * m_ctrl;
-      const ButtonSettings * m_settings;
+      ButtonSettings m_settings;
   };
 }

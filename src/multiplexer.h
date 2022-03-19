@@ -47,6 +47,12 @@ namespace SpaIot {
         SPAIOT_ASSERT ( (1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);
       }
 
+      Multiplexer (const std::string & name, const std::initializer_list<int>& spins, int inhPin) :
+        ButtonController (name), m_spin (spins), m_inh (inhPin) {
+
+        SPAIOT_ASSERT ( (1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);
+      }
+
       /**
        * Default constructor
        * The Multiplexer class is a subclass of ButtonController
@@ -67,7 +73,7 @@ namespace SpaIot {
 
       /**
        * It opens the multiplexer.
-       * 
+       *
        * Selection pins are low logic state, the inihibition pin in the high logic state.
        */
       virtual void begin() {
@@ -88,8 +94,8 @@ namespace SpaIot {
       }
 
       /**
-       * This function is called when the program ends. 
-       * 
+       * This function is called when the program ends.
+       *
        * It sets the pins to be inputs with pullups
        */
       virtual void end() {

@@ -26,81 +26,87 @@ namespace SpaIot {
   class ButtonController {
     public:
       /**
-       * @brief 
+       * @brief
        */
       ButtonController();
+      ButtonController (const std::string & name);
       /**
-       * @brief 
-       * @return 
+       * @brief
+       * @return
        */
       virtual ~ButtonController();
       /**
-       * @brief 
+       * @brief
        */
       virtual void begin() = 0;
       /**
-       * @brief 
+       * @brief
        */
       virtual void end();
       /**
-       * @brief 
+       * @brief
        * @param button
-       * @return 
+       * @return
        */
       virtual int select (int button) = 0;
       /**
-       * @brief 
+       * @brief
        */
       virtual void deselect () = 0;
       /**
-       * @brief 
-       * @return 
+       * @brief
+       * @return
        */
       virtual int selected() const;
       /**
-       * @brief 
-       * @return 
+       * @brief
+       * @return
        */
       virtual bool isOpened() const;
       /**
-       * @brief 
-       * @return 
+       * @brief
+       * @return
        */
       virtual bool isNull() const;
       /**
-       * @brief 
-       * @return 
+       * @brief
+       * @return
        */
       virtual bool isSelected() const;
       /**
-       * @brief 
+       * @brief
        * @param other
        */
       virtual bool operator== (const ButtonController &other) const;
       /**
-       * @brief 
+       * @brief
        * @param other
        */
       virtual bool operator!= (const ButtonController &other) const;
-      
+
       /**
-       * @brief 
+       * @brief
        * @param name
        * @param controller
-       * @return 
+       * @return
        */
       static bool addToRegister (const std::string & name, ButtonController & controller);
       /**
-       * @brief 
+       * @brief
        * @param name
-       * @return 
+       * @return
        */
       static ButtonController & getFromRegister (const std::string & name);
+
+      static bool registerContains (const std::string & name);
+
+      virtual const std::string & name() const;
 
     protected:
       bool m_isopened;
       int m_selected;
-      
+      mutable std::string m_name;
+
     private:
       static std::map<std::string, ButtonController &> Register;
   };

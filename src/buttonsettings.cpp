@@ -12,6 +12,8 @@
  * but WITHOUT ANY WARRANTY;
  */
 #include <buttonsettings.h>
+#include <buttoncontroller.h>
+#include <spaiotdebug.h>
 
 namespace SpaIot {
 
@@ -23,24 +25,55 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   ButtonSettings::ButtonSettings () :
-    m_id (-1)
+    m_id (-1), m_ctrl (nullptr)
   {}
 
   //----------------------------------------------------------------------------
   ButtonSettings::ButtonSettings (const std::string & controllerName, int buttonId) :
-    m_id (buttonId), m_controllerName (controllerName)
+    m_id (buttonId), m_ctrlName (controllerName), m_ctrl (nullptr)
   {}
+
+  //----------------------------------------------------------------------------
+  ButtonSettings::ButtonSettings (ButtonController & controller, int buttonId) :
+    m_id (buttonId), m_ctrlName (controller.name()), m_ctrl (&controller)
+  {}
+
+  //----------------------------------------------------------------------------
+  bool ButtonSettings::isNull() const {
+
+    return ! ( (m_ctrl == nullptr) ?  ButtonController::registerContains (m_ctrlName) : true);
+  }
+
+  //----------------------------------------------------------------------------
+  const ButtonController & ButtonSettings::ctrl() const {
+
+    if (m_ctrl == nullptr)  {
+
+      if (ButtonController::registerContains (m_ctrlName)) {
+
+        m_ctrl = & ButtonController::getFromRegister (m_ctrlName);
+      }
+      else {
+
+        SPAIOT_DBG ("%s:%d: <Critical Error> Unable to find the '%s' "
+                    "ButtonController in the register, check his name !",
+                    __PRETTY_FUNCTION__, __LINE__,
+                    m_ctrlName.c_str());
+      }
+    }
+    return *m_ctrl;
+  }
+
+  //----------------------------------------------------------------------------
+  ButtonController & ButtonSettings::ctrl() {
+    // https://riptutorial.com/cplusplus/example/16974/avoiding-duplication-of-code-in-const-and-non-const-getter-methods-
+    return const_cast<ButtonController&> (const_cast<const ButtonSettings*> (this)->ctrl());
+  }
 
   //----------------------------------------------------------------------------
   const std::string & ButtonSettings::controllerName() const {
 
-    return m_controllerName;
-  }
-
-  //----------------------------------------------------------------------------
-  void ButtonSettings::setControllerName (const std::string & name) {
-
-    m_controllerName = name;
+    return m_ctrlName;
   }
 
   //----------------------------------------------------------------------------
@@ -59,19 +92,14 @@ namespace SpaIot {
   bool ButtonSettings::operator== (const ButtonSettings &other) const {
 
     return m_id == other.m_id &&
-           m_controllerName == other.m_controllerName;
+           m_ctrlName == other.m_ctrlName &&
+           m_ctrl == other.m_ctrl;
   }
 
   //----------------------------------------------------------------------------
   bool ButtonSettings::operator!= (const ButtonSettings &other) const {
 
     return ! (*this == other);
-  }
-
-  //----------------------------------------------------------------------------
-  bool ButtonSettings::isNull() const {
-
-    return m_controllerName.empty() || m_id == -1;
   }
 
   /*

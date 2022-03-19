@@ -18,7 +18,9 @@
 #include "global.h"
 
 namespace SpaIot {
-
+  
+  class ButtonController;
+  
   /**
    * @class ButtonSettings
    * @brief
@@ -35,16 +37,13 @@ namespace SpaIot {
        * @param buttonId
        */
       ButtonSettings (const std::string & controllerName, int buttonId);
+      
+      ButtonSettings (ButtonController & controller, int buttonId);
       /**
        * @brief 
        * @return 
        */
       const std::string & controllerName() const;
-      /**
-       * @brief 
-       * @param name
-       */
-      void setControllerName (const std::string & name);
       /**
        * @brief 
        * @return 
@@ -70,10 +69,21 @@ namespace SpaIot {
        * @param other
        */
       bool operator!= (const ButtonSettings &other) const;
+      /**
+       * @brief 
+       * @return 
+       */
+      const ButtonController & ctrl() const;
+      /**
+       * @brief 
+       * @return 
+       */
+      ButtonController & ctrl();
 
     private:
       int m_id;
-      std::string  m_controllerName;
+      std::string  m_ctrlName;
+      mutable ButtonController * m_ctrl;
   };
 
   /**

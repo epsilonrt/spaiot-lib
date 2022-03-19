@@ -29,6 +29,13 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  Pcf8574Mux::Pcf8574Mux (const std::string & name, uint8_t slaveAddress,
+                          TwoWire & bus, uint8_t idleValue) :
+    ButtonController (name), m_pcf (slaveAddress, bus), m_idle (idleValue) {
+
+  }
+
+  //----------------------------------------------------------------------------
   void Pcf8574Mux::begin() {
 
     if ( (isOpened() == false) && (isNull() == false))  {
@@ -40,7 +47,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   void Pcf8574Mux::end() {
-    
+
     m_pcf.write (m_idle);
     ButtonController::end();
   }
@@ -55,7 +62,7 @@ namespace SpaIot {
         m_selected = button;
       }
       else {
-        
+
         SPAIOT_DBG ("Pcf8574Mux::select(%d): Failed !", button);
       }
     }
@@ -72,7 +79,7 @@ namespace SpaIot {
         m_selected = -1;
       }
       else {
-        
+
         SPAIOT_DBG ("Pcf8574Mux::deselect(): Failed !");
       }
     }

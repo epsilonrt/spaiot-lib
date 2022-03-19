@@ -24,69 +24,81 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
 
   //----------------------------------------------------------------------------
-  Button::Button () :
-    m_ctrl (nullptr), m_settings (nullptr)
+  Button::Button ()
   {}
 
   //----------------------------------------------------------------------------
   Button::Button (const ButtonSettings & settings) :
-    m_ctrl (& ButtonController::getFromRegister (settings.controllerName())),
-    m_settings (&settings)
+    m_settings (settings)
   {}
 
   //----------------------------------------------------------------------------
   const ButtonController & Button::ctrl() const {
 
-    return *m_ctrl;
+    return m_settings.ctrl();
   }
 
   //----------------------------------------------------------------------------
   ButtonController & Button::ctrl() {
 
-    return *m_ctrl;
+    return m_settings.ctrl();
   }
 
   //----------------------------------------------------------------------------
   const ButtonSettings & Button::settings() const {
 
-    return *m_settings;
+    return m_settings;
   }
 
   //----------------------------------------------------------------------------
   int Button::id() const {
 
-    return m_settings->id();
+    return m_settings.id();
+  }
+
+  //----------------------------------------------------------------------------
+  bool Button::isNull() const {
+
+    return m_settings.isNull();
   }
 
   //----------------------------------------------------------------------------
   bool Button::isOpened() const {
 
-    if (isNull() == false) {
+    return ctrl().isOpened();
+  }
 
-      return m_ctrl->isOpened();
-    }
-    return false;
+  //----------------------------------------------------------------------------
+  bool Button::operator== (const Button &other) const {
+
+    return m_settings == other.m_settings;
   }
 
   //----------------------------------------------------------------------------
   void Button::begin() {
 
     if (isNull() == false) {
-      if (m_ctrl->isOpened() == false) {
+      if (ctrl().isOpened() == false) {
 
         SPAIOT_DBG ("Button::begin: button(%d) opening %s controller", id(),
-             m_settings->controllerName().c_str());
-        m_ctrl->begin();
+                    m_settings.ctrl().name().c_str());
+        ctrl().begin();
       }
+    }
+    else {
+      SPAIOT_DBG ("%s:%d: <Critical Error> Unable to open the '%s' "
+                  "ButtonController in the register, check his name !",
+                  __PRETTY_FUNCTION__, __LINE__,
+                  m_settings.ctrl().name().c_str());
     }
   }
 
   //----------------------------------------------------------------------------
   void Button::press() {
-    
+
     if (isOpened()) {
-      
-      m_ctrl->select (id());
+
+      ctrl().select (id());
     }
   }
 
@@ -94,8 +106,8 @@ namespace SpaIot {
   bool Button::isPressed() const {
 
     if (isOpened()) {
-      
-      return m_ctrl->isSelected();
+
+      return ctrl().isSelected();
     }
     return false;
   }
@@ -104,8 +116,8 @@ namespace SpaIot {
   void Button::release() {
 
     if (isOpened()) {
-      
-      m_ctrl->deselect ();
+
+      ctrl().deselect ();
     }
   }
 
@@ -115,23 +127,6 @@ namespace SpaIot {
     press();
     delay (HoldPressedMs);
     release();
-  }
-
-  //----------------------------------------------------------------------------
-  bool Button::isNull() const {
-
-    return m_ctrl == nullptr || m_settings == nullptr;
-  }
-
-  //----------------------------------------------------------------------------
-  bool Button::operator== (const Button &other) const {
-
-    if (isNull() == false) {
-
-      return *m_settings == *other.m_settings &&
-             *m_ctrl == *other.m_ctrl;
-    }
-    return false;
   }
 
   //----------------------------------------------------------------------------

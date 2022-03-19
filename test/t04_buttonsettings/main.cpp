@@ -48,9 +48,7 @@ void test_getters (void) {
 void test_setters (void) {
   ButtonSettings s;
 
-  s.setControllerName (TestButtons.at (Filter).controllerName());
   s.setId (TestButtons.at (Filter).id());
-  TEST_ASSERT (TestButtons.at (Filter).controllerName() == s.controllerName());
   TEST_ASSERT_EQUAL (TestButtons.at (Filter).id(), s.id());
 }
 

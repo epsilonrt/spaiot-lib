@@ -38,6 +38,17 @@ namespace SpaIot {
       Pcf8574Mux (uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
 
       /**
+       * It creates a new Pcf8574Mux object.
+       *
+       * @param name controller name
+       * @param slaveAddress The address of the PCF8574 chip.
+       * @param bus The TwoWire object that is used to communicate with the PCF8574.
+       * @param idleValue The value that the pins will be set to when the device is not
+       * in use.
+       */
+      Pcf8574Mux (const std::string & name, uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
+
+      /**
        * It opens the PCF8574 chip.
        */
       virtual void begin();

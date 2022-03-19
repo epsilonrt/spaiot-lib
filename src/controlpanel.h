@@ -41,6 +41,17 @@ namespace SpaIot {
        */
       static ControlPanel * getInstance (const std::string & hwSettingsName);
       /**
+       * @brief Create the control panel instance with the provided settings
+       * @param hwsettings Description of hardware settings
+       * @return pointer on the created instance, nullptr if failure
+       */
+      static ControlPanel & singleton (const HardwareSettings & hwsettings);
+      /**
+       * @overload
+       * @param hwSettingsName configuration name in the register of hardware settings
+       */
+      static ControlPanel & singleton (const std::string & hwSettingsName);
+      /**
        * @brief Configures each of the buttons and initializes and connect with the spa
        * 
        * \c isOpened() lets you know if the connection has been successfully completed
@@ -60,17 +71,23 @@ namespace SpaIot {
        */
       bool hasButton (int key) const;
       /**
+       * @brief Buttons list
+       * @return Constant reference on the [std::map](https://en.cppreference.com/w/cpp/container/map)  containing the buttons. 
+       * The different key values are defined by SpaIot::Key
+       */
+      const std::map <int, Button> & buttons() const;
+      /**
+       * @brief Button
+       * @param key button identification key in the possible values of SpaIot::Key
+       * @return refernce on the button
+       */
+      Button & button(int key);
+      /**
        * @brief Press and release a button
        * @param key button identification key in the possible values of SpaIot::Key
        * @return true if the button exists, false otherwise
        */
       bool pushButton (int key);
-      /**
-       * @brief Buttons settings provides at the instantiation
-       * @return Constant reference on the [std::map](https://en.cppreference.com/w/cpp/container/map)  containing the buttons settings. 
-       * The different key values are defined by SpaIot::Key
-       */
-      const std::map <int, ButtonSettings> buttonSettings() const;
       /**
        * @brief Start or stop the spa
        * @param v true for ON, false for OFF
@@ -121,13 +138,18 @@ namespace SpaIot {
        * been determined yet.
        */
       uint16_t waitForDesiredTemp (unsigned long MaxWaitingTimeMs = 5000);
+      /**
+       * @brief Destructor
+       * 
+       * Delete m_instance
+       */
+      ~ControlPanel();
 
     protected:
       ControlPanel (const HardwareSettings & hwsettings);
       uint8_t setKeyOn (int key, bool v);
 
     private:
-      const std::map <int, ButtonSettings> & m_buttonSettings;
       bool m_isopened;
       std::map <int, Button> m_button;
       static ControlPanel * m_instance;

@@ -41,32 +41,55 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // static
+  ControlPanel& ControlPanel::singleton (const HardwareSettings& hwsettings) {
+
+    return * getInstance (hwsettings);
+  }
+
+  //----------------------------------------------------------------------------
+  // static
   ControlPanel * ControlPanel::getInstance (const std::string & hwSettingsName) {
 
     if (HardwareSettings::registerContains (hwSettingsName)) {
 
       m_instance = new ControlPanel (HardwareSettings::getFromRegister (hwSettingsName));
     }
+    else {
+
+      SPAIOT_DBG ("%s:%d: <Fatal Error> Unable to find the '%s' "
+                  "HardwareSettings in the register, check his name !",
+                  __PRETTY_FUNCTION__, __LINE__,
+                  hwSettingsName.c_str());
+    }
     return m_instance;
+  }
+
+  //----------------------------------------------------------------------------
+  // static
+  ControlPanel& ControlPanel::singleton (const std::string& hwSettingsName) {
+    // throw exception if hwSettingsName not found !
+    return * getInstance (hwSettingsName);
   }
 
   //----------------------------------------------------------------------------
   // protected
   ControlPanel::ControlPanel (const HardwareSettings & hwsettings) :
-    FrameDecoder (hwsettings.bus(), hwsettings.leds()),
-    m_buttonSettings (hwsettings.buttons()), m_isopened (false) {
+    FrameDecoder (hwsettings.bus(), hwsettings.leds()), m_isopened (false) {
 
     // We create the buttons from their settings...
-    for (const auto & button : hwsettings.buttons()) {
+    for (const auto & elmt : hwsettings.buttons()) {
+      int key = elmt.first;
+      const ButtonSettings & settings = elmt.second;
 
-      m_button.emplace (button.first, Button (button.second));
+      m_button.emplace (key, Button (settings));
     }
   }
 
   //----------------------------------------------------------------------------
-  const std::map <int, ButtonSettings> ControlPanel::buttonSettings() const {
+  ControlPanel::~ControlPanel() {
 
-    return m_buttonSettings;
+    delete m_instance;
+    m_instance = nullptr;
   }
 
   //----------------------------------------------------------------------------
@@ -76,12 +99,13 @@ namespace SpaIot {
       bool b_isopened = true;
 
       SPAIOT_DBG ("ControlPanel::begin(): opening");
-      for (auto & button : m_button) {
+      for (auto & elmt : m_button) {
+        Button & button = elmt.second;
 
-        if (button.second.isOpened() == false) {
+        if (button.isOpened() == false) {
 
-          button.second.begin();
-          b_isopened = b_isopened && button.second.isOpened();
+          button.begin();
+          b_isopened = b_isopened && button.isOpened();
         }
       }
 
@@ -100,6 +124,18 @@ namespace SpaIot {
   bool ControlPanel::hasButton (int key) const {
 
     return m_button.count (key) == 1;
+  }
+
+  //----------------------------------------------------------------------------
+  const std::map <int, Button> & ControlPanel::buttons() const {
+
+    return m_button;
+  }
+
+  //----------------------------------------------------------------------------
+  Button & ControlPanel::button (int key) {
+    
+    return m_button.at(key);
   }
 
   //----------------------------------------------------------------------------
@@ -240,19 +276,19 @@ namespace SpaIot {
         SPAIOT_DBG ("%s:%d: desiredTemp: %d'C -> %d'C > %+d'C",
                     __PRETTY_FUNCTION__, __LINE__,
                     desiredTemp(), temp, pushCounter);
-                    
+
         if (pushCounter != 0) {
-          
+
           // faster version
           while (pushCounter != 0) {
-            
+
             if (pushCounter > 0) {
-              
+
               m_button[TempUp].push();
               pushCounter--;
             }
             else {
-              
+
               m_button[TempDown].push();
               pushCounter++;
             }

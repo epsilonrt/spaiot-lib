@@ -4,3 +4,4 @@ html/home.htm.gz
 *.zip
 .codelite/
 *.bak
+.gitignore

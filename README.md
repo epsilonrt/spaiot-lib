@@ -97,10 +97,11 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
   using namespace SpaIot;
   ```
 
-2. Declare a global pointer on the `spa` control panel
+2. Declare a global reference on the `spa` control panel to get the singleton object
 
   ```cpp
-  ControlPanel * spa; // pointer on the control panel
+  // Get the singleton object with your SPA configuration (here SCIP2SSP)
+  ControlPanel & spa = ControlPanel::singleton ("SCIP2SSP");
   ```
 
   :warning: **disclaimer:** only one control panel instance may exist.
@@ -108,11 +109,8 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
 3. In `setup()`
 
   ```cpp
-    // Get the instance for your SPA configuration (SCIP2SSP)
-    spa = ControlPanel::getInstance ("SCIP2SSP");
-    
     // Start the control panel
-    spa->begin();  // IMPORTANT LINE!
+    spa.begin();  // IMPORTANT LINE!
   ```
 
 4. In `loop()`, use API of the [ControlPanel](https://epsilonrt.github.io/spaiot-lib/class_spa_iot_1_1_control_panel.html) class to do or read what you want
@@ -120,7 +118,7 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
   ```cpp
     uint16_t w;
 
-    w = spa->waterTemp(); // Reading the temperature of the water
+    w = spa.waterTemp(); // Reading the temperature of the water
     if (waterTemp != w) { // If modified, it is displayed
       waterTemp = w;
       Serial.printf ("waterTemp=%d'C\n", waterTemp);
@@ -129,9 +127,9 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
     if (Serial.available() > 0) { // If the key pressed...
       // read the incoming byte:
       int c = Serial.read();
-      
-      if ((c == 'P')||(c == 'p')) { // If the 'P' key pressed, push the power button
-        spa->pushButton(Power);
+
+      if ( (c == 'P') || (c == 'p')) { // If the 'P' key pressed, push the power button
+        spa.pushButton (Power);
       }
     }
   ```
@@ -180,8 +178,8 @@ Before declare a global pointer on the spa control panel:
 
   ```cpp
   // My button controllers
-  Cd4051 CustomCtrlA (5, 4, 15, 16); // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO16
-  Cd4051 CustomCtrlB (5, 4, 15, 0);  // S0->GPIO5, S1->GPIO4, S2->GPIO15, En->GPIO0
+  Cd4051 BtnCtrlA ("U3", 5, 4, 15, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
+  Cd4051 BtnCtrlB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
   ```
 
 4. Describe the (bits used in the frame and controller) using a List of ButtonSettings constants  
@@ -189,14 +187,14 @@ Before declare a global pointer on the spa control panel:
   ```cpp
   // My buttons configuration (SSP)
   const std::map<int, ButtonSettings> MyButtons = {
-    { Filter,   ButtonSettings ("MyCtrlA", 1) },  // Filter   -> A1
-    { Bubble,   ButtonSettings ("MyCtrlA", 3) },  // Bubble   -> A3
-    { TempDown, ButtonSettings ("MyCtrlA", 7) },  // TempDown -> A7
+    { Filter,   ButtonSettings (BtnCtrlA, 1) },  // Filter   -> A1
+    { Bubble,   ButtonSettings (BtnCtrlA, 3) },  // Bubble   -> A3
+    { TempDown, ButtonSettings (BtnCtrlA, 7) },  // TempDown -> A7
 
-    { Power,    ButtonSettings ("MyCtrlB", 2) },  // Power    -> B2
-    { TempUp,   ButtonSettings ("MyCtrlB", 4) },  // TempUp   -> B4
-    { TempUnit, ButtonSettings ("MyCtrlB", 5) },  // TempUnit -> B5
-    { Heater,   ButtonSettings ("MyCtrlB", 7) }   // Heater   -> B7
+    { Power,    ButtonSettings (BtnCtrlB, 2) },  // Power    -> B2
+    { TempUp,   ButtonSettings (BtnCtrlB, 4) },  // TempUp   -> B4
+    { TempUnit, ButtonSettings (BtnCtrlB, 5) },  // TempUnit -> B5
+    { Heater,   ButtonSettings (BtnCtrlB, 7) }   // Heater   -> B7
   };
   ```
 

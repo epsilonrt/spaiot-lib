@@ -21,8 +21,8 @@ const unsigned long TimerTime = 60;
 const BusSettings MyBus (12, 14, 13);
 
 // My button controllers
-Cd4051 BtnCtrlA ("U3", 5, 4, 15, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
-Cd4051 BtnCtrlB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
+Cd4051 MuxA ("U3", 5, 4, 15, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
+Cd4051 MuxB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 
 #elif defined(ESP32)
 // SDATA  -> GPIO23
@@ -31,8 +31,8 @@ Cd4051 BtnCtrlB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPI
 const BusSettings MyBus (23, 18, 19);
 
 // My button controllers
-Cd4051 BtnCtrlA ("U3", 27, 16, 17, 25); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO25
-Cd4051 BtnCtrlB ("U4", 27, 16, 17, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO26
+Cd4051 MuxA ("U3", 27, 16, 17, 25); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO25
+Cd4051 MuxB ("U4", 27, 16, 17, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO26
 
 #else
 #error unsupported platform
@@ -40,14 +40,14 @@ Cd4051 BtnCtrlB ("U4", 27, 16, 17, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH-
 
 // My buttons configuration (SSP)
 const std::map<int, ButtonSettings> MyButtons = {
-  { Filter,   ButtonSettings (BtnCtrlA, 1) },  // Filter   -> A1
-  { Bubble,   ButtonSettings (BtnCtrlA, 3) },  // Bubble   -> A3
-  { TempDown, ButtonSettings (BtnCtrlA, 7) },  // TempDown -> A7
+  { Filter,   ButtonSettings (MuxA, 1) },  // Filter   -> A1
+  { Bubble,   ButtonSettings (MuxA, 3) },  // Bubble   -> A3
+  { TempDown, ButtonSettings (MuxA, 7) },  // TempDown -> A7
 
-  { Power,    ButtonSettings (BtnCtrlB, 2) },  // Power    -> B2
-  { TempUp,   ButtonSettings (BtnCtrlB, 4) },  // TempUp   -> B4
-  { TempUnit, ButtonSettings (BtnCtrlB, 5) },  // TempUnit -> B5
-  { Heater,   ButtonSettings (BtnCtrlB, 7) }   // Heater   -> B7
+  { Power,    ButtonSettings (MuxB, 2) },  // Power    -> B2
+  { TempUp,   ButtonSettings (MuxB, 4) },  // TempUp   -> B4
+  { TempUnit, ButtonSettings (MuxB, 5) },  // TempUnit -> B5
+  { Heater,   ButtonSettings (MuxB, 7) }   // Heater   -> B7
 };
 // My custom configuration
 const HardwareSettings MyConfig (MyBus, SspLeds, MyButtons);

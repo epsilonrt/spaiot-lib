@@ -43,7 +43,6 @@ namespace SpaIot {
     return m_bus == nullptr && m_buttons == nullptr &&  m_leds == nullptr;
   }
 
-#ifndef NODEBUG_SPAIOT
   //----------------------------------------------------------------------------
   void HardwareSettings::print (Print &out) const {
 
@@ -66,7 +65,6 @@ namespace SpaIot {
     }
     out.printf ("--------------------------------------------------------------------------------\n\n");
   }
-#endif
 
   //----------------------------------------------------------------------------
   const BusSettings & HardwareSettings::bus() const {

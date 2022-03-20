@@ -69,13 +69,11 @@ namespace SpaIot {
        * @param other
        */
       bool operator!= (const HardwareSettings &other) const;
-#ifndef NODEBUG_SPAIOT
       /**
        * @brief 
        * @param out
        */
       void print(Print &out) const;
-#endif
       /**
        * @brief 
        * @param name

@@ -6,7 +6,9 @@
 #include <unity.h>
 
 #define LED_PIN LED_BUILTIN
-
+#ifndef DEBUG_LED
+#define DEBUG_LED LED_BUILTIN
+#endif
 #ifndef DEBUG_LED_ONSTATE
   #define LED_OFF HIGH
   #define LED_ON LOW

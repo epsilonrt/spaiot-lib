@@ -14,10 +14,8 @@
 #pragma once
 
 #include <vector>
-#include <string>
 #include <initializer_list>
 #include <type_traits>
-#include <Arduino.h>
 #include "spaiotdebug.h"
 
 #include "buttoncontroller.h"
@@ -47,7 +45,7 @@ namespace SpaIot {
         SPAIOT_ASSERT ( (1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);
       }
 
-      Multiplexer (const std::string & name, const std::initializer_list<int>& spins, int inhPin) :
+      Multiplexer (const String & name, const std::initializer_list<int>& spins, int inhPin) :
         ButtonController (name), m_spin (spins), m_inh (inhPin) {
 
         SPAIOT_ASSERT ( (1 << spins.size()) >= W, "The size of spins:%d does not allow you to select the number of channels:%d", spins.size(), W);

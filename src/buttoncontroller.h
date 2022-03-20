@@ -14,7 +14,6 @@
 #pragma once
 
 #include <map>
-#include <string>
 #include "global.h"
 
 namespace SpaIot {
@@ -29,7 +28,7 @@ namespace SpaIot {
        * @brief
        */
       ButtonController();
-      ButtonController (const std::string & name);
+      ButtonController (const String & name);
       /**
        * @brief
        * @return
@@ -90,24 +89,24 @@ namespace SpaIot {
        * @param controller
        * @return
        */
-      static bool addToRegister (const std::string & name, ButtonController & controller);
+      static bool addToRegister (const String & name, ButtonController & controller);
       /**
        * @brief
        * @param name
        * @return
        */
-      static ButtonController & getFromRegister (const std::string & name);
+      static ButtonController & getFromRegister (const String & name);
 
-      static bool registerContains (const std::string & name);
+      static bool registerContains (const String & name);
 
-      virtual const std::string & name() const;
+      virtual const String & name() const;
 
     protected:
       bool m_isopened;
       int m_selected;
-      mutable std::string m_name;
+      mutable String m_name;
 
     private:
-      static std::map<std::string, ButtonController &> Register;
+      static std::map<String, ButtonController &> Register;
   };
 }

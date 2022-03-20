@@ -24,7 +24,7 @@ namespace SpaIot {
   Cd4051 Scip2CtrlA ("Scip2CtrlA", 5, 4, 15, 16);
   Cd4051 Scip2CtrlB ("Scip2CtrlB", 5, 4, 15, 0);
 
-  std::map<std::string, ButtonController &>
+  std::map<String, ButtonController &>
   ButtonController::Register = {
     {"Scip1Ctrl", Scip1Ctrl},
     {"Scip2CtrlA", Scip2CtrlA},

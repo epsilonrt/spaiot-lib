@@ -29,7 +29,7 @@ namespace SpaIot {
   {}
 
   //----------------------------------------------------------------------------
-  ButtonSettings::ButtonSettings (const std::string & controllerName, int buttonId) :
+  ButtonSettings::ButtonSettings (const String & controllerName, int buttonId) :
     m_id (buttonId), m_ctrlName (controllerName), m_ctrl (nullptr)
   {}
 
@@ -71,7 +71,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  const std::string & ButtonSettings::controllerName() const {
+  const String & ButtonSettings::controllerName() const {
 
     return m_ctrlName;
   }

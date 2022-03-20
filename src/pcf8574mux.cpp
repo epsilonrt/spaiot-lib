@@ -29,7 +29,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  Pcf8574Mux::Pcf8574Mux (const std::string & name, uint8_t slaveAddress,
+  Pcf8574Mux::Pcf8574Mux (const String & name, uint8_t slaveAddress,
                           TwoWire & bus, uint8_t idleValue) :
     ButtonController (name), m_pcf (slaveAddress, bus), m_idle (idleValue) {
 

@@ -31,7 +31,7 @@ namespace SpaIot {
         Multiplexer<8> (spins, inhPin) 
       {}
       
-      Cd4051 (const std::string & name, const std::initializer_list<int>& spins, int inhPin) :
+      Cd4051 (const String & name, const std::initializer_list<int>& spins, int inhPin) :
         Multiplexer<8> (name, spins, inhPin) 
       {}
 
@@ -39,7 +39,7 @@ namespace SpaIot {
         Multiplexer<8> ({A, B, C}, INH)
       {}
       
-      Cd4051 (const std::string & name, int A, int B, int C, int INH) :
+      Cd4051 (const String & name, int A, int B, int C, int INH) :
         Multiplexer<8> (name, {A, B, C}, INH)
       {}
   };

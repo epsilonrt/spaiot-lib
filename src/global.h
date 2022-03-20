@@ -13,8 +13,7 @@
  */
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include <Arduino.h>
 #include <map>
 
 //! SpaIot name space
@@ -37,7 +36,7 @@ namespace SpaIot {
     TempUnit,   //!< Temperature Unity Button (°C/°F)
   };
 
-  const std::map<int, std::string> KeyName = {
+  const std::map<int, String> KeyName = {
     {Power, "Power"},
     {Filter, "Filter"},
     {Bubble, "Bubble"},

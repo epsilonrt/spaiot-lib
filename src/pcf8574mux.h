@@ -46,7 +46,7 @@ namespace SpaIot {
        * @param idleValue The value that the pins will be set to when the device is not
        * in use.
        */
-      Pcf8574Mux (const std::string & name, uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
+      Pcf8574Mux (const String & name, uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
 
       /**
        * It opens the PCF8574 chip.

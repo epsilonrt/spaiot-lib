@@ -100,7 +100,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // static
-  bool HardwareSettings::addToRegister (const std::string & name, const HardwareSettings & settings) {
+  bool HardwareSettings::addToRegister (const String & name, const HardwareSettings & settings) {
 
     if (Register.count (name) == 0) {
 
@@ -112,14 +112,14 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // static
-  const HardwareSettings & HardwareSettings::getFromRegister (const std::string & name) {
+  const HardwareSettings & HardwareSettings::getFromRegister (const String & name) {
 
     return * Register.at (name);
   }
 
   //----------------------------------------------------------------------------
   // static
-  bool HardwareSettings::registerContains (const std::string & name) {
+  bool HardwareSettings::registerContains (const String & name) {
     
     return Register.count (name) == 1;
   }
@@ -137,7 +137,7 @@ namespace SpaIot {
    * If you add a control panel setting here, you must update the 'model'
    * drop-down list (<select id="model">) in the home.htm file
    */
-  std::map<std::string, const HardwareSettings *> HardwareSettings::Register {
+  std::map<String, const HardwareSettings *> HardwareSettings::Register {
     {"SCIP2SSP", &Scip2Ssp},
     {"SCIP2SJB", &Scip2Sjb}
   };

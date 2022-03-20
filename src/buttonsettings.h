@@ -14,7 +14,6 @@
 #pragma once
 
 #include <map>
-#include <string>
 #include "global.h"
 
 namespace SpaIot {
@@ -36,14 +35,14 @@ namespace SpaIot {
        * @param controllerName
        * @param buttonId
        */
-      ButtonSettings (const std::string & controllerName, int buttonId);
+      ButtonSettings (const String & controllerName, int buttonId);
       
       ButtonSettings (ButtonController & controller, int buttonId);
       /**
        * @brief 
        * @return 
        */
-      const std::string & controllerName() const;
+      const String & controllerName() const;
       /**
        * @brief 
        * @return 
@@ -82,7 +81,7 @@ namespace SpaIot {
 
     private:
       int m_id;
-      std::string  m_ctrlName;
+      String  m_ctrlName;
       mutable ButtonController * m_ctrl;
   };
 

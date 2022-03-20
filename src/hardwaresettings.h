@@ -80,25 +80,25 @@ namespace SpaIot {
        * @param settings
        * @return 
        */
-      static bool addToRegister (const std::string & name, const HardwareSettings & settings);
+      static bool addToRegister (const String & name, const HardwareSettings & settings);
       /**
        * @brief 
        * @param name
        * @return 
        */
-      static const HardwareSettings & getFromRegister (const std::string & name);
+      static const HardwareSettings & getFromRegister (const String & name);
       /**
        * @brief 
        * @param name
        * @return 
        */
-      static bool registerContains (const std::string & name);
+      static bool registerContains (const String & name);
 
     private:
       const BusSettings * m_bus;
       const std::map <int, LedSettings> * m_leds;
       const std::map <int, ButtonSettings> * m_buttons;
-      static std::map<std::string, const HardwareSettings *> Register;
+      static std::map<String, const HardwareSettings *> Register;
   };
 
   /**

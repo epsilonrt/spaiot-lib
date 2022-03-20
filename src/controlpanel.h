@@ -39,7 +39,7 @@ namespace SpaIot {
        * @overload
        * @param hwSettingsName configuration name in the register of hardware settings
        */
-      static ControlPanel * getInstance (const std::string & hwSettingsName);
+      static ControlPanel * getInstance (const String & hwSettingsName);
       /**
        * @brief Create the control panel instance with the provided settings
        * @param hwsettings Description of hardware settings
@@ -50,7 +50,7 @@ namespace SpaIot {
        * @overload
        * @param hwSettingsName configuration name in the register of hardware settings
        */
-      static ControlPanel & singleton (const std::string & hwSettingsName);
+      static ControlPanel & singleton (const String & hwSettingsName);
       /**
        * @brief Configures each of the buttons and initializes and connect with the spa
        * 

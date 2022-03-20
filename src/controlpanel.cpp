@@ -48,7 +48,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // static
-  ControlPanel * ControlPanel::getInstance (const std::string & hwSettingsName) {
+  ControlPanel * ControlPanel::getInstance (const String & hwSettingsName) {
 
     if (HardwareSettings::registerContains (hwSettingsName)) {
 
@@ -66,7 +66,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // static
-  ControlPanel& ControlPanel::singleton (const std::string& hwSettingsName) {
+  ControlPanel& ControlPanel::singleton (const String& hwSettingsName) {
     // throw exception if hwSettingsName not found !
     return * getInstance (hwSettingsName);
   }

@@ -30,20 +30,9 @@ namespace SpaIot {
   class ControlPanel : public FrameDecoder {
     public:
       /**
-       * @brief Create the control panel instance with the provided settings
+       * @brief Create the control panel singleton with the provided settings
        * @param hwsettings Description of hardware settings
-       * @return pointer on the created instance, nullptr if failure
-       */
-      static ControlPanel * getInstance (const HardwareSettings & hwsettings);
-      /**
-       * @overload
-       * @param hwSettingsName configuration name in the register of hardware settings
-       */
-      static ControlPanel * getInstance (const String & hwSettingsName);
-      /**
-       * @brief Create the control panel instance with the provided settings
-       * @param hwsettings Description of hardware settings
-       * @return pointer on the created instance, nullptr if failure
+       * @return reference on the created singleton
        */
       static ControlPanel & singleton (const HardwareSettings & hwsettings);
       /**
@@ -51,6 +40,19 @@ namespace SpaIot {
        * @param hwSettingsName configuration name in the register of hardware settings
        */
       static ControlPanel & singleton (const String & hwSettingsName);
+      /**
+       * @brief Create the control panel instance with the provided settings
+       * @param hwsettings Description of hardware settings
+       * @return pointer on the created instance, nullptr if failure
+       * @deprecated This function will be deleted during the next major version, use singleton() instead !
+       */
+      static ControlPanel * getInstance (const HardwareSettings & hwsettings);
+      /**
+       * @overload
+       * @param hwSettingsName configuration name in the register of hardware settings
+       * @deprecated This function will be deleted during the next major version, use singleton() instead !
+       */
+      static ControlPanel * getInstance (const String & hwSettingsName);
       /**
        * @brief Configures each of the buttons and initializes and connect with the spa
        * 

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['setuptrigunitchangemin_0',['SetupTrigUnitChangeMin',['../namespace_spa_iot.html#a2e1e5def57d93aa38ed08cd324d62eec',1,'SpaIot']]],
-  ['setuptrigunitchangestepmaxms_1',['SetupTrigUnitChangeStepMaxMs',['../namespace_spa_iot.html#a7ac8d6a4d3de55e316f7e49b268072e0',1,'SpaIot']]]
+  ['reseterrortimems_0',['ResetErrorTimeMs',['../namespace_spa_iot.html#aa5ac8736d74536090364d89837462e18',1,'SpaIot']]]
 ];

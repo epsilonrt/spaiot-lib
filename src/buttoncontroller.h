@@ -28,6 +28,10 @@ namespace SpaIot {
        * @brief
        */
       ButtonController();
+      /**
+       * @brief 
+       * @param name
+       */
       ButtonController (const String & name);
       /**
        * @brief
@@ -73,6 +77,11 @@ namespace SpaIot {
        */
       virtual bool isSelected() const;
       /**
+       * @brief 
+       * @return 
+       */
+      virtual const String & name() const;
+      /**
        * @brief
        * @param other
        */
@@ -82,7 +91,6 @@ namespace SpaIot {
        * @param other
        */
       virtual bool operator!= (const ButtonController &other) const;
-
       /**
        * @brief
        * @param name
@@ -96,10 +104,12 @@ namespace SpaIot {
        * @return
        */
       static ButtonController & getFromRegister (const String & name);
-
+      /**
+       * @brief 
+       * @param name
+       * @return 
+       */
       static bool registerContains (const String & name);
-
-      virtual const String & name() const;
 
     protected:
       bool m_isopened;

@@ -36,7 +36,6 @@ namespace SpaIot {
        * in use.
        */
       Pcf8574Mux (uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
-
       /**
        * It creates a new Pcf8574Mux object.
        *
@@ -47,14 +46,14 @@ namespace SpaIot {
        * in use.
        */
       Pcf8574Mux (const String & name, uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
-
       /**
        * It opens the PCF8574 chip.
        */
       virtual void begin();
-      
+      /**
+       * @brief It close the PCF8574 chip.
+       */
       virtual void end();
-
       /**
        * It writes the value of the button to the PCF8574 chip.
        *
@@ -63,12 +62,10 @@ namespace SpaIot {
        * @return the value return by selected()
        */
       virtual int select (int button);
-
       /**
        * It deselects the mux.
        */
       virtual void deselect ();
-
       /**
        * This function returns true if the object is a null pointer
        *
@@ -76,7 +73,6 @@ namespace SpaIot {
        *         device is null, and false if the device is not null.
        */
       virtual bool isNull() const;
-
       /**
        * This function is called when the ButtonController is compared to another
        * ButtonController

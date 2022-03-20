@@ -134,15 +134,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afed5034acb7395f4e750f647ec8afc36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adae9be5077085d76e2df054531c40d65"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#adae9be5077085d76e2df054531c40d65">isSelected</a> () const</td></tr>
 <tr class="separator:adae9be5077085d76e2df054531c40d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4dd784098e4b1698280b0dede3fe391"><td class="memItemLeft" align="right" valign="top">virtual const String &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#ae4dd784098e4b1698280b0dede3fe391">name</a> () const</td></tr>
+<tr class="separator:ae4dd784098e4b1698280b0dede3fe391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c300c316c433ab06944b7feee8ef946"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#a7c300c316c433ab06944b7feee8ef946">operator!=</a> (const ButtonController &amp;other) const</td></tr>
 <tr class="separator:a7c300c316c433ab06944b7feee8ef946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:adcfa0b26e9ecafe10748c7ed524bb7d4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#adcfa0b26e9ecafe10748c7ed524bb7d4">addToRegister</a> (const std::string &amp;name, ButtonController &amp;controller)</td></tr>
-<tr class="separator:adcfa0b26e9ecafe10748c7ed524bb7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeb3125ca2972f747c2f7c4f698f5a1d"><td class="memItemLeft" align="right" valign="top">static ButtonController &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#abeb3125ca2972f747c2f7c4f698f5a1d">getFromRegister</a> (const std::string &amp;name)</td></tr>
-<tr class="separator:abeb3125ca2972f747c2f7c4f698f5a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8695d0ddb9c51cc0610b4d57a6c9155"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#ab8695d0ddb9c51cc0610b4d57a6c9155">addToRegister</a> (const String &amp;name, ButtonController &amp;controller)</td></tr>
+<tr class="separator:ab8695d0ddb9c51cc0610b4d57a6c9155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab611b187ab3b557243b7a570b431d6de"><td class="memItemLeft" align="right" valign="top">static ButtonController &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#ab611b187ab3b557243b7a570b431d6de">getFromRegister</a> (const String &amp;name)</td></tr>
+<tr class="separator:ab611b187ab3b557243b7a570b431d6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77b8ffd76f72e2c7168a04676e5bf76"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#aa77b8ffd76f72e2c7168a04676e5bf76">registerContains</a> (const String &amp;name)</td></tr>
+<tr class="separator:aa77b8ffd76f72e2c7168a04676e5bf76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int W&gt;<br />
@@ -223,8 +227,8 @@ template&lt;int W&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="adcfa0b26e9ecafe10748c7ed524bb7d4" name="adcfa0b26e9ecafe10748c7ed524bb7d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcfa0b26e9ecafe10748c7ed524bb7d4">&#9670;&nbsp;</a></span>addToRegister()</h2>
+<a id="ab8695d0ddb9c51cc0610b4d57a6c9155" name="ab8695d0ddb9c51cc0610b4d57a6c9155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8695d0ddb9c51cc0610b4d57a6c9155">&#9670;&nbsp;</a></span>addToRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +239,7 @@ template&lt;int W&gt; </div>
         <tr>
           <td class="memname">static bool SpaIot::ButtonController::addToRegister </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">const String &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
@@ -355,8 +359,8 @@ template&lt;int W&gt; </div>
 
 </div>
 </div>
-<a id="abeb3125ca2972f747c2f7c4f698f5a1d" name="abeb3125ca2972f747c2f7c4f698f5a1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abeb3125ca2972f747c2f7c4f698f5a1d">&#9670;&nbsp;</a></span>getFromRegister()</h2>
+<a id="ab611b187ab3b557243b7a570b431d6de" name="ab611b187ab3b557243b7a570b431d6de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab611b187ab3b557243b7a570b431d6de">&#9670;&nbsp;</a></span>getFromRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +371,7 @@ template&lt;int W&gt; </div>
         <tr>
           <td class="memname">static ButtonController &amp; SpaIot::ButtonController::getFromRegister </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">const String &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
@@ -471,6 +475,32 @@ template&lt;int W&gt; </div>
 
 </div>
 </div>
+<a id="ae4dd784098e4b1698280b0dede3fe391" name="ae4dd784098e4b1698280b0dede3fe391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4dd784098e4b1698280b0dede3fe391">&#9670;&nbsp;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const String &amp; SpaIot::ButtonController::name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a7c300c316c433ab06944b7feee8ef946" name="a7c300c316c433ab06944b7feee8ef946"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c300c316c433ab06944b7feee8ef946">&#9670;&nbsp;</a></span>operator!=()</h2>
 
@@ -536,6 +566,39 @@ template&lt;int W&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the comparison of the two objects. </dd></dl>
+
+</div>
+</div>
+<a id="aa77b8ffd76f72e2c7168a04676e5bf76" name="aa77b8ffd76f72e2c7168a04676e5bf76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77b8ffd76f72e2c7168a04676e5bf76">&#9670;&nbsp;</a></span>registerContains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool SpaIot::ButtonController::registerContains </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

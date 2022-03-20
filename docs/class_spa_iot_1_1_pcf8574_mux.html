@@ -101,8 +101,14 @@ $(document).ready(function(){initNavTree('class_spa_iot_1_1_pcf8574_mux.html',''
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8b64bc91f44266b176d2b4e21dbeefd9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_pcf8574_mux.html#a8b64bc91f44266b176d2b4e21dbeefd9">Pcf8574Mux</a> (uint8_t slaveAddress=0x20, TwoWire &amp;bus=Wire, uint8_t idleValue=0xFF)</td></tr>
 <tr class="separator:a8b64bc91f44266b176d2b4e21dbeefd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb9b07b78b4fefd01d23bcc289780ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_pcf8574_mux.html#a2cb9b07b78b4fefd01d23bcc289780ae">Pcf8574Mux</a> (const String &amp;name, uint8_t slaveAddress=0x20, TwoWire &amp;bus=Wire, uint8_t idleValue=0xFF)</td></tr>
+<tr class="separator:a2cb9b07b78b4fefd01d23bcc289780ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6736e7815583621d74ee06012bf5a2e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_pcf8574_mux.html#aa6736e7815583621d74ee06012bf5a2e">begin</a> ()</td></tr>
 <tr class="separator:aa6736e7815583621d74ee06012bf5a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45784b737040a5a4bb55eb644641bdf3"><td class="memItemLeft" align="right" valign="top"><a id="a45784b737040a5a4bb55eb644641bdf3" name="a45784b737040a5a4bb55eb644641bdf3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
+<tr class="memdesc:a45784b737040a5a4bb55eb644641bdf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">It close the PCF8574 chip. <br /></td></tr>
+<tr class="separator:a45784b737040a5a4bb55eb644641bdf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf3874cfc555e6ce09df7ef89dc412e9"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_pcf8574_mux.html#aaf3874cfc555e6ce09df7ef89dc412e9">select</a> (int button)</td></tr>
 <tr class="separator:aaf3874cfc555e6ce09df7ef89dc412e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9683aa4ecf2fffa5c2f5ac8a2b310d5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_pcf8574_mux.html#aa9683aa4ecf2fffa5c2f5ac8a2b310d5">deselect</a> ()</td></tr>
@@ -117,22 +123,26 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afed5034acb7395f4e750f647ec8afc36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adae9be5077085d76e2df054531c40d65"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#adae9be5077085d76e2df054531c40d65">isSelected</a> () const</td></tr>
 <tr class="separator:adae9be5077085d76e2df054531c40d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4dd784098e4b1698280b0dede3fe391"><td class="memItemLeft" align="right" valign="top">virtual const String &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#ae4dd784098e4b1698280b0dede3fe391">name</a> () const</td></tr>
+<tr class="separator:ae4dd784098e4b1698280b0dede3fe391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c300c316c433ab06944b7feee8ef946"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#a7c300c316c433ab06944b7feee8ef946">operator!=</a> (const ButtonController &amp;other) const</td></tr>
 <tr class="separator:a7c300c316c433ab06944b7feee8ef946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:adcfa0b26e9ecafe10748c7ed524bb7d4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#adcfa0b26e9ecafe10748c7ed524bb7d4">addToRegister</a> (const std::string &amp;name, ButtonController &amp;controller)</td></tr>
-<tr class="separator:adcfa0b26e9ecafe10748c7ed524bb7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeb3125ca2972f747c2f7c4f698f5a1d"><td class="memItemLeft" align="right" valign="top">static ButtonController &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#abeb3125ca2972f747c2f7c4f698f5a1d">getFromRegister</a> (const std::string &amp;name)</td></tr>
-<tr class="separator:abeb3125ca2972f747c2f7c4f698f5a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8695d0ddb9c51cc0610b4d57a6c9155"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#ab8695d0ddb9c51cc0610b4d57a6c9155">addToRegister</a> (const String &amp;name, ButtonController &amp;controller)</td></tr>
+<tr class="separator:ab8695d0ddb9c51cc0610b4d57a6c9155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab611b187ab3b557243b7a570b431d6de"><td class="memItemLeft" align="right" valign="top">static ButtonController &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#ab611b187ab3b557243b7a570b431d6de">getFromRegister</a> (const String &amp;name)</td></tr>
+<tr class="separator:ab611b187ab3b557243b7a570b431d6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77b8ffd76f72e2c7168a04676e5bf76"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_button_controller.html#aa77b8ffd76f72e2c7168a04676e5bf76">registerContains</a> (const String &amp;name)</td></tr>
+<tr class="separator:aa77b8ffd76f72e2c7168a04676e5bf76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="class_spa_iot_1_1_multiplexer.html" title="Analog multiplexer template.">Multiplexer</a> controlled by a PCF8574. </p>
 <p >Inheriting from the ButtonController class. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8b64bc91f44266b176d2b4e21dbeefd9" name="a8b64bc91f44266b176d2b4e21dbeefd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b64bc91f44266b176d2b4e21dbeefd9">&#9670;&nbsp;</a></span>Pcf8574Mux()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b64bc91f44266b176d2b4e21dbeefd9">&#9670;&nbsp;</a></span>Pcf8574Mux() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,9 +184,59 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a2cb9b07b78b4fefd01d23bcc289780ae" name="a2cb9b07b78b4fefd01d23bcc289780ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb9b07b78b4fefd01d23bcc289780ae">&#9670;&nbsp;</a></span>Pcf8574Mux() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SpaIot::Pcf8574Mux::Pcf8574Mux </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>slaveAddress</em> = <code>0x20</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TwoWire &amp;&#160;</td>
+          <td class="paramname"><em>bus</em> = <code>Wire</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>idleValue</em> = <code>0xFF</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >It creates a new <a class="el" href="class_spa_iot_1_1_pcf8574_mux.html" title="Multiplexer controlled by a PCF8574.">Pcf8574Mux</a> object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>controller name </td></tr>
+    <tr><td class="paramname">slaveAddress</td><td>The address of the PCF8574 chip. </td></tr>
+    <tr><td class="paramname">bus</td><td>The TwoWire object that is used to communicate with the PCF8574. </td></tr>
+    <tr><td class="paramname">idleValue</td><td>The value that the pins will be set to when the device is not in use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="adcfa0b26e9ecafe10748c7ed524bb7d4" name="adcfa0b26e9ecafe10748c7ed524bb7d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcfa0b26e9ecafe10748c7ed524bb7d4">&#9670;&nbsp;</a></span>addToRegister()</h2>
+<a id="ab8695d0ddb9c51cc0610b4d57a6c9155" name="ab8695d0ddb9c51cc0610b4d57a6c9155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8695d0ddb9c51cc0610b4d57a6c9155">&#9670;&nbsp;</a></span>addToRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +247,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static bool SpaIot::ButtonController::addToRegister </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">const String &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
@@ -271,8 +331,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abeb3125ca2972f747c2f7c4f698f5a1d" name="abeb3125ca2972f747c2f7c4f698f5a1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abeb3125ca2972f747c2f7c4f698f5a1d">&#9670;&nbsp;</a></span>getFromRegister()</h2>
+<a id="ab611b187ab3b557243b7a570b431d6de" name="ab611b187ab3b557243b7a570b431d6de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab611b187ab3b557243b7a570b431d6de">&#9670;&nbsp;</a></span>getFromRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,7 +343,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static ButtonController &amp; SpaIot::ButtonController::getFromRegister </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">const String &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
@@ -383,6 +443,32 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ae4dd784098e4b1698280b0dede3fe391" name="ae4dd784098e4b1698280b0dede3fe391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4dd784098e4b1698280b0dede3fe391">&#9670;&nbsp;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const String &amp; SpaIot::ButtonController::name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a7c300c316c433ab06944b7feee8ef946" name="a7c300c316c433ab06944b7feee8ef946"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c300c316c433ab06944b7feee8ef946">&#9670;&nbsp;</a></span>operator!=()</h2>
 
@@ -446,6 +532,39 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if equal </dd></dl>
+
+</div>
+</div>
+<a id="aa77b8ffd76f72e2c7168a04676e5bf76" name="aa77b8ffd76f72e2c7168a04676e5bf76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77b8ffd76f72e2c7168a04676e5bf76">&#9670;&nbsp;</a></span>registerContains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool SpaIot::ButtonController::registerContains </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

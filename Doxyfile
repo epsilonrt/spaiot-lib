@@ -917,7 +917,7 @@ RECURSIVE              = NO
 # run.
 
 EXCLUDE                = SpaIot.h \
-                         debug.h \
+                         spaiotdebug.h \
                          defines_p.h \
                          type_name.h
 

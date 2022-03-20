@@ -119,23 +119,21 @@ $(document).ready(function(){initNavTree('hardwaresettings_8h_source.html',''); 
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; &amp; buttons() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> HardwareSettings &amp;other) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> HardwareSettings &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#ifndef NODEBUG_SPAIOT</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordtype">void</span> print(Print &amp;out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> addToRegister (<span class="keyword">const</span> std::string &amp; name, <span class="keyword">const</span> HardwareSettings &amp; settings);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keyword">static</span> <span class="keyword">const</span> HardwareSettings &amp; getFromRegister (<span class="keyword">const</span> std::string &amp; name);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> registerContains (<span class="keyword">const</span> std::string &amp; name);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> BusSettings * m_bus;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; * m_leds;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; * m_buttons;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keyword">static</span> std::map&lt;std::string, const HardwareSettings *&gt; Register;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  };</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Ssp;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Sjb;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <span class="keywordtype">void</span> print(Print &amp;out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> addToRegister (<span class="keyword">const</span> String &amp; name, <span class="keyword">const</span> HardwareSettings &amp; settings);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keyword">static</span> <span class="keyword">const</span> HardwareSettings &amp; getFromRegister (<span class="keyword">const</span> String &amp; name);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> registerContains (<span class="keyword">const</span> String &amp; name);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keyword">const</span> BusSettings * m_bus;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">const</span> std::map &lt;int, LedSettings&gt; * m_leds;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> std::map &lt;int, ButtonSettings&gt; * m_buttons;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keyword">static</span> std::map&lt;String, const HardwareSettings *&gt; Register;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  };</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Ssp;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keyword">extern</span> <span class="keyword">const</span> HardwareSettings Scip2Sjb;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
 <div class="ttc" id="anamespace_spa_iot_html"><div class="ttname"><a href="namespace_spa_iot.html">SpaIot</a></div><div class="ttdoc">SpaIot name space.</div><div class="ttdef"><b>Definition:</b> bussettings.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

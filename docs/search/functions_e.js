@@ -16,5 +16,6 @@ var searchData=
   ['setpower_13',['setPower',['../class_spa_iot_1_1_control_panel.html#a61ba72eb79b1bd2d8ebfd026748b6da0',1,'SpaIot::ControlPanel']]],
   ['setsanitizertime_14',['setSanitizerTime',['../class_spa_iot_1_1_control_panel.html#af98e2c6c82ba4420bb7c0cebb819a287',1,'SpaIot::ControlPanel']]],
   ['setselectpin_15',['setSelectPin',['../class_spa_iot_1_1_multiplexer.html#a1edd57d24b77c9c3c85b967795ffa087',1,'SpaIot::Multiplexer']]],
-  ['size_16',['size',['../class_spa_iot_1_1_multiplexer.html#a422cd666ba5bb62735d37a980254f5dd',1,'SpaIot::Multiplexer']]]
+  ['singleton_16',['singleton',['../class_spa_iot_1_1_control_panel.html#a508eae168841530a96347c648cca09f6',1,'SpaIot::ControlPanel::singleton(const HardwareSettings &amp;hwsettings)'],['../class_spa_iot_1_1_control_panel.html#a33aec0d7581285c5baee413e05e62236',1,'SpaIot::ControlPanel::singleton(const String &amp;hwSettingsName)']]],
+  ['size_17',['size',['../class_spa_iot_1_1_multiplexer.html#a422cd666ba5bb62735d37a980254f5dd',1,'SpaIot::Multiplexer']]]
 ];

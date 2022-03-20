@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['unsetvalue16_0',['UnsetValue16',['../namespace_spa_iot.html#a40ab64c7c49a80f78bc481e48517a05b',1,'SpaIot']]],
-  ['unsetvalue8_1',['UnsetValue8',['../namespace_spa_iot.html#ad194826f3f6d9b9f7291eb5c68cccbe5',1,'SpaIot']]]
+  ['setuptrigunitchangemin_0',['SetupTrigUnitChangeMin',['../namespace_spa_iot.html#a2e1e5def57d93aa38ed08cd324d62eec',1,'SpaIot']]],
+  ['setuptrigunitchangestepmaxms_1',['SetupTrigUnitChangeStepMaxMs',['../namespace_spa_iot.html#a7ac8d6a4d3de55e316f7e49b268072e0',1,'SpaIot']]]
 ];

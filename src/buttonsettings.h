@@ -36,7 +36,11 @@ namespace SpaIot {
        * @param buttonId
        */
       ButtonSettings (const String & controllerName, int buttonId);
-      
+      /**
+       * @brief 
+       * @param controller
+       * @param buttonId
+       */
       ButtonSettings (ButtonController & controller, int buttonId);
       /**
        * @brief 

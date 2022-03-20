@@ -1,8 +1,10 @@
 var class_spa_iot_1_1_control_panel =
 [
+    [ "~ControlPanel", "class_spa_iot_1_1_control_panel.html#af6d870dac336f23f5e3bd83f34c2e969", null ],
     [ "begin", "class_spa_iot_1_1_control_panel.html#a8c5cdef5cdc5586623fdae2ed03ab096", null ],
     [ "busSettings", "class_spa_iot_1_1_control_panel.html#a5a1d150198ff8e4f52e235b36b2220bf", null ],
-    [ "buttonSettings", "class_spa_iot_1_1_control_panel.html#ac24bf4d917a3be33120f83d9e377c2c3", null ],
+    [ "button", "class_spa_iot_1_1_control_panel.html#a9104d6207704ff16711ba66c90027fd4", null ],
+    [ "buttons", "class_spa_iot_1_1_control_panel.html#ae77361a581e45831310f314b329acc8f", null ],
     [ "desiredTemp", "class_spa_iot_1_1_control_panel.html#ad07919ec8765216dc201d0e239ee047d", null ],
     [ "error", "class_spa_iot_1_1_control_panel.html#a4f2932b98d04a95b38177e8a00f2837a", null ],
     [ "frameCounter", "class_spa_iot_1_1_control_panel.html#aa5e532978a87f69b1dc771f2665ca118", null ],

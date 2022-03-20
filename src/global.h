@@ -36,6 +36,9 @@ namespace SpaIot {
     TempUnit,   //!< Temperature Unity Button (°C/°F)
   };
 
+  /**
+   * @brief Association between keys and key names
+   */
   const std::map<int, String> KeyName = {
     {Power, "Power"},
     {Filter, "Filter"},

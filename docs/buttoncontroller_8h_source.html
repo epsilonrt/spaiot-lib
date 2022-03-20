@@ -101,37 +101,39 @@ $(document).ready(function(){initNavTree('buttoncontroller_8h_source.html',''); 
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;global.h&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_spa_iot.html">SpaIot</a> {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">class </span>ButtonController {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      ButtonController();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keyword">virtual</span> ~ButtonController();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin() = 0;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> end();</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keyword">virtual</span> <span class="keywordtype">int</span> select (<span class="keywordtype">int</span> button) = 0;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> deselect () = 0;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="keyword">virtual</span> <span class="keywordtype">int</span> selected() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isOpened() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isNull() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isSelected() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> ButtonController &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> ButtonController &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> addToRegister (<span class="keyword">const</span> std::string &amp; name, ButtonController &amp; controller);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keyword">static</span> ButtonController &amp; getFromRegister (<span class="keyword">const</span> std::string &amp; name);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keywordtype">bool</span> m_isopened;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keywordtype">int</span> m_selected;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keyword">static</span> std::map&lt;std::string, ButtonController &amp;&gt; Register;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  };</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;global.h&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_spa_iot.html">SpaIot</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">class </span>ButtonController {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      ButtonController();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      ButtonController (<span class="keyword">const</span> String &amp; name);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keyword">virtual</span> ~ButtonController();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin() = 0;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> end();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="keyword">virtual</span> <span class="keywordtype">int</span> select (<span class="keywordtype">int</span> button) = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> deselect () = 0;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keyword">virtual</span> <span class="keywordtype">int</span> selected() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isOpened() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isNull() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isSelected() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="keyword">virtual</span> <span class="keyword">const</span> String &amp; name() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> ButtonController &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> ButtonController &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> addToRegister (<span class="keyword">const</span> String &amp; name, ButtonController &amp; controller);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keyword">static</span> ButtonController &amp; getFromRegister (<span class="keyword">const</span> String &amp; name);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      <span class="keyword">static</span> <span class="keywordtype">bool</span> registerContains (<span class="keyword">const</span> String &amp; name);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keywordtype">bool</span> m_isopened;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordtype">int</span> m_selected;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keyword">mutable</span> String m_name;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="keyword">static</span> std::map&lt;String, ButtonController &amp;&gt; Register;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  };</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
 <div class="ttc" id="anamespace_spa_iot_html"><div class="ttname"><a href="namespace_spa_iot.html">SpaIot</a></div><div class="ttdoc">SpaIot name space.</div><div class="ttdef"><b>Definition:</b> bussettings.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

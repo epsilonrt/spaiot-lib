@@ -35,7 +35,6 @@ namespace SpaIot {
        * @brief 
        */
       Button (const ButtonSettings & settings);
-
       /**
        * @brief 
        * @return 
@@ -56,7 +55,6 @@ namespace SpaIot {
        * @return 
        */
       const ButtonSettings & settings() const;
-
       /**
        * @brief 
        */

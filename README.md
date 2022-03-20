@@ -104,7 +104,7 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
   ControlPanel & spa = ControlPanel::singleton ("SCIP2SSP");
   ```
 
-  :warning: **disclaimer:** only one control panel instance may exist.
+  :warning: **disclaimer:** only one control panel [singleton](https://en.wikipedia.org/wiki/Singleton_pattern) may exist.
 
 3. In `setup()`
 

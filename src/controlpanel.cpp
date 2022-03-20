@@ -151,7 +151,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // protected
-  // may be used for Power, Filter, Heater, Bubble and Jet
+  // may be used for Power, Filter, Bubble and Jet
   uint8_t ControlPanel::setKeyOn (int key, bool v) {
 
     if (isOpened()) {
@@ -184,9 +184,25 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   uint8_t ControlPanel::setHeater (bool v) {
 
-    setKeyOn (Heater, v);
-    delay (500);
-    return isHeaterOn();
+    if (isOpened() && hasButton (Heater)) {
+      uint8_t b = isHeaterOn ();
+
+      if (b != UnsetValue8) {
+
+        if (v ^ b) {
+          int count = 0;
+
+          m_button[Heater].push();
+          while ( (isHeaterOn() != v) && (count < 20)) {
+            
+            delay (100);
+            count++;
+          }
+        }
+        return isHeaterOn();
+      }
+    }
+    return UnsetValue8;
   }
 
   //----------------------------------------------------------------------------

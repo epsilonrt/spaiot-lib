@@ -21,7 +21,7 @@ const BusSettings busSettings (12, 14, 13);
 
 // My button controllers
 Cd4051 MuxA ("U3", 5, 4, 15, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
-Cd4051 MuxB ("U4", 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
+Cd4051 MuxB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 
 #elif defined(ESP32)
 // SDATA  -> GPIO23
@@ -209,7 +209,7 @@ void test_filter () {
 
   SPAIOT_DBG ("Set filter on !");
   TEST_ASSERT_TRUE (panel.setFilter ());
-  delay (2000);
+  delay (500);
 
   SPAIOT_DBG ("Set filter off !");
   TEST_ASSERT_FALSE (panel.setFilter (false));
@@ -226,13 +226,14 @@ void test_bubble () {
 
   SPAIOT_DBG ("Set bubble on !");
   TEST_ASSERT_TRUE (panel.setBubble ());
-  delay (2000);
+  delay (500);
 
   SPAIOT_DBG ("Set bubble off !");
   TEST_ASSERT_FALSE (panel.setBubble (false));
 }
 
 void test_heater () {
+  unsigned long t;
 
   SPAIOT_DBG ("---> test_heater <---");
   if (panel.isHeaterOn()) {
@@ -242,12 +243,17 @@ void test_heater () {
   }
 
   SPAIOT_DBG ("Set heater on !");
+  t = millis();
   TEST_ASSERT_TRUE (panel.setHeater ());
+  SPAIOT_DBG ("execution time: %ld\n", millis() - t);
   TEST_ASSERT_TRUE (panel.isFilterOn());
-  delay (2000);
+  delay (500);
 
   SPAIOT_DBG ("Set heater off !");
+  t = millis();
   TEST_ASSERT_FALSE (panel.setHeater (false));
+  SPAIOT_DBG ("execution time: %ld\n", millis() - t);
+  
   SPAIOT_DBG ("Set filter off !");
   TEST_ASSERT_FALSE (panel.setFilter (false));
 }

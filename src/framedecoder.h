@@ -41,8 +41,15 @@ namespace SpaIot {
        * This function configures the different hardware features, then loop
        * waiting for a frame for a time of \c BeginWaitingTimeMs milliseconds.
        * \c isOpened() lets you know if the connection has been successfully completed
+       * @param waitingTimeMs Maximum time that the function will wait for a 
+       * frame coming from the bus (-1 for infinity)
        */
       void begin (unsigned long waitingTimeMs = BeginWaitingTimeMs);
+      /**
+       * @overload
+       * @param settings describes the bus pins settings
+       * @param leds describes the leds settings
+       */
       void begin (const BusSettings & settings,
                   const std::map <int, LedSettings> & leds,
                   unsigned long waitingTimeMs = BeginWaitingTimeMs);
@@ -234,8 +241,15 @@ namespace SpaIot {
        * @return  Water temperature in °C, UnsetValue16 if it has not been determined yet.
        */
       uint16_t waitForWaterTemp (unsigned long MaxWaitingTimeMs = 25000) const;
-      
+      /**
+       * @brief Close the FrameDecoder
+       */
       void end();
+      /**
+       * @brief Destructor
+       * 
+       * call end()
+       */
       virtual ~FrameDecoder();
 
     protected:

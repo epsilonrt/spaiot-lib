@@ -42,14 +42,15 @@ const BusSettings MyBus (23, 18, 19);
 
 
 
-class TestBusDecoder : public FrameDecoder {
+class TestFrameDecoder : public FrameDecoder {
   public:
-    TestBusDecoder (const BusSettings & bus,
-                    const std::map <int, LedSettings> & leds) :
+    TestFrameDecoder (const BusSettings & bus,
+                      const std::map <int, LedSettings> & leds) :
       FrameDecoder (bus, leds) {}
+    TestFrameDecoder () : FrameDecoder () {}
 };
 
-TestBusDecoder * decoder;
+TestFrameDecoder * decoder;
 uint32_t frameCounter;
 uint32_t frameDropped;
 uint16_t errorValue;
@@ -76,94 +77,120 @@ uint8_t   isSanitizerOn;
 // }
 
 void test_constructor () {
+  TestFrameDecoder bd;
 
-  decoder = new TestBusDecoder (MyBus, SspLeds);
+  decoder = new TestFrameDecoder (MyBus, SspLeds);
   TEST_ASSERT_FALSE (decoder->isOpened());
 }
 
-void test_getters () {
+void test_default_getters (TestFrameDecoder & bd) {
 
-  TEST_ASSERT (MyBus == decoder->busSettings());
-  TEST_ASSERT (SspLeds == decoder->ledSettings());
-
-  frameCounter = decoder->frameCounter();
+  frameCounter = bd.frameCounter();
   TEST_ASSERT_EQUAL (0, frameCounter);
-  frameDropped =  decoder->frameDropped();
+  frameDropped =  bd.frameDropped();
   TEST_ASSERT_EQUAL (0, frameDropped);
-  errorValue = decoder->error();
+  errorValue = bd.error();
   TEST_ASSERT_EQUAL (0, errorValue);
-  rawStatus = decoder->rawStatus();
+  rawStatus = bd.rawStatus();
   TEST_ASSERT_EQUAL (UnsetValue16, rawStatus);
-  waterTemp = decoder->waterTemp();
+  waterTemp = bd.waterTemp();
   TEST_ASSERT_EQUAL (UnsetValue16, waterTemp);
-  desiredTemp = decoder->desiredTemp();
+  desiredTemp = bd.desiredTemp();
   TEST_ASSERT_EQUAL (UnsetValue16, desiredTemp);
-  sanitizerTime = decoder->sanitizerTime();
+  sanitizerTime = bd.sanitizerTime();
   TEST_ASSERT_EQUAL (UnsetValue16, sanitizerTime);
-  isSetupModeTriggered = decoder->isSetupModeTriggered();
+  isSetupModeTriggered = bd.isSetupModeTriggered();
   TEST_ASSERT_FALSE (isSetupModeTriggered);
-
-  for (const auto & led : SspLeds) {
-
-    TEST_ASSERT_TRUE (decoder->hasLed (led.first));
-    TEST_ASSERT_EQUAL (UnsetValue8, decoder->isLedOn (led.first));
-  }
-
-  isPowerOn = decoder->isPowerOn();
+  isPowerOn = bd.isPowerOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isPowerOn);
-  isFilterOn = decoder->isFilterOn();
+  isFilterOn = bd.isFilterOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isFilterOn);
-  isBubbleOn = decoder->isBubbleOn();
+  isBubbleOn = bd.isBubbleOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isBubbleOn);
-  isHeaterOn = decoder->isHeaterOn();
+  isHeaterOn = bd.isHeaterOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isHeaterOn);
-  isHeatReached = decoder->isHeatReached();
+  isHeatReached = bd.isHeatReached();
   TEST_ASSERT_EQUAL (UnsetValue8, isHeatReached);
-  if (decoder->hasLed (Jet)) {
-    isJetOn = decoder->isJetOn();
+  if (bd.hasLed (Jet)) {
+    isJetOn = bd.isJetOn();
     TEST_ASSERT_EQUAL (UnsetValue8, isJetOn);
   }
-  if (decoder->hasLed (Sanitizer)) {
-    isSanitizerOn = decoder->isSanitizerOn();
+  if (bd.hasLed (Sanitizer)) {
+    isSanitizerOn = bd.isSanitizerOn();
     TEST_ASSERT_EQUAL (UnsetValue8, isSanitizerOn);
   }
-  isHeaterOn = decoder->isHeaterOn();
+  isHeaterOn = bd.isHeaterOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isHeaterOn);
 }
 
-void test_begin () {
+void test_decoder_getters () {
+  TestFrameDecoder & bd = *decoder;
 
-  decoder->begin();
-  TEST_ASSERT_TRUE (decoder->isOpened ());
+  TEST_ASSERT (MyBus == bd.busSettings());
+  TEST_ASSERT (SspLeds == bd.ledSettings());
+  test_default_getters (bd);
+  for (const auto & led : SspLeds) {
+    int key = led.first;
+    TEST_ASSERT_TRUE (bd.hasLed (key));
+    TEST_ASSERT_EQUAL (UnsetValue8, bd.isLedOn (key));
+  }
+}
+
+void test_default_constructor() {
+  TestFrameDecoder bd;
+
+  TEST_ASSERT_FALSE (bd.isOpened());
+  TEST_ASSERT_TRUE (bd.busSettings().isNull());
+  TEST_ASSERT_TRUE (bd.ledSettings().empty());
+  test_default_getters (bd);
+}
+
+void test_begin_getters (TestFrameDecoder & bd) {
+
+  TEST_ASSERT_TRUE (bd.isOpened ());
   delay (100);
-  TEST_ASSERT (decoder->rawStatus() != UnsetValue16);
-  
+  TEST_ASSERT (bd.rawStatus() != UnsetValue16);
+
   // check if all leds are off
   for (const auto & led : SspLeds) {
 
-    TEST_ASSERT_EQUAL (false, decoder->isLedOn (led.first));
+    TEST_ASSERT_EQUAL (false, bd.isLedOn (led.first));
   }
 
-  isPowerOn = decoder->isPowerOn();
+  isPowerOn = bd.isPowerOn();
   TEST_ASSERT_EQUAL (false, isPowerOn);
-  isFilterOn = decoder->isFilterOn();
+  isFilterOn = bd.isFilterOn();
   TEST_ASSERT_EQUAL (false, isFilterOn);
-  isBubbleOn = decoder->isBubbleOn();
+  isBubbleOn = bd.isBubbleOn();
   TEST_ASSERT_EQUAL (false, isBubbleOn);
-  isHeaterOn = decoder->isHeaterOn();
+  isHeaterOn = bd.isHeaterOn();
   TEST_ASSERT_EQUAL (false, isHeaterOn);
-  isHeatReached = decoder->isHeatReached();
+  isHeatReached = bd.isHeatReached();
   TEST_ASSERT_EQUAL (false, isHeatReached);
-  if (decoder->hasLed (Jet)) {
-    isJetOn = decoder->isJetOn();
+  if (bd.hasLed (Jet)) {
+    isJetOn = bd.isJetOn();
     TEST_ASSERT_EQUAL (false, isJetOn);
   }
-  if (decoder->hasLed (Sanitizer)) {
-    isSanitizerOn = decoder->isSanitizerOn();
+  if (bd.hasLed (Sanitizer)) {
+    isSanitizerOn = bd.isSanitizerOn();
     TEST_ASSERT_EQUAL (false, isSanitizerOn);
   }
-  isHeaterOn = decoder->isHeaterOn();
+  isHeaterOn = bd.isHeaterOn();
   TEST_ASSERT_EQUAL (false, isHeaterOn);
+}
+
+void test_decoder_begin () {
+  TestFrameDecoder & bd = *decoder;
+  
+  bd.begin();
+  test_begin_getters (bd);
+}
+
+void test_default_begin () {
+  TestFrameDecoder bd;
+  
+  bd.begin(MyBus, SspLeds);
+  test_begin_getters (bd);
 }
 
 void setup() {
@@ -171,11 +198,13 @@ void setup() {
   // NOTE!!! Wait for >2 secs
   // if board doesn't support software reset via Serial.DTR/RTS
   delay (2000);
-  TEST_ASSERT_MESSAGE(true, "<IMPORTANT> The spa MUST be OFF.");
+  TEST_ASSERT_MESSAGE (true, "<IMPORTANT> The spa MUST be OFF.");
   UNITY_BEGIN();    // IMPORTANT LINE!
   RUN_TEST (test_constructor);
-  RUN_TEST (test_getters);
-  RUN_TEST (test_begin);
+  RUN_TEST (test_decoder_getters);
+  RUN_TEST (test_default_constructor);
+  RUN_TEST (test_default_begin);
+  RUN_TEST (test_decoder_begin);
 #ifndef LOOP_ENABLED
   UNITY_END(); // stop unit testing
 #endif

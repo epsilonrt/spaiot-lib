@@ -27,42 +27,13 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // protected constructor
+  FrameDecoder::FrameDecoder () : m_isopened (false) {}
+
+  //----------------------------------------------------------------------------
+  // protected constructor
   FrameDecoder::FrameDecoder (const BusSettings & settings,
                               const std::map <int, LedSettings> & leds) :
-    m_busSettings (settings), m_ledSettings (leds), m_isopened (false) {
-
-    m_dataPin = m_busSettings.dataPin();
-
-    for (auto & led : m_ledSettings) {
-
-      switch (led.first) {
-
-        case Power:
-          m_frameLedPower = led.second.frame();
-          break;
-        case Filter:
-          m_frameLedFilter = led.second.frame();
-          break;
-        case HeatReached:
-          m_frameLedHeaterReached = led.second.frame();
-          break;
-        case Heater:
-          m_frameLedHeater = led.second.frame();
-          break;
-        case Bubble:
-          m_frameLedBubble = led.second.frame();
-          break;
-        case Jet:
-          m_frameLedJet = led.second.frame();
-          break;
-        case Sanitizer:
-          m_frameLedSanitizer = led.second.frame();
-          break;
-        default:
-          break;
-      }
-    }
-  }
+    m_busSettings (settings), m_ledSettings (leds), m_isopened (false) {}
 
   //----------------------------------------------------------------------------
   const BusSettings & FrameDecoder::busSettings() const {
@@ -77,11 +48,51 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  void FrameDecoder::begin() {
+  void FrameDecoder::begin (const BusSettings & settings,
+                            const std::map <int, LedSettings> & leds,
+                            unsigned long waitingTimeMs) {
+    m_busSettings = settings;
+    m_ledSettings = leds;
+    begin (waitingTimeMs);
+  }
+
+  //----------------------------------------------------------------------------
+  void FrameDecoder::begin (unsigned long waitingTimeMs) {
 
     if (m_isopened == false)  {
       SPAIOT_DBG ("FrameDecoder::begin(): opening");
 
+      m_dataPin = m_busSettings.dataPin();
+
+      for (auto & led : m_ledSettings) {
+
+        switch (led.first) {
+
+          case Power:
+            m_frameLedPower = led.second.frame();
+            break;
+          case Filter:
+            m_frameLedFilter = led.second.frame();
+            break;
+          case HeatReached:
+            m_frameLedHeaterReached = led.second.frame();
+            break;
+          case Heater:
+            m_frameLedHeater = led.second.frame();
+            break;
+          case Bubble:
+            m_frameLedBubble = led.second.frame();
+            break;
+          case Jet:
+            m_frameLedJet = led.second.frame();
+            break;
+          case Sanitizer:
+            m_frameLedSanitizer = led.second.frame();
+            break;
+          default:
+            break;
+        }
+      }
       pinMode (m_busSettings.dataPin(), INPUT);
       pinMode (m_busSettings.clkPin(), INPUT);
       pinMode (m_busSettings.holdPin(), INPUT);
@@ -93,7 +104,7 @@ namespace SpaIot {
       attachInterrupt (digitalPinToInterrupt (m_busSettings.holdPin()),
                        FrameDecoder::holdRisingInterrupt, RISING);
       unsigned long timer = 0;
-      while ( (m_rawStatus == UnsetValue16) && (timer < BeginWaitingTimeMs)) {
+      while ( (m_rawStatus == UnsetValue16) && (timer < waitingTimeMs)) {
 
         delay (10);
         timer += 10;
@@ -101,8 +112,22 @@ namespace SpaIot {
       m_isopened = (m_rawStatus != UnsetValue8);
 
       SPAIOT_DBG ("FrameDecoder::begin(): m_isopened: %d - rawStatus(): 0x%04X (%lums)",
-           m_isopened, rawStatus(), timer);
+                  m_isopened, rawStatus(), timer);
     }
+  }
+
+  //----------------------------------------------------------------------------
+  void FrameDecoder::end() {
+    if (m_isopened) {
+      detachInterrupt (digitalPinToInterrupt (m_busSettings.clkPin()));
+      detachInterrupt (digitalPinToInterrupt (m_busSettings.holdPin()));
+      m_isopened = false;
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  FrameDecoder::~FrameDecoder() {
+    end();
   }
 
   //----------------------------------------------------------------------------

@@ -54,7 +54,7 @@ const std::map<int, ButtonSettings> buttonSettings = {
 // My custom configuration
 const HardwareSettings hwSettings (busSettings, ledSettings, buttonSettings);
 
-ControlPanel & panel = ControlPanel::singleton (hwSettings);
+ControlPanel & panel = ControlPanel::singleton ();
 
 uint32_t frameCounter;
 uint32_t frameDropped;
@@ -89,26 +89,6 @@ void test_constructor () {
 
 void test_getters () {
   SPAIOT_DBG ("---> test_getters <---");
-
-  for (const auto& elmt : buttonSettings) {
-    const int key = elmt.first;
-    const ButtonSettings & settings = elmt.second;
-
-    TEST_ASSERT_TRUE (panel.hasButton (key));
-
-    const Button & button = panel.button (key);
-    const Button & button2 = panel.buttons().at (key);
-
-    TEST_ASSERT (button == button2);
-    TEST_ASSERT (button.settings() == settings);
-  }
-
-  TEST_ASSERT (ledSettings == panel.ledSettings());
-  for (const auto& elmt : panel.ledSettings()) {
-    const int key = elmt.first;
-
-    TEST_ASSERT_TRUE (panel.hasLed (key));
-  }
 
   frameCounter = panel.frameCounter();
   TEST_ASSERT_EQUAL (0, frameCounter);
@@ -156,8 +136,24 @@ void test_getters () {
 void test_begin () {
   SPAIOT_DBG ("---> test_begin <---");
 
-  panel.begin();
+  panel.begin (hwSettings);
   TEST_ASSERT_TRUE (panel.isOpened ());
+
+  TEST_ASSERT (buttonSettings == panel.buttonSettings());
+  TEST_ASSERT (ledSettings == panel.ledSettings());
+
+  for (const auto& elmt : panel.ledSettings()) {
+    const int key = elmt.first;
+
+    TEST_ASSERT_TRUE (panel.hasLed (key));
+  }
+
+  for (const auto& elmt : panel.buttonSettings()) {
+    const int key = elmt.first;
+
+    TEST_ASSERT_TRUE (panel.hasButton (key));
+  }
+
   delay (100);
   TEST_ASSERT (panel.rawStatus() != UnsetValue16);
   for (const auto& elmt : SspLeds) {
@@ -253,7 +249,7 @@ void test_heater () {
   t = millis();
   TEST_ASSERT_FALSE (panel.setHeater (false));
   SPAIOT_DBG ("execution time: %ld\n", millis() - t);
-  
+
   SPAIOT_DBG ("Set filter off !");
   TEST_ASSERT_FALSE (panel.setFilter (false));
 }

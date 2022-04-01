@@ -23,7 +23,7 @@ namespace SpaIot {
    * @class ControlPanel
    * @brief Control Panel
    *
-   * This class is the programming interface of the application (API). 
+   * This class is the programming interface of the application (API).
    * It allows to monitor and control the spa.\n
    * It is a singleton class that can only be instantiated through getInstance()
    */
@@ -41,6 +41,10 @@ namespace SpaIot {
        */
       static ControlPanel & singleton (const String & hwSettingsName);
       /**
+       * @overload
+       */
+      static ControlPanel & singleton ();
+      /**
        * @brief Create the control panel instance with the provided settings
        * @param hwsettings Description of hardware settings
        * @return pointer on the created instance, nullptr if failure
@@ -54,14 +58,33 @@ namespace SpaIot {
        */
       static ControlPanel * getInstance (const String & hwSettingsName);
       /**
+       * @overload
+       * @deprecated This function will be deleted during the next major version, use singleton() instead !
+       */
+      static ControlPanel * getInstance ();
+      /**
        * @brief Configures each of the buttons and initializes and connect with the spa
-       * 
+       *
        * \c isOpened() lets you know if the connection has been successfully completed
        */
-      void begin();
+      void begin (unsigned long waitingTimeMs = BeginWaitingTimeMs);
+      /**
+       * @brief Configures each of the buttons and initializes and connect with the spa
+       *
+       * \c isOpened() lets you know if the connection has been successfully completed
+       * @param hwsettings Description of hardware settings
+       */
+      void begin (const HardwareSettings & hwsettings, unsigned long waitingTimeMs = BeginWaitingTimeMs);
+      /**
+       * @brief Configures each of the buttons and initializes and connect with the spa
+       *
+       * \c isOpened() lets you know if the connection has been successfully completed
+       * @param hwSettingsName configuration name in the register of hardware settings
+       */
+      void begin (const String & hwSettingsName, unsigned long waitingTimeMs = BeginWaitingTimeMs);
       /**
        * @brief Indicates whether the connection with the spa is established.
-       * 
+       *
        * @return If \c begin() succeeded and everything works returns true.
        * Returns false if the connection to the spa is not established and no frame is received.
        */
@@ -73,17 +96,11 @@ namespace SpaIot {
        */
       bool hasButton (int key) const;
       /**
-       * @brief Buttons list
-       * @return Constant reference on the [std::map](https://en.cppreference.com/w/cpp/container/map)  containing the buttons. 
-       * The different key values are defined by SpaIot::Key
-       */
-      const std::map <int, Button> & buttons() const;
-      /**
        * @brief Button
        * @param key button identification key in the possible values of SpaIot::Key
        * @return refernce on the button
        */
-      Button & button(int key);
+      Button & button (int key);
       /**
        * @brief Press and release a button
        * @param key button identification key in the possible values of SpaIot::Key
@@ -123,12 +140,12 @@ namespace SpaIot {
       /**
        * @brief Setting the desired water temperature
        * @param temp temperature in °C
-       * @return 
+       * @return
        */
       bool setDesiredTemp (uint16_t temp);
       /**
        * @brief Set the water sanitation time
-       * 
+       *
        * @param time Sanitation time in hours, the possible values are {0, 3, 5, 8}. 0 Disables sanitation.
        * @return true if the setting has been made, false if the requested value is invalid.
        */
@@ -136,22 +153,41 @@ namespace SpaIot {
       /**
        * @brief Press the TempUp button to read the desired temperature
        * @param MaxWaitingTimeMs Maximum waiting time in milliseconds
-       * @return  Water temperature desired in °C, UnsetValue16 if it has not 
+       * @return  Water temperature desired in °C, UnsetValue16 if it has not
        * been determined yet.
        */
       uint16_t waitForDesiredTemp (unsigned long MaxWaitingTimeMs = 5000);
       /**
+       * @brief Close the FrameDecoder
+       */
+      void end();
+      /**
        * @brief Destructor
-       * 
-       * Delete m_instance
+       *
+       * Call end() and delete m_instance
        */
       ~ControlPanel();
+      /**
+       * @brief Button settings provides
+       * @return Constant reference on the [std::map](https://en.cppreference.com/w/cpp/container/map)  containing the button settings.
+       * The different key values are defined by SpaIot::Key
+       */
+      const std::map <int, ButtonSettings> buttonSettings() const;
 
     protected:
+      /**
+       * @brief Buttons list
+       * @return Constant reference on the [std::map](https://en.cppreference.com/w/cpp/container/map)  containing the buttons. 
+       * The different key values are defined by SpaIot::Key
+       */
+      const std::map <int, Button> & buttons() const;
       ControlPanel (const HardwareSettings & hwsettings);
+      ControlPanel ();
       uint8_t setKeyOn (int key, bool v);
+      bool makeButtons();
 
     private:
+      std::map <int, ButtonSettings> m_btnsettings;
       bool m_isopened;
       std::map <int, Button> m_button;
       static ControlPanel * m_instance;

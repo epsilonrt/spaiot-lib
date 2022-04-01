@@ -105,9 +105,11 @@ Inheritance diagram for SpaIot::FrameDecoder:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4489788f0761d3710aea40d1d3ad0b6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a4489788f0761d3710aea40d1d3ad0b6c">begin</a> ()</td></tr>
-<tr class="memdesc:a4489788f0761d3710aea40d1d3ad0b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes and connect with the spa.  <a href="class_spa_iot_1_1_frame_decoder.html#a4489788f0761d3710aea40d1d3ad0b6c">More...</a><br /></td></tr>
-<tr class="separator:a4489788f0761d3710aea40d1d3ad0b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f69801b08fa233aad81deabb83ab21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a08f69801b08fa233aad81deabb83ab21">begin</a> (unsigned long waitingTimeMs=<a class="el" href="namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd">BeginWaitingTimeMs</a>)</td></tr>
+<tr class="memdesc:a08f69801b08fa233aad81deabb83ab21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes and connect with the spa.  <a href="class_spa_iot_1_1_frame_decoder.html#a08f69801b08fa233aad81deabb83ab21">More...</a><br /></td></tr>
+<tr class="separator:a08f69801b08fa233aad81deabb83ab21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7255fe1daf30a3f71e45ac0e540dc182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a7255fe1daf30a3f71e45ac0e540dc182">begin</a> (const <a class="el" href="class_spa_iot_1_1_bus_settings.html">BusSettings</a> &amp;settings, const std::map&lt; int, <a class="el" href="class_spa_iot_1_1_led_settings.html">LedSettings</a> &gt; &amp;leds, unsigned long waitingTimeMs=<a class="el" href="namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd">BeginWaitingTimeMs</a>)</td></tr>
+<tr class="separator:a7255fe1daf30a3f71e45ac0e540dc182"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16e4122e21f48731bc4ccdfd3ebc0e58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58">isOpened</a> () const</td></tr>
 <tr class="memdesc:a16e4122e21f48731bc4ccdfd3ebc0e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the connection with the spa is established.  <a href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58">More...</a><br /></td></tr>
 <tr class="separator:a16e4122e21f48731bc4ccdfd3ebc0e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,15 +179,51 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:affd776ea3539e77174a471b6fcfdf45e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e">waitForWaterTemp</a> (unsigned long MaxWaitingTimeMs=25000) const</td></tr>
 <tr class="memdesc:affd776ea3539e77174a471b6fcfdf45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until the water temperature could be read.  <a href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e">More...</a><br /></td></tr>
 <tr class="separator:affd776ea3539e77174a471b6fcfdf45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816d2698777b2255e60fb8375a91c7f7"><td class="memItemLeft" align="right" valign="top"><a id="a816d2698777b2255e60fb8375a91c7f7" name="a816d2698777b2255e60fb8375a91c7f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
+<tr class="memdesc:a816d2698777b2255e60fb8375a91c7f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a>. <br /></td></tr>
+<tr class="separator:a816d2698777b2255e60fb8375a91c7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8e9298231f0516ec018b88f055afae"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a7c8e9298231f0516ec018b88f055afae">~FrameDecoder</a> ()</td></tr>
+<tr class="memdesc:a7c8e9298231f0516ec018b88f055afae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="class_spa_iot_1_1_frame_decoder.html#a7c8e9298231f0516ec018b88f055afae">More...</a><br /></td></tr>
+<tr class="separator:a7c8e9298231f0516ec018b88f055afae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This class decodes information from the technical block of the spa. </p>
 <p >This class decodes the frames so as to retrieve the condition of the LEDs and the value present on the 7-segment display.It can not detect if the user presses a button.<br  />
 <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> stores the bits of the frame on each interrupt triggered by the clock rising edges, once the 16 bits of the raw status received, it decodes this status on the rising edge of the nWR (HOLD) signal.</p>
 <p >Base class that can not be instantiated ! </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4489788f0761d3710aea40d1d3ad0b6c" name="a4489788f0761d3710aea40d1d3ad0b6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4489788f0761d3710aea40d1d3ad0b6c">&#9670;&nbsp;</a></span>begin()</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7c8e9298231f0516ec018b88f055afae" name="a7c8e9298231f0516ec018b88f055afae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c8e9298231f0516ec018b88f055afae">&#9670;&nbsp;</a></span>~FrameDecoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual SpaIot::FrameDecoder::~FrameDecoder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+<p >call <a class="el" href="class_spa_iot_1_1_frame_decoder.html#a816d2698777b2255e60fb8375a91c7f7" title="Close the FrameDecoder.">end()</a> </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7255fe1daf30a3f71e45ac0e540dc182" name="a7255fe1daf30a3f71e45ac0e540dc182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7255fe1daf30a3f71e45ac0e540dc182">&#9670;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,14 +231,61 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void SpaIot::FrameDecoder::begin </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="class_spa_iot_1_1_bus_settings.html">BusSettings</a> &amp;&#160;</td>
+          <td class="paramname"><em>settings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; int, <a class="el" href="class_spa_iot_1_1_led_settings.html">LedSettings</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>leds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>waitingTimeMs</em> = <code><a class="el" href="namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd">BeginWaitingTimeMs</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">settings</td><td>describes the bus pins settings </td></tr>
+    <tr><td class="paramname">leds</td><td>describes the leds settings </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08f69801b08fa233aad81deabb83ab21" name="a08f69801b08fa233aad81deabb83ab21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f69801b08fa233aad81deabb83ab21">&#9670;&nbsp;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpaIot::FrameDecoder::begin </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>waitingTimeMs</em> = <code><a class="el" href="namespace_spa_iot.html#a2fc9d4672e6b1747d69dbe70b373f9dd">BeginWaitingTimeMs</a></code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Initializes and connect with the spa. </p>
-<p >This function must be called before you can use the instance. This function configures the different hardware features, then loop waiting for a frame for a time of <code>BeginWaitingTimeMs</code> milliseconds. <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58" title="Indicates whether the connection with the spa is established.">isOpened()</a></code> lets you know if the connection has been successfully completed </p>
+<p >This function must be called before you can use the instance. This function configures the different hardware features, then loop waiting for a frame for a time of <code>BeginWaitingTimeMs</code> milliseconds. <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58" title="Indicates whether the connection with the spa is established.">isOpened()</a></code> lets you know if the connection has been successfully completed </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">waitingTimeMs</td><td>Maximum time that the function will wait for a frame coming from the bus (-1 for infinity) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -241,7 +326,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Water temperature desired in °C. </p>
 <p >The desired temperature can only be known if the user has made a setting. Indeed, this temperature is only displayed when the user presses the <a class="el" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae032fffb62d7b3fad28a346f68a32668" title="Temperature Up Button.">SpaIot::TempUp</a> or <a class="el" href="namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9a63f5b3808bb64caed3029d755bb5eb" title="Temperature Down Button.">SpaIot::TempDown</a> buttons (blinking the display).<br  />
- We can use <a class="el" href="class_spa_iot_1_1_control_panel.html#a5690ecebad09412d89c7eb9cf064c05a" title="Press the TempUp button to read the desired temperature.">ControlPanel::waitForDesiredTemp()</a> to perform this operation and can read a correct value. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature desired in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
+We can use <a class="el" href="class_spa_iot_1_1_control_panel.html#a5690ecebad09412d89c7eb9cf064c05a" title="Press the TempUp button to read the desired temperature.">ControlPanel::waitForDesiredTemp()</a> to perform this operation and can read a correct value. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature desired in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
 
 </div>
 </div>
@@ -303,7 +388,7 @@ This value is reset when calling this function if no error code has been display
 
 <p>Number of dropped frames. </p>
 <p >If a new frame is received before decoding the previous frame is complete, this frame is lost. If the value of this counter increases rapidly is that the number of operations running under interruption by the CPU is important (the real time constraint is too high).<br  />
- It is important to adjust the frequency of the CPU to its maximum value (160MHz for ESP8266). </p><dl class="section return"><dt>Returns</dt><dd>Number of frames dropped </dd></dl>
+It is important to adjust the frequency of the CPU to its maximum value (160MHz for ESP8266). </p><dl class="section return"><dt>Returns</dt><dd>Number of frames dropped </dd></dl>
 
 </div>
 </div>
@@ -540,7 +625,7 @@ This value is reset when calling this function if no error code has been display
 </div><div class="memdoc">
 
 <p>Indicates whether the connection with the spa is established. </p>
-<dl class="section return"><dt>Returns</dt><dd>If <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a4489788f0761d3710aea40d1d3ad0b6c" title="Initializes and connect with the spa.">begin()</a></code> succeeded and everything works returns true. Returns false if the connection to the spa is not established and no frame is received. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>If <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a08f69801b08fa233aad81deabb83ab21" title="Initializes and connect with the spa.">begin()</a></code> succeeded and everything works returns true. Returns false if the connection to the spa is not established and no frame is received. </dd></dl>
 
 </div>
 </div>
@@ -705,8 +790,7 @@ This value is reset when calling this function if no error code has been display
 
 <p>Wait until the water temperature could be read. </p>
 <p >Framedecoder must wait to be sure that the display does not blink and the value is stable before determining the temperature of the water.<br  />
- <br  />
- It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="params"><dt>Parameters</dt><dd>
+It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">MaxWaitingTimeMs</td><td>Maximum waiting time in milliseconds </td></tr>
   </table>
@@ -760,8 +844,7 @@ This value is reset when calling this function if no error code has been display
 
 <p>Water temperature in °C. </p>
 <p >Framedecoder must wait to be sure that the display does not blink and the value is stable before determining the temperature of the water.<br  />
- <br  />
- It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
+It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
 
 </div>
 </div>

@@ -19,7 +19,7 @@ var searchData=
   ['setselectpin_16',['setSelectPin',['../class_spa_iot_1_1_multiplexer.html#a1edd57d24b77c9c3c85b967795ffa087',1,'SpaIot::Multiplexer']]],
   ['setuptrigunitchangemin_17',['SetupTrigUnitChangeMin',['../namespace_spa_iot.html#a2e1e5def57d93aa38ed08cd324d62eec',1,'SpaIot']]],
   ['setuptrigunitchangestepmaxms_18',['SetupTrigUnitChangeStepMaxMs',['../namespace_spa_iot.html#a7ac8d6a4d3de55e316f7e49b268072e0',1,'SpaIot']]],
-  ['singleton_19',['singleton',['../class_spa_iot_1_1_control_panel.html#a508eae168841530a96347c648cca09f6',1,'SpaIot::ControlPanel::singleton(const HardwareSettings &amp;hwsettings)'],['../class_spa_iot_1_1_control_panel.html#a33aec0d7581285c5baee413e05e62236',1,'SpaIot::ControlPanel::singleton(const String &amp;hwSettingsName)']]],
+  ['singleton_19',['singleton',['../class_spa_iot_1_1_control_panel.html#a508eae168841530a96347c648cca09f6',1,'SpaIot::ControlPanel::singleton(const HardwareSettings &amp;hwsettings)'],['../class_spa_iot_1_1_control_panel.html#a33aec0d7581285c5baee413e05e62236',1,'SpaIot::ControlPanel::singleton(const String &amp;hwSettingsName)'],['../class_spa_iot_1_1_control_panel.html#a7e35b939c9f66ddfdb961b900b5ea9b2',1,'SpaIot::ControlPanel::singleton()']]],
   ['size_20',['size',['../class_spa_iot_1_1_multiplexer.html#a422cd666ba5bb62735d37a980254f5dd',1,'SpaIot::Multiplexer']]],
   ['spaiot_21',['SpaIot',['../namespace_spa_iot.html',1,'']]],
   ['spaiot_2dlib_22',['spaiot-lib',['../index.html',1,'']]]

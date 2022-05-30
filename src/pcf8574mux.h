@@ -83,6 +83,15 @@ namespace SpaIot {
        */
       virtual bool operator== (const ButtonController &other) const;
 
+      /**
+       * @brief Reading of the slave m_address of the integrated circuit
+       * @return 7-bit I²C slave m_address, right-aligned
+       */
+      inline uint8_t address() const {
+
+        return m_pcf.address();
+      }
+
     protected:
       TwoWireSlave m_pcf;
       uint8_t m_idle;

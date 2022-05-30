@@ -14,3 +14,5 @@
 #pragma once
 
 #include "controlpanel.h"
+#include "config/hwconfig.h"
+

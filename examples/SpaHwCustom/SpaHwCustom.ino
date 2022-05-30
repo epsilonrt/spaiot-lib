@@ -31,7 +31,7 @@ Cd4051 MuxB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 const BusSettings MyBus (23, 18, 19);
 
 // My button controllers
-Cd4051 MuxA ("U3", 27, 16, 17, 25); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO25
+Cd4051 MuxA ("U3", 27, 16, 17, 33); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO33
 Cd4051 MuxB ("U4", 27, 16, 17, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO26
 
 #else

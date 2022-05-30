@@ -17,24 +17,14 @@
 // | TempDown |  A7 |  1 |  0 |  1 |  1 |  1 |  23 |
 // | TempUnit |  B5 |  0 |  1 |  1 |  0 |  1 |  13 |
 //
-#include <Arduino.h>
-#include <unity.h>
+#include <spaiot_test.h>
+#include <config/hwconfig.h>
 #include <pcf8574mux.h>
 
 using namespace SpaIot;
 
-const uint8_t slaveAddr = 0x38; // PCF8574: 0x20 - PCF8574A: 0x38
-
-const std::map<int, int> TestButtons = {
-  { Power,    10 }, 
-  { Filter,   17 }, 
-  { Bubble,   19 }, 
-  { Heater,   15 }, 
-  { TempUp,   12 }, 
-  { TempDown, 23 }, 
-  { TempUnit, 13 }  
-};
-
+const uint8_t slaveAddr = Mux.address(); // PCF8574: 0x20 - PCF8574A: 0x38
+const std::map<int, ButtonSettings> & TestButtons = DefaultConfig.buttons();
 
 // void setUp(void) {
 // // set stuff up here
@@ -78,7 +68,7 @@ void test_begin () {
 
 void pushButton (Pcf8574Mux &ctrl, int key) {
 
-  TEST_ASSERT_EQUAL (TestButtons.at (key), ctrl.select (TestButtons.at (key)));
+  TEST_ASSERT_EQUAL (TestButtons.at (key).id(), ctrl.select (TestButtons.at (key).id()));
   delay (HoldPressedMs);
   ctrl.deselect ();
 }

@@ -1,8 +1,7 @@
 //
 // Unit Test for the class SpaIot::Cd4051
 //
-#include <Arduino.h>
-#include <unity.h>
+#include <spaiot_test.h>
 #include <cd4051.h>
 
 using namespace SpaIot;
@@ -14,7 +13,7 @@ const int CtrlBInhPin = 0;  // INH->GPIO0
 
 #elif defined(ESP32)
 const std::initializer_list<int> CtrlSelectPin {27, 16, 17}; // A->GPIO27, B->GPIO16, C->GPIO17
-const int CtrlAInhPin = 25; // INH->GPIO25
+const int CtrlAInhPin = 33; // INH->GPIO25
 const int CtrlBInhPin = 26; // INH->GPIO26
 
 #else

@@ -34,7 +34,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install --upgrade platformio
-    - name: Step 6 - Run build esp8266 test using PlatformIO
-      run: pio test -e esp8266 --without-testing --without-uploading
-    - name: Step 7 - Run build esp32 test using PlatformIO
-      run: pio test -e esp32 --without-testing --without-uploading
+    - name: Step 6 - Run build test_esp8266 using PlatformIO
+      run: pio test -e test_esp8266 -i test_07_pcf8574mux --without-testing --without-uploading
+    - name: Step 7 - Run build test_esp32 using PlatformIO
+      run: pio test -e test_esp32 -i test_07_pcf8574mux --without-testing --without-uploading
+    - name: Step 8 - Run build spaiot_shield_pcf8574 using PlatformIO
+      run: pio test -e spaiot_shield_pcf8574 -f test_07_pcf8574mux -f test_08_button -f test_09_framedecoder -f test_10_controlpanel  --without-testing --without-uploading

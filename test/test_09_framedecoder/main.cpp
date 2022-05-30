@@ -1,46 +1,19 @@
 //
 // Unit Test for the class SpaIot::FrameDecoder
 //
-// We use a DIY board connected to a SSP spa, the configuration  is as follows:
-//
-//  const BusSettings MyBus (12, 14, 13); // for ESP8266
-//  const BusSettings MyBus (18, 16, 17); // for ESP32
-//
-//  const std::map<int, LedSettings> SspLeds = {
-//    { Power,          LedSettings (0) },
-//    { Heater,         LedSettings (7) },
-//    { HeatReached,    LedSettings (9) },
-//    { Bubble,         LedSettings (10) },
-//    { Filter,         LedSettings (12) }
-//  };
-#include <Arduino.h>
-#include <unity.h>
+#include <spaiot_test.h>
+#include <config/hwconfig.h>
 #include <framedecoder.h>
-#include <spaiotdebug.h>
 
+// Uncomment to display the frame data 
 //#define LOOP_ENABLED 1
-
 
 using namespace SpaIot;
 
-// My bus configuration :
-#if defined(ESP8266)
-// SDATA  -> GPIO12
-// SCLK   -> GPIO14
-// nWR    -> GPIO13
-const BusSettings MyBus (12, 14, 13);
-
-#elif defined(ESP32)
-// SDATA  -> GPIO23
-// SCLK   -> GPIO18
-// nWR    -> GPIO19
-const BusSettings MyBus (23, 18, 19);
-
-#else
-#error unsupported platform
-#endif
-
-
+// My bus configuration
+const BusSettings  & MyBus = DefaultConfig.bus() ;
+// My Leds
+const std::map <int, LedSettings> & MyLeds =  DefaultConfig.leds();
 
 class TestFrameDecoder : public FrameDecoder {
   public:
@@ -79,7 +52,7 @@ uint8_t   isSanitizerOn;
 void test_constructor () {
   TestFrameDecoder bd;
 
-  decoder = new TestFrameDecoder (MyBus, SspLeds);
+  decoder = new TestFrameDecoder (MyBus, MyLeds);
   TEST_ASSERT_FALSE (decoder->isOpened());
 }
 
@@ -127,9 +100,9 @@ void test_decoder_getters () {
   TestFrameDecoder & bd = *decoder;
 
   TEST_ASSERT (MyBus == bd.busSettings());
-  TEST_ASSERT (SspLeds == bd.ledSettings());
+  TEST_ASSERT (MyLeds == bd.ledSettings());
   test_default_getters (bd);
-  for (const auto & led : SspLeds) {
+  for (const auto & led : MyLeds) {
     int key = led.first;
     TEST_ASSERT_TRUE (bd.hasLed (key));
     TEST_ASSERT_EQUAL (UnsetValue8, bd.isLedOn (key));
@@ -152,7 +125,7 @@ void test_begin_getters (TestFrameDecoder & bd) {
   TEST_ASSERT (bd.rawStatus() != UnsetValue16);
 
   // check if all leds are off
-  for (const auto & led : SspLeds) {
+  for (const auto & led : MyLeds) {
 
     TEST_ASSERT_EQUAL (false, bd.isLedOn (led.first));
   }
@@ -181,15 +154,15 @@ void test_begin_getters (TestFrameDecoder & bd) {
 
 void test_decoder_begin () {
   TestFrameDecoder & bd = *decoder;
-  
+
   bd.begin();
   test_begin_getters (bd);
 }
 
 void test_default_begin () {
   TestFrameDecoder bd;
-  
-  bd.begin(MyBus, SspLeds);
+
+  bd.begin (MyBus, MyLeds);
   test_begin_getters (bd);
 }
 
@@ -198,7 +171,7 @@ void setup() {
   // NOTE!!! Wait for >2 secs
   // if board doesn't support software reset via Serial.DTR/RTS
   delay (2000);
-  TEST_ASSERT_MESSAGE (true, "<IMPORTANT> The spa MUST be OFF.");
+  TEST_PRINTF ("<IMPORTANT> The spa MUST be OFF before running this test !\n");
   UNITY_BEGIN();    // IMPORTANT LINE!
   RUN_TEST (test_constructor);
   RUN_TEST (test_decoder_getters);
@@ -216,101 +189,101 @@ void loop() {
   uint16_t w;
   bool b;
 
-  Serial.print ("> ");
+  TEST_PRINTF ("> ");
   w = decoder->rawStatus();
   if (rawStatus != w) {
-    Serial.printf ("raw:%04X ", w);
+    TEST_PRINTF ("raw:%04X ", w);
     rawStatus = w;
 
     if (isPowerOn != decoder->isPowerOn()) {
 
       isPowerOn = decoder->isPowerOn();
-      Serial.printf ("Power:%d ", isPowerOn);
+      TEST_PRINTF ("Power:%d ", isPowerOn);
     }
     if (isFilterOn != decoder->isFilterOn()) {
 
       isFilterOn = decoder->isFilterOn();
-      Serial.printf ("Filter:%d ", isFilterOn);
+      TEST_PRINTF ("Filter:%d ", isFilterOn);
     }
     if (isBubbleOn != decoder->isBubbleOn()) {
 
       isBubbleOn = decoder->isBubbleOn();
-      Serial.printf ("Bubble:%d ", isBubbleOn);
+      TEST_PRINTF ("Bubble:%d ", isBubbleOn);
     }
     if (isHeaterOn != decoder->isHeaterOn()) {
 
       isHeaterOn = decoder->isHeaterOn();
-      Serial.printf ("Heater:%d ", isHeaterOn);
+      TEST_PRINTF ("Heater:%d ", isHeaterOn);
     }
     if (isHeatReached != decoder->isHeatReached()) {
 
       isHeatReached = decoder->isHeatReached();
-      Serial.printf ("HeatReached:%d ", isHeatReached);
+      TEST_PRINTF ("HeatReached:%d ", isHeatReached);
     }
     if (decoder->hasLed (Jet)) {
       if (isJetOn != decoder->isJetOn()) {
 
         isJetOn = decoder->isJetOn();
-        Serial.printf ("Jet:%d ", isJetOn);
+        TEST_PRINTF ("Jet:%d ", isJetOn);
       }
     }
     if (decoder->hasLed (Sanitizer)) {
       if (isSanitizerOn != decoder->isSanitizerOn()) {
 
         isSanitizerOn = decoder->isSanitizerOn();
-        Serial.printf ("Sanitizer:%d ", isSanitizerOn);
+        TEST_PRINTF ("Sanitizer:%d ", isSanitizerOn);
       }
     }
     if (isHeaterOn != decoder->isHeaterOn()) {
 
       isHeaterOn = decoder->isHeaterOn();
-      Serial.printf ("Heating:%d ", isHeaterOn);
+      TEST_PRINTF ("Heating:%d ", isHeaterOn);
     }
   }
 
   w = decoder->waterTemp();
   if (waterTemp != w) {
-    Serial.printf ("water:%u ", w);
+    TEST_PRINTF ("water:%u ", w);
     waterTemp = w;
   }
 
   w = decoder->desiredTemp();
   if (desiredTemp != w) {
-    Serial.printf ("desired:%u ", w);
+    TEST_PRINTF ("desired:%u ", w);
     desiredTemp  = w;
   }
 
   w = decoder->sanitizerTime();
   if (sanitizerTime != w) {
-    Serial.printf ("set:%u ", w);
+    TEST_PRINTF ("set:%u ", w);
     sanitizerTime = w;
   }
 
   b = decoder->isSetupModeTriggered();
   if (isSetupModeTriggered != b) {
-    Serial.printf ("setup:%u ", b);
+    TEST_PRINTF ("setup:%u ", b);
     isSetupModeTriggered = b;
   }
 
   ul = decoder->frameCounter();
   if (ul != frameCounter) {
-    Serial.printf ("frame:%u ", ul);
+    TEST_PRINTF ("frame:%u ", ul);
     frameCounter = ul;
   }
 
   ul =  decoder->frameDropped();
   if (frameDropped != ul) {
-    Serial.printf ("dropped:%u ", ul);
+    TEST_PRINTF ("dropped:%u ", ul);
     frameDropped = ul;
   }
 
   w = decoder->error();
   if (errorValue != w) {
-    Serial.printf ("error:%u", w);
+    TEST_PRINTF ("error:%u", w);
     errorValue = w;
   }
 
-  Serial.println ("");
+  TEST_PRINTF ("\n");
 #endif
   delay (1000);
 }

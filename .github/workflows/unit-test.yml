@@ -6,11 +6,11 @@ on:
       environment:
         description: 'Build and test environment'     
         required: true
-        default: 'esp32' 
+        default: 'test_esp32' 
         type: choice
         options:
-        - esp32
-        - esp8266
+        - test_esp32
+        - test_esp8266
 
 jobs:
   build:
@@ -42,4 +42,4 @@ jobs:
       env:
         PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
         PLATFORMIO_DEFAULT_ENVS: ${{ github.event.inputs.environment }}
-      run: platformio remote test -r
+      run: platformio remote test -r -i test_07_pcf8574mux

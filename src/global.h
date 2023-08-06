@@ -1,16 +1,16 @@
 /*
- * SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
- * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
- *
- * SpaIot library is licensed under a
- * Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
- *
- * You should have received a copy of the license along with this
- * work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
- *
- * SpaIot library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY;
- */
+   SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
+   This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
+
+   SpaIot library is licensed under a
+   Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+   You should have received a copy of the license along with this
+   work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+
+   SpaIot library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY;
+*/
 #pragma once
 
 #include <Arduino.h>
@@ -20,9 +20,9 @@
 namespace SpaIot {
 
   /**
-   * @enum Key
-   * @brief LED and push buttons identification keys
-   */
+     @enum Key
+     @brief LED and push buttons identification keys
+  */
   enum Key {
     Power = 0,  //!< Power Led or Button
     Filter,     //!< Filter Led or Button
@@ -37,8 +37,8 @@ namespace SpaIot {
   };
 
   /**
-   * @brief Association between keys and key names
-   */
+     @brief Association between keys and key names
+  */
   const std::map<int, String> KeyName = {
     {Power, "Power"},
     {Filter, "Filter"},
@@ -51,6 +51,21 @@ namespace SpaIot {
     {TempDown, "TempDown"},
     {TempUnit, "TempUnit"}
   };
+
+  /**
+    @brief Association between keys and key names
+
+    @param key   The key
+    @return The key name, "Unknown" if the key is not found
+  */
+  inline const char *keyName (int key) {
+
+    if (KeyName.find (key) != KeyName.end()) {
+
+      return KeyName.at (key).c_str();
+    }
+    return "Unknown";
+  }
 
   const uint16_t UnsetValue16 = 0xFFFF; //!< Indeterminate value on 16 bits
   const uint8_t UnsetValue8 = 0xFF; //!< Indeterminate value on 8 bits

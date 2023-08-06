@@ -1,0 +1,367 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+namespace SpaIot {
+	class BusSettings {
+		+BusSettings(const int dataPin, const int clkPin, const int holdPin)
+		+BusSettings(const std::initializer_list<int>& pins)
+		+BusSettings()
+		+isNull() : bool {query}
+		+operator!=(const BusSettings& other) : bool {query}
+		+operator==(const BusSettings& other) : bool {query}
+		+clkPin() : int {query}
+		+dataPin() : int {query}
+		+holdPin() : int {query}
+		-m_pin : std::vector<int>
+		+setClkPin(int pin) : void
+		+setDataPin(int pin) : void
+		+setHoldPin(int pin) : void
+	}
+
+	class Button {
+		+Button()
+		+Button(const ButtonSettings& settings)
+		+ctrl() : ButtonController& {query}
+		+ctrl() : ButtonController&
+		-m_settings : ButtonSettings
+		+settings() : ButtonSettings& {query}
+		+isNull() : bool {query}
+		+isOpened() : bool {query}
+		+isPressed() : bool {query}
+		+operator!=(const Button& other) : bool {query}
+		+operator==(const Button& other) : bool {query}
+		+id() : int {query}
+		+begin() : void
+		+press() : void
+		+push() : void
+		+release() : void
+	}
+
+	abstract class ButtonController {
+		+ButtonController()
+		+ButtonController(const String& name)
+		+~ButtonController()
+		+{static} getFromRegister(const String& name) : ButtonController&
+		+name() : String& {query}
+		+{static} addToRegister(const String& name, ButtonController& controller) : bool
+		+isNull() : bool {query}
+		+isOpened() : bool {query}
+		+isSelected() : bool {query}
+		#m_isopened : bool
+		+operator!=(const ButtonController& other) : bool {query}
+		+operator==(const ButtonController& other) : bool {query}
+		+{static} registerContains(const String& name) : bool
+		#m_selected : int
+		+{abstract} select(int button) : int
+		+selected() : int {query}
+		#m_name : mutable String
+		-{static} Register : static std::map<String, ButtonController&>
+		+{abstract} begin() : void
+		+{abstract} deselect() : void
+		+end() : void
+	}
+
+	class ButtonSettings {
+		+ButtonSettings()
+		+ButtonSettings(const String& controllerName, int buttonId)
+		+ButtonSettings(ButtonController& controller, int buttonId)
+		+ctrl() : ButtonController& {query}
+		+ctrl() : ButtonController&
+		-m_ctrlName : String
+		+controllerName() : String& {query}
+		+isNull() : bool {query}
+		+operator!=(const ButtonSettings& other) : bool {query}
+		+operator==(const ButtonSettings& other) : bool {query}
+		+id() : int {query}
+		-m_id : int
+		-m_ctrl : mutable ButtonController*
+		+setId(int id) : void
+	}
+
+	class Cd4051 {
+		+Cd4051()
+		+Cd4051(const std::initializer_list<int>& spins, int inhPin)
+		+Cd4051(const String& name, const std::initializer_list<int>& spins, int inhPin)
+		+Cd4051(int A, int B, int C, int INH)
+		+Cd4051(const String& name, int A, int B, int C, int INH)
+	}
+
+	class ControlPanel {
+		#ControlPanel(const HardwareSettings& hwsettings)
+		#ControlPanel()
+		+~ControlPanel()
+		+button(int key) : Button&
+		+{static} singleton(const HardwareSettings& hwsettings) : ControlPanel&
+		+{static} singleton(const String& hwSettingsName) : ControlPanel&
+		+{static} singleton() : ControlPanel&
+		+{static} getInstance(const HardwareSettings& hwsettings) : ControlPanel*
+		+{static} getInstance(const String& hwSettingsName) : ControlPanel*
+		+{static} getInstance() : ControlPanel*
+		+hasButton(int key) : bool {query}
+		+isOpened() : bool {query}
+		-m_isopened : bool
+		#makeButtons() : bool
+		+pushButton(int key) : bool
+		+setDesiredTemp(uint16_t temp) : bool
+		+setSanitizerTime(uint16_t time) : bool
+		-{static} m_instance : static ControlPanel*
+		#buttons() : std::map<int , Button>& {query}
+		+buttonSettings() : std::map<int , ButtonSettings> {query}
+		-m_button : std::map<int, Button>
+		-m_btnsettings : std::map<int, ButtonSettings>
+		+waitForDesiredTemp(unsigned long MaxWaitingTimeMs) : uint16_t
+		+setBubble(bool v) : uint8_t
+		+setFilter(bool v) : uint8_t
+		+setHeater(bool v) : uint8_t
+		+setJet(bool v) : uint8_t
+		#setKeyOn(int key, bool v) : uint8_t
+		+setPower(bool v) : uint8_t
+		+begin(unsigned long waitingTimeMs) : void
+		+begin(const HardwareSettings& hwsettings, unsigned long waitingTimeMs) : void
+		+begin(const String& hwSettingsName, unsigned long waitingTimeMs) : void
+		+end() : void
+	}
+
+	class FrameDecoder {
+		#FrameDecoder(const BusSettings& bus, const std::map<int, LedSettings>& leds)
+		#FrameDecoder()
+		+~FrameDecoder()
+		#m_busSettings : BusSettings
+		+busSettings() : BusSettings& {query}
+		-{static} clkRisingInterrupt() : IRAM_ATTR void
+		-{static} holdRisingInterrupt() : IRAM_ATTR void
+		+hasLed(int key) : bool {query}
+		+isOpened() : bool {query}
+		+isSetupModeTriggered() : bool {query}
+		-m_isopened : bool
+		#{static} ResetErrorFrameCounter : static const uint32_t
+		#{static} SetupTrigUnitChangeFrameCounterMax : static const uint32_t
+		#{static} FramePeriodUs : static const unsigned long
+		#{static} m_dataPin : static int
+		#{static} m_frameLedBubble : static uint16_t
+		#{static} m_frameLedFilter : static uint16_t
+		#{static} m_frameLedHeater : static uint16_t
+		#{static} m_frameLedHeaterReached : static uint16_t
+		#{static} m_frameLedJet : static uint16_t
+		#{static} m_frameLedPower : static uint16_t
+		#{static} m_frameLedSanitizer : static uint16_t
+		#{static} m_isDisplayBlink : static volatile bool
+		#{static} m_counterTempUnitChanged : static volatile uint16_t
+		#{static} m_desiredTemp : static volatile uint16_t
+		#{static} m_displayValue : static volatile uint16_t
+		#{static} m_errorValue : static volatile uint16_t
+		#{static} m_frameShift : static volatile uint16_t
+		#{static} m_frameValue : static volatile uint16_t
+		#{static} m_latestDesiredTemp : static volatile uint16_t
+		#{static} m_latestDisplayValue : static volatile uint16_t
+		#{static} m_latestLedStatus : static volatile uint16_t
+		#{static} m_latestWaterTemp : static volatile uint16_t
+		#{static} m_rawStatus : static volatile uint16_t
+		#{static} m_sanitizerTime : static volatile uint16_t
+		#{static} m_stableDisplayValueCounter : static volatile uint16_t
+		#{static} m_stableLedStatusCounter : static volatile uint16_t
+		#{static} m_stableWaterTempCounter : static volatile uint16_t
+		#{static} m_unsetDigits : static volatile uint16_t
+		#{static} m_waterTemp : static volatile uint16_t
+		#{static} m_frameCounter : static volatile uint32_t
+		#{static} m_frameDropped : static volatile uint32_t
+		#{static} m_lastBlackDisplayFrameCounter : static volatile uint32_t
+		#{static} m_lastErrorChangeFrameCounter : static volatile uint32_t
+		#{static} m_lastSanitizerFrameCounter : static volatile uint32_t
+		#{static} m_lastTempUnitChangeFrameCounter : static volatile uint32_t
+		#{static} m_lastTempUnit : static volatile uint8_t
+		+ledSettings() : std::map<int , LedSettings> {query}
+		#m_ledSettings : std::map<int, LedSettings>
+		#{static} convertDisplayToCelsius(uint16_t m_displayValue) : uint16_t
+		+desiredTemp() : uint16_t {query}
+		+error() : uint16_t
+		+rawStatus() : uint16_t {query}
+		+sanitizerTime() : uint16_t {query}
+		+waitForWaterTemp(unsigned long MaxWaitingTimeMs) : uint16_t {query}
+		+waterTemp() : uint16_t {query}
+		+frameCounter() : uint32_t {query}
+		+frameDropped() : uint32_t {query}
+		+isBubbleOn() : uint8_t {query}
+		+isDisplayBlink() : uint8_t {query}
+		+isFilterOn() : uint8_t {query}
+		+isHeatReached() : uint8_t {query}
+		+isHeaterOn() : uint8_t {query}
+		+isJetOn() : uint8_t {query}
+		+isLedOn(int key) : uint8_t {query}
+		+isPowerOn() : uint8_t {query}
+		+isSanitizerOn() : uint8_t {query}
+		+waitUntilDisplayBlink(unsigned long MaxWaitingTimeMs) : uint8_t {query}
+		+begin(unsigned long waitingTimeMs) : void
+		+begin(const BusSettings& settings, const std::map<int, LedSettings>& leds, unsigned long waitingTimeMs) : void
+		+end() : void
+	}
+
+	class HardwareSettings {
+		+HardwareSettings()
+		+HardwareSettings(const BusSettings& bus, const std::map<int, LedSettings>& leds, const std::map<int, ButtonSettings>& buttons)
+		+bus() : BusSettings& {query}
+		+{static} getFromRegister(const String& name) : HardwareSettings&
+		+{static} addToRegister(const String& name, const HardwareSettings& settings) : bool
+		+isNull() : bool {query}
+		+operator!=(const HardwareSettings& other) : bool {query}
+		+operator==(const HardwareSettings& other) : bool {query}
+		+{static} registerContains(const String& name) : bool
+		-m_bus : const BusSettings*
+		-m_buttons : const std::map<int, ButtonSettings>*
+		-m_leds : const std::map<int, LedSettings>*
+		-{static} Register : static std::map<String, const HardwareSettings*>
+		+buttons() : std::map<int , ButtonSettings>& {query}
+		+leds() : std::map<int , LedSettings>& {query}
+		+print(Print& out) : void {query}
+	}
+
+	class LedSettings {
+		+LedSettings()
+		+LedSettings(const uint8_t order)
+		+isNull() : bool {query}
+		+operator!=(const LedSettings& other) : bool {query}
+		+operator==(const LedSettings& other) : bool {query}
+		+frame() : uint16_t {query}
+		-m_order : uint8_t
+		+order() : uint8_t {query}
+		+setOrder(const uint8_t order) : void
+	}
+
+	class Multiplexer <template<int W>> {
+		+Multiplexer(const std::initializer_list<int>& spins, int inhPin)
+		+Multiplexer(const String& name, const std::initializer_list<int>& spins, int inhPin)
+		+Multiplexer()
+		+isNull() : bool {query}
+		+operator==(const ButtonController& other) : bool {query}
+		#m_inh : int
+		+select(int button) : int
+		+selectPin(int key) : int {query}
+		+size() : int {query}
+		#m_spin : std::vector<int>
+		+begin() : void
+		+deselect() : void
+		+end() : void
+		+setSelectPin(int key, int pin) : void
+	}
+
+	class Pcf8574Mux {
+		+Pcf8574Mux(uint8_t slaveAddress, TwoWire& bus, uint8_t idleValue)
+		+Pcf8574Mux(const String& name, uint8_t slaveAddress, TwoWire& bus, uint8_t idleValue)
+		#m_pcf : TwoWireSlave
+		+isNull() : bool {query}
+		+operator==(const ButtonController& other) : bool {query}
+		+select(int button) : int
+		+address() : uint8_t {query}
+		#m_idle : uint8_t
+		+begin() : void
+		+deselect() : void
+		+end() : void
+	}
+
+	class TwoWireSlave {
+		+TwoWireSlave(uint8_t slaveAddress, TwoWire& bus)
+		+bus() : TwoWire& {query}
+		-m_bus : TwoWire&
+		+read() : int
+		+read(uint8_t* values, uint16_t len) : int
+		+read(uint8_t dataAddress) : int
+		+read(uint8_t dataAddress, uint8_t* values, uint16_t len) : int
+		+write(uint8_t value) : int
+		+write(const uint8_t* values, uint16_t len) : int
+		+write(uint8_t dataAddress, uint8_t value) : int
+		+write(uint8_t dataAddress, const uint8_t* values, uint16_t len) : int
+		+address() : uint8_t {query}
+		-m_address : uint8_t
+		+setAddress(uint8_t slaveAddress) : void
+	}
+
+	enum Key {
+		Bubble
+		Filter
+		HeatReached
+		Heater
+		Jet
+		Power
+		Sanitizer
+		TempDown
+		TempUnit
+		TempUp
+	}
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+SpaIot.ButtonController <|-- SpaIot.Multiplexer
+
+
+SpaIot.ButtonController <|-- SpaIot.Pcf8574Mux
+
+
+SpaIot.FrameDecoder <|-- SpaIot.ControlPanel
+
+
+SpaIot.Multiplexer <|-- SpaIot.Cd4051
+
+
+
+
+
+/' Aggregation relationships '/
+
+SpaIot.Button *-- SpaIot.ButtonSettings
+
+
+SpaIot.ButtonController *-- SpaIot.ButtonController
+
+
+SpaIot.ButtonSettings o-- SpaIot.ButtonController
+
+
+SpaIot.ControlPanel *-- SpaIot.Button
+
+
+SpaIot.ControlPanel *-- SpaIot.ButtonSettings
+
+
+SpaIot.ControlPanel o-- SpaIot.ControlPanel
+
+
+SpaIot.FrameDecoder *-- SpaIot.BusSettings
+
+
+SpaIot.FrameDecoder *-- SpaIot.LedSettings
+
+
+SpaIot.HardwareSettings o-- SpaIot.BusSettings
+
+
+SpaIot.HardwareSettings *-- SpaIot.ButtonSettings
+
+
+SpaIot.HardwareSettings o-- SpaIot.HardwareSettings
+
+
+SpaIot.HardwareSettings *-- SpaIot.LedSettings
+
+
+SpaIot.Pcf8574Mux *-- SpaIot.TwoWireSlave
+
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml

@@ -21,9 +21,4 @@
 #elif defined(SPAIOTCFG_CUSTOM)
 #include "hwconfig_custom.h"
 
-#else
-#warning "No hardware configuration defined, using config/hwconfig_custom.h"
-#define SPAIOTCFG_CUSTOM 1
-#include "hwconfig_custom.h"
-
 #endif

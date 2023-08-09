@@ -16,6 +16,16 @@
 #include <Arduino.h>
 #include <map>
 
+#ifndef SPAIOT_DATA_PIN 
+#define SPAIOT_DATA_PIN 12 // Default data pin for ESP32 and ESP8266
+#endif
+#ifndef SPAIOT_CLK_PIN
+#define SPAIOT_CLK_PIN 14 // Default clock pin for ESP32 and ESP8266
+#endif
+#ifndef SPAIOT_HOLD_PIN
+#define SPAIOT_HOLD_PIN 13 // Default hold pin for ESP32 and ESP8266
+#endif
+
 //! SpaIot name space
 namespace SpaIot {
 
@@ -77,4 +87,7 @@ namespace SpaIot {
   const unsigned long HoldPressedMs = 300; //!< Time between press and release a button
   const unsigned long BeginWaitingTimeMs = 3000; //!< \c begin() waiting time in milliseconds
   const unsigned long ResetErrorTimeMs = 4000; //!< Time after which an error can be erased
+  const int DataPin = SPAIOT_DATA_PIN;  //!< Data pin
+  const int ClkPin  = SPAIOT_CLK_PIN;   //!< Clock pin
+  const int HoldPin = SPAIOT_HOLD_PIN;  //!< Hold pin
 }

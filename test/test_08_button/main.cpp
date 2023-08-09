@@ -1,5 +1,8 @@
 //
 // Unit Test for the class SpaIot::Button
+// How to run:
+// pio test -f test_08_button -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 //
 #include <spaiot_test.h>
 #include <config/hwconfig.h>

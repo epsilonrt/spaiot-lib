@@ -1,5 +1,8 @@
 //
 // Unit Test for the class SpaIot::Pcf8574Mux
+// How to run:
+// pio test -f test_07_pcf8574mux -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 // 
 // The buttons controller is a PCF8574 connected to 2 multiplexers 4051 as follows:
 // - The selection pins {A, B, C} of the 2 multiplexers are connected 

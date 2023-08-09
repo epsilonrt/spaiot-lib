@@ -1,12 +1,16 @@
 //
 // Unit Test for the class SpaIot::FrameDecoder
-//
+// How to run:
+// pio test -f test_09_framedecoder -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 #include <spaiot_test.h>
 #include <config/hwconfig.h>
 #include <framedecoder.h>
 
-// Uncomment to display the frame data 
-//#define LOOP_ENABLED 1
+// Set to 1 to enable the loop() function that will print all changes
+#define LOOP_ENABLED 0
+// Set to 1 to enable the frame counter (only for debug, LOOP_ENABLED must be 1 too)
+#define FRAME_COUNTER_ENABLED 0
 
 using namespace SpaIot;
 
@@ -171,28 +175,27 @@ void setup() {
   // NOTE!!! Wait for >2 secs
   // if board doesn't support software reset via Serial.DTR/RTS
   delay (2000);
-  TEST_PRINTF ("<IMPORTANT> The spa MUST be OFF before running this test !\n");
+  TEST_MESSAGE ("<IMPORTANT> The spa MUST be OFF before running this test !");
   UNITY_BEGIN();    // IMPORTANT LINE!
   RUN_TEST (test_constructor);
   RUN_TEST (test_decoder_getters);
   RUN_TEST (test_default_constructor);
   RUN_TEST (test_default_begin);
   RUN_TEST (test_decoder_begin);
-#ifndef LOOP_ENABLED
+#if ! LOOP_ENABLED
   UNITY_END(); // stop unit testing
 #endif
 }
 
 void loop() {
-#ifdef LOOP_ENABLED
+#if LOOP_ENABLED
   uint32_t ul;
   uint16_t w;
   bool b;
 
-  TEST_PRINTF ("> ");
   w = decoder->rawStatus();
   if (rawStatus != w) {
-    TEST_PRINTF ("raw:%04X ", w);
+    TEST_PRINTF ("raw:%X ", w);
     rawStatus = w;
 
     if (isPowerOn != decoder->isPowerOn()) {
@@ -265,11 +268,13 @@ void loop() {
     isSetupModeTriggered = b;
   }
 
+#if FRAME_COUNTER_ENABLED
   ul = decoder->frameCounter();
   if (ul != frameCounter) {
     TEST_PRINTF ("frame:%u ", ul);
     frameCounter = ul;
   }
+#endif
 
   ul =  decoder->frameDropped();
   if (frameDropped != ul) {
@@ -283,7 +288,6 @@ void loop() {
     errorValue = w;
   }
 
-  TEST_PRINTF ("\n");
 #endif
   delay (1000);
 }

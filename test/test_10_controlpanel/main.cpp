@@ -1,6 +1,9 @@
 //
 // Unit Test for the class SpaIot::ControlPanel
 //
+// How to run:
+// pio test -f test_10_controlpanel -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 // We use a DIY board connected to a SSP spa.
 #include <spaiot_test.h>
 #include <config/hwconfig.h>
@@ -40,14 +43,12 @@ void setUp (void) {
 // }
 
 void test_constructor () {
-  TEST_PRINTF ("---> test_constructor <---\n");
 
   TEST_ASSERT_FALSE (panel.isOpened());
 }
 
 
 void test_getters () {
-  TEST_PRINTF ("---> test_getters <---\n");
 
   frameCounter = panel.frameCounter();
   TEST_ASSERT_EQUAL (0, frameCounter);
@@ -93,7 +94,7 @@ void test_getters () {
 }
 
 void test_begin () {
-  TEST_PRINTF ("---> test_begin <---\n");
+  TEST_MESSAGE ("---> test_begin <---");
   panel.begin (DefaultConfig);
   TEST_ASSERT_TRUE (panel.isOpened ());
 
@@ -140,20 +141,20 @@ void test_begin () {
 }
 
 void test_power_on () {
-  TEST_PRINTF ("---> test_power_on <---\n");
+  TEST_MESSAGE ("---> test_power_on <---");
 
   if (panel.isPowerOn()) {
 
     TEST_ASSERT_FALSE (panel.setPower (false));
   }
 
-  TEST_PRINTF ("Set power on !\n");
+  TEST_MESSAGE ("Set power on !");
   TEST_ASSERT_TRUE (panel.setPower ());
 }
 
 void test_filter () {
 
-  TEST_PRINTF ("---> test_filter <---\n");
+  TEST_MESSAGE ("---> test_filter <---");
 
   if (panel.isFilterOn()) {
 
@@ -161,72 +162,72 @@ void test_filter () {
     delay (1000);
   }
 
-  TEST_PRINTF ("Set filter on !\n");
+  TEST_MESSAGE ("Set filter on !");
   TEST_ASSERT_TRUE (panel.setFilter ());
   delay (500);
 
-  TEST_PRINTF ("Set filter off !\n");
+  TEST_MESSAGE ("Set filter off !");
   TEST_ASSERT_FALSE (panel.setFilter (false));
 }
 
 void test_bubble () {
 
-  TEST_PRINTF ("---> test_bubble <---\n");
+  TEST_MESSAGE ("---> test_bubble <---");
   if (panel.isBubbleOn()) {
 
     TEST_ASSERT_FALSE (panel.setBubble (false));
     delay (1000);
   }
 
-  TEST_PRINTF ("Set bubble on !\n");
+  TEST_MESSAGE ("Set bubble on !");
   TEST_ASSERT_TRUE (panel.setBubble ());
   delay (500);
 
-  TEST_PRINTF ("Set bubble off !\n");
+  TEST_MESSAGE ("Set bubble off !");
   TEST_ASSERT_FALSE (panel.setBubble (false));
 }
 
 void test_heater () {
   unsigned long t;
 
-  TEST_PRINTF ("---> test_heater <---\n");
+  TEST_MESSAGE ("---> test_heater <---");
   if (panel.isHeaterOn()) {
 
     TEST_ASSERT_FALSE (panel.setHeater (false));
     delay (1000);
   }
 
-  TEST_PRINTF ("Set heater on !\n");
+  TEST_MESSAGE ("Set heater on !");
   t = millis();
   TEST_ASSERT_TRUE (panel.setHeater ());
-  TEST_PRINTF ("execution time: %ld\n", millis() - t);
+  TEST_PRINTF ("execution time: %d", millis() - t);
   TEST_ASSERT_TRUE (panel.isFilterOn());
   delay (500);
 
-  TEST_PRINTF ("Set heater off !\n");
+  TEST_MESSAGE ("Set heater off !");
   t = millis();
   TEST_ASSERT_FALSE (panel.setHeater (false));
-  TEST_PRINTF ("execution time: %ld\n", millis() - t);
+  TEST_PRINTF ("execution time: %d", millis() - t);
 
-  TEST_PRINTF ("Set filter off !\n");
+  TEST_MESSAGE ("Set filter off !");
   TEST_ASSERT_FALSE (panel.setFilter (false));
 }
 
 void test_watertemp () {
-  TEST_PRINTF ("---> test_watertemp <---\n");
+  TEST_MESSAGE ("---> test_watertemp <---");
 
   unsigned long t = millis();
   waterTemp = panel.waitForWaterTemp();
   if (waterTemp != UnsetValue16) {
 
     t = millis() - t;
-    TEST_PRINTF ("waterTemp: %d'C (response time %lu ms)\n", waterTemp, t);
+    TEST_PRINTF ("waterTemp: %d'C (response time %u ms)", waterTemp, t);
   }
   TEST_ASSERT (waterTemp != UnsetValue16);
 }
 
 void test_get_desiredtemp () {
-  TEST_PRINTF ("---> test_get_desiredtemp <---\n");
+  TEST_MESSAGE ("---> test_get_desiredtemp <---");
 
 #ifndef DISABLE_DESIRED_TEMP
   unsigned long t = millis();
@@ -234,16 +235,16 @@ void test_get_desiredtemp () {
   if (desiredTemp != UnsetValue16) {
 
     t = millis() - t;
-    TEST_PRINTF ("desiredTemp: %d'C (response time %lu ms)\n", desiredTemp, t);
+    TEST_PRINTF ("desiredTemp: %d'C (response time %u ms)", desiredTemp, t);
   }
   panel.waitUntilDisplayBlink();
 #else
-  TEST_IGNORE_MESSAGE ("DISABLE_DESIRED_TEMP defined, nothing was done\n");
+  TEST_IGNORE_MESSAGE ("DISABLE_DESIRED_TEMP defined, nothing was done");
 #endif
 }
 
 void test_set_desiredtemp () {
-  TEST_PRINTF ("---> test_set_desiredtemp <---\n");
+  TEST_MESSAGE ("---> test_set_desiredtemp <---");
 
 #ifndef DISABLE_DESIRED_TEMP
   TEST_ASSERT_FALSE (panel.setDesiredTemp (10));
@@ -262,9 +263,9 @@ void test_set_desiredtemp () {
 }
 
 void test_power_off () {
-  TEST_PRINTF ("---> test_power_off <---\n");
+  TEST_MESSAGE ("---> test_power_off <---");
 
-  TEST_PRINTF ("Set heater off !\n");
+  TEST_MESSAGE ("Set heater off !");
   TEST_ASSERT_FALSE (panel.setPower (false));
 }
 

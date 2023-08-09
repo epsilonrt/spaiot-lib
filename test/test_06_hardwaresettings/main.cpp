@@ -1,15 +1,20 @@
 //
 // Unit Test for the class SpaIot::HardwareSettings
+// How to run:
+// pio test -f test_06_hardwaresettings -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 //
 #include <Arduino.h>
 #include <unity.h>
 #include <hardwaresettings.h>
 #include <type_name.h>
+#include <config/hwconfig.h>
 
 using namespace SpaIot;
 
 // ScipBus
-const BusSettings TestBus (12, 14, 13);
+const BusSettings &TestBus = DefaultConfig.bus();
+
 // SspLeds
 const std::map<int, LedSettings> TestSspLeds = {
   { Power,          LedSettings (0) },
@@ -101,12 +106,6 @@ void test_assignation (void) {
   TEST_ASSERT (s2 == s1);
 }
 
-void printHarwareSettings (const char * name, const HardwareSettings & s) {
-
-  Serial.printf ("--- %s: %s ----------------------------\n",  type_name (s).c_str(), name);
-  s.print (Serial);
-}
-
 void test_global (void) {
 
   TEST_ASSERT_TRUE (HardwareSettings::addToRegister ("TEST", TestSSP));
@@ -115,15 +114,12 @@ void test_global (void) {
   TEST_ASSERT_FALSE (HardwareSettings::addToRegister ("SCIP2SJB", TestSJB));
   TEST_ASSERT (HardwareSettings::getFromRegister ("TEST") == TestSSP);
 
-  printHarwareSettings ("TestSJB", TestSJB);
+  const HardwareSettings &s (HardwareSettings::getFromRegister ("SCIP2SJB"));
 
-  const HardwareSettings & s (HardwareSettings::getFromRegister ("SCIP2SJB"));
-  printHarwareSettings ("SCIP2SJB", s);
-
+  TEST_ASSERT (s == TestSJB);
   TEST_ASSERT (s.bus() == TestSJB.bus());
   TEST_ASSERT (s.leds() == TestSJB.leds());
   TEST_ASSERT (s.buttons() == TestSJB.buttons());
-  TEST_ASSERT (s == TestSJB);
   TEST_ASSERT (HardwareSettings::getFromRegister ("SCIP2SSP") == TestSSP);
 }
 
@@ -134,22 +130,17 @@ void setup() {
   delay (2000);
 
   UNITY_BEGIN();    // IMPORTANT LINE!
+  RUN_TEST (test_constructor_null);
+  RUN_TEST (test_constructor_notnull);
+  RUN_TEST (test_getters);
+  RUN_TEST (test_comparison);
+  RUN_TEST (test_assignation);
+  RUN_TEST (test_global);
+
+  UNITY_END(); // stop unit testing
 }
 
-bool done = false;
 
 void loop() {
 
-  if (!done) {
-
-    RUN_TEST (test_constructor_null);
-    RUN_TEST (test_constructor_notnull);
-    RUN_TEST (test_getters);
-    RUN_TEST (test_comparison);
-    RUN_TEST (test_assignation);
-    RUN_TEST (test_global);
-
-    UNITY_END(); // stop unit testing
-    done = true;
-  }
 }

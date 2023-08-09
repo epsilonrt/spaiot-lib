@@ -1,5 +1,8 @@
 //
 // Unit Test for the class SpaIot::Cd4051
+// How to run:
+// pio test -f test_07_multiplexer -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 //
 #include <spaiot_test.h>
 #include <cd4051.h>
@@ -10,6 +13,11 @@ using namespace SpaIot;
 const std::initializer_list<int> CtrlSelectPin {5, 4, 15}; // A->GPIO5, B->GPIO4, C->GPIO15
 const int CtrlAInhPin = 16; // INH->GPIO16
 const int CtrlBInhPin = 0;  // INH->GPIO0
+
+#elif defined(ARDUINO_LOLIN_S3)
+const std::initializer_list<int> CtrlSelectPin {4, 5, 6}; // A->GPIO4, B->GPIO5, C->GPIO6
+const int CtrlAInhPin = 7; // INH->GPIO7
+const int CtrlBInhPin = 15; // INH->GPIO15
 
 #elif defined(ESP32)
 const std::initializer_list<int> CtrlSelectPin {27, 16, 17}; // A->GPIO27, B->GPIO16, C->GPIO17

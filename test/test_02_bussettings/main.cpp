@@ -1,15 +1,15 @@
 //
 // Unit Test for the class SpaIot::BusSettings
+// How to run:
+// pio test -f test_02_bussettings -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 //
 #include <Arduino.h>
 #include <unity.h>
 #include <bussettings.h>
+#include <config/hwconfig.h>
 
 using namespace SpaIot;
-
-const int DataPin = 12;
-const int ClkPin  = 14;
-const int HoldPin = 13;
 
 // void setUp(void) {
 // // set stuff up here
@@ -72,7 +72,7 @@ void test_assignation (void) {
 void test_global (void) {
   BusSettings s (DataPin, ClkPin, HoldPin);
 
-  TEST_ASSERT (ScipBus == s);
+  TEST_ASSERT (DefaultConfig.bus() == s);
 }
 
 void setup() {

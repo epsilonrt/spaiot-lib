@@ -1,5 +1,8 @@
 //
 // Unit Test for the class SpaIot::ButtonSettings
+// How to run:
+// pio test -f test_04_buttonsettings -v
+// -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 //
 #include <Arduino.h>
 #include <unity.h>

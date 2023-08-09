@@ -1,15 +1,16 @@
 # spaiot-lib
 Supervision and Control library for Intxx PxxxSPA with an ESP8266 or ESP32
 
-[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/epsilonrt/spaiot-lib?include_prereleases)](https://github.com/epsilonrt/spaiot-lib/releases)
 [![Build](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build.yml)
 [![BuildTest](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build-test.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/build-test.yml)
-[![UnitTest](https://github.com/epsilonrt/spaiot-lib/actions/workflows/unit-test.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/unit-test.yml)
-
+[![UnitTest](https://github.com/epsilonrt/spaiot-lib/actions/workflows/unit-test.yml/badge.svg)](https://github.com/epsilonrt/spaiot-lib/actions/workflows/unit-test.yml)  
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/epsilonrt/spaiot-lib?include_prereleases)](https://github.com/epsilonrt/spaiot-lib/releases)
 [![PlatformIO Registry](https://badges.registry.platformio.org/packages/epsilonrt/library/spaiot-lib.svg)](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib)
+[![Arduino Registry](https://www.ardu-badge.com/badge/spaiot-lib.svg)](https://www.arduinolibraries.info/libraries/spaiot-lib)  
+[![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
 [![Platform ESP8266](https://img.shields.io/badge/Platform-Espressif8266-orange)](#)
 [![Platform ESP32](https://img.shields.io/badge/Platform-Espressif32-orange)](#)
-[![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
+
 
 ---
 
@@ -58,12 +59,7 @@ It is documented using [doxygen](https://www.doxygen.nl/index.html) and delivere
 ### ArduinoIDE  
 1. Install [Arduino IDE](https://www.arduino.cc/en/software)  
 2. Install Arduino core for [ESP8266](https://github.com/esp8266/Arduino#installing-with-boards-manager) or [ESP32](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html)  
-3. Download from GitHub, you should navigate to the top level of the [spaiot-lib project](https://github.com/epsilonrt/spaiot-lib) and then a green "Code" download button will be visible on the right. 
-Choose the Download ZIP option from the Code pull-down menu.  
-4. Since you have downloaded the ZIP file, open your Arduino IDE, click on Sketch > Include Library > Add .ZIP Library. 
-Choose the ZIP file you just downloaded，and if the library install correct, you will see Library added to your libraries in the notice window. Which means the library is installed successfully.  
-
-Then let's check if the library install correctly.
+3. Install **spaiot-lib** by using [Library Manager](https://www.arduino.cc/en/guide/libraries#toc3), spaio-lib is available in the [Arduino Library Manager](https://www.arduinolibraries.info/libraries/spaiot-lib)
 
 When you add the library successfully, there will be a demo in the Example. In this case, click on File > Example > spaiot-lib > SpaSimple to open an example.  
 Choose the highest CPU frequency (160MHz for ESP8266, 240MHz for ESP32) from the Tools > CPU Frequency menu, click on the Verify button, if there's no error, congratulation, the library is installed perfectly.

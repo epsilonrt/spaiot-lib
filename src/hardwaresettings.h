@@ -15,6 +15,7 @@
 
 #include <Arduino.h>
 #include "bussettings.h"
+#include "ledsettings.h"
 #include "buttonsettings.h"
 
 namespace SpaIot {

@@ -15,6 +15,7 @@
 
 #include <Arduino.h>
 #include <map>
+#include <pImpl.h>
 
 #ifndef SPAIOT_DATA_PIN 
 #define SPAIOT_DATA_PIN 12 // Default data pin for ESP32 and ESP8266

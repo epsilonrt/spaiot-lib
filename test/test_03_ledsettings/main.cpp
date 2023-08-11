@@ -6,7 +6,7 @@
 //
 #include <Arduino.h>
 #include <unity.h>
-#include <bussettings.h>
+#include <ledsettings.h>
 
 using namespace SpaIot;
 
@@ -59,6 +59,8 @@ void test_setters (void) {
   led.setOrder (ledId + 16);
   TEST_ASSERT_EQUAL (ledId, led.order());
   TEST_ASSERT_EQUAL (frame, led.frame());
+  led.clear();
+  TEST_ASSERT_TRUE (led.isNull());
 }
 
 void test_comparison (void) {
@@ -70,12 +72,33 @@ void test_comparison (void) {
   TEST_ASSERT (led1 != led3);
 }
 
-void test_assignation (void) {
+void test_copy (void) {
   LedSettings led1;
   LedSettings led2 (ledId);
+  LedSettings led3 (led2);
 
   led1 = led2;
-  TEST_ASSERT (led1 == led2);
+  TEST_ASSERT (led2 == led1);
+  TEST_ASSERT (led3 == led2);
+}
+
+void test_move (void) {
+  const   LedSettings led1 (ledId);
+
+  // Test move constructor
+  LedSettings led2 = led1;
+  LedSettings led3 = std::move (led2);
+  TEST_ASSERT (led3 == led1);
+  TEST_ASSERT_TRUE (led2.isNull());
+
+  // Test move assignment
+  led2 = std::move (led3);
+  TEST_ASSERT (led2 == led1);
+  TEST_ASSERT_TRUE (led3.isNull());
+
+  led3.clear(); // check if clear() reset the d_ptr instance
+  led3 = led1;
+  TEST_ASSERT (led3 == led1);
 }
 
 void test_global (void) {
@@ -105,7 +128,8 @@ void loop() {
     RUN_TEST (test_getters);
     RUN_TEST (test_setters);
     RUN_TEST (test_comparison);
-    RUN_TEST (test_assignation);
+    RUN_TEST (test_copy);
+    RUN_TEST (test_move);
     RUN_TEST (test_global);
 
     UNITY_END(); // stop unit testing

@@ -16,6 +16,7 @@
 
 #include <map>
 #include "bussettings.h"
+#include "ledsettings.h"
 
 namespace SpaIot {
 

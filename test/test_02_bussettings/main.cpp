@@ -50,6 +50,8 @@ void test_setters (void) {
   TEST_ASSERT_EQUAL (DataPin, s.dataPin());
   TEST_ASSERT_EQUAL (ClkPin, s.clkPin());
   TEST_ASSERT_EQUAL (HoldPin, s.holdPin());
+  s.clear();
+  TEST_ASSERT_TRUE (s.isNull());
 }
 
 void test_comparison (void) {
@@ -61,13 +63,35 @@ void test_comparison (void) {
   TEST_ASSERT (s2 != s3);
 }
 
-void test_assignation (void) {
+void test_copy (void) {
   BusSettings s1;
   BusSettings s2 (DataPin, ClkPin, HoldPin);
+  BusSettings s3 (s2);
 
   s1 = s2;
   TEST_ASSERT (s2 == s1);
+  TEST_ASSERT (s3 == s2);
 }
+
+void test_move (void) {
+  const BusSettings s1 (DataPin, ClkPin, HoldPin);
+
+  // Test move constructor
+  BusSettings s2 = s1;
+  BusSettings s3 = std::move (s2);
+  TEST_ASSERT (s3 == s1);
+  TEST_ASSERT_TRUE (s2.isNull());
+
+  // Test move assignment
+  s2 = std::move (s3);
+  TEST_ASSERT (s2 == s1);
+  TEST_ASSERT_TRUE (s3.isNull());
+
+  s3.clear(); // check if clear() reset the d_ptr instance
+  s3 = s1;
+  TEST_ASSERT (s3 == s1);
+}
+
 
 void test_global (void) {
   BusSettings s (DataPin, ClkPin, HoldPin);
@@ -95,7 +119,8 @@ void loop() {
     RUN_TEST (test_getters);
     RUN_TEST (test_setters);
     RUN_TEST (test_comparison);
-    RUN_TEST (test_assignation);
+    RUN_TEST (test_copy);
+    RUN_TEST (test_move);
     RUN_TEST (test_global);
 
     UNITY_END(); // stop unit testing

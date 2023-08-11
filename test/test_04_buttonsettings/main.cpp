@@ -53,6 +53,8 @@ void test_setters (void) {
 
   s.setId (TestButtons.at (Filter).id());
   TEST_ASSERT_EQUAL (TestButtons.at (Filter).id(), s.id());
+  s.clear();
+  TEST_ASSERT_TRUE (s.isNull());
 }
 
 void test_comparison (void) {
@@ -64,12 +66,33 @@ void test_comparison (void) {
   TEST_ASSERT (s2 != s3);
 }
 
-void test_assignation (void) {
-  ButtonSettings s1;
-  ButtonSettings s2 (TestButtons.at (Filter).controllerName(), TestButtons.at (Filter).id());
+void test_copy (void) {
+  const ButtonSettings s1 (TestButtons.at (Filter).controllerName(), TestButtons.at (Filter).id());
+  ButtonSettings s2;
+  ButtonSettings s3 (s1);
 
-  s1 = s2;
+  s2 = s1;
   TEST_ASSERT (s2 == s1);
+  TEST_ASSERT (s3 == s1);
+}
+
+void test_move (void) {
+  const   ButtonSettings s1 (TestButtons.at (Filter).controllerName(), TestButtons.at (Filter).id());
+
+  // Test move constructor
+  ButtonSettings s2 = s1;
+  ButtonSettings s3 = std::move (s2);
+  TEST_ASSERT (s3 == s1);
+  TEST_ASSERT_TRUE (s2.isNull());
+
+  // Test move assignment
+  s2 = std::move (s3);
+  TEST_ASSERT (s2 == s1);
+  TEST_ASSERT_TRUE (s3.isNull());
+
+  s3.clear(); // check if clear() reset the d_ptr instance
+  s3 = s1;
+  TEST_ASSERT (s3 == s1);
 }
 
 void test_global (void) {
@@ -99,7 +122,8 @@ void loop() {
     RUN_TEST (test_getters);
     RUN_TEST (test_setters);
     RUN_TEST (test_comparison);
-    RUN_TEST (test_assignation);
+    RUN_TEST (test_copy);
+    RUN_TEST (test_move);
     RUN_TEST (test_global);
 
     UNITY_END(); // stop unit testing

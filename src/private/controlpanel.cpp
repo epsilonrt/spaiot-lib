@@ -14,7 +14,7 @@
 #include <Arduino.h>
 #include <controlpanel.h>
 #include "defines_p.h"
-#include "spaiotdebug.h"
+#include <spaiotdebug.h>
 
 namespace SpaIot {
 

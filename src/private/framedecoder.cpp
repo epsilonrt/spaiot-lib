@@ -15,7 +15,7 @@
 #include <Arduino.h>
 #include <framedecoder.h>
 #include "defines_p.h"
-#include "spaiotdebug.h"
+#include <spaiotdebug.h>
 
 namespace SpaIot {
 

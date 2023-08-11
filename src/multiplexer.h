@@ -16,7 +16,7 @@
 #include <vector>
 #include <initializer_list>
 #include <type_traits>
-#include "spaiotdebug.h"
+#include <spaiotdebug.h>
 
 #include "buttoncontroller.h"
 

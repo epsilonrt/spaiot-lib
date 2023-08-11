@@ -107,6 +107,17 @@ namespace SpaIot {
   // }
 
   //----------------------------------------------------------------------------
+  bool BusSettings::isNull() const {
+    
+    if (d_ptr != nullptr) {
+      PIMPL_D (const BusSettings);
+
+      return d->pin[0] == -1 || d->pin[1] == -1 || d->pin[2] == -1;
+    }
+    return true;
+  }
+
+  //----------------------------------------------------------------------------
   void BusSettings::clear() {
 
     if (d_ptr == nullptr) {
@@ -119,6 +130,20 @@ namespace SpaIot {
     }
   }
 
+  //----------------------------------------------------------------------------
+  bool BusSettings::operator== (const BusSettings &other) const {
+    PIMPL_D (const BusSettings);
+
+    return d->pin == other.d_func()->pin;
+  }
+
+  //----------------------------------------------------------------------------
+  bool BusSettings::operator!= (const BusSettings &other) const {
+    PIMPL_D (const BusSettings);
+
+    return ! (*this == other);
+  }
+  
   //----------------------------------------------------------------------------
   void BusSettings::setDataPin (int pin) {
     PIMPL_D (BusSettings);
@@ -138,17 +163,6 @@ namespace SpaIot {
     PIMPL_D (BusSettings);
 
     d->pin[2] = pin;
-  }
-
-  //----------------------------------------------------------------------------
-  bool BusSettings::isNull() const {
-    
-    if (d_ptr != nullptr) {
-      PIMPL_D (const BusSettings);
-
-      return d->pin[0] == -1 || d->pin[1] == -1 || d->pin[2] == -1;
-    }
-    return true;
   }
 
   //----------------------------------------------------------------------------
@@ -172,19 +186,6 @@ namespace SpaIot {
     return d->pin[2];
   }
 
-  //----------------------------------------------------------------------------
-  bool BusSettings::operator== (const BusSettings &other) const {
-    PIMPL_D (const BusSettings);
-
-    return d->pin == other.d_func()->pin;
-  }
-
-  //----------------------------------------------------------------------------
-  bool BusSettings::operator!= (const BusSettings &other) const {
-    PIMPL_D (const BusSettings);
-
-    return ! (*this == other);
-  }
 
   //----------------------------------------------------------------------------
   //

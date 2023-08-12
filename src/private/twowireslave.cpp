@@ -24,19 +24,19 @@ namespace SpaIot {
 
 // -----------------------------------------------------------------------------
   TwoWireSlave::TwoWireSlave (uint8_t slaveAddress, TwoWire & bus) :
-    m_bus (bus), m_address (slaveAddress)  {
+    m_bus (&bus), m_address (slaveAddress)  {
   }
 
 // -----------------------------------------------------------------------------
   int TwoWireSlave::read (uint8_t *values, uint16_t len) {
     int ret;
 
-    ret = m_bus.requestFrom (static_cast<int> (m_address), static_cast<int> (len));
+    ret = m_bus->requestFrom (static_cast<int> (m_address), static_cast<int> (len));
     if (ret > 0) {
 
-      while (m_bus.available()) {
+      while (m_bus->available()) {
 
-        *values++ = m_bus.read();
+        *values++ = m_bus->read();
       }
     }
     return ret;
@@ -46,12 +46,12 @@ namespace SpaIot {
   int TwoWireSlave::read (uint8_t dataAddress, uint8_t *values, uint16_t len) {
     int ret = 0;
 
-    m_bus.beginTransmission (m_address);
-    ret = m_bus.write (dataAddress);
+    m_bus->beginTransmission (m_address);
+    ret = m_bus->write (dataAddress);
 
     if (ret == 1) {
 
-      if (m_bus.endTransmission (false) == 0) {
+      if (m_bus->endTransmission (false) == 0) {
 
         ret = this->read (values, len);
       }
@@ -91,11 +91,11 @@ namespace SpaIot {
   int TwoWireSlave::write (const uint8_t *values, uint16_t len) {
     int ret;
 
-    m_bus.beginTransmission (m_address);
-    ret = m_bus.write (values, len);
+    m_bus->beginTransmission (m_address);
+    ret = m_bus->write (values, len);
     if (ret > 0) {
 
-      if (m_bus.endTransmission() != 0) {
+      if (m_bus->endTransmission() != 0) {
 
         ret = -1;
       }
@@ -107,15 +107,15 @@ namespace SpaIot {
   int TwoWireSlave::write (uint8_t dataAddress, const uint8_t *values, uint16_t len) {
     int ret;
 
-    m_bus.beginTransmission (m_address);
+    m_bus->beginTransmission (m_address);
 
-    ret = m_bus.write (dataAddress);
+    ret = m_bus->write (dataAddress);
     if (ret == 1) {
 
-      ret = m_bus.write (values, len);
+      ret = m_bus->write (values, len);
       if (ret > 0) {
 
-        if (m_bus.endTransmission() != 0) {
+        if (m_bus->endTransmission() != 0) {
 
           ret = -1;
         }

@@ -142,11 +142,11 @@ namespace SpaIot {
        */
       inline TwoWire & bus() const {
 
-        return m_bus;
+        return *m_bus;
       }
 
     private:
-      TwoWire & m_bus;
+      TwoWire * m_bus;
       uint8_t m_address;
   };
 }

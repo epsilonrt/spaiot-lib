@@ -6,3 +6,4 @@ html/home.htm.gz
 .codelite/
 *.bak
 .gitignore
+docs/

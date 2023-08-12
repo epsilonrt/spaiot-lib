@@ -170,12 +170,12 @@ Before declare a global pointer on the spa control panel:
   };
   ```
 
-3. Describe buttons controllers and their pins with the corresponding class (here Cd4051)  
+3. Describe buttons controllers and their pins with the corresponding class (here Multiplexer)  
 
   ```cpp
   // My button controllers
-  Cd4051 BtnCtrlA ("U3", 5, 4, 15, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
-  Cd4051 BtnCtrlB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
+  Multiplexer BtnCtrlA ("U3", {5, 4, 15}, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
+  Multiplexer BtnCtrlB ("U4", {5, 4, 15}, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
   ```
 
 4. Describe the (bits used in the frame and controller) using a List of ButtonSettings constants  

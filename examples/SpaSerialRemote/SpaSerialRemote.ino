@@ -19,8 +19,8 @@ const unsigned long SerialBaudrate = 115200;
 const BusSettings MyBus (12, 14, 13);
 
 // My button controllers
-Cd4051 MuxA ("U3", 5, 4, 15, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
-Cd4051 MuxB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
+Multiplexer MuxA ("U3", {5, 4, 15}, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
+Multiplexer MuxB ("U4", {5, 4, 15}, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 
 #elif defined(ESP32)
 // SDATA  -> GPIO23
@@ -29,8 +29,8 @@ Cd4051 MuxB ("U4", 5, 4, 15, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 const BusSettings MyBus (23, 18, 19);
 
 // My button controllers
-Cd4051 MuxA ("U3", 27, 16, 17, 33); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO33
-Cd4051 MuxB ("U4", 27, 16, 17, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO26
+Multiplexer MuxA ("U3", {27, 16, 17}, 33); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO33
+Multiplexer MuxB ("U4", {27, 16, 17}, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO26
 
 #else
 #error unsupported platform

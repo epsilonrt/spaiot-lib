@@ -19,8 +19,8 @@ namespace SpaIot {
   const BusSettings busSettings (11, 12, 10);
 
   // My button controllers
-  Cd4051 MuxA ("U3", 4, 5, 6, 7);  // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO7
-  Cd4051 MuxB ("U4", 4, 5, 6, 15); // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO15
+  Multiplexer MuxA ("U3", {4, 5, 6}, 7);  // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO7
+  Multiplexer MuxB ("U4", {4, 5, 6}, 15); // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO15
 
   /* ------------------------------ SspButtons -----------------------------------
    * POWER        = P

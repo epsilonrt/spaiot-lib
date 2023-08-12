@@ -15,7 +15,7 @@
 
 #include "buttonsettings.h"
 #include "buttoncontroller.h"
-#include "cd4051.h"
+#include "multiplexer.h"
 #include "pcf8574mux.h"
 
 namespace SpaIot {

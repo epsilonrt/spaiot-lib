@@ -14,7 +14,7 @@
 #pragma once
 
 #include <map>
-#include <global.h>
+#include "global.h"
 
 namespace SpaIot {
 

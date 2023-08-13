@@ -86,22 +86,10 @@ namespace SpaIot {
   // ---------------------------------------------------------------------------
   // Move constructor
   ButtonSettings::ButtonSettings (ButtonSettings &&other) = default;
-  // ButtonSettings::ButtonSettings (ButtonSettings &&other) {
-
-  //   d_ptr = std::move (other.d_ptr);
-  // }
 
   // ---------------------------------------------------------------------------
   // Move assignment operator
   ButtonSettings &ButtonSettings::operator= (ButtonSettings &&other) = default;
-  // ButtonSettings &ButtonSettings::operator= (ButtonSettings &&other) {
-
-  //   if (this != &other) {
-
-  //     d_ptr = std::move (other.d_ptr);
-  //   }
-  //   return *this;
-  // }
 
   //----------------------------------------------------------------------------
   bool ButtonSettings::isNull() const {

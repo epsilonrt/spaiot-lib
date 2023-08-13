@@ -86,38 +86,32 @@ namespace SpaIot {
   // ---------------------------------------------------------------------------
   // Move constructor
   HardwareSettings::HardwareSettings (HardwareSettings &&other) = default;
-  // HardwareSettings::HardwareSettings (HardwareSettings &&other) {
-
-  //   d_ptr = std::move (other.d_ptr);
-  // }
 
   // ---------------------------------------------------------------------------
   // Move assignment operator
   HardwareSettings &HardwareSettings::operator= (HardwareSettings &&other) = default;
-  // HardwareSettings &HardwareSettings::operator= (HardwareSettings &&other) {
-
-  //   if (this != &other) {
-
-  //     d_ptr = std::move (other.d_ptr);
-  //   }
-  //   return *this;
-  // }
 
   //----------------------------------------------------------------------------
   bool HardwareSettings::isNull() const {
 
-    if (d_ptr != nullptr) {
+    return d_ptr == nullptr;
+  }
+
+  //----------------------------------------------------------------------------
+  bool HardwareSettings::isEmpty() const {
+
+    if (!isNull()) {
       PIMPL_D (const HardwareSettings);
 
       return d->bus == nullptr && d->buttons == nullptr &&  d->leds == nullptr;
     }
-    return true;
+    return false;
   }
 
   //----------------------------------------------------------------------------
   void HardwareSettings::clear() {
 
-    if (d_ptr == nullptr) {
+    if (isNull()) {
 
       d_ptr.reset (new Private);
     }

@@ -77,10 +77,14 @@ namespace SpaIot {
       void clear();
 
       /**
-        @brief
-        @return
+         @brief Returns true if the object is null (i.e. it has not been initialized, d_ptr is null)
       */
       bool isNull() const;
+
+      /**
+         @brief Checks if all attributes are set to their default values (same as the default constructor)
+      */
+      bool isEmpty() const;
 
       /**
          @brief

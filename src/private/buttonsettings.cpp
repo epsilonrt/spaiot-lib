@@ -93,19 +93,25 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   bool ButtonSettings::isNull() const {
-    if (d_ptr != nullptr) {
+
+    return d_ptr == nullptr;
+  }
+
+  //----------------------------------------------------------------------------
+  bool ButtonSettings::isEmpty() const {
+
+    if (!isNull()) {
       PIMPL_D (const ButtonSettings);
 
       return ! ( (d->ctrl == nullptr) ?  ButtonController::registerContains (d->ctrlName) : true);
     }
-    return true;
+    return false;
   }
 
   //----------------------------------------------------------------------------
   void ButtonSettings::clear() {
 
-    if (d_ptr == nullptr) {
-
+    if (isNull()) {
       d_ptr.reset (new Private);
     }
     else {

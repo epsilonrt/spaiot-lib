@@ -108,13 +108,19 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   bool BusSettings::isNull() const {
-    
-    if (d_ptr != nullptr) {
+
+    return d_ptr == nullptr;
+  }
+
+  //----------------------------------------------------------------------------
+  bool BusSettings::isEmpty() const {
+
+    if (!isNull()) {
       PIMPL_D (const BusSettings);
 
-      return d->pin[0] == -1 || d->pin[1] == -1 || d->pin[2] == -1;
+      return d->pin[0] == -1 && d->pin[1] == -1 && d->pin[2] == -1;
     }
-    return true;
+    return false;
   }
 
   //----------------------------------------------------------------------------
@@ -143,7 +149,7 @@ namespace SpaIot {
 
     return ! (*this == other);
   }
-  
+
   //----------------------------------------------------------------------------
   void BusSettings::setDataPin (int pin) {
     PIMPL_D (BusSettings);

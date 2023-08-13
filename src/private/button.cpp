@@ -83,9 +83,26 @@ namespace SpaIot {
   Button &Button::operator= (Button &&other) = default;
 
   //----------------------------------------------------------------------------
+  bool Button::isNull() const {
+
+    return d_ptr == nullptr;
+  }
+
+  //----------------------------------------------------------------------------
+  bool Button::isEmpty() const {
+
+    if (!isNull()) {
+      PIMPL_D (const Button);
+
+      return d->settings.isEmpty();
+    }
+    return false;
+  }
+
+  //----------------------------------------------------------------------------
   void Button::clear() {
 
-    if (d_ptr == nullptr) {
+    if (isNull()) {
 
       d_ptr.reset (new Private);
     }
@@ -94,24 +111,6 @@ namespace SpaIot {
 
       d->settings.clear();
     }
-  }
-
-  //----------------------------------------------------------------------------
-  bool Button::isNull() const {
-
-    if (d_ptr != nullptr) {
-      PIMPL_D (const Button);
-
-      return d->settings.isNull();
-    }
-    return true;
-  }
-
-  //----------------------------------------------------------------------------
-  bool Button::isOpened() const {
-    PIMPL_D (const Button);
-
-    return ctrl().isOpened();
   }
 
   //----------------------------------------------------------------------------
@@ -125,6 +124,12 @@ namespace SpaIot {
   bool Button::operator!= (const Button &other) const {
 
     return ! (*this == other);
+  }
+
+  //----------------------------------------------------------------------------
+  bool Button::isOpened() const {
+
+    return ctrl().isOpened();
   }
 
   //----------------------------------------------------------------------------

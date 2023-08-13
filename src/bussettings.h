@@ -87,11 +87,14 @@ namespace SpaIot  {
       void clear();
 
       /**
-         This function returns true if any of the pins are set to -1 or if the object was moved from.
-
-         @return The return value is a boolean.
+         @brief Returns true if the object is null (i.e. it has not been initialized, d_ptr is null)
       */
       bool isNull() const;
+
+      /**
+         @brief Checks if all attributes are set to their default values (same as the default constructor)
+      */
+      bool isEmpty() const;
 
       /**
          The function returns true if the two objects are equal

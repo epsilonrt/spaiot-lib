@@ -72,27 +72,32 @@ namespace SpaIot {
   // ---------------------------------------------------------------------------
   // Move constructor
   LedSettings::LedSettings (LedSettings &&other) = default;
-  // LedSettings::LedSettings (LedSettings &&other) {
-
-  //   d_ptr = std::move (other.d_ptr);
-  // }
 
   // ---------------------------------------------------------------------------
   // Move assignment operator
   LedSettings &LedSettings::operator= (LedSettings &&other) = default;
-  // LedSettings &LedSettings::operator= (LedSettings &&other) {
 
-  //   if (this != &other) {
+  //----------------------------------------------------------------------------
+  bool LedSettings::isNull() const {
 
-  //     d_ptr = std::move (other.d_ptr);
-  //   }
-  //   return *this;
-  // }
+    return d_ptr == nullptr;
+  }
+
+  //----------------------------------------------------------------------------
+  bool LedSettings::isEmpty() const {
+
+    if (!isNull()) {
+      PIMPL_D (const LedSettings);
+
+      return d->order == UnsetValue8;
+    }
+    return false;
+  }
 
   //----------------------------------------------------------------------------
   void LedSettings::clear() {
 
-    if (d_ptr == nullptr) {
+    if (isNull()) {
 
       d_ptr.reset (new Private);
     }
@@ -123,16 +128,6 @@ namespace SpaIot {
     d->order = order % 16;
   }
 
-  //----------------------------------------------------------------------------
-  bool LedSettings::isNull() const {
-
-    if (d_ptr != nullptr) {
-      PIMPL_D (const LedSettings);
-
-      return d->order == UnsetValue8;
-    }
-    return true;
-  }
 
   //----------------------------------------------------------------------------
   bool LedSettings::operator== (const LedSettings &other) const {

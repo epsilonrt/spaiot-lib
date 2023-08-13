@@ -80,12 +80,14 @@ namespace SpaIot  {
       void clear();
 
       /**
-         This function returns true if the value of the member variable m_order is equal
-         to the value UnsetValue8 or if the object was moved from.
-
-         @return The value of the member variable m_order.
+         @brief Returns true if the object is null (i.e. it has not been initialized, d_ptr is null)
       */
       bool isNull() const;
+
+      /**
+         @brief Checks if all attributes are set to their default values (same as the default constructor)
+      */
+      bool isEmpty() const;
 
       /**
          The function returns true if the two objects are equal

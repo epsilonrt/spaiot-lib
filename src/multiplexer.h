@@ -20,7 +20,11 @@ namespace SpaIot {
 
   /**
      @class Multiplexer
-     @brief Analog multiplexer
+     @brief Analog multiplexer for buttons
+
+      This class implements a multiplexer for buttons. It is a concrete class, and can be instantiated.
+      It is a ButtonController, and can be used as such.
+      This class is copyable and movable.
   */
   class Multiplexer : public ButtonController {
     public:
@@ -109,7 +113,7 @@ namespace SpaIot {
       virtual void end();
       virtual int select (int button);
       virtual void deselect ();
-      
+
     protected:
       class Private;
       Multiplexer (Private &dd);

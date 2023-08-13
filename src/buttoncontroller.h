@@ -20,7 +20,10 @@ namespace SpaIot {
 
   /**
      @class ButtonController
-     @brief This class is the base class of all button controllers, it is an abstract class
+     @brief This class is the base class of all button controllers
+     
+     It is an abstract class, and cannot be instantiated. It provides a common interface for all button controllers.
+     This class is copyable and movable.
 
      select() and deselect() are pure virtual functions that must be implemented by derived classes
   */

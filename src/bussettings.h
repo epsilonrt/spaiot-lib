@@ -21,6 +21,10 @@ namespace SpaIot  {
   /**
      @class BusSettings
      @brief SPI 2840X Bus settings
+
+      This class represents the settings of a SPI 2840X Bus.
+      It is a concrete class, and can be instantiated.
+      This class is copyable and movable.
   */
   class BusSettings {
     public:

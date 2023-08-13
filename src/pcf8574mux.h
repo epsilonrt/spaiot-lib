@@ -1,16 +1,16 @@
 /*
- * SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
- * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
- *
- * SpaIot library is licensed under a
- * Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
- *
- * You should have received a copy of the license along with this
- * work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
- *
- * SpaIot library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY;
- */
+   SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
+   This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
+
+   SpaIot library is licensed under a
+   Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+   You should have received a copy of the license along with this
+   work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+
+   SpaIot library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY;
+*/
 #pragma once
 
 #include <Wire.h>
@@ -19,34 +19,36 @@
 namespace SpaIot {
 
   /**
-   * @class Pcf8574Mux
-   * @brief Multiplexer controlled by a PCF8574
-   *
-   *  Inheriting from the ButtonController class.
-   */
+     @class Pcf8574Mux
+     @brief Multiplexer controlled by a PCF8574
+
+      This class implements a multiplexer for buttons that is controlled by a PCF8574. 
+      It is a concrete class, and can be instantiated.
+      This class is copyable and movable.
+  */
   class Pcf8574Mux : public ButtonController {
     public:
 
       /**
-       * It creates a new Pcf8574Mux object.
-       *
-       * @param slaveAddress The address of the PCF8574 chip.
-       * @param bus The TwoWire object that is used to communicate with the PCF8574.
-       * @param idleValue The value that the pins will be set to when the device is not
-       * in use.
-       */
-      Pcf8574Mux (uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
+         It creates a new Pcf8574Mux object.
+
+         @param slaveAddress The address of the PCF8574 chip.
+         @param bus The TwoWire object that is used to communicate with the PCF8574.
+         @param idleValue The value that the pins will be set to when the device is not
+         in use.
+      */
+      Pcf8574Mux (uint8_t slaveAddress = 0x20, TwoWire &bus = Wire, uint8_t idleValue = 0xFF);
 
       /**
-       * It creates a new Pcf8574Mux object.
-       *
-       * @param name controller name
-       * @param slaveAddress The address of the PCF8574 chip.
-       * @param bus The TwoWire object that is used to communicate with the PCF8574.
-       * @param idleValue The value that the pins will be set to when the device is not
-       * in use.
-       */
-      Pcf8574Mux (const String & name, uint8_t slaveAddress = 0x20, TwoWire & bus = Wire, uint8_t idleValue = 0xFF);
+         It creates a new Pcf8574Mux object.
+
+         @param name controller name
+         @param slaveAddress The address of the PCF8574 chip.
+         @param bus The TwoWire object that is used to communicate with the PCF8574.
+         @param idleValue The value that the pins will be set to when the device is not
+         in use.
+      */
+      Pcf8574Mux (const String &name, uint8_t slaveAddress = 0x20, TwoWire &bus = Wire, uint8_t idleValue = 0xFF);
 
       /**
         @copydoc ButtonController::ButtonController (const ButtonController &other)
@@ -69,9 +71,9 @@ namespace SpaIot {
       Pcf8574Mux &operator= (Pcf8574Mux &&other);
 
       /**
-       * @brief Reading of the slave m_address of the integrated circuit
-       * @return 7-bit I²C slave m_address, right-aligned
-       */
+         @brief Reading of the slave m_address of the integrated circuit
+         @return 7-bit I²C slave m_address, right-aligned
+      */
       uint8_t address() const;
 
       // re-implemented methods from ButtonController

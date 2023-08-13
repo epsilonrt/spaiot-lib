@@ -22,7 +22,9 @@ namespace SpaIot {
 
   /**
      @class ButtonSettings
-     @brief
+     @brief This class represents the settings of a button
+      It is a concrete class, and can be instantiated.
+      This class is copyable and movable.
   */
   class ButtonSettings {
     public:

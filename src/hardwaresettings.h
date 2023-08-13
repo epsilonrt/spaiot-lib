@@ -22,7 +22,9 @@ namespace SpaIot {
 
   /**
      @class HardwareSettings
-     @brief
+     @brief This class represents the hardware settings of a SpaIot device
+
+      This class is copyable and movable.
   */
   class HardwareSettings {
     public:

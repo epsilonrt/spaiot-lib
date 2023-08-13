@@ -22,6 +22,10 @@ namespace SpaIot  {
   /**
      @class LedSettings
      @brief SPI 2840X Led settings
+
+      This class represents the settings of a SPI 2840X Led.
+      It is a concrete class, and can be instantiated.
+      This class is copyable and movable.
   */
   class LedSettings {
 

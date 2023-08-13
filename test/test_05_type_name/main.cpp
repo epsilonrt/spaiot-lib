@@ -42,7 +42,7 @@ class B : public A {
 
       if (A::operator== (other)) {
 
-        return m_int == static_cast<const B&> (other).m_int;
+        return m_int == static_cast<const B &> (other).m_int;
       }
       return false;
     }
@@ -56,11 +56,14 @@ class B : public A {
 void test_type_name (void) {
   B b;
   A &a = b;
+  B *pb = &b;
+  A *pa = &a;
 
-  String message = "type_name(b) = " + type_name (b) + " --- type_name(a) = " + type_name (a);
-  TEST_ASSERT_MESSAGE (true, message.c_str()); // see https://github.com/platformio/platform-espressif32/issues/726
+  TEST_PRINTF ("type_name(b) = %s --- type_name(a) = %s", type_name (b).c_str(), type_name (a).c_str());
   TEST_ASSERT (type_name (b) == "B");
+  TEST_ASSERT (type_name (*pb) == "B");
   TEST_ASSERT (type_name (a) == "A");
+  TEST_ASSERT (type_name (*pa) == "A");
 }
 
 void test_equal (void) {
@@ -68,10 +71,15 @@ void test_equal (void) {
   B b2;
   A &a1 = b1;
   A &a2 = b2;
+  A *pa1 = &a1;
+  B *pb1 = &b1;
   TEST_ASSERT (b1 == b2);
   TEST_ASSERT (a1 == b2);
   TEST_ASSERT (b1 == a2);
   TEST_ASSERT (a1 == a2);
+  TEST_ASSERT (*pa1 == a1);
+  TEST_ASSERT (*pb1 == b1);
+  TEST_ASSERT (*pb1 == *pa1);
 }
 
 void test_notequal (void) {

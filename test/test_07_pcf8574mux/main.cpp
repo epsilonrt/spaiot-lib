@@ -52,12 +52,34 @@ void test_comparison (void) {
   TEST_ASSERT (ctrl1 != ctrl3);
 }
 
-void test_assignation (void) {
+void test_copy (void) {
   Pcf8574Mux ctrl1 (0x20);
-  Pcf8574Mux ctrl2 (0x38);
+  Pcf8574Mux ctrl2 = ctrl1;
+  Pcf8574Mux ctrl3 (0x38);
 
-  //ctrl1 = ctrl2;
-  //TEST_ASSERT (ctrl1 == ctrl2);
+  TEST_ASSERT (ctrl1 == ctrl2);
+  TEST_ASSERT (ctrl1 != ctrl3);
+  ctrl3 = ctrl1;
+  TEST_ASSERT (ctrl1 == ctrl3);
+}
+
+void test_move (void) {
+  const Pcf8574Mux s1;
+
+  // Test move constructor
+  Pcf8574Mux s2 = s1;
+  Pcf8574Mux s3 = std::move (s2);
+  TEST_ASSERT (s3 == s1);
+  TEST_ASSERT_TRUE (s2.isNull());
+
+  // Test move assignment
+  s2 = std::move (s3);
+  TEST_ASSERT (s2 == s1);
+  TEST_ASSERT_TRUE (s3.isNull());
+
+  s3.clear(); // check if clear() reset the d_ptr instance
+  s3 = s1;
+  TEST_ASSERT (s3 == s1);
 }
 
 void test_begin () {
@@ -117,7 +139,7 @@ void loop() {
 
     RUN_TEST (test_constructor);
     RUN_TEST (test_comparison);
-    //RUN_TEST (test_assignation);
+    RUN_TEST (test_copy);
     RUN_TEST (test_begin);
     RUN_TEST (test_select);
 

@@ -12,7 +12,7 @@
    but WITHOUT ANY WARRANTY;
 */
 #include "hardwaresettings_p.h"
-#include <type_name.h>
+#include "../type_name.h"
 
 
 namespace SpaIot {

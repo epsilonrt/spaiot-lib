@@ -13,7 +13,7 @@
 */
 #pragma once
 
-#include <pcf8574mux.h>
+#include "../pcf8574mux.h"
 #include "twowireslave.h"
 #include "buttoncontroller_p.h"
 

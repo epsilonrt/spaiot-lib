@@ -13,7 +13,7 @@
 */
 #pragma once
 
-#include <hardwaresettings.h>
+#include "../hardwaresettings.h"
 
 namespace SpaIot {
 

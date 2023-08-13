@@ -14,7 +14,7 @@
 #pragma once
 
 #include <vector>
-#include <bussettings.h>
+#include "../bussettings.h"
 
 namespace SpaIot {
 

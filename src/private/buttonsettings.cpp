@@ -12,8 +12,7 @@
    but WITHOUT ANY WARRANTY;
 */
 #include "buttonsettings_p.h"
-#include <buttoncontroller.h>
-#include <spaiotdebug.h>
+#include "../spaiotdebug.h"
 
 namespace SpaIot {
 

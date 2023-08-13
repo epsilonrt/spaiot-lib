@@ -13,8 +13,9 @@
 */
 #pragma once
 
+#include <Arduino.h>
 #include <map>
-#include "global.h"
+#include "buttoncontroller.h"
 
 namespace SpaIot {
 

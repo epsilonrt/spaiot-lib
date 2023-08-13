@@ -13,7 +13,7 @@
 */
 #pragma once
 
-#include <buttoncontroller.h>
+#include "../buttoncontroller.h"
 
 namespace SpaIot {
 

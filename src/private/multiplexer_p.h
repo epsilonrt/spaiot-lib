@@ -14,9 +14,7 @@
 #pragma once
 
 #include <vector>
-// #include <type_traits>
-
-#include <multiplexer.h>
+#include "../multiplexer.h"
 #include "buttoncontroller_p.h"
 
 namespace SpaIot {

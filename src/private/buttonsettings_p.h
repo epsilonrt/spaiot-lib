@@ -13,7 +13,7 @@
 */
 #pragma once
 
-#include <buttonsettings.h>
+#include "../buttonsettings.h"
 
 namespace SpaIot {
 

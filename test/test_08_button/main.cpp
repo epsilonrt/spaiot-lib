@@ -64,12 +64,34 @@ void test_comparison () {
   TEST_ASSERT (but1 != but3);
 }
 
-void test_assignation () {
-  Button but1;
-  Button & but2 (button.at (Power));
+void test_copy (void) {
+  Button but1 (TestButtons.at (Power));
+  Button but2 = but1;
+  Button but3 (TestButtons.at (Filter));
 
-  but1 = but2;
   TEST_ASSERT (but1 == but2);
+  TEST_ASSERT (but1 != but3);
+  but3 = but1;
+  TEST_ASSERT (but1 == but3);
+}
+
+void test_move (void) {
+  const Button but1;
+
+  // Test move constructor
+  Button but2 = but1;
+  Button but3 = std::move (but2);
+  TEST_ASSERT (but3 == but1);
+  TEST_ASSERT_TRUE (but2.isNull());
+
+  // Test move assignment
+  but2 = std::move (but3);
+  TEST_ASSERT (but2 == but1);
+  TEST_ASSERT_TRUE (but3.isNull());
+
+  but3.clear(); // check if clear() reset the d_ptr instance
+  but3 = but1;
+  TEST_ASSERT (but3 == but1);
 }
 
 void test_begin () {
@@ -128,7 +150,8 @@ void loop() {
     RUN_TEST (test_constructor_null);
     RUN_TEST (test_constructor_and_getters);
     RUN_TEST (test_comparison);
-    RUN_TEST (test_assignation);
+    RUN_TEST (test_copy);
+    RUN_TEST (test_move);
     RUN_TEST (test_begin);
     RUN_TEST (test_press_release);
     RUN_TEST (test_push);

@@ -29,7 +29,7 @@ namespace SpaIot {
   class HardwareSettings {
     public:
       /**
-         @brief
+         @brief The default constructor
       */
       HardwareSettings();
 
@@ -39,10 +39,10 @@ namespace SpaIot {
       virtual ~HardwareSettings();
 
       /**
-         @brief
-         @param bus
-         @param leds
-         @param buttons
+         @brief The constructor for the HardwareSettings class takes three parameters
+         @param bus  the bus settings
+         @param leds the led settings
+         @param buttons the button settings
       */
       HardwareSettings (const BusSettings &bus,
                         const std::map <int, LedSettings> &leds,
@@ -87,60 +87,57 @@ namespace SpaIot {
       bool isEmpty() const;
 
       /**
-         @brief
-         @param other
+         @brief Checks if the two objects are equal
       */
       bool operator== (const HardwareSettings &other) const;
 
       /**
-         @brief
-         @param other
+         @brief Checks if the two objects are not equal
       */
       bool operator!= (const HardwareSettings &other) const;
 
       /**
-         @brief
-         @return
+         @brief Returns the bus settings
       */
       const BusSettings   &bus() const;
 
       /**
-         @brief
-         @return
+         @brief Returns the led settings as a map
       */
       const std::map <int, LedSettings> &leds() const;
 
       /**
-         @brief
-         @return
+         @brief Returns the button settings as a map
       */
       const std::map <int, ButtonSettings> &buttons() const;
 
       /**
-         @brief
-         @param out
+         @brief Prints the object to the Print interface
+         @param out the Print interface, for example Serial
       */
       void print (Print &out) const;
 
       /**
-         @brief
-         @param name
-         @param settings
-         @return
+         @brief Adds a HardwareSettings object to the register
+         @param name the registered name designating the HardwareSettings object in the register
+         @param settings the HardwareSettings object to be added to the register
+         @return true if the object has been added to the register, false if the name is already in the register
       */
       static bool addToRegister (const String &name, const HardwareSettings &settings);
 
       /**
-         @brief
-         @param name
-         @return
+         @brief Returns the HardwareSettings object from the register
+         @param name the registered name designating the HardwareSettings object in the register
+
+         You must check if the register contains the name with registerContains() before calling this function
+         @return the HardwareSettings object from the register
       */
       static const HardwareSettings &getFromRegister (const String &name);
 
       /**
-         @brief
-         @param name
-         @return
+         @brief Returns true if the register contains the name
+         @param name the registered name designating the HardwareSettings object in the register
+         @return true if the register contains the name
       */
       static bool registerContains (const String &name);
 

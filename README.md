@@ -93,14 +93,13 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
   using namespace SpaIot;
   ```
 
-2. Declare a global reference on the `spa` control panel to get the singleton object
+2. Declare a global variable on the `spa` control panel
 
   ```cpp
-  // Get the singleton object with your SPA configuration (here SCIP2SSP)
-  ControlPanel & spa = ControlPanel::singleton ("SCIP2SSP");
+  // Declare a global variable on the spa control panel, its model is SCIP2SSP
+  ControlPanel spa ("SCIP2SSP");
   ```
 
-  :warning: **disclaimer:** only one control panel [singleton](https://en.wikipedia.org/wiki/Singleton_pattern) may exist.
 
 3. In `setup()`
 
@@ -173,7 +172,7 @@ Before declare a global pointer on the spa control panel:
 3. Describe buttons controllers and their pins with the corresponding class (here Multiplexer)  
 
   ```cpp
-  // My button controllers
+  // My button controllers (CD4051)
   Multiplexer BtnCtrlA ("U3", {5, 4, 15}, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
   Multiplexer BtnCtrlB ("U4", {5, 4, 15}, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
   ```

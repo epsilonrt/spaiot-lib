@@ -1,7 +1,7 @@
 //
 // SpaIot Status Example
 //
-// This example displays the condition of the spa: water temperature, desired 
+// This example displays the condition of the spa: water temperature, desired
 // temperature and LED status.
 // We use a DIY board connected to a SSP spa, the configuration  is as follows:
 //
@@ -31,6 +31,12 @@ const unsigned long SerialBaudrate = 115200;
 // nWR    -> GPIO13
 const BusSettings MyBus (12, 14, 13);
 
+#elif defined(ARDUINO_LOLIN_S3)
+// SDATA  -> GPIO23 MOSI GPIO11
+// SCLK   -> GPIO18 SCLK GPIO12
+// nWR    -> GPIO19 MISO GPIO10
+const BusSettings MyBus (11, 12, 10);
+
 #elif defined(ESP32)
 // SDATA  -> GPIO23
 // SCLK   -> GPIO18
@@ -48,7 +54,7 @@ const std::map<int, ButtonSettings> NoButtons;
 const HardwareSettings MyConfig (MyBus, SspLeds, NoButtons);
 
 
-ControlPanel & spa = ControlPanel::singleton (MyConfig);
+ControlPanel spa (MyConfig);
 
 uint16_t waterTemp;
 uint16_t desiredTemp;
@@ -63,7 +69,7 @@ void setup() {
   spa.begin();  // IMPORTANT LINE!
   if (spa.isOpened() == false) { // check if the connection to the spa has been open
     Serial.println ("No spa connection found");
-    for(;;); // loop always, to stop 
+    for (;;); // loop always, to stop
   }
 }
 
@@ -72,13 +78,13 @@ void loop() {
   uint16_t w;
 
   w = spa.waterTemp(); // Reading the temperature of the water
-  if ((w != UnsetValue16) && (waterTemp != w)) { // If modified, it is displayed
+  if ( (w != UnsetValue16) && (waterTemp != w)) { // If modified, it is displayed
     waterTemp = w;
     Serial.printf ("waterTemp=%d'C\n", waterTemp);
   }
 
   w = spa.desiredTemp(); // Reading the desired temperature
-  if ((w != UnsetValue16) && (desiredTemp != w)) { // If modified, it is displayed
+  if ( (w != UnsetValue16) && (desiredTemp != w)) { // If modified, it is displayed
     desiredTemp = w;
     Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
   }

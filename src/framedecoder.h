@@ -30,11 +30,35 @@ namespace SpaIot {
    * FrameDecoder stores the bits of the frame on each interrupt triggered by
    * the clock rising edges, once the 16 bits of the raw status received, it
    * decodes this status on the rising edge of the nWR (HOLD) signal.
-   *
-   * Base class that can not be instantiated !
    */
   class FrameDecoder {
     public:
+      /**
+       * @brief Default constructor
+       * 
+       * You must call begin(const BusSettings & bus, const std::map <int, LedSettings> & leds) before using the instance.
+       * 
+       */
+      FrameDecoder ();
+
+      /**
+       * @brief Construct a new Frame Decoder object
+       * 
+       * You may call begin() after this constructor.
+       * 
+       * @param bus the bus settings
+       * @param leds the leds settings
+       */
+      FrameDecoder (const BusSettings & bus,
+                    const std::map <int, LedSettings> & leds);
+
+      /**
+       * @brief Destructor
+       * 
+       * call end()
+       */
+      virtual ~FrameDecoder();
+
       /**
        * @brief Initializes and connect with the spa
        *
@@ -45,15 +69,22 @@ namespace SpaIot {
        * @param waitingTimeMs Maximum time that the function will wait for a 
        * frame coming from the bus (-1 for infinity)
        */
-      void begin (unsigned long waitingTimeMs = BeginWaitingTimeMs);
+      virtual void begin (unsigned long waitingTimeMs = BeginWaitingTimeMs);
+
       /**
        * @overload
        * @param settings describes the bus pins settings
        * @param leds describes the leds settings
        */
-      void begin (const BusSettings & settings,
+      virtual void begin (const BusSettings & settings,
                   const std::map <int, LedSettings> & leds,
                   unsigned long waitingTimeMs = BeginWaitingTimeMs);
+
+      /**
+       * @brief Close the FrameDecoder
+       */
+      virtual void end();
+
       /**
        * @brief Indicates whether the connection with the spa is established.
        *
@@ -61,23 +92,27 @@ namespace SpaIot {
        * Returns false if the connection to the spa is not established and no frame is received.
        */
       bool isOpened() const;
+
       /**
        * @brief Check if the hardware configuration has the LED
        * @param key LED identification key in the possible values of SpaIot::Key
        * @return true if the LED exists
        */
       bool hasLed (int key) const;
+
       /**
        * @brief Bus settings provides at the instantiation
        * @return constant reference on settings
        */
       const BusSettings & busSettings() const;
+
       /**
        * @brief Leds settings provides at the instantiation
        * @return Constant reference on the [std::map](https://en.cppreference.com/w/cpp/container/map)  containing the LED settings.
        * The different key values are defined by SpaIot::Key
        */
       const std::map <int, LedSettings> ledSettings() const;
+
       /**
        * @brief Last state of the LEDs received
        *
@@ -87,6 +122,7 @@ namespace SpaIot {
        * UnsetValue16 is returned if no frame has been received.
        */
       uint16_t  rawStatus() const;
+
       /**
        * @brief Last state received from an LED
        * @param key LED identification key in the possible values of SpaIot::Key
@@ -94,12 +130,14 @@ namespace SpaIot {
        * LED does not exist or if no frame has been received.
        */
       uint8_t   isLedOn (int key) const;
+
       /**
        * @brief Last state of the Power LED
        * @return true if the LED is lit, false if it is off, UnsetValue8 if this
        * LED does not exist or if no frame has been received.
        */
       inline uint8_t   isPowerOn() const;
+
       /**
        * @brief Last state of the Filter LED
        *
@@ -108,6 +146,7 @@ namespace SpaIot {
        * LED does not exist or if no frame has been received.
        */
       inline uint8_t   isFilterOn() const;
+
       /**
        * @brief Last state of the Bubble LED
        *
@@ -116,6 +155,7 @@ namespace SpaIot {
        * LED does not exist or if no frame has been received.
        */
       inline uint8_t   isBubbleOn() const;
+
       /**
        * @brief Last state of the HeatReached LED
        *
@@ -125,6 +165,7 @@ namespace SpaIot {
        * LED does not exist or if no frame has been received.
        */
       inline uint8_t   isHeatReached() const;
+
       /**
        * @brief Last state of the Jet LED
        *
@@ -133,6 +174,7 @@ namespace SpaIot {
        * LED does not exist or if no frame has been received.
        */
       inline uint8_t   isJetOn() const;
+
       /**
        * @brief Last state of the Sanitizer LED
        *
@@ -141,6 +183,7 @@ namespace SpaIot {
        * LED does not exist or if no frame has been received.
        */
       inline uint8_t   isSanitizerOn() const;
+
       /**
        * @brief State of water heating
        *
@@ -151,6 +194,7 @@ namespace SpaIot {
        * if no frame has been received.
        */
       uint8_t   isHeaterOn() const;
+
       /**
        * @brief Water temperature in °C
        *
@@ -161,6 +205,7 @@ namespace SpaIot {
        * @return  Water temperature in °C, UnsetValue16 if it has not been determined yet.
        */
       uint16_t  waterTemp() const;
+
       /**
        * @brief Water temperature desired in °C
        *
@@ -173,18 +218,21 @@ namespace SpaIot {
        * been determined yet.
        */
       uint16_t  desiredTemp() const;
+
       /**
        * @brief Remaining sanitation time
        * @return Remaining sanitation time in hours, UnsetValue16 if it has not
        * been determined yet.
        */
       uint16_t  sanitizerTime() const;
+
       /**
        * @brief Number of frames received from startup
        *
        * @return Number of frames received including the frames dropped
        */
       uint32_t  frameCounter() const;
+
       /**
        * @brief Number of dropped frames
        *
@@ -197,6 +245,7 @@ namespace SpaIot {
        * @return Number of frames dropped
        */
       uint32_t  frameDropped() const;
+
       /**
        * @brief Error code displayed by the control panel
        *
@@ -207,7 +256,8 @@ namespace SpaIot {
        * been displayed for more than 4 seconds (SpaIot::ResetErrorTimeMs).
        * @return The error code, 0 in normal situation
        */
-      uint16_t  error();
+      uint16_t  error() const;
+
       /**
        * @brief Reset request triggered
        *
@@ -218,12 +268,14 @@ namespace SpaIot {
        * @return true if triggered
        */
       bool isSetupModeTriggered() const;
+
       /**
        * @brief Check if the display blink
        * @return true if blinking, false if not, UnsetValue8
        * if no frame has been received.
        */
       uint8_t isDisplayBlink() const;
+
       /**
        * @brief Wait until the display blink
        * @param MaxWaitingTimeMs Maximum waiting time in milliseconds
@@ -231,6 +283,7 @@ namespace SpaIot {
        * if no frame has been received.
        */
       uint8_t waitUntilDisplayBlink (unsigned long MaxWaitingTimeMs = 5000) const;
+      
       /**
        * @brief Wait until the water temperature could be read
        *
@@ -242,77 +295,14 @@ namespace SpaIot {
        * @return  Water temperature in °C, UnsetValue16 if it has not been determined yet.
        */
       uint16_t waitForWaterTemp (unsigned long MaxWaitingTimeMs = 25000) const;
-      /**
-       * @brief Close the FrameDecoder
-       */
-      void end();
-      /**
-       * @brief Destructor
-       * 
-       * call end()
-       */
-      virtual ~FrameDecoder();
 
     protected:
-      FrameDecoder (const BusSettings & bus,
-                    const std::map <int, LedSettings> & leds);
-      FrameDecoder ();
-      static uint16_t  convertDisplayToCelsius (uint16_t m_displayValue);
-
-    protected:
-      BusSettings m_busSettings;
-      std::map <int, LedSettings> m_ledSettings;
-
-      // Parameters set by the constructor
-      static int  m_dataPin;
-      static uint16_t m_frameLedPower;
-      static uint16_t m_frameLedFilter;
-      static uint16_t m_frameLedHeater;
-      static uint16_t m_frameLedHeaterReached;
-      static uint16_t m_frameLedBubble;
-      static uint16_t m_frameLedJet;
-      static uint16_t m_frameLedSanitizer;
-
-      // Data members of Decoder, updated by interrupt service routines
-      static volatile uint32_t  m_frameCounter;
-      static volatile uint32_t  m_frameDropped;
-      static volatile uint16_t  m_rawStatus;
-      static volatile uint16_t  m_errorValue;
-      static volatile uint16_t  m_waterTemp;
-      static volatile uint16_t  m_desiredTemp;
-      static volatile uint16_t  m_sanitizerTime;
-
-      // Working status variables, updated by interrupt service routines
-      static volatile uint16_t  m_frameValue;
-      static volatile uint16_t  m_frameShift;
-      static volatile uint16_t  m_displayValue;
-      static volatile uint32_t  m_lastSanitizerFrameCounter;
-      static volatile uint32_t  m_lastBlackDisplayFrameCounter;
-      static volatile bool      m_isDisplayBlink;
-      static volatile uint32_t  m_lastErrorChangeFrameCounter;
-      static volatile uint16_t  m_latestLedStatus;
-      static volatile uint16_t  m_stableLedStatusCounter;
-      static volatile uint16_t  m_latestDisplayValue;
-      static volatile uint16_t  m_stableDisplayValueCounter;
-      static volatile uint16_t  m_latestDesiredTemp;
-      static volatile uint16_t  m_latestWaterTemp;
-      static volatile uint16_t  m_stableWaterTempCounter;
-      static volatile uint16_t  m_unsetDigits;
-      static volatile uint8_t   m_lastTempUnit;
-      static volatile uint32_t  m_lastTempUnitChangeFrameCounter;
-      static volatile uint16_t  m_counterTempUnitChanged;
-
-      static const unsigned long FramePeriodUs = 320;
-      static const uint32_t SetupTrigUnitChangeFrameCounterMax =
-        (SetupTrigUnitChangeStepMaxMs * 1000) / FramePeriodUs;
-      static const uint32_t ResetErrorFrameCounter =
-        (ResetErrorTimeMs * 1000) / FramePeriodUs;
+      class Private;
+      FrameDecoder (Private &dd);
+      std::unique_ptr<Private> d_ptr;
     private:
-      bool m_isopened;
-      static IRAM_ATTR void clkRisingInterrupt();
-      static IRAM_ATTR void holdRisingInterrupt();
+      PIMPL_DECLARE_PRIVATE (FrameDecoder)
   };
-
 
   //----------------------------------------------------------------------------
   inline uint8_t FrameDecoder::isPowerOn() const {

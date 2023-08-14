@@ -16,7 +16,7 @@ const unsigned long TimerTime = (12 * 60 * 60); // 12 hours in seconds
 // If your configuration is different, see SpaHwCustom Example
 const char ConfigName[] = "SCIP2SSP";
 
-ControlPanel & spa = ControlPanel::singleton (ConfigName);
+ControlPanel spa (ConfigName);
 
 unsigned long timer;
 uint16_t waterTemp;

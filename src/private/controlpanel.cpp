@@ -1,20 +1,21 @@
 /*
- * SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
- * This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
- *
- * SpaIot library is licensed under a
- * Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
- *
- * You should have received a copy of the license along with this
- * work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
- *
- * SpaIot library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY;
- */
+   SpaIot Library (c) by epsilonrt - epsilonrt@gmail.com
+   This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
+
+   SpaIot library is licensed under a
+   Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+   You should have received a copy of the license along with this
+   work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+
+   SpaIot library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY;
+*/
 #include <Arduino.h>
-#include <controlpanel.h>
+#include "controlpanel_p.h"
+#include "framedecoderengine_p.h"
 #include "defines_p.h"
-#include <spaiotdebug.h>
+#include "../spaiotdebug.h"
 
 namespace SpaIot {
 
@@ -24,149 +25,127 @@ namespace SpaIot {
   //
   //----------------------------------------------------------------------------
 
-  //----------------------------------------------------------------------------
-  // static
-  ControlPanel * ControlPanel::m_instance;
 
   //----------------------------------------------------------------------------
-  // static
-  ControlPanel * ControlPanel::getInstance (const HardwareSettings & hwsettings) {
-
-    if (m_instance == 0) {
-
-      m_instance = new ControlPanel (hwsettings);
-    }
-    return m_instance;
-  }
+  // Private implementation
 
   //----------------------------------------------------------------------------
-  // static
-  ControlPanel * ControlPanel::getInstance () {
-
-    if (m_instance == 0) {
-
-      m_instance = new ControlPanel ();
-    }
-    return m_instance;
-  }
+  ControlPanel::Private::Private (ControlPanel *q) : FrameDecoder::Private (q), isopened (false)
+  {}
 
   //----------------------------------------------------------------------------
-  // static
-  ControlPanel& ControlPanel::singleton (const HardwareSettings& hwsettings) {
-
-    return * getInstance (hwsettings);
-  }
-
-  //----------------------------------------------------------------------------
-  // static
-  ControlPanel * ControlPanel::getInstance (const String & hwSettingsName) {
-
-    if (HardwareSettings::registerContains (hwSettingsName)) {
-
-      m_instance = new ControlPanel (HardwareSettings::getFromRegister (hwSettingsName));
-    }
-    else {
-
-      SPAIOT_DBG ("%s:%d: <Fatal Error> Unable to find the '%s' "
-                  "HardwareSettings in the register, check his name !",
-                  __PRETTY_FUNCTION__, __LINE__,
-                  hwSettingsName.c_str());
-    }
-    return m_instance;
-  }
+  ControlPanel::Private::Private (ControlPanel *q, const HardwareSettings &hwsettings) :
+    FrameDecoder::Private (q, hwsettings.bus(), hwsettings.leds()),
+    btnsettings (hwsettings.buttons()), isopened (false)
+  {}
 
   //----------------------------------------------------------------------------
-  // static
-  ControlPanel& ControlPanel::singleton (const String& hwSettingsName) {
-    // throw exception if hwSettingsName not found !
-    return * getInstance (hwSettingsName);
-  }
-
-  //----------------------------------------------------------------------------
-  // static
-  ControlPanel& ControlPanel::singleton () {
-    return * getInstance ();
-  }
-
-  //----------------------------------------------------------------------------
-  // protected
-  ControlPanel::ControlPanel (const HardwareSettings & hwsettings) :
-    FrameDecoder (hwsettings.bus(), hwsettings.leds()),
-    m_btnsettings (hwsettings.buttons()), m_isopened (false) {
-
-  }
-
-  //----------------------------------------------------------------------------
-  // protected
-  ControlPanel::ControlPanel () :
-    FrameDecoder (), m_isopened (false) {
-
-  }
-
-  //----------------------------------------------------------------------------
-  void ControlPanel::end() {
-
-    if (m_isopened) {
-      
-      for (auto & elmt : m_button) {
-        Button & button = elmt.second;
-
-        if (button.isOpened()) {
-
-          button.ctrl().end();
-        }
-      }
-      FrameDecoder::end();
-      m_isopened = false;
-    }
-  }
-
-  //----------------------------------------------------------------------------
-  ControlPanel::~ControlPanel() {
-
-    end();
-    delete m_instance;
-    m_instance = nullptr;
-  }
-
-  //----------------------------------------------------------------------------
-  // protected
-  bool ControlPanel::makeButtons() {
+  bool ControlPanel::Private::makeButtons() {
     bool b_isopened = true;
 
     // We create the buttons from their settings...
-    for (const auto & elmt : m_btnsettings) {
+    for (const auto &elmt : btnsettings) {
       int key = elmt.first;
-      const ButtonSettings & settings = elmt.second;
-      Button button (settings);
+      const ButtonSettings &settings = elmt.second;
+      Button b (settings);
 
-      m_button.emplace (key, button);
-      if (button.isOpened() == false) {
+      button.emplace (key, b);
+      if (b.isOpened() == false) {
 
-        button.begin();
-        b_isopened = b_isopened && button.isOpened();
+        b.begin();
+        b_isopened = b_isopened && b.isOpened();
       }
     }
     return b_isopened;
   }
 
   //----------------------------------------------------------------------------
-  void ControlPanel::begin (const HardwareSettings & hwsettings,
+  // may be used for Power, Filter, Bubble and Jet
+  uint8_t ControlPanel::Private::setKeyOn (int key, bool v) {
+
+    if (isopened) {
+      PIMPL_Q (ControlPanel);
+      uint8_t b = q->isLedOn (key);
+
+      if (q->hasButton (key) && b != UnsetValue8) {
+
+        if (v ^ b) {
+
+          button[key].push();
+        }
+        return q->isLedOn (key);
+      }
+    }
+    return UnsetValue8;
+  }
+
+  //----------------------------------------------------------------------------
+  const std::map <int, Button> &ControlPanel::Private::buttons() const {
+
+    return button;
+  }
+
+  //----------------------------------------------------------------------------
+  // Protected constructor with private implementation
+  ControlPanel::ControlPanel (Private &dd) : FrameDecoder (dd)
+  {}
+
+  //----------------------------------------------------------------------------
+  // API
+
+  //----------------------------------------------------------------------------
+  // Default constructor
+  // Call the protected constructor with private implementation
+  ControlPanel::ControlPanel() :
+    ControlPanel (*new Private (this))
+  {}
+
+  //----------------------------------------------------------------------------
+  ControlPanel::ControlPanel (const HardwareSettings &hwsettings) :
+    ControlPanel (*new Private (this, hwsettings))
+  {}
+
+  //----------------------------------------------------------------------------
+  ControlPanel::ControlPanel (const String &hwSettingsName) :
+    ControlPanel (*new Private (this, HardwareSettings::getFromRegister (hwSettingsName)))
+  {}
+  
+  //----------------------------------------------------------------------------
+  void ControlPanel::end() {
+
+    if (isOpened()) {
+      PIMPL_D (ControlPanel);
+
+      for (auto &elmt : d->button) {
+        Button &b = elmt.second;
+
+        if (b.isOpened()) {
+
+          b.ctrl().end();
+        }
+      }
+      FrameDecoder::end();
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  void ControlPanel::begin (const HardwareSettings &hwsettings,
                             unsigned long waitingTimeMs) {
 
-    if (m_isopened == false)  {
+    if (!isOpened())  {
+      PIMPL_D (ControlPanel);
 
       SPAIOT_DBG ("ControlPanel::begin(): opening");
 
-      m_btnsettings = hwsettings.buttons();
+      d->btnsettings = hwsettings.buttons();
       FrameDecoder::begin (hwsettings.bus(), hwsettings.leds(), waitingTimeMs);
-      m_isopened = makeButtons() && FrameDecoder::isOpened();
+      d->isopened = d->makeButtons() && FrameDecoder::isOpened();
     }
 
   }
 
   //----------------------------------------------------------------------------
-  void ControlPanel::begin (const String & hwSettingsName,
+  void ControlPanel::begin (const String &hwSettingsName,
                             unsigned long waitingTimeMs) {
 
     if (HardwareSettings::registerContains (hwSettingsName)) {
@@ -186,80 +165,62 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void ControlPanel::begin (unsigned long waitingTimeMs) {
 
-    if (m_isopened == false)  {
+    if (!isOpened())  {
+      PIMPL_D (ControlPanel);
 
       SPAIOT_DBG ("ControlPanel::begin(): opening");
 
       FrameDecoder::begin (waitingTimeMs);
-      m_isopened = makeButtons() && FrameDecoder::isOpened();
+      d->isopened = d->makeButtons() && FrameDecoder::isOpened();
     }
   }
 
   //----------------------------------------------------------------------------
   bool ControlPanel::isOpened() const {
+    PIMPL_D (const ControlPanel);
 
-    return m_isopened;
+    return d->isopened;
   }
 
   //----------------------------------------------------------------------------
   bool ControlPanel::hasButton (int key) const {
+    PIMPL_D (const ControlPanel);
 
-    return m_button.count (key) == 1;
+    return d->button.count (key) == 1;
   }
 
   //----------------------------------------------------------------------------
-  const std::map <int, Button> & ControlPanel::buttons() const {
+  Button &ControlPanel::button (int key) {
+    PIMPL_D (ControlPanel);
 
-    return m_button;
-  }
-
-  //----------------------------------------------------------------------------
-  Button & ControlPanel::button (int key) {
-
-    return m_button.at (key);
+    return d->button.at (key);
   }
 
   //----------------------------------------------------------------------------
   bool ControlPanel::pushButton (int key)  {
 
     if (hasButton (key)) {
+      PIMPL_D (ControlPanel);
 
-      m_button[key].push();
+      d->button[key].push();
       return true;
     }
     return false;
   }
 
-  //----------------------------------------------------------------------------
-  // protected
-  // may be used for Power, Filter, Bubble and Jet
-  uint8_t ControlPanel::setKeyOn (int key, bool v) {
-
-    if (isOpened()) {
-      uint8_t b = isLedOn (key);
-
-      if (hasButton (key) && b != UnsetValue8) {
-
-        if (v ^ b) {
-
-          m_button[key].push();
-        }
-        return isLedOn (key);
-      }
-    }
-    return UnsetValue8;
-  }
 
   //----------------------------------------------------------------------------
   uint8_t ControlPanel::setPower (bool v) {
+    PIMPL_D (ControlPanel);
 
-    return setKeyOn (Power, v);
+    return d->setKeyOn (Power, v);
   }
 
   //----------------------------------------------------------------------------
   uint8_t ControlPanel::setFilter (bool v) {
+    PIMPL_D (ControlPanel);
 
-    return setKeyOn (Filter, v);
+    return d->setKeyOn (Filter, v);
   }
 
   //----------------------------------------------------------------------------
@@ -271,9 +232,10 @@ namespace SpaIot {
       if (b != UnsetValue8) {
 
         if (v ^ b) {
+          PIMPL_D (ControlPanel);
           int count = 0;
 
-          m_button[Heater].push();
+          d->button[Heater].push();
           while ( (isHeaterOn() != v) && (count < 20)) {
 
             delay (100);
@@ -288,14 +250,16 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   uint8_t ControlPanel::setBubble (bool v) {
+    PIMPL_D (ControlPanel);
 
-    return setKeyOn (Bubble, v);
+    return d->setKeyOn (Bubble, v);
   }
 
   //----------------------------------------------------------------------------
   uint8_t ControlPanel::setJet (bool v) {
+    PIMPL_D (ControlPanel);
 
-    return setKeyOn (Jet, v);
+    return d->setKeyOn (Jet, v);
   }
 
   //----------------------------------------------------------------------------
@@ -304,28 +268,29 @@ namespace SpaIot {
     if (hasButton (Sanitizer)) {
 
       if (isOpened()) {
+        PIMPL_D (ControlPanel);
 
-        if ( (m_rawStatus != UnsetValue16) &&
-             ( (m_rawStatus & m_frameLedPower) != 0) && (m_errorValue == 0)) {
+        if ( (d->engine->rawStatus != UnsetValue16) &&
+             ( (d->engine->rawStatus & d->frameLedPower) != 0) && (d->engine->errorValue == 0)) {
           uint16_t pushCounter = 0;
 
           if (time == 0) {
 
-            if ( (m_rawStatus != UnsetValue16) && (m_rawStatus & m_frameLedSanitizer)) {
+            if ( (d->engine->rawStatus != UnsetValue16) && (d->engine->rawStatus & d->frameLedSanitizer)) {
 
               do {
 
-                m_button[Sanitizer].push();
+                d->button[Sanitizer].push();
                 delay (ButtonIntervalMs);
 
                 pushCounter ++;
 
                 // push button till 8H
               }
-              while ( (DIGITS2UINT (m_sanitizerTime) != 8) &&
+              while ( (DIGITS2UINT (d->engine->sanitizerTime) != 8) &&
                       (pushCounter < PUSH_COUNTER_MAX));
               // then push a last time to cancel
-              m_button[Sanitizer].push();
+              d->button[Sanitizer].push();
 
             } // else already off
 
@@ -334,14 +299,14 @@ namespace SpaIot {
 
             do {
 
-              m_button[Sanitizer].push();
+              d->button[Sanitizer].push();
               delay (ButtonIntervalMs);
 
               pushCounter ++;
 
             }
             while ( (pushCounter < PUSH_COUNTER_MAX) &&
-                    (DIGITS2UINT (m_sanitizerTime) != time));
+                    (DIGITS2UINT (d->engine->sanitizerTime) != time));
 
           }
           else {   // Invalid value
@@ -365,8 +330,9 @@ namespace SpaIot {
     if ( (temp >= DesiredTempMin) &&
          (temp <= DesiredTempMax) &&
          hasButton (TempUp) && hasButton (TempDown) && isOpened()) {
+      PIMPL_D (ControlPanel);
 
-      if ( (waitForDesiredTemp() != UnsetValue16) && (m_errorValue == 0)) {
+      if ( (waitForDesiredTemp() != UnsetValue16) && (d->engine->errorValue == 0)) {
         uint16_t  uint16DesiredTemp = desiredTemp();
         int  pushCounter = temp - uint16DesiredTemp;
 
@@ -381,12 +347,12 @@ namespace SpaIot {
 
             if (pushCounter > 0) {
 
-              m_button[TempUp].push();
+              d->button[TempUp].push();
               pushCounter--;
             }
             else {
 
-              m_button[TempDown].push();
+              d->button[TempDown].push();
               pushCounter++;
             }
             delay (HoldPressedMs);
@@ -399,11 +365,11 @@ namespace SpaIot {
 
             if (uint16DesiredTemp > temp) {
 
-              m_button[TempDown].push();
+              d->button[TempDown].push();
             }
             else {
 
-              m_button[TempUp].push();
+              d->button[TempUp].push();
             }
             delay (ButtonIntervalMs);
             SPAIOT_DBG ("%s:%d: pushCounter %d - desiredTemp %d'C",
@@ -444,9 +410,10 @@ namespace SpaIot {
   uint16_t ControlPanel::waitForDesiredTemp (unsigned long  MaxWaitingTimeMs) {
 
     if (isOpened() && (desiredTemp() == UnsetValue16)) {
+      PIMPL_D (ControlPanel);
       const unsigned long looptime = 100;
 
-      m_button[TempUp].push();
+      d->button[TempUp].push();
       while ( (isDisplayBlink() != true) && (MaxWaitingTimeMs > looptime)) {
 
         delay (looptime);
@@ -466,8 +433,9 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   const std::map <int, ButtonSettings> ControlPanel::buttonSettings() const {
+    PIMPL_D (const ControlPanel);
 
-    return m_btnsettings;
+    return d->btnsettings;
   }
 
 }

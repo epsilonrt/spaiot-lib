@@ -15,19 +15,10 @@
 using namespace SpaIot;
 
 // My bus configuration
-const BusSettings  & MyBus = DefaultConfig.bus() ;
+const BusSettings   &MyBus = DefaultConfig.bus() ;
 // My Leds
-const std::map <int, LedSettings> & MyLeds =  DefaultConfig.leds();
+const std::map <int, LedSettings> &MyLeds =  DefaultConfig.leds();
 
-class TestFrameDecoder : public FrameDecoder {
-  public:
-    TestFrameDecoder (const BusSettings & bus,
-                      const std::map <int, LedSettings> & leds) :
-      FrameDecoder (bus, leds) {}
-    TestFrameDecoder () : FrameDecoder () {}
-};
-
-TestFrameDecoder * decoder;
 uint32_t frameCounter;
 uint32_t frameDropped;
 uint16_t errorValue;
@@ -53,121 +44,120 @@ uint8_t   isSanitizerOn;
 // // clean stuff up here
 // }
 
-void test_constructor () {
-  TestFrameDecoder bd;
+FrameDecoder fd (MyBus, MyLeds);
 
-  decoder = new TestFrameDecoder (MyBus, MyLeds);
-  TEST_ASSERT_FALSE (decoder->isOpened());
+void test_constructor () {
+
+  TEST_ASSERT_FALSE (fd.isOpened());
 }
 
-void test_default_getters (TestFrameDecoder & bd) {
+void test_default_getters (FrameDecoder &f) {
 
-  frameCounter = bd.frameCounter();
+  frameCounter = f.frameCounter();
   TEST_ASSERT_EQUAL (0, frameCounter);
-  frameDropped =  bd.frameDropped();
+  frameDropped =  f.frameDropped();
   TEST_ASSERT_EQUAL (0, frameDropped);
-  errorValue = bd.error();
+  errorValue = f.error();
   TEST_ASSERT_EQUAL (0, errorValue);
-  rawStatus = bd.rawStatus();
+  rawStatus = f.rawStatus();
   TEST_ASSERT_EQUAL (UnsetValue16, rawStatus);
-  waterTemp = bd.waterTemp();
+  waterTemp = f.waterTemp();
   TEST_ASSERT_EQUAL (UnsetValue16, waterTemp);
-  desiredTemp = bd.desiredTemp();
+  desiredTemp = f.desiredTemp();
   TEST_ASSERT_EQUAL (UnsetValue16, desiredTemp);
-  sanitizerTime = bd.sanitizerTime();
+  sanitizerTime = f.sanitizerTime();
   TEST_ASSERT_EQUAL (UnsetValue16, sanitizerTime);
-  isSetupModeTriggered = bd.isSetupModeTriggered();
+  isSetupModeTriggered = f.isSetupModeTriggered();
   TEST_ASSERT_FALSE (isSetupModeTriggered);
-  isPowerOn = bd.isPowerOn();
+  isPowerOn = f.isPowerOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isPowerOn);
-  isFilterOn = bd.isFilterOn();
+  isFilterOn = f.isFilterOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isFilterOn);
-  isBubbleOn = bd.isBubbleOn();
+  isBubbleOn = f.isBubbleOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isBubbleOn);
-  isHeaterOn = bd.isHeaterOn();
+  isHeaterOn = f.isHeaterOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isHeaterOn);
-  isHeatReached = bd.isHeatReached();
+  isHeatReached = f.isHeatReached();
   TEST_ASSERT_EQUAL (UnsetValue8, isHeatReached);
-  if (bd.hasLed (Jet)) {
-    isJetOn = bd.isJetOn();
+  if (f.hasLed (Jet)) {
+    isJetOn = f.isJetOn();
     TEST_ASSERT_EQUAL (UnsetValue8, isJetOn);
   }
-  if (bd.hasLed (Sanitizer)) {
-    isSanitizerOn = bd.isSanitizerOn();
+  if (f.hasLed (Sanitizer)) {
+    isSanitizerOn = f.isSanitizerOn();
     TEST_ASSERT_EQUAL (UnsetValue8, isSanitizerOn);
   }
-  isHeaterOn = bd.isHeaterOn();
+  isHeaterOn = f.isHeaterOn();
   TEST_ASSERT_EQUAL (UnsetValue8, isHeaterOn);
 }
 
 void test_decoder_getters () {
-  TestFrameDecoder & bd = *decoder;
 
-  TEST_ASSERT (MyBus == bd.busSettings());
-  TEST_ASSERT (MyLeds == bd.ledSettings());
-  test_default_getters (bd);
-  for (const auto & led : MyLeds) {
+  TEST_ASSERT (MyBus == fd.busSettings());
+  TEST_ASSERT (MyLeds == fd.ledSettings());
+  test_default_getters (fd);
+  for (const auto &led : MyLeds) {
     int key = led.first;
-    TEST_ASSERT_TRUE (bd.hasLed (key));
-    TEST_ASSERT_EQUAL (UnsetValue8, bd.isLedOn (key));
+    TEST_ASSERT_TRUE (fd.hasLed (key));
+    TEST_ASSERT_EQUAL (UnsetValue8, fd.isLedOn (key));
   }
 }
 
 void test_default_constructor() {
-  TestFrameDecoder bd;
+  FrameDecoder f;
 
-  TEST_ASSERT_FALSE (bd.isOpened());
-  TEST_ASSERT_TRUE (bd.busSettings().isNull());
-  TEST_ASSERT_TRUE (bd.ledSettings().empty());
-  test_default_getters (bd);
+  TEST_ASSERT_FALSE (f.isOpened());
+  TEST_ASSERT_TRUE (f.busSettings().isEmpty());
+  TEST_ASSERT_TRUE (f.ledSettings().empty());
+  test_default_getters (f);
 }
 
-void test_begin_getters (TestFrameDecoder & bd) {
+void test_begin_getters (FrameDecoder &f) {
 
-  TEST_ASSERT_TRUE (bd.isOpened ());
+  TEST_ASSERT_TRUE (f.isOpened ());
   delay (100);
-  TEST_ASSERT (bd.rawStatus() != UnsetValue16);
+  TEST_ASSERT (f.rawStatus() != UnsetValue16);
 
   // check if all leds are off
-  for (const auto & led : MyLeds) {
+  for (const auto &led : MyLeds) {
 
-    TEST_ASSERT_EQUAL (false, bd.isLedOn (led.first));
+    TEST_ASSERT_EQUAL (false, f.isLedOn (led.first));
   }
 
-  isPowerOn = bd.isPowerOn();
+  isPowerOn = f.isPowerOn();
   TEST_ASSERT_EQUAL (false, isPowerOn);
-  isFilterOn = bd.isFilterOn();
+  isFilterOn = f.isFilterOn();
   TEST_ASSERT_EQUAL (false, isFilterOn);
-  isBubbleOn = bd.isBubbleOn();
+  isBubbleOn = f.isBubbleOn();
   TEST_ASSERT_EQUAL (false, isBubbleOn);
-  isHeaterOn = bd.isHeaterOn();
+  isHeaterOn = f.isHeaterOn();
   TEST_ASSERT_EQUAL (false, isHeaterOn);
-  isHeatReached = bd.isHeatReached();
+  isHeatReached = f.isHeatReached();
   TEST_ASSERT_EQUAL (false, isHeatReached);
-  if (bd.hasLed (Jet)) {
-    isJetOn = bd.isJetOn();
+  if (f.hasLed (Jet)) {
+    isJetOn = f.isJetOn();
     TEST_ASSERT_EQUAL (false, isJetOn);
   }
-  if (bd.hasLed (Sanitizer)) {
-    isSanitizerOn = bd.isSanitizerOn();
+  if (f.hasLed (Sanitizer)) {
+    isSanitizerOn = f.isSanitizerOn();
     TEST_ASSERT_EQUAL (false, isSanitizerOn);
   }
-  isHeaterOn = bd.isHeaterOn();
+  isHeaterOn = f.isHeaterOn();
   TEST_ASSERT_EQUAL (false, isHeaterOn);
 }
 
 void test_decoder_begin () {
-  TestFrameDecoder & bd = *decoder;
+  FrameDecoder &f = fd;
 
-  bd.begin();
-  test_begin_getters (bd);
+  f.begin();
+  test_begin_getters (f);
 }
 
 void test_default_begin () {
-  TestFrameDecoder bd;
+  FrameDecoder f;
 
-  bd.begin (MyBus, MyLeds);
-  test_begin_getters (bd);
+  f.begin (MyBus, MyLeds);
+  test_begin_getters (f);
 }
 
 void setup() {
@@ -182,112 +172,112 @@ void setup() {
   RUN_TEST (test_default_constructor);
   RUN_TEST (test_default_begin);
   RUN_TEST (test_decoder_begin);
-#if ! LOOP_ENABLED
+  #if ! LOOP_ENABLED
   UNITY_END(); // stop unit testing
-#endif
+  #endif
 }
 
 void loop() {
-#if LOOP_ENABLED
+  #if LOOP_ENABLED
   uint32_t ul;
   uint16_t w;
   bool b;
 
-  w = decoder->rawStatus();
+  w = fd.rawStatus();
   if (rawStatus != w) {
     TEST_PRINTF ("raw:%X ", w);
     rawStatus = w;
 
-    if (isPowerOn != decoder->isPowerOn()) {
+    if (isPowerOn != fd.isPowerOn()) {
 
-      isPowerOn = decoder->isPowerOn();
+      isPowerOn = fd.isPowerOn();
       TEST_PRINTF ("Power:%d ", isPowerOn);
     }
-    if (isFilterOn != decoder->isFilterOn()) {
+    if (isFilterOn != fd.isFilterOn()) {
 
-      isFilterOn = decoder->isFilterOn();
+      isFilterOn = fd.isFilterOn();
       TEST_PRINTF ("Filter:%d ", isFilterOn);
     }
-    if (isBubbleOn != decoder->isBubbleOn()) {
+    if (isBubbleOn != fd.isBubbleOn()) {
 
-      isBubbleOn = decoder->isBubbleOn();
+      isBubbleOn = fd.isBubbleOn();
       TEST_PRINTF ("Bubble:%d ", isBubbleOn);
     }
-    if (isHeaterOn != decoder->isHeaterOn()) {
+    if (isHeaterOn != fd.isHeaterOn()) {
 
-      isHeaterOn = decoder->isHeaterOn();
+      isHeaterOn = fd.isHeaterOn();
       TEST_PRINTF ("Heater:%d ", isHeaterOn);
     }
-    if (isHeatReached != decoder->isHeatReached()) {
+    if (isHeatReached != fd.isHeatReached()) {
 
-      isHeatReached = decoder->isHeatReached();
+      isHeatReached = fd.isHeatReached();
       TEST_PRINTF ("HeatReached:%d ", isHeatReached);
     }
-    if (decoder->hasLed (Jet)) {
-      if (isJetOn != decoder->isJetOn()) {
+    if (fd.hasLed (Jet)) {
+      if (isJetOn != fd.isJetOn()) {
 
-        isJetOn = decoder->isJetOn();
+        isJetOn = fd.isJetOn();
         TEST_PRINTF ("Jet:%d ", isJetOn);
       }
     }
-    if (decoder->hasLed (Sanitizer)) {
-      if (isSanitizerOn != decoder->isSanitizerOn()) {
+    if (fd.hasLed (Sanitizer)) {
+      if (isSanitizerOn != fd.isSanitizerOn()) {
 
-        isSanitizerOn = decoder->isSanitizerOn();
+        isSanitizerOn = fd.isSanitizerOn();
         TEST_PRINTF ("Sanitizer:%d ", isSanitizerOn);
       }
     }
-    if (isHeaterOn != decoder->isHeaterOn()) {
+    if (isHeaterOn != fd.isHeaterOn()) {
 
-      isHeaterOn = decoder->isHeaterOn();
+      isHeaterOn = fd.isHeaterOn();
       TEST_PRINTF ("Heating:%d ", isHeaterOn);
     }
   }
 
-  w = decoder->waterTemp();
+  w = fd.waterTemp();
   if (waterTemp != w) {
     TEST_PRINTF ("water:%u ", w);
     waterTemp = w;
   }
 
-  w = decoder->desiredTemp();
+  w = fd.desiredTemp();
   if (desiredTemp != w) {
     TEST_PRINTF ("desired:%u ", w);
     desiredTemp  = w;
   }
 
-  w = decoder->sanitizerTime();
+  w = fd.sanitizerTime();
   if (sanitizerTime != w) {
     TEST_PRINTF ("set:%u ", w);
     sanitizerTime = w;
   }
 
-  b = decoder->isSetupModeTriggered();
+  b = fd.isSetupModeTriggered();
   if (isSetupModeTriggered != b) {
     TEST_PRINTF ("setup:%u ", b);
     isSetupModeTriggered = b;
   }
 
-#if FRAME_COUNTER_ENABLED
-  ul = decoder->frameCounter();
+  #if FRAME_COUNTER_ENABLED
+  ul = fd.frameCounter();
   if (ul != frameCounter) {
     TEST_PRINTF ("frame:%u ", ul);
     frameCounter = ul;
   }
-#endif
+  #endif
 
-  ul =  decoder->frameDropped();
+  ul =  fd.frameDropped();
   if (frameDropped != ul) {
     TEST_PRINTF ("dropped:%u ", ul);
     frameDropped = ul;
   }
 
-  w = decoder->error();
+  w = fd.error();
   if (errorValue != w) {
     TEST_PRINTF ("error:%u", w);
     errorValue = w;
   }
 
-#endif
+  #endif
   delay (1000);
 }

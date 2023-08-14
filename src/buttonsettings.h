@@ -24,6 +24,7 @@ namespace SpaIot {
   /**
      @class ButtonSettings
      @brief This class represents the settings of a button
+
       It is a concrete class, and can be instantiated.
       This class is copyable and movable.
   */
@@ -31,26 +32,26 @@ namespace SpaIot {
     public:
 
       /**
-         @brief
+         @brief The default constructor
       */
       ButtonSettings();
-      
+
       /**
          @brief Destructor
       */
       virtual ~ButtonSettings();
 
       /**
-         @brief
-         @param controllerName
-         @param buttonId
+         @brief The constructor for the ButtonSettings class takes two parameters
+         @param controllerName the name of the controller in the ButtonController register (see ButtonController::addToRegister())
+         @param buttonId the id of the button in the controller from SpaIot::Key
       */
       ButtonSettings (const String &controllerName, int buttonId);
 
       /**
-         @brief
-         @param controller
-         @param buttonId
+         @brief The constructor for the ButtonSettings class takes two parameters
+         @param controller the controller
+         @param buttonId the id of the button in the controller from SpaIot::Key
       */
       ButtonSettings (ButtonController &controller, int buttonId);
 
@@ -77,9 +78,9 @@ namespace SpaIot {
       ButtonSettings &operator= (ButtonSettings &&other);
 
       /**
-       * @brief Clears the ButtonSettings object
-       * After the call to this function, the ButtonSettings object is the same as one that has been default constructed 
-       */
+         @brief Clears the ButtonSettings object
+         After the call to this function, the ButtonSettings object is the same as one that has been default constructed
+      */
       void clear();
 
       /**
@@ -93,40 +94,37 @@ namespace SpaIot {
       bool isEmpty() const;
 
       /**
-         @brief
-         @param other
+         @brief Checks if the two objects are equal
       */
       bool operator== (const ButtonSettings &other) const;
-      
+
       /**
-         @brief
-         @param other
+         @brief Checks if the two objects are not equal
       */
       bool operator!= (const ButtonSettings &other) const;
 
       /**
-         @brief
-         @return
+         @brief Returns the name of the controller
       */
       const String &controllerName() const;
+
       /**
-         @brief
-         @return
+         @brief Returns the id of the button
       */
       int id() const;
+
       /**
-         @brief
-         @param id
+         @brief Sets the identifier of the button
       */
       void setId (int id);
+
       /**
-         @brief
-         @return
+         @brief Returns the button controller used by the button
       */
       const ButtonController &ctrl() const;
+
       /**
-         @brief
-         @return
+         @brief Returns the button controller used by the button
       */
       ButtonController &ctrl();
 

@@ -22,6 +22,16 @@ const BusSettings MyBus (12, 14, 13);
 Multiplexer MuxA ("U3", {5, 4, 15}, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
 Multiplexer MuxB ("U4", {5, 4, 15}, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 
+#elif defined(ARDUINO_LOLIN_S3)
+// SDATA  -> GPIO23 MOSI GPIO11
+// SCLK   -> GPIO18 SCLK GPIO12
+// nWR    -> GPIO19 MISO GPIO10
+const BusSettings MyBus (11, 12, 10);
+
+// My button controllers
+Multiplexer MuxA ("U3", {4, 5, 6}, 7);  // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO7
+Multiplexer MuxB ("U4", {4, 5, 6}, 15); // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO15
+
 #elif defined(ESP32)
 // SDATA  -> GPIO23
 // SCLK   -> GPIO18
@@ -55,7 +65,7 @@ uint16_t desiredTemp = UnsetValue16;
 uint16_t rawStatus;
 bool isSetupModeTriggered;
 
-ControlPanel & spa = ControlPanel::singleton (MyConfig);
+ControlPanel spa (MyConfig);
 
 void setup() {
 

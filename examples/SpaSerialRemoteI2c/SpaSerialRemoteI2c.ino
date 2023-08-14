@@ -5,7 +5,7 @@
 // temperature and LED status.
 // It also allows you to press a key on the keypad to control a spa button.
 // The buttons controller is a PCF8574 connected to 2 multiplexers 4051 as follows:
-// - The selection pins {A, B, C} of the 2 multiplexers are connected 
+// - The selection pins {A, B, C} of the 2 multiplexers are connected
 //   respectively to {P0, P1, P2} on the PCF8574
 // - The INH pin of [A7..A0] multiplexer is connected to P3 on the PCF8574
 // - The INH pin of [B7..B0] multiplexer is connected to P4 on the PCF8574
@@ -33,6 +33,12 @@ const unsigned long SerialBaudrate = 115200;
 // nWR    -> GPIO13
 const BusSettings MyBus (12, 14, 13);
 
+#elif defined(ARDUINO_LOLIN_S3)
+// SDATA  -> GPIO23 MOSI GPIO11
+// SCLK   -> GPIO18 SCLK GPIO12
+// nWR    -> GPIO19 MISO GPIO10
+const BusSettings MyBus (11, 12, 10);
+
 #elif defined(ESP32)
 // SDATA  -> GPIO23
 // SCLK   -> GPIO18
@@ -47,22 +53,22 @@ Pcf8574Mux MyBtnCtrl ("U5", 0x38); // i2c slave address, PCF8574: 0x20 - PCF8574
 
 // My buttons configuration (SSP)
 const std::map<int, ButtonSettings> MyButtons = {
-  { Power,    ButtonSettings (MyBtnCtrl,10) },
-  { Filter,   ButtonSettings (MyBtnCtrl,17) },
-  { Bubble,   ButtonSettings (MyBtnCtrl,19) },
-  { Heater,   ButtonSettings (MyBtnCtrl,15) },
-  { TempUp,   ButtonSettings (MyBtnCtrl,12) },
-  { TempDown, ButtonSettings (MyBtnCtrl,23) },
-  { TempUnit, ButtonSettings (MyBtnCtrl,13) } 
+  { Power,    ButtonSettings (MyBtnCtrl, 10) },
+  { Filter,   ButtonSettings (MyBtnCtrl, 17) },
+  { Bubble,   ButtonSettings (MyBtnCtrl, 19) },
+  { Heater,   ButtonSettings (MyBtnCtrl, 15) },
+  { TempUp,   ButtonSettings (MyBtnCtrl, 12) },
+  { TempDown, ButtonSettings (MyBtnCtrl, 23) },
+  { TempUnit, ButtonSettings (MyBtnCtrl, 13) }
 };
 // My custom configuration
 const HardwareSettings MyConfig (MyBus, SspLeds, MyButtons);
 
-ControlPanel & spa = ControlPanel::singleton (MyConfig);
+ControlPanel spa (MyConfig);
 
 uint16_t waterTemp;
 uint16_t desiredTemp = UnsetValue16;
-uint16_t rawStatus; 
+uint16_t rawStatus;
 bool isSetupModeTriggered;
 
 void setup() {
@@ -70,7 +76,7 @@ void setup() {
   delay (2000);
   Serial.begin (SerialBaudrate);
   Serial.println ("\nSpaIot Serial Remote Example with I2C button controller Example");
-  
+
   Wire.begin(); // IMPORTANT LINE! PCF8574 use the default Wire object
 
   spa.begin();  // IMPORTANT LINE!
@@ -80,17 +86,17 @@ void setup() {
   }
   spa.setPower (false);
 
-  Serial.println("You can press a key to press a spa button:");
-  Serial.println("Key   Button");
-  Serial.println("P     Power");
-  Serial.println("F     Filter");
-  Serial.println("B     Bubble");
-  Serial.println("H     Heater");
-  Serial.println("U     Temp. Up");
-  Serial.println("D     Temp. Down");
-  Serial.println("C     Temp. Unit");
-  Serial.println("Waiting for reading temperatures, it can take up to 20 seconds...");
-  
+  Serial.println ("You can press a key to press a spa button:");
+  Serial.println ("Key   Button");
+  Serial.println ("P     Power");
+  Serial.println ("F     Filter");
+  Serial.println ("B     Bubble");
+  Serial.println ("H     Heater");
+  Serial.println ("U     Temp. Up");
+  Serial.println ("D     Temp. Down");
+  Serial.println ("C     Temp. Unit");
+  Serial.println ("Waiting for reading temperatures, it can take up to 20 seconds...");
+
   // Wait to read the temperature of the water, it can take 20 seconds ...
   waterTemp = spa.waitForWaterTemp();
   Serial.printf ("waterTemp=%d'C\n", waterTemp);
@@ -108,7 +114,7 @@ void loop() {
   }
 
   w = spa.desiredTemp(); // Reading the desired temperature
-  if ((desiredTemp != w) && (spa.isPowerOn())) { // If modified, it is displayed
+  if ( (desiredTemp != w) && (spa.isPowerOn())) { // If modified, it is displayed
     desiredTemp = w;
     Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
   }
@@ -116,7 +122,7 @@ void loop() {
   b = spa.isSetupModeTriggered(); // Check if setup mode triggered
   if (isSetupModeTriggered != b) {
     isSetupModeTriggered = b;
-     Serial.printf ("isSetupModeTriggered=%d\n", isSetupModeTriggered);
+    Serial.printf ("isSetupModeTriggered=%d\n", isSetupModeTriggered);
   }
 
   w = spa.rawStatus();
@@ -134,27 +140,27 @@ void loop() {
   if (Serial.available() > 0) {
     // read the incoming byte:
     int c = Serial.read();
-    
-    if ((c == 'P')||(c == 'p')) {
-      spa.pushButton(Power);
+
+    if ( (c == 'P') || (c == 'p')) {
+      spa.pushButton (Power);
     }
-    else if ((c == 'F')||(c == 'f')) {
-      spa.pushButton(Filter);
+    else if ( (c == 'F') || (c == 'f')) {
+      spa.pushButton (Filter);
     }
-    else if ((c == 'B')||(c == 'b')) {
-      spa.pushButton(Bubble);
+    else if ( (c == 'B') || (c == 'b')) {
+      spa.pushButton (Bubble);
     }
-    else if ((c == 'H')||(c == 'h')) {
-      spa.pushButton(Heater);
+    else if ( (c == 'H') || (c == 'h')) {
+      spa.pushButton (Heater);
     }
-    else if ((c == 'U')||(c == 'u')) {
-      spa.pushButton(TempUp);
+    else if ( (c == 'U') || (c == 'u')) {
+      spa.pushButton (TempUp);
     }
-    else if ((c == 'D')||(c == 'd')) {
-      spa.pushButton(TempDown);
+    else if ( (c == 'D') || (c == 'd')) {
+      spa.pushButton (TempDown);
     }
-    else if ((c == 'C')||(c == 'c')) {
-      spa.pushButton(TempUnit);
+    else if ( (c == 'C') || (c == 'c')) {
+      spa.pushButton (TempUnit);
     }
   }
 

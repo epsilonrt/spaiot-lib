@@ -16,7 +16,7 @@ const std::map <int, LedSettings> & ledSettings =  DefaultConfig.leds();
 
 //#define DISABLE_DESIRED_TEMP
 
-ControlPanel & panel = ControlPanel::singleton ();
+ControlPanel panel;
 
 uint32_t frameCounter;
 uint32_t frameDropped;

@@ -22,13 +22,16 @@ namespace SpaIot {
 
   /**
      @class Button
-     @brief
+     @brief This class represents a button.
+
+      It is a concrete class, and can be instantiated.
+      This class is copyable and movable.
   */
   class Button {
 
     public:
       /**
-         @brief
+         @brief The default constructor
       */
       Button ();
 
@@ -38,7 +41,7 @@ namespace SpaIot {
       virtual ~Button();
 
       /**
-         @brief
+         @brief The constructor for the Button class with settings
       */
       Button (const ButtonSettings &settings);
 
@@ -69,6 +72,7 @@ namespace SpaIot {
          After the call to this function, the Button object is the same as one that has been default constructed
       */
       void clear();
+
       /**
          @brief Returns true if the object is null (i.e. it has not been initialized, d_ptr is null)
       */
@@ -78,60 +82,64 @@ namespace SpaIot {
          @brief Checks if all attributes are set to their default values (same as the default constructor)
       */
       bool isEmpty() const;
+
       /**
-         @brief
-         @param other
+         @brief Checks if the two objects are equal
       */
       bool operator== (const Button &other) const;
+
       /**
-         @brief
-         @param other
+         @brief Checks if the two objects are not equal
       */
       bool operator!= (const Button &other) const;
+
       /**
-         @brief
-         @return
+         @brief Returns the button identification key in the possible values of SpaIot::Key
       */
       int id() const;
+
       /**
-         @brief
-         @return
+         @brief Returns the button controller used by the button
       */
       const ButtonController &ctrl() const;
+
       /**
-         @brief
-         @return
+         @brief Returns the button controller used by the button
       */
       ButtonController &ctrl();
+
       /**
-         @brief
-         @return
+         @brief Returns the settings of the button
       */
       const ButtonSettings &settings() const;
+
       /**
-         @brief
+         @brief Initializes the button, if its controller is not initialized, it is initialized.
       */
       void begin();
+
       /**
-         @brief
+         @brief Presses the button, it is not released automatically
       */
       void press();
+
       /**
-         @brief
+         @brief Releases the button
       */
       void release();
+
       /**
-         @brief
+         @brief Presses and releases the button, \c HoldPressedMs milliseconds is the time the button is pressed
       */
       void push();
+
       /**
-         @brief
-         @return
+         @brief Checks if the button is opened
       */
       bool isOpened() const;
+
       /**
-         @brief
-         @return
+         @brief Checks if the button is pressed
       */
       bool isPressed() const;
 

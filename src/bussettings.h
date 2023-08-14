@@ -30,8 +30,8 @@ namespace SpaIot  {
     public:
       /**
          The default constructor
-         creates a BusSettings object and initializes the m_pin member to
-         (3, -1)
+         creates a BusSettings object and initializes the pin vector to
+         {-1, -1, -1}
       */
       BusSettings();
 
@@ -51,10 +51,11 @@ namespace SpaIot  {
       BusSettings (const int dataPin, const int clkPin, const int holdPin);
 
       /**
-         The constructor takes a list of pins and stores them in the member variable
-         m_pin
-
-         @param pins A list of pins to use for the bus.
+         The constructor takes a list of pins
+         
+         The list of pins must be exactly 3 pins, and the pins must be in the order { dataPin, clkPin, holdPin }
+         If the list is not exactly 3 pins, the comportment is undefined.
+         @param pins A list of 3 pins to use for the bus.
       */
       BusSettings (const std::initializer_list<int> &pins);
 

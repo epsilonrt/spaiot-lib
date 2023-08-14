@@ -34,12 +34,11 @@ namespace SpaIot {
     pin  { dataPin, clkPin, holdPin }
   {}
 
-
   //----------------------------------------------------------------------------
   BusSettings::Private::Private (const std::initializer_list<int> &pins) :
     pin (pins) {
 
-    assert (pins.size() >= 3);
+    pin.resize (3);
   }
 
   //----------------------------------------------------------------------------

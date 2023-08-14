@@ -72,13 +72,14 @@ const HardwareSettings TestSJB (TestBus, TestSjbLeds, TestSjbButtons);
 void test_constructor_null (void) {
   HardwareSettings s;
 
-  TEST_ASSERT_TRUE (s.isNull());
+  TEST_ASSERT_TRUE (s.isEmpty());
+  TEST_ASSERT_FALSE (s.isNull());
 }
 
 void test_constructor_notnull (void) {
   HardwareSettings s (TestBus, TestSspLeds, TestSspButtons);
 
-  TEST_ASSERT_FALSE (s.isNull());
+  TEST_ASSERT_FALSE (s.isEmpty());
 }
 
 void test_getters (void) {
@@ -93,7 +94,7 @@ void test_setters (void) {
   HardwareSettings s (TestBus, TestSspLeds, TestSspButtons);
 
   s.clear();
-  TEST_ASSERT_TRUE (s.isNull());
+  TEST_ASSERT_TRUE (s.isEmpty());
 }
 
 

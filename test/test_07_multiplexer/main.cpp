@@ -78,6 +78,8 @@ void test_setters (void) {
     ctrl.setSelectPin (key, pin);
     TEST_ASSERT_EQUAL (pin, ctrl.selectPin (key++));
   }
+  ctrl.clear();
+  TEST_ASSERT_TRUE (ctrl.isEmpty());
 }
 
 void test_comparison (void) {

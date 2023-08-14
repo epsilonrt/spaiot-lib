@@ -32,13 +32,14 @@ const std::map<int, ButtonSettings> TestButtons = {
 void test_constructor_null (void) {
   ButtonSettings s;
 
-  TEST_ASSERT_TRUE (s.isNull());
+  TEST_ASSERT_TRUE (s.isEmpty());
+  TEST_ASSERT_FALSE (s.isNull());
 }
 
 void test_constructor_notnull (void) {
   ButtonSettings s (TestButtons.at (Filter).controllerName(), TestButtons.at (Filter).id());
 
-  TEST_ASSERT_FALSE (s.isNull());
+  TEST_ASSERT_FALSE (s.isEmpty());
 }
 
 void test_getters (void) {
@@ -54,7 +55,7 @@ void test_setters (void) {
   s.setId (TestButtons.at (Filter).id());
   TEST_ASSERT_EQUAL (TestButtons.at (Filter).id(), s.id());
   s.clear();
-  TEST_ASSERT_TRUE (s.isNull());
+  TEST_ASSERT_TRUE (s.isEmpty());
 }
 
 void test_comparison (void) {

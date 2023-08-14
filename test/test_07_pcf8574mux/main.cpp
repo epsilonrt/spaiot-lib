@@ -36,11 +36,20 @@ const std::map<int, ButtonSettings> & TestButtons = DefaultConfig.buttons();
 // void tearDown(void) {
 // // clean stuff up here
 // }
-
-void test_constructor (void) {
+void test_constructor_null (void) {
   Pcf8574Mux ctrl;
 
   TEST_ASSERT_FALSE (ctrl.isNull());
+  TEST_ASSERT_TRUE (ctrl.isEmpty());
+}
+
+void test_constructor_notnull (void) {
+  Pcf8574Mux ctrl (0x38);
+
+  TEST_ASSERT_FALSE (ctrl.isNull());
+  TEST_ASSERT_FALSE (ctrl.isEmpty());
+  ctrl.clear();
+  TEST_ASSERT_TRUE (ctrl.isEmpty());
 }
 
 void test_comparison (void) {
@@ -137,7 +146,8 @@ void loop() {
 
   if (!done) {
 
-    RUN_TEST (test_constructor);
+    RUN_TEST (test_constructor_null);
+    RUN_TEST (test_constructor_notnull);
     RUN_TEST (test_comparison);
     RUN_TEST (test_copy);
     RUN_TEST (test_begin);

@@ -22,15 +22,16 @@ using namespace SpaIot;
 void test_constructor_null (void) {
   BusSettings s;
 
-  TEST_ASSERT_TRUE (s.isNull());
+  TEST_ASSERT_TRUE (s.isEmpty());
+  TEST_ASSERT_FALSE (s.isNull());
 }
 
 void test_constructor_notnull (void) {
   BusSettings s1 (DataPin, ClkPin, HoldPin);
   BusSettings s2 {DataPin, ClkPin, HoldPin};
 
-  TEST_ASSERT_FALSE (s1.isNull());
-  TEST_ASSERT_FALSE (s2.isNull());
+  TEST_ASSERT_FALSE (s1.isEmpty());
+  TEST_ASSERT_FALSE (s2.isEmpty());
 }
 
 void test_getters (void) {
@@ -51,7 +52,7 @@ void test_setters (void) {
   TEST_ASSERT_EQUAL (ClkPin, s.clkPin());
   TEST_ASSERT_EQUAL (HoldPin, s.holdPin());
   s.clear();
-  TEST_ASSERT_TRUE (s.isNull());
+  TEST_ASSERT_TRUE (s.isEmpty());
 }
 
 void test_comparison (void) {

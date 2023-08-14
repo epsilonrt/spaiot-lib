@@ -31,7 +31,14 @@ void setUp (void) {
 void test_constructor_null () {
   Button but;
 
-  TEST_ASSERT_TRUE (but.isNull());
+  TEST_ASSERT_TRUE (but.isEmpty());
+  TEST_ASSERT_FALSE (but.isNull());
+}
+
+void test_constructor_notnull (void) {
+  Button but (TestButtons.at (Power));
+
+  TEST_ASSERT_FALSE (but.isEmpty());
 }
 
 void test_constructor_and_getters () {
@@ -44,7 +51,7 @@ void test_constructor_and_getters () {
     button.emplace (key, Button (cfg));
     Button & but = button.at (key);
 
-    TEST_ASSERT_FALSE (but.isNull());
+    TEST_ASSERT_FALSE (but.isEmpty());
 
     // check configuration
     TEST_ASSERT (cfg == but.settings());

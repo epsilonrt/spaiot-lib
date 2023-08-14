@@ -31,13 +31,14 @@ const std::map<int, LedSettings> MyLeds = {
 void test_constructor_null (void) {
   LedSettings led;
 
-  TEST_ASSERT_TRUE (led.isNull());
+  TEST_ASSERT_TRUE (led.isEmpty());
+  TEST_ASSERT_FALSE (led.isNull());
 }
 
 void test_constructor_notnull (void) {
   LedSettings led (ledId);
 
-  TEST_ASSERT_FALSE (led.isNull());
+  TEST_ASSERT_FALSE (led.isEmpty());
 }
 
 void test_getters (void) {
@@ -60,7 +61,7 @@ void test_setters (void) {
   TEST_ASSERT_EQUAL (ledId, led.order());
   TEST_ASSERT_EQUAL (frame, led.frame());
   led.clear();
-  TEST_ASSERT_TRUE (led.isNull());
+  TEST_ASSERT_TRUE (led.isEmpty());
 }
 
 void test_comparison (void) {

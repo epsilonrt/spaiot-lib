@@ -111,12 +111,6 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  void ButtonController::reset (Private *other) {
-
-    d_ptr.reset (other);
-  }
-
-  //----------------------------------------------------------------------------
   bool ButtonController::operator== (const ButtonController &other) const {
     PIMPL_D (const ButtonController);
 

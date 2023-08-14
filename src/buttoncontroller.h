@@ -154,12 +154,6 @@ namespace SpaIot {
     protected:
       class Private;
       ButtonController (Private &dd);
-      /**
-         @brief Resets the d-pointer to @b other.
-
-         @param other The new d-pointer
-      */
-      void reset (Private *other = nullptr);
       std::unique_ptr<Private> d_ptr;
     private:
       PIMPL_DECLARE_PRIVATE (ButtonController)

@@ -85,7 +85,7 @@ namespace SpaIot {
 
     if (isNull()) {
 
-      reset (new Private);
+      d_ptr.reset (new Private);
     }
     else {
       PIMPL_D (Pcf8574Mux);

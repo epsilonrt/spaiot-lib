@@ -26,8 +26,6 @@
 #ifndef SPAIOT_HOLD_PIN
 #define SPAIOT_HOLD_PIN 13 // Default hold pin for ESP32 and ESP8266
 #endif
-// TODO: move this to pImpl/singleton.h
-#define SINGLETON_I(Class) Class & i = Class::instance()
 
 //! SpaIot name space
 namespace SpaIot {

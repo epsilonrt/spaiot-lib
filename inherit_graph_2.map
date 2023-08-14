@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_spa_iot_1_1_button_controller.html" title="This class is the base class of all button controllers." alt="" coords="5,31,184,57"/>
+<area shape="rect" id="node2" href="$class_spa_iot_1_1_multiplexer.html" title="Analog multiplexer for buttons." alt="" coords="235,5,379,32"/>
+<area shape="rect" id="node3" href="$class_spa_iot_1_1_pcf8574_mux.html" title="Multiplexer controlled by a PCF8574." alt="" coords="232,56,383,83"/>
+</map>

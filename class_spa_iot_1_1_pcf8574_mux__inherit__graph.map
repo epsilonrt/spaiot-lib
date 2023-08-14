@@ -1,0 +1,4 @@
+<map id="SpaIot::Pcf8574Mux" name="SpaIot::Pcf8574Mux">
+<area shape="rect" id="node1" title="Multiplexer controlled by a PCF8574." alt="" coords="19,80,170,107"/>
+<area shape="rect" id="node2" href="$class_spa_iot_1_1_button_controller.html" title="This class is the base class of all button controllers." alt="" coords="5,5,184,32"/>
+</map>

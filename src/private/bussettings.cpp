@@ -88,22 +88,10 @@ namespace SpaIot {
   // ---------------------------------------------------------------------------
   // Move constructor
   BusSettings::BusSettings (BusSettings &&other) = default;
-  // BusSettings::BusSettings (BusSettings &&other) {
-
-  //   d_ptr = std::move (other.d_ptr);
-  // }
 
   // ---------------------------------------------------------------------------
   // Move assignment operator
   BusSettings &BusSettings::operator= (BusSettings &&other) = default;
-  // BusSettings &BusSettings::operator= (BusSettings &&other) {
-
-  //   if (this != &other) {
-
-  //     d_ptr = std::move (other.d_ptr);
-  //   }
-  //   return *this;
-  // }
 
   //----------------------------------------------------------------------------
   bool BusSettings::isNull() const {
@@ -125,7 +113,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void BusSettings::clear() {
 
-    if (d_ptr == nullptr) {
+    if (isNull()) {
 
       d_ptr.reset (new Private);
     }

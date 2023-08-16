@@ -7,6 +7,8 @@ var hierarchy =
       [ "SpaIot::Pcf8574Mux", "class_spa_iot_1_1_pcf8574_mux.html", null ]
     ] ],
     [ "SpaIot::ButtonSettings", "class_spa_iot_1_1_button_settings.html", null ],
+    [ "SpaIot::Client", "class_spa_iot_1_1_client.html", null ],
+    [ "SpaIot::Event", "class_spa_iot_1_1_event.html", null ],
     [ "SpaIot::FrameDecoder", "class_spa_iot_1_1_frame_decoder.html", [
       [ "SpaIot::ControlPanel", "class_spa_iot_1_1_control_panel.html", null ]
     ] ],

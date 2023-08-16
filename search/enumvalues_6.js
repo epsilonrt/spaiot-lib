@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tempdown_259',['TempDown',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9a63f5b3808bb64caed3029d755bb5eb',1,'SpaIot']]],
-  ['tempunit_260',['TempUnit',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a827dbec1053cf0675186f0e4d4f72e9c',1,'SpaIot']]],
-  ['tempup_261',['TempUp',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85ae032fffb62d7b3fad28a346f68a32668',1,'SpaIot']]]
+  ['jet_315',['Jet',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a4d807e4a0db1f5054bafc629ae9b1fa5',1,'SpaIot']]],
+  ['jeton_316',['JetOn',['../class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdaf0dedde2faf18c0a9952f8b4774b65bf',1,'SpaIot::Event']]]
 ];

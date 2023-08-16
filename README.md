@@ -8,8 +8,8 @@ Supervision and Control library for Intxx PxxxSPA with an ESP8266 or ESP32
 [![PlatformIO Registry](https://badges.registry.platformio.org/packages/epsilonrt/library/spaiot-lib.svg)](https://registry.platformio.org/libraries/epsilonrt/spaiot-lib)
 [![Arduino Registry](https://www.ardu-badge.com/badge/spaiot-lib.svg)](https://www.arduinolibraries.info/libraries/spaiot-lib)  
 [![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
-[![Platform ESP8266](https://img.shields.io/badge/Platform-Espressif8266-orange)](#)
-[![Platform ESP32](https://img.shields.io/badge/Platform-Espressif32-orange)](#)
+[![Platform ESP8266](https://img.shields.io/badge/Platform-Espressif8266-orange)](https://www.espressif.com/en/products/socs/esp8266)
+[![Platform ESP32](https://img.shields.io/badge/Platform-Espressif32-orange)](https://www.espressif.com/en/products/socs/esp32)
 
 
 ---

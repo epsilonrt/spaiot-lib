@@ -13,7 +13,6 @@
 */
 #pragma once
 
-#include <vector>
 #include "../event.h"
 
 namespace SpaIot {

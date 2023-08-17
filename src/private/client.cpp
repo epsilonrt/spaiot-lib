@@ -25,11 +25,12 @@ namespace SpaIot {
   // Private implementation
 
   //----------------------------------------------------------------------------
-  Client::Private::Private ()
+  Client::Private::Private (const char *className) : className (className)
   {}
 
   //----------------------------------------------------------------------------
-  Client::Private::Private (std::set<Event::Type> subscribedEvents) :
+  Client::Private::Private (const char *className, const std::set<Event::Type> &subscribedEvents) :
+    className (className),
     subscribedEvents (subscribedEvents)
   {}
 
@@ -44,7 +45,7 @@ namespace SpaIot {
   // Default constructor
   // Call the protected constructor with private implementation
   Client::Client() :
-    Client (*new Private) {}
+    Client (*new Private ("Client")) {}
 
   //----------------------------------------------------------------------------
   // Destructor
@@ -54,14 +55,13 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   Client::Client (std::initializer_list<Event::Type> subscribedEvents) :
-    Client (*new Private (std::set<Event::Type> (subscribedEvents)))
+    Client (*new Private ("Client", std::set<Event::Type> (subscribedEvents)))
   {}
 
   //----------------------------------------------------------------------------
-  Client::Client (std::set<Event::Type> subscribedEvents) :
-    Client (*new Private (subscribedEvents))
+  Client::Client (const std::set<Event::Type> &subscribedEvents) :
+    Client (*new Private ("Client", subscribedEvents))
   {}
-
 
   // ---------------------------------------------------------------------------
   // Copy constructor
@@ -110,7 +110,7 @@ namespace SpaIot {
 
     if (isNull()) {
 
-      d_ptr.reset (new Private);
+      d_ptr.reset (new Private ("Client"));
     }
     else {
 
@@ -126,7 +126,8 @@ namespace SpaIot {
 
     return d->outQ == other.d_func()->outQ &&
            d->inQ == other.d_func()->inQ &&
-           d->subscribedEvents == other.d_func()->subscribedEvents;
+           d->subscribedEvents == other.d_func()->subscribedEvents &&
+           d->className == other.d_func()->className;
   }
 
   //----------------------------------------------------------------------------
@@ -249,5 +250,24 @@ namespace SpaIot {
     PIMPL_D (const Client);
 
     return d->outQ.size();
+  }
+
+  //----------------------------------------------------------------------------
+  bool Client::begin () {
+
+    return false;
+  }
+
+  //----------------------------------------------------------------------------
+  bool Client::handle () {
+
+    return false;
+  }
+
+  //----------------------------------------------------------------------------
+  const String &Client::className() const {
+    PIMPL_D (const Client);
+
+    return d->className;
   }
 }

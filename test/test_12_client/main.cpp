@@ -7,7 +7,7 @@
 #include <Arduino.h>
 #include <vector>
 #include <unity.h>
-#include <client.h>
+#include "testclient.h"
 
 using namespace SpaIot;
 
@@ -29,6 +29,7 @@ void test_constructor_null (void) {
 
   TEST_ASSERT_TRUE (s.isEmpty());
   TEST_ASSERT_FALSE (s.isNull());
+  TEST_ASSERT_EQUAL_STRING (s.className().c_str(), "Client");
 }
 
 void test_constructor_notnull (void) {
@@ -111,56 +112,12 @@ void test_move (void) {
   TEST_ASSERT (s3 == s1);
 }
 
-
-class TestClient : public SpaIot::Client {
-  public:
-    TestClient () : Client() {}
-    TestClient (std::initializer_list <Event::Type> l) : Client (l) {}
-    TestClient (const std::set <Event::Type> &s) : Client (s) {}
-
-    static void printEvent (const char *msg, Event e) {
-      TEST_PRINTF ("%s: %s, value: %d", msg, EventTypeToString.at (e.type()).c_str(), e.value());
-    }
-
-    bool handle() {
-      Event e;
-      bool ret;
-
-      while (ret = pullFromSpa (e)) {
-        printEvent ("pull", e);
-        pushToSpa (e);
-        printEvent ("push", e);
-      }
-      return ret;
-    }
-
-    static const std::map <Event::Type, String> EventTypeToString;
-
-};
-
-// Map to convert Event::Type to string
-const std::map <Event::Type, String> TestClient::EventTypeToString = {
-  {Event::Type::PowerOn, "PowerOn"},
-  {Event::Type::FilterOn, "FilterOn"},
-  {Event::Type::BubbleOn, "BubbleOn"},
-  {Event::Type::JetOn, "JetOn"},
-  {Event::Type::SanitizerOn, "SanitizerOn"},
-  {Event::Type::HeaterOn, "HeaterOn"},
-  {Event::Type::HeatReached, "PumHeatReachedp2"},
-  {Event::Type::WaterTemp, "WaterTemp"},
-  {Event::Type::DesiredTemp, "DesiredTemp"},
-  {Event::Type::SanitizerTime, "SanitizerTime"},
-  {Event::Type::ErrorCode, "ErrorCode"},
-  {Event::Type::AmbientTemperature, "AmbientTemperature"},
-  {Event::Type::NoEvent, "NoEvent"},
-  {Event::Type::AnyEvent, "AnyEvent"}
-};
-
 const std::vector <Event> sequence1 = {
   Event (Event::Type::PowerOn, true),
   Event (Event::Type::DesiredTemp, 25),
   Event (Event::Type::ErrorCode, 0)
 };
+
 const std::vector <Event> sequence2 = {
   Event (Event::Type::PowerOn, true),
   Event (Event::Type::WaterTemp, 25),
@@ -174,6 +131,8 @@ void test_write_read (void) {
   TestClient s2 (subscriptionList2);
   //  subscriptionList2 = {Event::Type::PowerOn, Event::Type::WaterTemp, Event::Type::ErrorCode};
 
+  TEST_ASSERT_EQUAL_STRING (s1.className().c_str(), "TestClient");
+  
   Event ev;
   TEST_ASSERT_FALSE (s2.write (ev)); // type is NoEvent
   ev.setType (Event::Type::AnyEvent);

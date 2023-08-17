@@ -20,10 +20,11 @@ namespace SpaIot {
 
   class Client::Private {
     public:
-      Private ();
-      Private (std::set<Event::Type> subscribedEvents);
+      Private (const char * className);
+      Private (const char * className, const std::set<Event::Type> &subscribedEvents);
       std::queue<Event> outQ; // out queue, events to be sent to the spa
       std::queue<Event> inQ;  // in queue, events received from the spa
+      String className;
       std::set<Event::Type> subscribedEvents; // events subscribed by the client
   };
 }

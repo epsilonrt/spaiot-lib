@@ -68,7 +68,7 @@ namespace SpaIot {
 
          @param subscribedEvents  The events subscribed by the client, only the events in the list will be sent to the client or the spa
       */
-      Client (std::set<Event::Type> subscribedEvents);
+      Client (const std::set<Event::Type> &subscribedEvents);
 
       /**
         @brief Copy Constructor
@@ -96,7 +96,7 @@ namespace SpaIot {
          @brief Clears the Client object
          After the call to this function, the Client object is the same as one that has been default constructed
       */
-      void clear();
+      virtual void clear();
 
       /**
          @brief Returns true if the object is null (i.e. it has not been initialized, d_ptr is null)
@@ -106,7 +106,7 @@ namespace SpaIot {
       /**
          @brief Checks if all attributes are set to their default values (same as the default constructor)
       */
-      bool isEmpty() const;
+      virtual bool isEmpty() const;
 
       /**
          The function returns true if the two objects are equal
@@ -116,7 +116,7 @@ namespace SpaIot {
          @return The return value is a boolean value.  It is true if the two objects are
          equal, and false if they are not equal.
       */
-      bool operator== (const Client &other) const;
+      virtual bool operator== (const Client &other) const;
 
       /**
          The function returns true if the two objects are not equal
@@ -126,7 +126,7 @@ namespace SpaIot {
          @return The return value is a boolean value.  It is true if the two objects are
          not equal, and false if they are equal.
       */
-      bool operator!= (const Client &other) const;
+      virtual bool operator!= (const Client &other) const;
 
       /**
          @brief Add subscribed events
@@ -190,6 +190,33 @@ namespace SpaIot {
          @brief Returns the number of events to be read
       */
       int available() const;
+
+      /**
+         @brief Start the client
+
+         This method must be called in the setup() function before begin().
+         It will be call by \c Server::begin() to start the client services.
+         The default implementation does nothing and returns false.
+         @return true if the client has been started, false otherwise
+      */
+      virtual bool begin();
+
+      /**
+         @brief Process the client
+
+         This method must be called periodically in the main loop.
+         It will be call by \c Server::handle() to process the client tasks.
+         The default implementation does nothing and returns false.
+         @return true if events have been processed, false otherwise
+      */
+      virtual bool handle();
+
+      /**
+         @brief Returns the class name
+         This allows to know the class name of the object at runtime when only a pointer to the base class is available
+         It should be note that typeid().name() is not available on ESP32/ESP8266 because RTTI is not enabled.
+      */
+      virtual const String &className() const;
 
     protected:
       /** @name Client Protected API

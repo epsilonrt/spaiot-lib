@@ -27,7 +27,6 @@ namespace SpaIot {
       class Engine;
       FrameDecoder *const q_ptr;
       Engine *engine;
-      bool isopened;
 
       // Parameters set by the constructor
       uint16_t frameLedPower;

@@ -23,8 +23,8 @@ namespace SpaIot {
       ~Engine();
       bool begin (const BusSettings & bus, unsigned long waitingTimeMs);
       void end();
-      bool isReady();
-      bool isOpened();
+      bool isReady() const;
+      bool isOpened() const;
 
     public:
       BusSettings busSettings;

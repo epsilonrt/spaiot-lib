@@ -33,7 +33,6 @@ namespace SpaIot {
   FrameDecoder::Private::Private (FrameDecoder *q) : q_ptr (q) {
 
     engine = & Engine::instance();
-    isopened = false;
     frameLedPower = 0;
     frameLedFilter = 0;
     frameLedHeater = 0;
@@ -129,7 +128,7 @@ namespace SpaIot {
     if (!isOpened())  {
       PIMPL_D (FrameDecoder);
 
-      SPAIOT_DBG ("FrameDecoder::begin(): opening");
+      SPAIOT_DBGP (PSTR("FrameDecoder::begin(): opening"));
       for (auto &led : d->ledSettings) {
 
         switch (led.first) {
@@ -160,7 +159,10 @@ namespace SpaIot {
         }
       }
 
-      d->isopened = d->engine->begin (d->busSettings, waitingTimeMs);
+      if (d->engine->begin (d->busSettings, waitingTimeMs) == false) {
+
+        SPAIOT_DBGP (PSTR("FrameDecoder::begin(): failed"));
+      }
     }
   }
 
@@ -170,7 +172,6 @@ namespace SpaIot {
       PIMPL_D (FrameDecoder);
       
       d->engine->end();
-      d->isopened = false;
     }
   }
 
@@ -178,7 +179,14 @@ namespace SpaIot {
   bool FrameDecoder::isOpened() const {
     PIMPL_D (const FrameDecoder);
 
-    return d->isopened;
+    return d->engine->isOpened();
+  }
+
+  //----------------------------------------------------------------------------
+  bool FrameDecoder::isReady() const {
+    PIMPL_D (const FrameDecoder);
+
+    return d->engine->isReady() && isOpened();
   }
 
   //----------------------------------------------------------------------------

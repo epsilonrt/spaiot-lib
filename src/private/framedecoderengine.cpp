@@ -89,13 +89,13 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool FrameDecoder::Private::Engine::isReady() {
+  bool FrameDecoder::Private::Engine::isReady() const {
 
     return (rawStatus != UnsetValue8);
   }
 
   //----------------------------------------------------------------------------
-  bool FrameDecoder::Private::Engine::isOpened() {
+  bool FrameDecoder::Private::Engine::isOpened() const {
 
     return !busSettings.isEmpty();
   }

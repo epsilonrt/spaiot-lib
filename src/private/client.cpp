@@ -25,13 +25,16 @@ namespace SpaIot {
   // Private implementation
 
   //----------------------------------------------------------------------------
-  Client::Private::Private (const char *className) : className (className)
+  Client::Private::Private (const char *className, Client *q) :
+    className (className),
+    q_ptr (q)
   {}
 
   //----------------------------------------------------------------------------
-  Client::Private::Private (const char *className, const std::set<Event::Type> &subscribedEvents) :
+  Client::Private::Private (const char *className, const std::set<Event::Type> &subscribedEvents, Client *q) :
+    subscribedEvents (subscribedEvents),
     className (className),
-    subscribedEvents (subscribedEvents)
+    q_ptr (q)
   {}
 
   //----------------------------------------------------------------------------
@@ -73,8 +76,11 @@ namespace SpaIot {
   Client &Client::operator= (const Client &other) {
 
     if (this != &other) {
+      PIMPL_D (Client);
 
-      *d_ptr = *other.d_ptr;
+      d->outQ = other.d_func()->outQ;
+      d->inQ = other.d_func()->inQ;
+      d->subscribedEvents = other.d_func()->subscribedEvents;
       return *this;
     }
     return *this;
@@ -127,7 +133,7 @@ namespace SpaIot {
     return d->outQ == other.d_func()->outQ &&
            d->inQ == other.d_func()->inQ &&
            d->subscribedEvents == other.d_func()->subscribedEvents &&
-           d->className == other.d_func()->className;
+           d->className == other.d_func()->className; // TODO: compare the class name ?
   }
 
   //----------------------------------------------------------------------------

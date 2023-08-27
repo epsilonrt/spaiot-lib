@@ -24,7 +24,7 @@ namespace SpaIot {
       bool begin (const BusSettings & bus, unsigned long waitingTimeMs);
       void end();
       bool isReady() const;
-      bool isOpened() const;
+      bool isOpen() const;
 
     public:
       BusSettings busSettings;

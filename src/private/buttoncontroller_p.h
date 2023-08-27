@@ -25,7 +25,7 @@ namespace SpaIot {
 
     public:
       int typeId;
-      bool isopened;
+      bool isopen;
       int selected;
       mutable String name;
       static std::map<String, ButtonController &> Register;

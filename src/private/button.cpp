@@ -127,9 +127,9 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool Button::isOpened() const {
+  bool Button::isOpen() const {
 
-    return ctrl().isOpened();
+    return ctrl().isOpen();
   }
 
   //----------------------------------------------------------------------------
@@ -166,7 +166,7 @@ namespace SpaIot {
 
     if (isNull() == false) {
 
-      if (ctrl().isOpened() == false) {
+      if (ctrl().isOpen() == false) {
 
         SPAIOT_DBG ("Button::begin: button(%d) opening %s controller", id(),
                     d->settings.ctrl().name().c_str());
@@ -184,7 +184,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Button::press() {
 
-    if (isOpened()) {
+    if (isOpen()) {
 
       ctrl().select (id());
     }
@@ -193,7 +193,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   bool Button::isPressed() const {
 
-    if (isOpened()) {
+    if (isOpen()) {
 
       return ctrl().isSelected();
     }
@@ -203,7 +203,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Button::release() {
 
-    if (isOpened()) {
+    if (isOpen()) {
 
       ctrl().deselect ();
     }

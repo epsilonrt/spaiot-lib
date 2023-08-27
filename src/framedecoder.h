@@ -65,7 +65,7 @@ namespace SpaIot {
          This function must be called before you can use the instance.
          This function configures the different hardware features, then loop
          waiting for a frame for a time of \c BeginWaitingTimeMs milliseconds.
-         \c isOpened() lets you know if the connection has been successfully completed
+         \c isOpen() lets you know if the connection has been successfully completed
          @param waitingTimeMs Maximum time that the function will wait for a
          frame coming from the bus (-1 for infinity)
       */
@@ -91,7 +91,7 @@ namespace SpaIot {
          @return If \c begin() succeeded and everything works returns true.
          Returns false if the connection to the spa is not established and no frame is received.
       */
-      virtual bool isOpened() const;
+      virtual bool isOpen() const;
 
       /**
          @brief Check if communication with the spa is ready, that is to say if a frame has been received

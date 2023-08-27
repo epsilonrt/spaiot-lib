@@ -114,7 +114,7 @@ namespace SpaIot {
       /**
          @brief Returns true if begin() has been successfully called
       */
-      virtual bool isOpened() const;
+      virtual bool isOpen() const;
 
       /**
          @brief Returns true if a button is selected

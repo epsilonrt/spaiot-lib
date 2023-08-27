@@ -27,5 +27,6 @@ namespace SpaIot {
       std::set<Event::Type> subscribedEvents; // events subscribed by the client
       const String className;
       Client *const q_ptr;
+      bool isopen;
   };
 }

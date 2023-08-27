@@ -44,7 +44,7 @@ void setUp (void) {
 
 void test_constructor () {
 
-  TEST_ASSERT_FALSE (panel.isOpened());
+  TEST_ASSERT_FALSE (panel.isOpen());
 }
 
 
@@ -96,7 +96,7 @@ void test_getters () {
 void test_begin () {
   TEST_MESSAGE ("---> test_begin <---");
   panel.begin (DefaultConfig);
-  TEST_ASSERT_TRUE (panel.isOpened ());
+  TEST_ASSERT_TRUE (panel.isOpen ());
 
   TEST_ASSERT (buttonSettings == panel.buttonSettings());
   TEST_ASSERT (ledSettings == panel.ledSettings());

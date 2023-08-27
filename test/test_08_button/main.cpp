@@ -57,7 +57,7 @@ void test_constructor_and_getters () {
     TEST_ASSERT (cfg == but.settings());
     TEST_ASSERT_EQUAL (cfg.id(), but.id());
     TEST_ASSERT (cfg.ctrl() == but.ctrl());
-    TEST_ASSERT_FALSE (but.isOpened());
+    TEST_ASSERT_FALSE (but.isOpen());
     TEST_ASSERT_FALSE (but.isPressed());
   }
 }
@@ -108,7 +108,7 @@ void test_begin () {
     Button & but = elmt.second;
 
     but.begin();
-    TEST_ASSERT_TRUE (but.isOpened ());
+    TEST_ASSERT_TRUE (but.isOpen ());
     TEST_ASSERT_FALSE (but.isPressed ());
   }
 }

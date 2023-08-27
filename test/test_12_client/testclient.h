@@ -20,7 +20,6 @@ class TestClient : public SpaIot::Client {
     TestClient ();
     TestClient (std::initializer_list <SpaIot::Event::Type> subscribedEvents);
     TestClient (const std::set <SpaIot::Event::Type> &subscribedEvents);
-    bool begin();
     bool handle();
 
     protected:

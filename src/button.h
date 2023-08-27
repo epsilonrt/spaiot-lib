@@ -136,7 +136,7 @@ namespace SpaIot {
       /**
          @brief Checks if the button is opened
       */
-      bool isOpened() const;
+      bool isOpen() const;
 
       /**
          @brief Checks if the button is pressed

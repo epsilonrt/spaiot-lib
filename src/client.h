@@ -196,17 +196,35 @@ namespace SpaIot {
 
          This method must be called in the setup() function before begin().
          It will be call by \c Server::begin() to start the client services.
-         The default implementation does nothing and returns false.
+         The default implementation sets isOpen() to true and returns true.
+         It must be reimplemented in derived classes to start the client services, and \b called by the derived class begin() method.
          @return true if the client has been started, false otherwise
       */
       virtual bool begin();
+
+      /**
+       * @brief Check if the client is open
+       * 
+       * @return true if begin() has been called and the client is open, false otherwise
+       */
+      bool isOpen() const;
+
+      /**
+         @brief Stop the client
+
+         This method closes the client and stops the client services.
+         It may be reimplemented in derived classes to stop the client services, and \b called by the derived class end() method.
+         The default implementation sets isOpen() to false.
+      */
+      virtual void end();
 
       /**
          @brief Process the client
 
          This method must be called periodically in the main loop.
          It will be call by \c Server::handle() to process the client tasks.
-         The default implementation does nothing and returns false.
+         The default implementation does nothing and returns isOpen().
+         It must be reimplemented in derived classes to process the client tasks.
          @return true if events have been processed, false otherwise
       */
       virtual bool handle();

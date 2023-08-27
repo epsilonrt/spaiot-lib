@@ -31,7 +31,7 @@ namespace SpaIot {
 		-m_settings : ButtonSettings
 		+settings() : ButtonSettings& {query}
 		+isNull() : bool {query}
-		+isOpened() : bool {query}
+		+isOpen() : bool {query}
 		+isPressed() : bool {query}
 		+operator!=(const Button& other) : bool {query}
 		+operator==(const Button& other) : bool {query}
@@ -50,7 +50,7 @@ namespace SpaIot {
 		+name() : String& {query}
 		+{static} addToRegister(const String& name, ButtonController& controller) : bool
 		+isNull() : bool {query}
-		+isOpened() : bool {query}
+		+isOpen() : bool {query}
 		+isSelected() : bool {query}
 		#m_isopened : bool
 		+operator!=(const ButtonController& other) : bool {query}
@@ -103,7 +103,7 @@ namespace SpaIot {
 		+{static} getInstance(const String& hwSettingsName) : ControlPanel*
 		+{static} getInstance() : ControlPanel*
 		+hasButton(int key) : bool {query}
-		+isOpened() : bool {query}
+		+isOpen() : bool {query}
 		-m_isopened : bool
 		#makeButtons() : bool
 		+pushButton(int key) : bool
@@ -136,7 +136,7 @@ namespace SpaIot {
 		-{static} clkRisingInterrupt() : IRAM_ATTR void
 		-{static} holdRisingInterrupt() : IRAM_ATTR void
 		+hasLed(int key) : bool {query}
-		+isOpened() : bool {query}
+		+isOpen() : bool {query}
 		+isSetupModeTriggered() : bool {query}
 		-m_isopened : bool
 		#{static} ResetErrorFrameCounter : static const uint32_t

@@ -125,7 +125,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void FrameDecoder::begin (unsigned long waitingTimeMs) {
 
-    if (!isOpened())  {
+    if (!isOpen())  {
       PIMPL_D (FrameDecoder);
 
       SPAIOT_DBGP (PSTR("FrameDecoder::begin(): opening"));
@@ -168,7 +168,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   void FrameDecoder::end() {
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (FrameDecoder);
       
       d->engine->end();
@@ -176,17 +176,17 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool FrameDecoder::isOpened() const {
+  bool FrameDecoder::isOpen() const {
     PIMPL_D (const FrameDecoder);
 
-    return d->engine->isOpened();
+    return d->engine->isOpen();
   }
 
   //----------------------------------------------------------------------------
   bool FrameDecoder::isReady() const {
     PIMPL_D (const FrameDecoder);
 
-    return d->engine->isReady() && isOpened();
+    return d->engine->isReady() && isOpen();
   }
 
   //----------------------------------------------------------------------------
@@ -310,7 +310,7 @@ namespace SpaIot {
   uint8_t FrameDecoder::waitUntilDisplayBlink (unsigned long MaxWaitingTimeMs) const {
     PIMPL_D (const FrameDecoder);
 
-    if (isOpened()) {
+    if (isOpen()) {
       const unsigned long looptime = 100;
 
       while ( (isDisplayBlink() == true) && (MaxWaitingTimeMs > looptime)) {
@@ -326,7 +326,7 @@ namespace SpaIot {
   uint16_t FrameDecoder::waitForWaterTemp (unsigned long MaxWaitingTimeMs) const {
     PIMPL_D (const FrameDecoder);
 
-    if (isOpened() && (waterTemp() == UnsetValue16)) {
+    if (isOpen() && (waterTemp() == UnsetValue16)) {
       const unsigned long looptime = 100;
 
       while ( (waterTemp() == UnsetValue16) && (MaxWaitingTimeMs > looptime)) {

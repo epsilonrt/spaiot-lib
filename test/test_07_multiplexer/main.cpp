@@ -137,9 +137,9 @@ void test_global (void) {
 void test_begin (std::initializer_list<int> spins, int inh) {
   Multiplexer ctrl (spins, inh);
 
-  TEST_ASSERT_FALSE (ctrl.isOpened ());
+  TEST_ASSERT_FALSE (ctrl.isOpen ());
   ctrl.begin();
-  TEST_ASSERT_TRUE (ctrl.isOpened ());
+  TEST_ASSERT_TRUE (ctrl.isOpen ());
   TEST_ASSERT_FALSE (ctrl.isSelected ());
 }
 

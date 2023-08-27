@@ -53,14 +53,14 @@ namespace SpaIot {
       /**
        * @brief Configures each of the buttons and initializes and connect with the spa
        *
-       * \c isOpened() lets you know if the connection has been successfully completed
+       * \c isOpen() lets you know if the connection has been successfully completed
        */
       virtual void begin (unsigned long waitingTimeMs = BeginWaitingTimeMs);
 
       /**
        * @brief Configures each of the buttons and initializes and connect with the spa
        *
-       * \c isOpened() lets you know if the connection has been successfully completed
+       * \c isOpen() lets you know if the connection has been successfully completed
        * @param hwsettings Description of hardware settings
        */
       virtual void begin (const HardwareSettings & hwsettings, unsigned long waitingTimeMs = BeginWaitingTimeMs);
@@ -68,7 +68,7 @@ namespace SpaIot {
       /**
        * @brief Configures each of the buttons and initializes and connect with the spa
        *
-       * \c isOpened() lets you know if the connection has been successfully completed
+       * \c isOpen() lets you know if the connection has been successfully completed
        * @param hwSettingsName configuration name in the register of hardware settings
        */
       virtual void begin (const String & hwSettingsName, unsigned long waitingTimeMs = BeginWaitingTimeMs);
@@ -79,7 +79,7 @@ namespace SpaIot {
        * @return If \c begin() succeeded and everything works returns true.
        * Returns false if the connection to the spa is not established and no frame is received.
        */
-      virtual bool isOpened() const;
+      virtual bool isOpen() const;
 
       /**
        * @brief Check if the hardware configuration has the button

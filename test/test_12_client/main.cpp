@@ -132,7 +132,14 @@ void test_write_read (void) {
   //  subscriptionList2 = {Event::Type::PowerOn, Event::Type::WaterTemp, Event::Type::ErrorCode};
 
   TEST_ASSERT_EQUAL_STRING (s1.className().c_str(), "TestClient");
-  
+
+  TEST_ASSERT_FALSE (s1.isOpen());
+  TEST_ASSERT_FALSE (s2.isOpen());
+  TEST_ASSERT_TRUE (s1.begin());
+  TEST_ASSERT_TRUE (s2.begin());
+  TEST_ASSERT_TRUE (s1.isOpen());
+  TEST_ASSERT_TRUE (s2.isOpen());
+
   Event ev;
   TEST_ASSERT_FALSE (s2.write (ev)); // type is NoEvent
   ev.setType (Event::Type::AnyEvent);
@@ -146,7 +153,7 @@ void test_write_read (void) {
   ev.setType (Event::Type::PowerOn);
   ev.setValue (true);
   TEST_ASSERT_TRUE (s2.write (ev));
-  s2.handle(); // all events write are returned by read
+  TEST_ASSERT_TRUE (s2.handle()); // all events write are returned by read
   ev = s2.read (Event::Type::WaterTemp);
   TEST_ASSERT_EQUAL (ev.type(), Event::Type::NoEvent);
   ev = s2.read (Event::Type::PowerOn);
@@ -160,8 +167,8 @@ void test_write_read (void) {
     s2.write (e);
   }
 
-  s1.handle();
-  s2.handle();
+  TEST_ASSERT_TRUE (s1.handle());
+  TEST_ASSERT_TRUE (s2.handle());
 
   TEST_ASSERT_TRUE (s1.available());
   TEST_ASSERT_TRUE (s2.available());
@@ -179,20 +186,11 @@ void test_write_read (void) {
   TEST_ASSERT_FALSE (s1.available());
   TEST_ASSERT_FALSE (s2.available());
 
-  // void Client::write (const Event &event) {
-
-  //   if (event.type() != Event::NoEvent && event.type() != Event::AnyEvent) {
-  //     PIMPL_D (Client);
-
-  //     if (d->subscribedEvents.empty() || d->subscribedEvents.count (event.type()) > 0) {
-
-  //       d->inQ.push (event);
-  //     }
-  //   }
-  // }
-
+  s1.end();
+  s2.end();
+  TEST_ASSERT_FALSE (s1.isOpen());
+  TEST_ASSERT_FALSE (s2.isOpen());
 }
-
 
 void setup() {
 

@@ -27,12 +27,12 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   ButtonController::Private::Private (int typeId) :
-    typeId (typeId), isopened (false), selected (-1)
+    typeId (typeId), isopen (false), selected (-1)
   {}
 
   //----------------------------------------------------------------------------
   ButtonController::Private::Private (int typeId, const String &name) :
-    typeId (typeId), isopened (false), selected (-1), name (name)
+    typeId (typeId), isopen (false), selected (-1), name (name)
   {}
 
   //----------------------------------------------------------------------------
@@ -93,7 +93,7 @@ namespace SpaIot {
     if (! isNull()) {
       PIMPL_D (const ButtonController);
 
-      return d->selected == -1 && d->isopened == false && d->name.length() == 0;
+      return d->selected == -1 && d->isopen == false && d->name.length() == 0;
     }
     return false;
   }
@@ -104,7 +104,7 @@ namespace SpaIot {
     if (! isNull()) {
       PIMPL_D (const ButtonController);
 
-      d_ptr->isopened = false;
+      d_ptr->isopen = false;
       d_ptr->selected = -1;
       d_ptr->name.clear();
     }
@@ -116,7 +116,7 @@ namespace SpaIot {
 
     if (d->isSameType (other)) {
 
-      return d->selected == other.d_ptr->selected && d->isopened == other.d_ptr->isopened && d->name == other.d_ptr->name;
+      return d->selected == other.d_ptr->selected && d->isopen == other.d_ptr->isopen && d->name == other.d_ptr->name;
     }
     return false;
   }
@@ -131,14 +131,14 @@ namespace SpaIot {
   void ButtonController::begin() {
     PIMPL_D (ButtonController);
 
-    d->isopened = true;
+    d->isopen = true;
   }
 
   //----------------------------------------------------------------------------
-  bool ButtonController::isOpened() const {
+  bool ButtonController::isOpen() const {
     PIMPL_D (const ButtonController);
 
-    return d->isopened;
+    return d->isopen;
   }
 
   //----------------------------------------------------------------------------
@@ -186,7 +186,7 @@ namespace SpaIot {
   void ButtonController::end() {
     PIMPL_D (ButtonController);
 
-    d->isopened = false;
+    d->isopen = false;
   }
 
   //----------------------------------------------------------------------------

@@ -49,19 +49,18 @@ TestClient::TestClient (std::initializer_list <Event::Type> subscribedEvents) :
 //----------------------------------------------------------------------------
 bool TestClient::handle() {
   Event e;
-  bool ret;
+  unsigned eventCount = 0;
 
-  while (ret = pullFromSpa (e)) {
+  TEST_MESSAGE ("TestClient::handle");
+  while (pullFromSpa (e)) {
+
     Private::printEvent ("pull", e);
     pushToSpa (e);
     Private::printEvent ("push", e);
+    eventCount++;
   }
-  return ret;
-}
-
-//----------------------------------------------------------------------------
-bool TestClient::begin() {
-  return true;
+  TEST_PRINTF ("TestClient::handle: %d events", eventCount);
+  return eventCount > 0;
 }
 
 //----------------------------------------------------------------------------

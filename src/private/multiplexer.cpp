@@ -134,7 +134,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Multiplexer::begin() {
 
-    if ( (isOpened() == false) && (isNull() == false))  {
+    if ( (isOpen() == false) && (isNull() == false))  {
       PIMPL_D (Multiplexer);
 
       SPAIOT_DBG ("Multiplexer::begin(): opening");
@@ -153,7 +153,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Multiplexer::end() {
     
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (Multiplexer);
 
       for (unsigned int i = 0; i < d->spin.size(); i++) {
@@ -167,7 +167,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   int Multiplexer::select (int button) {
 
-    if (isOpened() && (button >= 0) && (button <= size())) {
+    if (isOpen() && (button >= 0) && (button <= size())) {
       PIMPL_D (Multiplexer);
 
       for (unsigned int i = 0; i < d->spin.size(); i++) {
@@ -184,7 +184,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Multiplexer::deselect () {
 
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (Multiplexer);
 
       digitalWrite (d->inh, HIGH);

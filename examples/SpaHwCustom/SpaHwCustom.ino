@@ -74,7 +74,7 @@ void setup() {
   Serial.println ("\nSpaIot Simple Example with custom hardware settings");
 
   spa.begin();  // IMPORTANT LINE!
-  if (spa.isOpened() == false) { // check if the connection to the spa has been open
+  if (spa.isOpen() == false) { // check if the connection to the spa has been open
     Serial.println ("No spa connection found");
     for (;;); // loop always, to stop
   }

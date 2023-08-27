@@ -31,7 +31,7 @@ namespace SpaIot {
       const std::map <int, Button> &buttons() const;
 
     public:
-      bool isopened;
+      bool isopen;
       std::map <int, Button> button;
       std::map <int, ButtonSettings> btnsettings;
     private:

@@ -27,15 +27,16 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   Client::Private::Private (const char *className, Client *q) :
     className (className),
-    q_ptr (q)
+    q_ptr (q),
+    isopen (false)
   {}
 
   //----------------------------------------------------------------------------
-  Client::Private::Private (const char *className, const std::set<Event::Type> &subscribedEvents, Client *q) :
-    subscribedEvents (subscribedEvents),
-    className (className),
-    q_ptr (q)
-  {}
+  Client::Private::Private (const char *className, const std::set<Event::Type> &sEvents, Client *q) :
+    Private (className, q) {
+
+    subscribedEvents = sEvents;
+  }
 
   //----------------------------------------------------------------------------
   // Protected constructor with private implementation
@@ -260,14 +261,30 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   bool Client::begin () {
+    PIMPL_D (Client);
 
-    return false;
+    d->isopen = true;
+    return true;
+  }
+
+  //---------------------------------------------------------------------------
+  bool Client::isOpen () const {
+    PIMPL_D (const Client);
+
+    return d->isopen;
+  }
+
+  //----------------------------------------------------------------------------
+  void Client::end () {
+    PIMPL_D (Client);
+
+    d->isopen = false;
   }
 
   //----------------------------------------------------------------------------
   bool Client::handle () {
 
-    return false;
+    return isOpen();
   }
 
   //----------------------------------------------------------------------------

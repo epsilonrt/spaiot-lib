@@ -30,13 +30,13 @@ namespace SpaIot {
   // Private implementation
 
   //----------------------------------------------------------------------------
-  ControlPanel::Private::Private (ControlPanel *q) : FrameDecoder::Private (q), isopened (false)
+  ControlPanel::Private::Private (ControlPanel *q) : FrameDecoder::Private (q), isopen (false)
   {}
 
   //----------------------------------------------------------------------------
   ControlPanel::Private::Private (ControlPanel *q, const HardwareSettings &hwsettings) :
     FrameDecoder::Private (q, hwsettings.bus(), hwsettings.leds()),
-    btnsettings (hwsettings.buttons()), isopened (false)
+    btnsettings (hwsettings.buttons()), isopen (false)
   {}
 
   //----------------------------------------------------------------------------
@@ -50,10 +50,10 @@ namespace SpaIot {
       Button b (settings);
 
       button.emplace (key, b);
-      if (b.isOpened() == false) {
+      if (b.isOpen() == false) {
 
         b.begin();
-        b_isopened = b_isopened && b.isOpened();
+        b_isopened = b_isopened && b.isOpen();
       }
     }
     return b_isopened;
@@ -63,7 +63,7 @@ namespace SpaIot {
   // may be used for Power, Filter, Bubble and Jet
   uint8_t ControlPanel::Private::setKeyOn (int key, bool v) {
 
-    if (isopened) {
+    if (isopen) {
       PIMPL_Q (ControlPanel);
       uint8_t b = q->isLedOn (key);
 
@@ -113,13 +113,13 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void ControlPanel::end() {
 
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (ControlPanel);
 
       for (auto &elmt : d->button) {
         Button &b = elmt.second;
 
-        if (b.isOpened()) {
+        if (b.isOpen()) {
 
           b.ctrl().end();
         }
@@ -132,14 +132,14 @@ namespace SpaIot {
   void ControlPanel::begin (const HardwareSettings &hwsettings,
                             unsigned long waitingTimeMs) {
 
-    if (!isOpened())  {
+    if (!isOpen())  {
       PIMPL_D (ControlPanel);
 
       SPAIOT_DBG ("ControlPanel::begin(): opening");
 
       d->btnsettings = hwsettings.buttons();
       FrameDecoder::begin (hwsettings.bus(), hwsettings.leds(), waitingTimeMs);
-      d->isopened = d->makeButtons() && FrameDecoder::isOpened();
+      d->isopen = d->makeButtons() && FrameDecoder::isOpen();
     }
 
   }
@@ -165,21 +165,21 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void ControlPanel::begin (unsigned long waitingTimeMs) {
 
-    if (!isOpened())  {
+    if (!isOpen())  {
       PIMPL_D (ControlPanel);
 
       SPAIOT_DBG ("ControlPanel::begin(): opening");
 
       FrameDecoder::begin (waitingTimeMs);
-      d->isopened = d->makeButtons() && FrameDecoder::isOpened();
+      d->isopen = d->makeButtons() && FrameDecoder::isOpen();
     }
   }
 
   //----------------------------------------------------------------------------
-  bool ControlPanel::isOpened() const {
+  bool ControlPanel::isOpen() const {
     PIMPL_D (const ControlPanel);
 
-    return d->isopened;
+    return d->isopen;
   }
 
   //----------------------------------------------------------------------------
@@ -226,7 +226,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   uint8_t ControlPanel::setHeater (bool v) {
 
-    if (isOpened() && hasButton (Heater)) {
+    if (isOpen() && hasButton (Heater)) {
       uint8_t b = isHeaterOn ();
 
       if (b != UnsetValue8) {
@@ -267,7 +267,7 @@ namespace SpaIot {
 
     if (hasButton (Sanitizer)) {
 
-      if (isOpened()) {
+      if (isOpen()) {
         PIMPL_D (ControlPanel);
 
         if ( (d->engine->rawStatus != UnsetValue16) &&
@@ -329,7 +329,7 @@ namespace SpaIot {
 
     if ( (temp >= DesiredTempMin) &&
          (temp <= DesiredTempMax) &&
-         hasButton (TempUp) && hasButton (TempDown) && isOpened()) {
+         hasButton (TempUp) && hasButton (TempDown) && isOpen()) {
       PIMPL_D (ControlPanel);
 
       if ( (waitForDesiredTemp() != UnsetValue16) && (d->engine->errorValue == 0)) {
@@ -400,7 +400,7 @@ namespace SpaIot {
 
       SPAIOT_DBG ("%s:%d: Unable to set desiredTemp to %d'C: is_opened %d - min %d'C - max %d'C",
                   __PRETTY_FUNCTION__, __LINE__,
-                  temp, isOpened(), DesiredTempMin, DesiredTempMax);
+                  temp, isOpen(), DesiredTempMin, DesiredTempMax);
       return false;
     }
     return true;
@@ -409,7 +409,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   uint16_t ControlPanel::waitForDesiredTemp (unsigned long  MaxWaitingTimeMs) {
 
-    if (isOpened() && (desiredTemp() == UnsetValue16)) {
+    if (isOpen() && (desiredTemp() == UnsetValue16)) {
       PIMPL_D (ControlPanel);
       const unsigned long looptime = 100;
 

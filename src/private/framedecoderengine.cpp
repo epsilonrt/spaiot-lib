@@ -95,7 +95,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool FrameDecoder::Private::Engine::isOpened() const {
+  bool FrameDecoder::Private::Engine::isOpen() const {
 
     return !busSettings.isEmpty();
   }
@@ -103,7 +103,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void FrameDecoder::Private::Engine::end() {
 
-    if (isOpened()) {
+    if (isOpen()) {
 
       detachInterrupt (digitalPinToInterrupt (busSettings.clkPin()));
       detachInterrupt (digitalPinToInterrupt (busSettings.holdPin()));

@@ -80,7 +80,7 @@ void setup() {
   Wire.begin(); // IMPORTANT LINE! PCF8574 use the default Wire object
 
   spa.begin();  // IMPORTANT LINE!
-  if (spa.isOpened() == false) { // check if the connection to the spa has been open
+  if (spa.isOpen() == false) { // check if the connection to the spa has been open
     Serial.println ("No spa connection found");
     for (;;); // loop always, to stop
   }

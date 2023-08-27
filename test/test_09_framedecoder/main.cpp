@@ -48,7 +48,7 @@ FrameDecoder fd (MyBus, MyLeds);
 
 void test_constructor () {
 
-  TEST_ASSERT_FALSE (fd.isOpened());
+  TEST_ASSERT_FALSE (fd.isOpen());
 }
 
 void test_default_getters (FrameDecoder &f) {
@@ -106,7 +106,7 @@ void test_decoder_getters () {
 void test_default_constructor() {
   FrameDecoder f;
 
-  TEST_ASSERT_FALSE (f.isOpened());
+  TEST_ASSERT_FALSE (f.isOpen());
   TEST_ASSERT_TRUE (f.busSettings().isEmpty());
   TEST_ASSERT_TRUE (f.ledSettings().empty());
   test_default_getters (f);
@@ -114,7 +114,7 @@ void test_default_constructor() {
 
 void test_begin_getters (FrameDecoder &f) {
 
-  TEST_ASSERT_TRUE (f.isOpened ());
+  TEST_ASSERT_TRUE (f.isOpen ());
   delay (100);
   TEST_ASSERT (f.rawStatus() != UnsetValue16);
 

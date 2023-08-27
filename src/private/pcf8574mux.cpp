@@ -126,7 +126,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Pcf8574Mux::begin() {
 
-    if ( (isOpened() == false) && (isNull() == false))  {
+    if ( (isOpen() == false) && (isNull() == false))  {
       PIMPL_D (Pcf8574Mux);
 
       SPAIOT_DBGP (PSTR ("Pcf8574Mux::begin(): opening"));
@@ -144,7 +144,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Pcf8574Mux::end() {
 
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (Pcf8574Mux);
 
       d->pcf.write (d->idle);
@@ -155,7 +155,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   int Pcf8574Mux::select (int button) {
 
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (Pcf8574Mux);
 
       if (d->pcf.write (button) == 1) {
@@ -173,7 +173,7 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   void Pcf8574Mux::deselect () {
 
-    if (isOpened()) {
+    if (isOpen()) {
       PIMPL_D (Pcf8574Mux);
 
       if (d->pcf.write (d->idle) == 1) {

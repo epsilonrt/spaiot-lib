@@ -94,9 +94,9 @@ void test_move (void) {
 void test_begin () {
   Pcf8574Mux ctrl (slaveAddr);
 
-  TEST_ASSERT_FALSE (ctrl.isOpened ());
+  TEST_ASSERT_FALSE (ctrl.isOpen ());
   ctrl.begin();
-  TEST_ASSERT_TRUE (ctrl.isOpened ());
+  TEST_ASSERT_TRUE (ctrl.isOpen ());
   TEST_ASSERT_FALSE (ctrl.isSelected ());
 }
 
@@ -111,7 +111,7 @@ void test_select () {
   Pcf8574Mux ctrl (slaveAddr);
 
   ctrl.begin();
-  TEST_ASSERT_TRUE (ctrl.isOpened ());
+  TEST_ASSERT_TRUE (ctrl.isOpen ());
   TEST_ASSERT_FALSE (ctrl.isSelected ());
 
   pushButton (ctrl, Power);

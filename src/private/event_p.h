@@ -14,6 +14,7 @@
 #pragma once
 
 #include "../event.h"
+#include <map>
 
 namespace SpaIot {
 
@@ -23,5 +24,6 @@ namespace SpaIot {
       Private (Type type, uint16_t value);
       Type type;
       uint16_t value;
+      static const std::map <Event::Type, String> TypeToString;
   };
 }

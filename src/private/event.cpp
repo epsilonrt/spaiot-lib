@@ -32,6 +32,25 @@ namespace SpaIot {
   Event::Private::Private() : Private (Type::NoEvent, 0) {}
 
   //----------------------------------------------------------------------------
+  // Map to convert Event::Type to string
+  const std::map <Event::Type, String> Event::Private::TypeToString = {
+    {Event::Type::PowerOn, "PowerOn"},
+    {Event::Type::FilterOn, "FilterOn"},
+    {Event::Type::BubbleOn, "BubbleOn"},
+    {Event::Type::JetOn, "JetOn"},
+    {Event::Type::SanitizerOn, "SanitizerOn"},
+    {Event::Type::HeaterOn, "HeaterOn"},
+    {Event::Type::HeatReached, "PumHeatReachedp2"},
+    {Event::Type::WaterTemp, "WaterTemp"},
+    {Event::Type::DesiredTemp, "DesiredTemp"},
+    {Event::Type::SanitizerTime, "SanitizerTime"},
+    {Event::Type::ErrorCode, "ErrorCode"},
+    {Event::Type::AmbientTemperature, "AmbientTemperature"},
+    {Event::Type::NoEvent, "NoEvent"},
+    {Event::Type::AnyEvent, "AnyEvent"}
+  };
+
+  //----------------------------------------------------------------------------
   // Protected constructor with private implementation
   Event::Event (Private &dd) : d_ptr (&dd) {}
 
@@ -161,5 +180,17 @@ namespace SpaIot {
     return ! (*this == other);
   }
 
+  //----------------------------------------------------------------------------
+  String Event::toString() const {
+    PIMPL_D (const Event);
+
+    return Private::TypeToString.at (d->type) + ", value: " + String (d->value);
+  }
+
+  //----------------------------------------------------------------------------
+  String Event::typeToString (Type type) {
+
+    return Private::TypeToString.at (type);
+  }
 }
 //------------------------------------------------------------------------------

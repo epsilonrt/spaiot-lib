@@ -151,6 +151,21 @@ namespace SpaIot {
       */
       uint16_t value() const;
 
+      /**
+         @brief Convert the event to a string
+
+         @return The event as a string
+      */
+      String toString() const;
+
+      /**
+         @brief Convert the event type to a string
+
+         @param type  The event type
+         @return The event type as a string
+      */
+      static String typeToString (Type type);
+
     protected:
       class Private;
       Event (Private &dd);

@@ -200,7 +200,7 @@ namespace SpaIot {
          It must be reimplemented in derived classes to start the client services, and \b called by the derived class begin() method.
          @return true if the client has been started, false otherwise
       */
-      virtual bool begin();
+      bool begin();
 
       /**
        * @brief Check if the client is open

@@ -31,9 +31,10 @@ namespace SpaIot {
       const std::map <int, Button> &buttons() const;
 
     public:
-      bool isopen;
       std::map <int, Button> button;
       std::map <int, ButtonSettings> btnsettings;
+      bool isopen;
+
     private:
       PIMPL_DECLARE_PUBLIC (ControlPanel);
   };

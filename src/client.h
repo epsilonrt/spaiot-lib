@@ -40,6 +40,10 @@ namespace SpaIot {
      +----------+               FiFo                     +-----------+
                 [ --------------   SpaIot::Client   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
      @endverbatim
+
+     The communication between server and clients is asynchronous, clients can be connected or disconnected at any time.
+     When the spa receives a command from a client, it executes it, then if the command has modified the state of the spa, it sends an event to all connected clients.
+     @warning Thus a client must not block its process to wait for an event from the spa or the system will be blocked.
   */
   class Client {
     public:

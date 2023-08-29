@@ -12,7 +12,7 @@ var class_spa_iot_1_1_button =
     [ "id", "class_spa_iot_1_1_button.html#a449b38ec8460bb0e3c16c02101eb2efe", null ],
     [ "isEmpty", "class_spa_iot_1_1_button.html#a4b45a3d72c539e104d6f8b0eacda1755", null ],
     [ "isNull", "class_spa_iot_1_1_button.html#aaa684885798d818951baa3936f087f44", null ],
-    [ "isOpened", "class_spa_iot_1_1_button.html#ac35b508ddc4b2b57d4c185951b6dd89a", null ],
+    [ "isOpen", "class_spa_iot_1_1_button.html#aa681902a38b675bde093c051bd468204", null ],
     [ "isPressed", "class_spa_iot_1_1_button.html#a20a3a9226725817a86d1593a7af46616", null ],
     [ "operator!=", "class_spa_iot_1_1_button.html#a70a4e8548f181ab4122c16a3bc8a139b", null ],
     [ "operator=", "class_spa_iot_1_1_button.html#aa591cf600d0899108f349f94b223af1f", null ],

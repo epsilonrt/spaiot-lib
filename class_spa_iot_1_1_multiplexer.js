@@ -13,7 +13,7 @@ var class_spa_iot_1_1_multiplexer =
     [ "getFromRegister", "class_spa_iot_1_1_multiplexer.html#aa1d18487ccd28320adfc46ef892697e4", null ],
     [ "isEmpty", "class_spa_iot_1_1_multiplexer.html#a6bb0d557c83112d47e25879d6c34323e", null ],
     [ "isNull", "class_spa_iot_1_1_multiplexer.html#a88825de9d4d53dbf6af5c6202c958f29", null ],
-    [ "isOpened", "class_spa_iot_1_1_multiplexer.html#afed5034acb7395f4e750f647ec8afc36", null ],
+    [ "isOpen", "class_spa_iot_1_1_multiplexer.html#a4f936c4440eed464790cc46a60b9f336", null ],
     [ "isSelected", "class_spa_iot_1_1_multiplexer.html#adae9be5077085d76e2df054531c40d65", null ],
     [ "name", "class_spa_iot_1_1_multiplexer.html#a883c38b562a179d5dc9a26d1bb391189", null ],
     [ "operator!=", "class_spa_iot_1_1_multiplexer.html#a7c300c316c433ab06944b7feee8ef946", null ],

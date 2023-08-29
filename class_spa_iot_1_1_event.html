@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('class_spa_iot_1_1_event.html',''); ini
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_spa_iot_1_1_event-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SpaIot::Event</div>  </div>
@@ -107,11 +108,12 @@ Public Types</h2></td></tr>
 , <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdaecb495c5269735e88015e36223bdf3da">WaterTemp</a> = Key::TempUp + 1
 , <br />
 &#160;&#160;<a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda292d4fd3efd99366b5cc79dec93e4589">DesiredTemp</a>
+, <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda29f4398b41064c97ca34cb3be22de910">SetDesiredTemp</a>
 , <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda491a4cac12bac2b20ea47653fe87a921">SanitizerTime</a>
 , <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda5ab6d4e4594e2518ba6062845c18be42">ErrorCode</a>
-, <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdafb76c8d11dd24c5c3bf7f5743f5a236d">AmbientTemperature</a>
 , <br />
-&#160;&#160;<a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdaec5f0e7d59cae2c1a0cad60195a8aa0b">NoEvent</a> = -1
+&#160;&#160;<a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdafb76c8d11dd24c5c3bf7f5743f5a236d">AmbientTemperature</a>
+, <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdaec5f0e7d59cae2c1a0cad60195a8aa0b">NoEvent</a> = -1
 , <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda785e9b05c0ee424309ed1c841a8e1b4d">AnyEvent</a> = -2
 <br />
  }</td></tr>
@@ -181,6 +183,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a19abf1c762881d4ca5131c4b64a007e6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_event.html#a19abf1c762881d4ca5131c4b64a007e6">value</a> () const</td></tr>
 <tr class="memdesc:a19abf1c762881d4ca5131c4b64a007e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Value object.  <a href="class_spa_iot_1_1_event.html#a19abf1c762881d4ca5131c4b64a007e6">More...</a><br /></td></tr>
 <tr class="separator:a19abf1c762881d4ca5131c4b64a007e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac17aaab1a022289ec5708766a4c62565"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_event.html#ac17aaab1a022289ec5708766a4c62565">toString</a> () const</td></tr>
+<tr class="memdesc:ac17aaab1a022289ec5708766a4c62565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the event to a string.  <a href="class_spa_iot_1_1_event.html#ac17aaab1a022289ec5708766a4c62565">More...</a><br /></td></tr>
+<tr class="separator:ac17aaab1a022289ec5708766a4c62565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ace1521fff013f4ff9b45e2d21cae8361"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_event.html#ace1521fff013f4ff9b45e2d21cae8361">typeToString</a> (<a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cd">Type</a> <a class="el" href="class_spa_iot_1_1_event.html#af045cc4edc4ca3063282083d95e695ac">type</a>)</td></tr>
+<tr class="memdesc:ace1521fff013f4ff9b45e2d21cae8361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the event type to a string.  <a href="class_spa_iot_1_1_event.html#ace1521fff013f4ff9b45e2d21cae8361">More...</a><br /></td></tr>
+<tr class="separator:ace1521fff013f4ff9b45e2d21cae8361"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Spa Events. </p>
@@ -217,6 +228,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="fieldname"><a id="a01a326ecb882cc0401992b31ff6c67cdaecb495c5269735e88015e36223bdf3da"></a>WaterTemp&#160;</td><td class="fielddoc"><p>Water temperature in °C. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a01a326ecb882cc0401992b31ff6c67cda292d4fd3efd99366b5cc79dec93e4589"></a>DesiredTemp&#160;</td><td class="fielddoc"><p>Desired water temperature in °C. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a01a326ecb882cc0401992b31ff6c67cda29f4398b41064c97ca34cb3be22de910"></a>SetDesiredTemp&#160;</td><td class="fielddoc"><p>Set desired water temperature in °C. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a01a326ecb882cc0401992b31ff6c67cda491a4cac12bac2b20ea47653fe87a921"></a>SanitizerTime&#160;</td><td class="fielddoc"><p>Remaining sanitation time in hours. </p>
 </td></tr>
@@ -363,6 +376,26 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="ac17aaab1a022289ec5708766a4c62565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac17aaab1a022289ec5708766a4c62565">&#9670;&nbsp;</a></span>toString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String SpaIot::Event::toString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert the event to a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The event as a string </dd></dl>
+
+</div>
+</div>
 <a id="af045cc4edc4ca3063282083d95e695ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af045cc4edc4ca3063282083d95e695ac">&#9670;&nbsp;</a></span>type()</h2>
 
@@ -380,6 +413,41 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Get the Type object. </p>
 <dl class="section return"><dt>Returns</dt><dd>The event type </dd></dl>
+
+</div>
+</div>
+<a id="ace1521fff013f4ff9b45e2d21cae8361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1521fff013f4ff9b45e2d21cae8361">&#9670;&nbsp;</a></span>typeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String SpaIot::Event::typeToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cd">Type</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert the event type to a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The event type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The event type as a string </dd></dl>
 
 </div>
 </div>

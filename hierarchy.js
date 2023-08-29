@@ -10,8 +10,11 @@ var hierarchy =
     [ "SpaIot::Client", "class_spa_iot_1_1_client.html", null ],
     [ "SpaIot::Event", "class_spa_iot_1_1_event.html", null ],
     [ "SpaIot::FrameDecoder", "class_spa_iot_1_1_frame_decoder.html", [
-      [ "SpaIot::ControlPanel", "class_spa_iot_1_1_control_panel.html", null ]
+      [ "SpaIot::ControlPanel", "class_spa_iot_1_1_control_panel.html", [
+        [ "SpaIot::Server", "class_spa_iot_1_1_server.html", null ]
+      ] ]
     ] ],
     [ "SpaIot::HardwareSettings", "class_spa_iot_1_1_hardware_settings.html", null ],
-    [ "SpaIot::LedSettings", "class_spa_iot_1_1_led_settings.html", null ]
+    [ "SpaIot::LedSettings", "class_spa_iot_1_1_led_settings.html", null ],
+    [ "SpaIot::ServerSettings", "class_spa_iot_1_1_server_settings.html", null ]
 ];

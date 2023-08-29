@@ -10,6 +10,7 @@ var class_spa_iot_1_1_event =
       [ "HeatReached", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda792a0db64b00c50874450d6b076e4106", null ],
       [ "WaterTemp", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdaecb495c5269735e88015e36223bdf3da", null ],
       [ "DesiredTemp", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda292d4fd3efd99366b5cc79dec93e4589", null ],
+      [ "SetDesiredTemp", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda29f4398b41064c97ca34cb3be22de910", null ],
       [ "SanitizerTime", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda491a4cac12bac2b20ea47653fe87a921", null ],
       [ "ErrorCode", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda5ab6d4e4594e2518ba6062845c18be42", null ],
       [ "AmbientTemperature", "class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdafb76c8d11dd24c5c3bf7f5743f5a236d", null ],
@@ -31,6 +32,8 @@ var class_spa_iot_1_1_event =
     [ "operator==", "class_spa_iot_1_1_event.html#ac1b86b57f18b2b278af25c4902879a7b", null ],
     [ "setType", "class_spa_iot_1_1_event.html#a13dd62b3d487287c1a8c0b9b9593d75f", null ],
     [ "setValue", "class_spa_iot_1_1_event.html#a04565c73525471ac793ba411a7f52815", null ],
+    [ "toString", "class_spa_iot_1_1_event.html#ac17aaab1a022289ec5708766a4c62565", null ],
     [ "type", "class_spa_iot_1_1_event.html#af045cc4edc4ca3063282083d95e695ac", null ],
+    [ "typeToString", "class_spa_iot_1_1_event.html#ace1521fff013f4ff9b45e2d21cae8361", null ],
     [ "value", "class_spa_iot_1_1_event.html#a19abf1c762881d4ca5131c4b64a007e6", null ]
 ];

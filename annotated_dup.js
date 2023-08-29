@@ -12,6 +12,8 @@ var annotated_dup =
       [ "HardwareSettings", "class_spa_iot_1_1_hardware_settings.html", "class_spa_iot_1_1_hardware_settings" ],
       [ "LedSettings", "class_spa_iot_1_1_led_settings.html", "class_spa_iot_1_1_led_settings" ],
       [ "Multiplexer", "class_spa_iot_1_1_multiplexer.html", "class_spa_iot_1_1_multiplexer" ],
-      [ "Pcf8574Mux", "class_spa_iot_1_1_pcf8574_mux.html", "class_spa_iot_1_1_pcf8574_mux" ]
+      [ "Pcf8574Mux", "class_spa_iot_1_1_pcf8574_mux.html", "class_spa_iot_1_1_pcf8574_mux" ],
+      [ "Server", "class_spa_iot_1_1_server.html", "class_spa_iot_1_1_server" ],
+      [ "ServerSettings", "class_spa_iot_1_1_server_settings.html", "class_spa_iot_1_1_server_settings" ]
     ] ]
 ];

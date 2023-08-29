@@ -98,6 +98,7 @@ Inheritance diagram for SpaIot::FrameDecoder:</div>
 <map name="a_spa_iot_1_1_frame_decoder_inherit__map" id="a_spa_iot_1_1_frame_decoder_inherit__map">
 <area shape="rect" title="This class decodes information from the technical block of the spa." alt="" coords="5,5,172,32"/>
 <area shape="rect" href="class_spa_iot_1_1_control_panel.html" title="Control Panel." alt="" coords="12,80,165,107"/>
+<area shape="rect" href="class_spa_iot_1_1_server.html" title="Server class." alt="" coords="32,155,145,181"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -121,9 +122,13 @@ Public Member Functions</h2></td></tr>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#aedb22e2a4c0765c9823a6ad609d3666e">end</a> ()</td></tr>
 <tr class="memdesc:aedb22e2a4c0765c9823a6ad609d3666e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a>. <br /></td></tr>
 <tr class="separator:aedb22e2a4c0765c9823a6ad609d3666e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16e4122e21f48731bc4ccdfd3ebc0e58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58">isOpened</a> () const</td></tr>
-<tr class="memdesc:a16e4122e21f48731bc4ccdfd3ebc0e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the connection with the spa is established.  <a href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58">More...</a><br /></td></tr>
-<tr class="separator:a16e4122e21f48731bc4ccdfd3ebc0e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cbf52d2174fe8d885954c460538084e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a8cbf52d2174fe8d885954c460538084e">isOpen</a> () const</td></tr>
+<tr class="memdesc:a8cbf52d2174fe8d885954c460538084e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the connection with the spa is established.  <a href="class_spa_iot_1_1_frame_decoder.html#a8cbf52d2174fe8d885954c460538084e">More...</a><br /></td></tr>
+<tr class="separator:a8cbf52d2174fe8d885954c460538084e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a462dc25692017807d6373f52d6cc1504"><td class="memItemLeft" align="right" valign="top"><a id="a462dc25692017807d6373f52d6cc1504"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a462dc25692017807d6373f52d6cc1504">isReady</a> () const</td></tr>
+<tr class="memdesc:a462dc25692017807d6373f52d6cc1504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if communication with the spa is ready, that is to say if a frame has been received. <br /></td></tr>
+<tr class="separator:a462dc25692017807d6373f52d6cc1504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5badf7db3b0aa3d335283dfbb3f0c80"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#af5badf7db3b0aa3d335283dfbb3f0c80">hasLed</a> (int key) const</td></tr>
 <tr class="memdesc:af5badf7db3b0aa3d335283dfbb3f0c80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the hardware configuration has the LED.  <a href="class_spa_iot_1_1_frame_decoder.html#af5badf7db3b0aa3d335283dfbb3f0c80">More...</a><br /></td></tr>
 <tr class="separator:af5badf7db3b0aa3d335283dfbb3f0c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -357,14 +362,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><div class="memdoc">
 
 <p>Initializes and connect with the spa. </p>
-<p>This function must be called before you can use the instance. This function configures the different hardware features, then loop waiting for a frame for a time of <code>BeginWaitingTimeMs</code> milliseconds. <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a16e4122e21f48731bc4ccdfd3ebc0e58" title="Indicates whether the connection with the spa is established.">isOpened()</a></code> lets you know if the connection has been successfully completed </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function must be called before you can use the instance. This function configures the different hardware features, then loop waiting for a frame for a time of <code>BeginWaitingTimeMs</code> milliseconds. <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a8cbf52d2174fe8d885954c460538084e" title="Indicates whether the connection with the spa is established.">isOpen()</a></code> lets you know if the connection has been successfully completed </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">waitingTimeMs</td><td>Maximum time that the function will wait for a frame coming from the bus (-1 for infinity) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_spa_iot_1_1_control_panel.html#af5283d6de6d30d498beb95c51df45741">SpaIot::ControlPanel</a>.</p>
+<p>Reimplemented in <a class="el" href="class_spa_iot_1_1_control_panel.html#afb40f3bd66bd121885292e40b5acfb8d">SpaIot::ControlPanel</a>.</p>
 
 </div>
 </div>
@@ -688,23 +693,33 @@ It is important to adjust the frequency of the CPU to its maximum value (160MHz 
 
 </div>
 </div>
-<a id="a16e4122e21f48731bc4ccdfd3ebc0e58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16e4122e21f48731bc4ccdfd3ebc0e58">&#9670;&nbsp;</a></span>isOpened()</h2>
+<a id="a8cbf52d2174fe8d885954c460538084e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbf52d2174fe8d885954c460538084e">&#9670;&nbsp;</a></span>isOpen()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SpaIot::FrameDecoder::isOpened </td>
+          <td class="memname">virtual bool SpaIot::FrameDecoder::isOpen </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Indicates whether the connection with the spa is established. </p>
 <dl class="section return"><dt>Returns</dt><dd>If <code><a class="el" href="class_spa_iot_1_1_frame_decoder.html#ab6966c66220f94452c494ad1f5fa2a7c" title="Initializes and connect with the spa.">begin()</a></code> succeeded and everything works returns true. Returns false if the connection to the spa is not established and no frame is received. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="class_spa_iot_1_1_control_panel.html#a2f6864ca61ae33adb91d90eb9c2855eb">SpaIot::ControlPanel</a>.</p>
 
 </div>
 </div>

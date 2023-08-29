@@ -63,7 +63,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_spa_iot_1_1_led_settings.html#ade26a4aec9a9c75e4aa6d52305222f5a"
+"class_spa_iot_1_1_led_settings.html#a32987af6f1ccd5d03e1929411ef4d495"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

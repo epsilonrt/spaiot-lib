@@ -14,29 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    - name: Step 1 - Checkout Repo
-      uses: actions/checkout@v2
-    - name: Step 2 - Cache pip
-      uses: actions/cache@v2
+    - uses: actions/checkout@v3
+    - uses: actions/cache@v3
       with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
-    - name: Step 3 - Cache PlatformIO
-      uses: actions/cache@v2
+        path: |
+          ~/.cache/pip
+          ~/.platformio/.cache
+        key: ${{ runner.os }}-pio
+    - uses: actions/setup-python@v4
       with:
-        path: ~/.platformio
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-    - name: Step 4 - Set up Python
-      uses: actions/setup-python@v2
-    - name: Step 5 - Install PlatformIO
-      run: |
-        python -m pip install --upgrade pip
-        pip install --upgrade platformio
-    # - name: Step 6 - Run build test_esp8266 using PlatformIO
-    #   run: pio test -e test_esp8266 -i test_07_pcf8574mux --without-testing --without-uploading
-    - name: Step 7 - Run build test_esp32 using PlatformIO
+        python-version: '3.9'
+    - name: Install PlatformIO Core
+      run: pip install --upgrade platformio
+    - name: Run build test_esp8266 using PlatformIO
+      run: pio test -e test_esp8266 -i test_07_pcf8574mux --without-testing --without-uploading
+    - name: Run build test_esp32 using PlatformIO
       run: pio test -e test_esp32 -i test_07_pcf8574mux --without-testing --without-uploading
-    - name: Step 8 - Run build spaiot_shield_pcf8574 using PlatformIO
+    - name: Run build spaiot_shield_pcf8574 using PlatformIO
       run: pio test -e spaiot_shield_pcf8574 -f test_07_pcf8574mux -f test_08_button -f test_09_framedecoder -f test_10_controlpanel  --without-testing --without-uploading

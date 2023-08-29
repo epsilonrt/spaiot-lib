@@ -38,6 +38,7 @@ namespace SpaIot {
         HeatReached = Key::HeatReached,   //!< Heat Reached, boolean, true when the water temperature is reached (led green), false when the water temperature is not reached (led red or Heater Off)
         WaterTemp = Key::TempUp + 1,      //!< Water temperature in °C
         DesiredTemp,                      //!< Desired water temperature in °C
+        SetDesiredTemp,                   //!< Set desired water temperature in °C
         SanitizerTime,                    //!< Remaining sanitation time in hours
         ErrorCode,                        //!< Error code displayed by the control panel, 0 if no error
         AmbientTemperature,               //!< Ambient temperature in °C (if air temperature sensor is available)

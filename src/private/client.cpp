@@ -55,13 +55,41 @@ namespace SpaIot {
     spaValues[Event::Type::ErrorCode] = 0;
   }
 
+  //----------------------------------------------------------------------------
+  Client::Private::Private (const char *className, const std::set<Event::Type> &sEvents, Client *q) :
+    Private (className, q) {
+
+    subscribedEvents = sEvents;
+  }
+  //----------------------------------------------------------------------------
+  void Client::Private::pushToSpa (const Event &event) {
+
+    if (event.type() != Event::NoEvent && event.type() != Event::AnyEvent) {
+
+      if (subscribedEvents.empty() || subscribedEvents.count (event.type()) > 0) {
+
+        outQ.push (event);
+      }
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  bool Client::Private::pullFromSpa (Event &event) {
+
+    if (! inQ.empty()) {
+
+      event = inQ.front();
+      inQ.pop();
+      return true;
+    }
+    return false;
+  }
 
   //----------------------------------------------------------------------------
   bool Client::Private::pollSpaEvents () {
-    PIMPL_Q (Client);
     Event event;
 
-    while (q->pullFromSpa (event)) {
+    while (pullFromSpa (event)) {
 
       TEST_PRINTF ("%s:%d: Event received %s, time: %d",
                    __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
@@ -79,29 +107,13 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  void Client::Private::sendEventToSpa (Event event) {
-    PIMPL_Q (Client);
-
-    TEST_PRINTF ("%s:%d: Send event %s, time: %d",
-                 __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
-    q->pushToSpa (event);
-  }
-
-  //----------------------------------------------------------------------------
-  uint16_t Client::Private::spaValue (Event::Type type) {
+  uint16_t Client::Private::spaValue (Event::Type type) const {
 
     if (spaValues.count (type) > 0) {
 
-      return spaValues[type];
+      return spaValues.at(type);
     }
     return UnsetValue16;
-  }
-
-  //----------------------------------------------------------------------------
-  Client::Private::Private (const char *className, const std::set<Event::Type> &sEvents, Client *q) :
-    Private (className, q) {
-
-    subscribedEvents = sEvents;
   }
 
   //----------------------------------------------------------------------------
@@ -260,28 +272,30 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   void Client::pushToSpa (const Event &event) {
+    PIMPL_D (Client);
 
-    if (event.type() != Event::NoEvent && event.type() != Event::AnyEvent) {
-      PIMPL_D (Client);
-
-      if (d->subscribedEvents.empty() || d->subscribedEvents.count (event.type()) > 0) {
-
-        d->outQ.push (event);
-      }
-    }
+    d->pushToSpa (event);
   }
 
   //----------------------------------------------------------------------------
   bool Client::pullFromSpa (Event &event) {
     PIMPL_D (Client);
 
-    if (! d->inQ.empty()) {
+    return d->pullFromSpa (event);
+  }
 
-      event = d->inQ.front();
-      d->inQ.pop();
-      return true;
-    }
-    return false;
+  //----------------------------------------------------------------------------
+  bool Client::pollSpaEvents () {
+    PIMPL_D (Client);
+
+    return d->pollSpaEvents();
+  }
+
+  //----------------------------------------------------------------------------
+  uint16_t Client::spaValue (Event::Type type) const {
+    PIMPL_D (const Client);
+
+    return d->spaValue (type);
   }
 
   //----------------------------------------------------------------------------
@@ -349,8 +363,9 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   bool Client::handle () {
+    PIMPL_D (Client);
 
-    return isOpen();
+    return d->pollSpaEvents();
   }
 
   //----------------------------------------------------------------------------

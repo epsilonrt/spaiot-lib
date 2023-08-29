@@ -207,10 +207,10 @@ namespace SpaIot {
       bool begin();
 
       /**
-       * @brief Check if the client is open
-       * 
-       * @return true if begin() has been called and the client is open, false otherwise
-       */
+         @brief Check if the client is open
+
+         @return true if begin() has been called and the client is open, false otherwise
+      */
       bool isOpen() const;
 
       /**
@@ -227,8 +227,9 @@ namespace SpaIot {
 
          This method must be called periodically in the main loop.
          It will be call by \c Server::handle() to process the client tasks.
-         The default implementation does nothing and returns isOpen().
-         It must be reimplemented in derived classes to process the client tasks.
+         The default implementation call \c pollSpaEvents() and returns true if events have been polled.
+         It should be reimplemented in derived classes to process the client tasks.
+
          @return true if events have been processed, false otherwise
       */
       virtual bool handle();
@@ -260,6 +261,26 @@ namespace SpaIot {
          @return true  if the event has been filled, false otherwise
       */
       bool pullFromSpa (Event &event);
+
+      /**
+         @brief This client poll events from the spa
+
+         Poll events from the spa using \c pullFromSpa() and update the internal variables of the client object.
+         These variables are accessible by the \c spaValue() method.
+
+         @return true  if events have been polled, false otherwise
+      */
+      virtual bool pollSpaEvents ();
+
+      /**
+         @brief Get a spa value from the internal variables of the client object
+
+         These variables are updated by the \c pollSpaEvents() method.
+
+         @param type   The event type
+         @return uint16_t   The spa value, UnsetValue16 or UnsetValue8 (for boolean) if no value is available
+      */
+      uint16_t spaValue (Event::Type type) const;
       /**@}*/
 
     protected:

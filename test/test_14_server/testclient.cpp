@@ -35,9 +35,10 @@ TestClient::Private::Private (std::set<SpaIot::Event::Type> subscribedEvents, Te
 
 //----------------------------------------------------------------------------
 void TestClient::Private::sendEventToSpa (Event event, unsigned long timeout) {
-  PIMPL_Q (TestClient);
 
-  Client::Private::sendEventToSpa (event);
+  TEST_PRINTF ("%s:%d: Send event %s, time: %d",
+               __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
+  pushToSpa (event);
   if (event.type() == Event::Type::SetDesiredTemp) {
     event.setType (Event::Type::DesiredTemp);
   }

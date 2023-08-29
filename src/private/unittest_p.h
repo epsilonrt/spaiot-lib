@@ -15,7 +15,7 @@
 
 #ifdef PIO_UNIT_TESTING
 #include <unity.h>
-#warning "Compiling for unit testing"
+// #warning "Compiling for unit testing"
 #else
 #define TEST_PRINTF(message, ...) 
 #define TEST_MESSAGE(message) 

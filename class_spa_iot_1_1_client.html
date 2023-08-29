@@ -195,6 +195,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a227bedfbe03b845b4fa9796637f9b34d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#a227bedfbe03b845b4fa9796637f9b34d">pullFromSpa</a> (<a class="el" href="class_spa_iot_1_1_event.html">Event</a> &amp;event)</td></tr>
 <tr class="memdesc:a227bedfbe03b845b4fa9796637f9b34d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This client pull an event from the spa.  <a href="class_spa_iot_1_1_client.html#a227bedfbe03b845b4fa9796637f9b34d">More...</a><br /></td></tr>
 <tr class="separator:a227bedfbe03b845b4fa9796637f9b34d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a114dfd7c4ca650592858880206522e6d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#a114dfd7c4ca650592858880206522e6d">pollSpaEvents</a> ()</td></tr>
+<tr class="memdesc:a114dfd7c4ca650592858880206522e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This client poll events from the spa.  <a href="class_spa_iot_1_1_client.html#a114dfd7c4ca650592858880206522e6d">More...</a><br /></td></tr>
+<tr class="separator:a114dfd7c4ca650592858880206522e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adff57855c6da90af13fe15ae0715a28a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#adff57855c6da90af13fe15ae0715a28a">spaValue</a> (<a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cd">Event::Type</a> type) const</td></tr>
+<tr class="memdesc:adff57855c6da90af13fe15ae0715a28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a spa value from the internal variables of the client object.  <a href="class_spa_iot_1_1_client.html#adff57855c6da90af13fe15ae0715a28a">More...</a><br /></td></tr>
+<tr class="separator:adff57855c6da90af13fe15ae0715a28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_spa_iot_1_1_client.html" title="Client class.">Client</a> class. </p>
@@ -358,7 +364,8 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Process the client. </p>
-<p>This method must be called periodically in the main loop. It will be call by <code><a class="el" href="class_spa_iot_1_1_server.html#a7157775efc9ba4286249a4cb18eac07b" title="Process spa events and handle client requests.">Server::handle()</a></code> to process the client tasks. The default implementation does nothing and returns <a class="el" href="class_spa_iot_1_1_client.html#adb1e9e7bdba47f71a185371ccf1a498c" title="Check if the client is open.">isOpen()</a>. It must be reimplemented in derived classes to process the client tasks. </p><dl class="section return"><dt>Returns</dt><dd>true if events have been processed, false otherwise </dd></dl>
+<p>This method must be called periodically in the main loop. It will be call by <code><a class="el" href="class_spa_iot_1_1_server.html#a7157775efc9ba4286249a4cb18eac07b" title="Process spa events and handle client requests.">Server::handle()</a></code> to process the client tasks. The default implementation call <code><a class="el" href="class_spa_iot_1_1_client.html#a114dfd7c4ca650592858880206522e6d" title="This client poll events from the spa.">pollSpaEvents()</a></code> and returns true if events have been polled. It should be reimplemented in derived classes to process the client tasks.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if events have been processed, false otherwise </dd></dl>
 
 </div>
 </div>
@@ -477,6 +484,35 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a114dfd7c4ca650592858880206522e6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a114dfd7c4ca650592858880206522e6d">&#9670;&nbsp;</a></span>pollSpaEvents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool SpaIot::Client::pollSpaEvents </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This client poll events from the spa. </p>
+<p>Poll events from the spa using <code><a class="el" href="class_spa_iot_1_1_client.html#a227bedfbe03b845b4fa9796637f9b34d" title="This client pull an event from the spa.">pullFromSpa()</a></code> and update the internal variables of the client object. These variables are accessible by the <code><a class="el" href="class_spa_iot_1_1_client.html#adff57855c6da90af13fe15ae0715a28a" title="Get a spa value from the internal variables of the client object.">spaValue()</a></code> method.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if events have been polled, false otherwise </dd></dl>
+
+</div>
+</div>
 <a id="a227bedfbe03b845b4fa9796637f9b34d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a227bedfbe03b845b4fa9796637f9b34d">&#9670;&nbsp;</a></span>pullFromSpa()</h2>
 
@@ -590,6 +626,42 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_spa_iot_1_1_event.html" title="Spa Events.">Event</a> The event, type is <a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cdaec5f0e7d59cae2c1a0cad60195a8aa0b" title="No event.">Event::NoEvent</a> if the queue is empty or the event type is not the expected one </dd></dl>
+
+</div>
+</div>
+<a id="adff57855c6da90af13fe15ae0715a28a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adff57855c6da90af13fe15ae0715a28a">&#9670;&nbsp;</a></span>spaValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SpaIot::Client::spaValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cd">Event::Type</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a spa value from the internal variables of the client object. </p>
+<p>These variables are updated by the <code><a class="el" href="class_spa_iot_1_1_client.html#a114dfd7c4ca650592858880206522e6d" title="This client poll events from the spa.">pollSpaEvents()</a></code> method.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The event type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t The spa value, UnsetValue16 or UnsetValue8 (for boolean) if no value is available </dd></dl>
 
 </div>
 </div>

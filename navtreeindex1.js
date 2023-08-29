@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"class_spa_iot_1_1_led_settings.html#a1347a0f379deb925cdb4c08269d94db0":[2,0,0,9,1],
+"class_spa_iot_1_1_led_settings.html#a1ec53871958e0bcba8cdab735ceb7430":[2,0,0,9,5],
 "class_spa_iot_1_1_led_settings.html#a32987af6f1ccd5d03e1929411ef4d495":[2,0,0,9,3],
 "class_spa_iot_1_1_led_settings.html#a331c9f114a6e4ed214ed217074285411":[2,0,0,9,11],
 "class_spa_iot_1_1_led_settings.html#a4c4d34132fa6e52e7e24d2f1abd4d994":[2,0,0,9,8],
@@ -132,8 +134,8 @@ var NAVTREEINDEX1 =
 "class_spa_iot_1_1_server_settings.html#af338bd9cacedfa1965d2e5a1c7b568fe":[2,0,0,13,12],
 "class_spa_iot_1_1_server_settings.html#afab0459521bb61783dbd735c9a3f22bf":[2,0,0,13,14],
 "classes.html":[2,1],
-"functions.html":[2,3,0],
 "functions.html":[2,3,0,0],
+"functions.html":[2,3,0],
 "functions_b.html":[2,3,0,1],
 "functions_c.html":[2,3,0,2],
 "functions_d.html":[2,3,0,3],
@@ -178,8 +180,8 @@ var NAVTREEINDEX1 =
 "functions_w.html":[2,3,0,19],
 "functions_~.html":[2,3,0,20],
 "hierarchy.html":[2,2],
-"index.html":[0],
 "index.html":[],
+"index.html":[0],
 "index.html#autotoc_md11":[0,3],
 "index.html#autotoc_md13":[0,4],
 "index.html#autotoc_md15":[0,5],

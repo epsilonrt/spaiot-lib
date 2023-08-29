@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ledsettings_186',['LedSettings',['../class_spa_iot_1_1_led_settings.html',1,'SpaIot']]]
+  ['ledsettings_188',['LedSettings',['../class_spa_iot_1_1_led_settings.html',1,'SpaIot']]]
 ];

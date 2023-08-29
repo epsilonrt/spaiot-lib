@@ -12,6 +12,7 @@
    but WITHOUT ANY WARRANTY;
 */
 #include "client_p.h"
+#include "unittest_p.h"
 
 namespace SpaIot {
 
@@ -28,8 +29,73 @@ namespace SpaIot {
   Client::Private::Private (const char *className, Client *q) :
     className (className),
     q_ptr (q),
-    isopen (false)
-  {}
+    isopen (false) {
+
+    const std::set <Event::Type> states = {
+      Event::Type::PowerOn,
+      Event::Type::FilterOn,
+      Event::Type::BubbleOn,
+      Event::Type::HeaterOn,
+      Event::Type::HeatReached,
+      Event::Type::JetOn,
+      Event::Type::SanitizerOn
+    };
+    for (auto s : states) {
+      spaValues[s] = UnsetValue8;
+    }
+
+    const std::set <Event::Type> values = {
+      Event::Type::WaterTemp,
+      Event::Type::DesiredTemp,
+      Event::Type::SanitizerTime
+    };
+    for (auto v : values) {
+      spaValues[v] = UnsetValue16;
+    }
+    spaValues[Event::Type::ErrorCode] = 0;
+  }
+
+
+  //----------------------------------------------------------------------------
+  bool Client::Private::pollSpaEvents () {
+    PIMPL_Q (Client);
+    Event event;
+
+    while (q->pullFromSpa (event)) {
+
+      TEST_PRINTF ("%s:%d: Event received %s, time: %d",
+                   __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
+
+      if (spaValues.count (event.type()) > 0) {
+
+        spaValues[event.type()] = event.value();
+      }
+      else {
+
+        event.setType (Event::NoEvent);
+      }
+    }
+    return event.type() != Event::Type::NoEvent;
+  }
+
+  //----------------------------------------------------------------------------
+  void Client::Private::sendEventToSpa (Event event) {
+    PIMPL_Q (Client);
+
+    TEST_PRINTF ("%s:%d: Send event %s, time: %d",
+                 __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
+    q->pushToSpa (event);
+  }
+
+  //----------------------------------------------------------------------------
+  uint16_t Client::Private::spaValue (Event::Type type) {
+
+    if (spaValues.count (type) > 0) {
+
+      return spaValues[type];
+    }
+    return UnsetValue16;
+  }
 
   //----------------------------------------------------------------------------
   Client::Private::Private (const char *className, const std::set<Event::Type> &sEvents, Client *q) :

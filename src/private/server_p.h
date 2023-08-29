@@ -25,29 +25,19 @@ namespace SpaIot {
       Private (Server *q);
       Private (Server *q, const HardwareSettings &hwsettings);
 
-      void sendEvent (const Event &event);
-      bool sendState (const Event &event);
       bool sendValue (const Event &event);
-
-      bool setPreviousState (Event::Type type, uint8_t value);
       bool setPreviousValue (Event::Type type, uint16_t value);
-
-      uint8_t previousState (Event::Type type);
-      uint16_t previousValue (Event::Type type);
-
-      bool setPreviousState (const Event &event);
-      uint8_t previousState (const Event &event);
       bool setPreviousValue (const Event &event);
+      uint16_t previousValue (Event::Type type);
       uint16_t previousValue (const Event &event);
+      bool isBoolEvent (Event::Type type);
 
     public:
       std::map<String, SpaIot::Client *> clients;
       const ServerSettings *settings;
       unsigned long previousPublishTime;
-      std::map<Event::Type, uint8_t> previousStates;
       std::map<Event::Type, uint16_t> previousValues;
 
-      static const std::map<Event::Type, uint8_t>  PreviousStatesDefault;
       static const std::map<Event::Type, uint16_t> PreviousValuesDefault;
     private:
       PIMPL_DECLARE_PUBLIC (Server);

@@ -13,6 +13,7 @@
  */
 #pragma once
 
-#include "controlpanel.h"
+#include "server.h"
+#include "client.h"
 #include "config/hwconfig.h"
 

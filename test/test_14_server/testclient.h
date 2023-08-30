@@ -13,7 +13,7 @@
 */
 #pragma once
 
-#include <Client.h>
+#include <client.h>
 
 class TestClient : public SpaIot::Client {
   public:

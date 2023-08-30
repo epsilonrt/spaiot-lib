@@ -26,10 +26,9 @@ jobs:
         python-version: '3.9'
     - name: Install PlatformIO Core
       run: pip install --upgrade platformio
-      # TODO: the client and server tests are built on my computer but not on github, you have to find out why?
     - name: Run build test_esp8266 using PlatformIO
-      run: pio test -e test_esp8266 -i test_07_pcf8574mux -i test_12_client -i test_14_server --without-testing --without-uploading
+      run: pio test -e test_esp8266 -i test_07_pcf8574mux --without-testing --without-uploading
     - name: Run build test_esp32 using PlatformIO
-      run: pio test -e test_esp32 -i test_07_pcf8574mux -i test_12_client -i test_14_server --without-testing --without-uploading
+      run: pio test -e test_esp32 -i test_07_pcf8574mux --without-testing --without-uploading
     - name: Run build spaiot_shield_pcf8574 using PlatformIO
       run: pio test -e spaiot_shield_pcf8574 -f test_07_pcf8574mux -f test_08_button -f test_09_framedecoder -f test_10_controlpanel  --without-testing --without-uploading

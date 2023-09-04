@@ -67,16 +67,6 @@ namespace SpaIot {
          (type == Event::Type::JetOn &&  q->hasLed (Key::Jet)) ||
          ( (type == Event::Type::SanitizerOn || type == Event::Type::SanitizerTime) &&  q->hasLed (Key::Sanitizer))) {
 
-
-      if (type == Event::Type::PowerOn && value == false) {
-
-        setPreviousValue (Event::Type::BubbleOn, false);
-        setPreviousValue (Event::Type::HeaterOn, false);
-        setPreviousValue (Event::Type::HeatReached, false);
-        setPreviousValue (Event::Type::FilterOn, false);
-        setPreviousValue (Event::Type::JetOn, false);
-        setPreviousValue (Event::Type::SanitizerOn, false);
-      }
       previousValues[type] = value;
     }
     return previousValue (type) == value;
@@ -128,16 +118,6 @@ namespace SpaIot {
       return true;
     }
     return false;
-  }
-
-  //------------------------------------------------------------------------------
-  // return true if the event is a boolean event
-  bool Server::Private::isBoolEvent (Event::Type type) {
-
-    return (type == Event::Type::PowerOn || type == Event::Type::FilterOn ||
-            type == Event::Type::BubbleOn || type == Event::Type::JetOn ||
-            type == Event::Type::HeaterOn || type == Event::Type::SanitizerOn ||
-            type == Event::Type::HeatReached);
   }
 
   //----------------------------------------------------------------------------
@@ -280,7 +260,7 @@ namespace SpaIot {
       for (auto s : d->previousValues) {
         Event::Type type = s.first;
 
-        if (d->isBoolEvent (type)) { // if the event is boolean (on/off
+        if (Event::TypeIsBoolean (type)) { // if the event is boolean (on/off)
           uint8_t isOn = (type == Event::Type::HeaterOn ? isHeaterOn() : isLedOn (type));
 
           if (d->previousValue (type) != isOn) {

@@ -30,7 +30,6 @@ namespace SpaIot {
       bool setPreviousValue (const Event &event);
       uint16_t previousValue (Event::Type type);
       uint16_t previousValue (const Event &event);
-      bool isBoolEvent (Event::Type type);
 
     public:
       std::map<String, SpaIot::Client *> clients;

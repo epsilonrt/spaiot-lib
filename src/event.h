@@ -108,19 +108,19 @@ namespace SpaIot {
       bool operator!= (const Event &other) const;
 
       /**
-       * @brief  Conversion to bool
-       * 
-       * Convert the Event object value to a boolean value.
-       * @return true if the event value is true and type is not NoEvent, false otherwise
-       */
+         @brief  Conversion to bool
+
+         Convert the Event object value to a boolean value.
+         @return true if the event value is true and type is not NoEvent, false otherwise
+      */
       // explicit operator bool() const;
       operator bool() const;
 
       /**
-       * @brief Conversion to uint16_t
-       * 
-       * @return the event value or UnsetValue16 if type is NoEvent, false otherwise
-       */
+         @brief Conversion to uint16_t
+
+         @return the event value or UnsetValue16 if type is NoEvent, false otherwise
+      */
       // explicit operator bool() const;
       operator uint16_t() const;
 
@@ -160,12 +160,22 @@ namespace SpaIot {
       String toString() const;
 
       /**
+         @brief Returns true if the event type is a boolean
+      */
+      bool isBoolean() const;
+
+      /**
          @brief Convert the event type to a string
 
          @param type  The event type
          @return The event type as a string
       */
       static String typeToString (Type type);
+
+      /**
+         @brief Returns true if the event type is a boolean
+      */
+      static bool TypeIsBoolean (Type type);
 
     protected:
       class Private;

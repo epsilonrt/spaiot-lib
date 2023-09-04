@@ -189,9 +189,26 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  bool Event::isBoolean() const {
+    PIMPL_D (const Event);
+
+    return TypeIsBoolean (d->type);
+  }
+  
+  //----------------------------------------------------------------------------
   String Event::typeToString (Type type) {
 
     return Private::TypeToString.at (type);
   }
+
+  //------------------------------------------------------------------------------
+  bool Event::TypeIsBoolean (Type type) {
+
+    return (type == Type::PowerOn || type == Type::FilterOn ||
+            type == Type::BubbleOn || type == Type::JetOn ||
+            type == Type::HeaterOn || type == Type::SanitizerOn ||
+            type == Type::HeatReached);
+  }
+
 }
 //------------------------------------------------------------------------------

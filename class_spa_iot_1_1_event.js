@@ -22,6 +22,7 @@ var class_spa_iot_1_1_event =
     [ "Event", "class_spa_iot_1_1_event.html#ad973a58b6688ad8cb8aa105d29c77245", null ],
     [ "Event", "class_spa_iot_1_1_event.html#af276503e12bb17f785abf88b83a03752", null ],
     [ "clear", "class_spa_iot_1_1_event.html#a244dca9a9b1dac5e6b6d0d9a4cd42ff7", null ],
+    [ "isBoolean", "class_spa_iot_1_1_event.html#ae8b03a4ebe93a68a716863799759d813", null ],
     [ "isEmpty", "class_spa_iot_1_1_event.html#a9c7ab66bf98f37c64d34bf8e30b73752", null ],
     [ "isNull", "class_spa_iot_1_1_event.html#a63d44f3554701feb87cee9569bd94d26", null ],
     [ "operator bool", "class_spa_iot_1_1_event.html#aac989e3220711554f9053fc3dea3b642", null ],
@@ -34,6 +35,7 @@ var class_spa_iot_1_1_event =
     [ "setValue", "class_spa_iot_1_1_event.html#a04565c73525471ac793ba411a7f52815", null ],
     [ "toString", "class_spa_iot_1_1_event.html#ac17aaab1a022289ec5708766a4c62565", null ],
     [ "type", "class_spa_iot_1_1_event.html#af045cc4edc4ca3063282083d95e695ac", null ],
+    [ "TypeIsBoolean", "class_spa_iot_1_1_event.html#a64aa64123f41667d24acbc3bb0894235", null ],
     [ "typeToString", "class_spa_iot_1_1_event.html#ace1521fff013f4ff9b45e2d21cae8361", null ],
     [ "value", "class_spa_iot_1_1_event.html#a19abf1c762881d4ca5131c4b64a007e6", null ]
 ];

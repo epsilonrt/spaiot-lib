@@ -170,9 +170,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr class="memitem:ad27579a727746e9a1e8495464ec882df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#ad27579a727746e9a1e8495464ec882df">begin</a> ()</td></tr>
 <tr class="memdesc:ad27579a727746e9a1e8495464ec882df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the client.  <a href="class_spa_iot_1_1_client.html#ad27579a727746e9a1e8495464ec882df">More...</a><br /></td></tr>
 <tr class="separator:ad27579a727746e9a1e8495464ec882df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb1e9e7bdba47f71a185371ccf1a498c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#adb1e9e7bdba47f71a185371ccf1a498c">isOpen</a> () const</td></tr>
-<tr class="memdesc:adb1e9e7bdba47f71a185371ccf1a498c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the client is open.  <a href="class_spa_iot_1_1_client.html#adb1e9e7bdba47f71a185371ccf1a498c">More...</a><br /></td></tr>
-<tr class="separator:adb1e9e7bdba47f71a185371ccf1a498c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe9a6a85663b169d1bb8c7355d125138"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#afe9a6a85663b169d1bb8c7355d125138">isOpen</a> () const</td></tr>
+<tr class="memdesc:afe9a6a85663b169d1bb8c7355d125138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the client is open.  <a href="class_spa_iot_1_1_client.html#afe9a6a85663b169d1bb8c7355d125138">More...</a><br /></td></tr>
+<tr class="separator:afe9a6a85663b169d1bb8c7355d125138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43d563be5f47e03ae8f0db1738b5eec9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#a43d563be5f47e03ae8f0db1738b5eec9">end</a> ()</td></tr>
 <tr class="memdesc:a43d563be5f47e03ae8f0db1738b5eec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the client.  <a href="class_spa_iot_1_1_client.html#a43d563be5f47e03ae8f0db1738b5eec9">More...</a><br /></td></tr>
 <tr class="separator:a43d563be5f47e03ae8f0db1738b5eec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,6 +189,10 @@ Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Client Protected API</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Used by client-derived classes to communicate the outside world to the spa </p>
 </div></td></tr>
+<tr class="memitem:a297885acf0541ac3fb96b5806b679d22"><td class="memItemLeft" align="right" valign="top"><a id="a297885acf0541ac3fb96b5806b679d22"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#a297885acf0541ac3fb96b5806b679d22">Client</a> (const char *<a class="el" href="class_spa_iot_1_1_client.html#a5cc2cdfb3a72fa20200a8ef81fda138a">className</a>)</td></tr>
+<tr class="memdesc:a297885acf0541ac3fb96b5806b679d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_spa_iot_1_1_client.html" title="Client class.">Client</a> object with the specified class name. <br /></td></tr>
+<tr class="separator:a297885acf0541ac3fb96b5806b679d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e16b56fef100c329e1d8ba3160edfcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_client.html#a8e16b56fef100c329e1d8ba3160edfcd">pushToSpa</a> (const <a class="el" href="class_spa_iot_1_1_event.html">Event</a> &amp;event)</td></tr>
 <tr class="memdesc:a8e16b56fef100c329e1d8ba3160edfcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This client push an event to the spa.  <a href="class_spa_iot_1_1_client.html#a8e16b56fef100c329e1d8ba3160edfcd">More...</a><br /></td></tr>
 <tr class="separator:a8e16b56fef100c329e1d8ba3160edfcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,7 +312,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Start the client. </p>
-<p>This method must be called in the setup() function before <a class="el" href="class_spa_iot_1_1_client.html#ad27579a727746e9a1e8495464ec882df" title="Start the client.">begin()</a>. It will be call by <code><a class="el" href="class_spa_iot_1_1_server.html#aac0bee24157d14e6115635b2e2ebaebb" title="Start the server.">Server::begin()</a></code> to start the client services. The default implementation sets <a class="el" href="class_spa_iot_1_1_client.html#adb1e9e7bdba47f71a185371ccf1a498c" title="Check if the client is open.">isOpen()</a> to true and returns true. It must be reimplemented in derived classes to start the client services, and <b>called</b> by the derived class <a class="el" href="class_spa_iot_1_1_client.html#ad27579a727746e9a1e8495464ec882df" title="Start the client.">begin()</a> method. </p><dl class="section return"><dt>Returns</dt><dd>true if the client has been started, false otherwise </dd></dl>
+<p>This method must be called in the setup() function before <a class="el" href="class_spa_iot_1_1_client.html#ad27579a727746e9a1e8495464ec882df" title="Start the client.">begin()</a>. It will be call by <code><a class="el" href="class_spa_iot_1_1_server.html#aac0bee24157d14e6115635b2e2ebaebb" title="Start the server.">Server::begin()</a></code> to start the client services. The default implementation sets <a class="el" href="class_spa_iot_1_1_client.html#afe9a6a85663b169d1bb8c7355d125138" title="Check if the client is open.">isOpen()</a> to true and returns true. It must be reimplemented in derived classes to start the client services, and <b>called</b> by the derived class <a class="el" href="class_spa_iot_1_1_client.html#ad27579a727746e9a1e8495464ec882df" title="Start the client.">begin()</a> method. </p><dl class="section return"><dt>Returns</dt><dd>true if the client has been started, false otherwise </dd></dl>
 
 </div>
 </div>
@@ -336,7 +340,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stop the client. </p>
-<p>This method closes the client and stops the client services. It may be reimplemented in derived classes to stop the client services, and <b>called</b> by the derived class <a class="el" href="class_spa_iot_1_1_client.html#a43d563be5f47e03ae8f0db1738b5eec9" title="Stop the client.">end()</a> method. The default implementation sets <a class="el" href="class_spa_iot_1_1_client.html#adb1e9e7bdba47f71a185371ccf1a498c" title="Check if the client is open.">isOpen()</a> to false. </p>
+<p>This method closes the client and stops the client services. It may be reimplemented in derived classes to stop the client services, and <b>called</b> by the derived class <a class="el" href="class_spa_iot_1_1_client.html#a43d563be5f47e03ae8f0db1738b5eec9" title="Stop the client.">end()</a> method. The default implementation sets <a class="el" href="class_spa_iot_1_1_client.html#afe9a6a85663b169d1bb8c7355d125138" title="Check if the client is open.">isOpen()</a> to false. </p>
 
 </div>
 </div>
@@ -369,19 +373,27 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adb1e9e7bdba47f71a185371ccf1a498c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb1e9e7bdba47f71a185371ccf1a498c">&#9670;&nbsp;</a></span>isOpen()</h2>
+<a id="afe9a6a85663b169d1bb8c7355d125138"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe9a6a85663b169d1bb8c7355d125138">&#9670;&nbsp;</a></span>isOpen()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SpaIot::Client::isOpen </td>
+          <td class="memname">virtual bool SpaIot::Client::isOpen </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Check if the client is open. </p>

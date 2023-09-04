@@ -77,6 +77,13 @@ namespace SpaIot {
       /**
          @brief Remove a client from the server
 
+         @param className the name of the client class
+      */
+      bool removeClient (const char * className);
+
+      /**
+         @brief Remove a client from the server
+
          @param client the client to remove
       */
       bool removeClient (const Client &client);

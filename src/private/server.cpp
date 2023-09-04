@@ -462,6 +462,12 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
+  bool Server::removeClient (const char *className) {
+
+    return removeClient (String (className));
+  }
+  
+  //------------------------------------------------------------------------------
   bool Server::removeClient (const Client &client) {
 
     return removeClient (client.className());

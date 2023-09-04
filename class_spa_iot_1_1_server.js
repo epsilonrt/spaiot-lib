@@ -35,6 +35,7 @@ var class_spa_iot_1_1_server =
     [ "ledSettings", "class_spa_iot_1_1_server.html#a4e787ad20067370a69214da682693296", null ],
     [ "pushButton", "class_spa_iot_1_1_server.html#a1de28d73908e6ccc44359120d0bc2d1c", null ],
     [ "rawStatus", "class_spa_iot_1_1_server.html#aa178cc819094b5a2bf8fb3413640a664", null ],
+    [ "removeClient", "class_spa_iot_1_1_server.html#adfd2697630d6e92e390b0211a61c2e40", null ],
     [ "removeClient", "class_spa_iot_1_1_server.html#a1f4644efdd6bbfe85413acfb9dda3c64", null ],
     [ "removeClient", "class_spa_iot_1_1_server.html#a1f413d6a6d5b4c954a4c44dbca44f49b", null ],
     [ "sanitizerTime", "class_spa_iot_1_1_server.html#ae79e931ea6f1951029d27be05c8d54d9", null ],

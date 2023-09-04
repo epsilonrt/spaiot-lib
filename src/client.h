@@ -211,7 +211,7 @@ namespace SpaIot {
 
          @return true if begin() has been called and the client is open, false otherwise
       */
-      bool isOpen() const;
+      virtual bool isOpen() const;
 
       /**
          @brief Stop the client
@@ -247,6 +247,12 @@ namespace SpaIot {
           Used by client-derived classes to communicate the outside world to the spa
           @{
       */
+      
+      /**
+         @brief Construct a new Client object with the specified class name
+      */
+      Client (const char *className);
+
       /**
          @brief This client push an event to the spa
 

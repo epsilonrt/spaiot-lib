@@ -124,6 +124,11 @@ namespace SpaIot {
   // API
 
   //----------------------------------------------------------------------------
+  // Protected constructor with private implementation
+  Client::Client (const char *className) :
+    Client (*new Private (className)) {}
+
+  //----------------------------------------------------------------------------
   // Default constructor
   // Call the protected constructor with private implementation
   Client::Client() :
@@ -271,6 +276,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  // protected
   void Client::pushToSpa (const Event &event) {
     PIMPL_D (Client);
 
@@ -278,6 +284,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  // protected
   bool Client::pullFromSpa (Event &event) {
     PIMPL_D (Client);
 
@@ -285,6 +292,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  // protected
   bool Client::pollSpaEvents () {
     PIMPL_D (Client);
 
@@ -292,6 +300,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
+  // protected
   uint16_t Client::spaValue (Event::Type type) const {
     PIMPL_D (const Client);
 

@@ -7,10 +7,11 @@
 #include <Arduino.h>
 #include <SpaIot.h>
 #include <spaiotdebug.h>
-using namespace SpaIot;
+
 
 const unsigned long SerialBaudrate = 115200;
 
+using namespace SpaIot;
 // My bus configuration :
 #if defined(ESP8266)
 // SDATA  -> GPIO12

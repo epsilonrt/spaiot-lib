@@ -1,5 +1,5 @@
 //
-// Unit Test for the class SpaIot::Server
+// Unit Test for the SpaServer class 
 //
 // How to run:
 // pio test -f test_14_server -v
@@ -16,7 +16,7 @@ using namespace SpaIot;
 // We use the default configuration DefaultConfig defined in config/hwconfig.h
 // You can choose your own configuration in your platformio.ini
 
-SpaIot::Server server; // the server, SpaIot:: is needed because there is a Server class in the Arduino framework
+SpaServer server; // the server, SpaIot:: is needed because there is a SpaServer class in the Arduino framework
 ServerSettings srvsettings ("TestSpa", 30000); // the server settings, TestSpa is the name of settings added to the register in setup()
 TestClient client; // the client, process all tests in handle()
 

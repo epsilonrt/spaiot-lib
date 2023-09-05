@@ -21,7 +21,7 @@ MqttSettings settings ("broker.hivemq.com", "MQTT_LOGIN", "MQTT_PASSWD");
 // My custom configuration
 const HardwareSettings MyConfig (MyBus, SspLeds, MyButtons);
 const ServerSettings MyServerSettings ("MyConfig");
-SpaIot::Server spa;
+SpaServer spa;
 
 WiFiClient espClient;
 

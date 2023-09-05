@@ -33,12 +33,12 @@ namespace SpaIot {
 
      Here is a schematic representation of the communication between the spa and the clients:
      @verbatim
-     +----------+               FiFo                     +-----------+
-     |          | write() --> OOOOOOOO --> pullFromSpa() |           |
-     |  Server  |                                        | Protected | <---> External world (MQTT, HTTP, Alexa, ...)
-     |  (SPA)   | read()  <-- OOOOOOOO <---- pushToSpa() |    API    |       implements the protocol with an external library
-     +----------+               FiFo                     +-----------+
-                [ --------------   SpaClient   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
+     +-----------+               FiFo                     +-----------+
+     |           | write() --> OOOOOOOO --> pullFromSpa() |           |
+     | SpaServer |                                        | Protected | <---> External world (MQTT, HTTP, Alexa, ...)
+     |   (SPA)   | read()  <-- OOOOOOOO <---- pushToSpa() |    API    |       implements the protocol with an external library
+     +-----------+               FiFo                     +-----------+
+                 [ ----------------   SpaClient   ----------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
      @endverbatim
 
      The communication between server and clients is asynchronous, clients can be connected or disconnected at any time.
@@ -199,7 +199,7 @@ namespace SpaIot {
          @brief Start the client
 
          This method must be called in the setup() function before begin().
-         It will be call by \c Server::begin() to start the client services.
+         It will be call by \c SpaServer::begin() to start the client services.
          The default implementation sets isOpen() to true and returns true.
          It must be reimplemented in derived classes to start the client services, and \b called by the derived class begin() method.
          @return true if the client has been started, false otherwise
@@ -226,7 +226,7 @@ namespace SpaIot {
          @brief Process the client
 
          This method must be called periodically in the main loop.
-         It will be call by \c Server::handle() to process the client tasks.
+         It will be call by \c SpaServer::handle() to process the client tasks.
          The default implementation call \c pollSpaEvents() and returns true if events have been polled.
          It should be reimplemented in derived classes to process the client tasks.
 

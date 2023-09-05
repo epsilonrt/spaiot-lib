@@ -20,10 +20,10 @@
 
 namespace SpaIot {
 
-  class Server::Private : public ControlPanel::Private {
+  class SpaServer::Private : public ControlPanel::Private {
     public:
-      Private (Server *q);
-      Private (Server *q, const HardwareSettings &hwsettings);
+      Private (SpaServer *q);
+      Private (SpaServer *q, const HardwareSettings &hwsettings);
 
       bool sendValue (const Event &event);
       bool setPreviousValue (Event::Type type, uint16_t value);
@@ -39,6 +39,6 @@ namespace SpaIot {
 
       static const std::map<Event::Type, uint16_t> PreviousValuesDefault;
     private:
-      PIMPL_DECLARE_PUBLIC (Server);
+      PIMPL_DECLARE_PUBLIC (SpaServer);
   };
 }

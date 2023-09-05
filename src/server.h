@@ -19,31 +19,31 @@
 namespace SpaIot {
   class SpaClient;
   /**
-     @brief Server class
+     @brief SpaServer class
 
      This class is used to send and receive events to/from, control and monitor the spa from the external world.
      The external world is represented by a client, which can be a web browser, a mobile app or a desktop application.
      
      Here is a schematic representation of the communication between the spa and the clients:
      @verbatim
-     +----------+               FiFo                     +-----------+
-     |          | write() --> OOOOOOOO --> pullFromSpa() |           |
-     |  Server  |                                        | Protected | <---> External world (MQTT, HTTP, Alexa, ...)
-     |  (SPA)   | read()  <-- OOOOOOOO <---- pushToSpa() |    API    |       implements the protocol with an external library
-     +----------+               FiFo                     +-----------+
-                [ --------------   SpaClient   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
+     +-----------+               FiFo                     +-----------+
+     |           | write() --> OOOOOOOO --> pullFromSpa() |           |
+     | SpaServer |                                        | Protected | <---> External world (MQTT, HTTP, Alexa, ...)
+     |   (SPA)   | read()  <-- OOOOOOOO <---- pushToSpa() |    API    |       implements the protocol with an external library
+     +-----------+               FiFo                     +-----------+
+                 [ ----------------   SpaClient   ----------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
      @endverbatim
 
      The communication between server and clients is asynchronous, clients can be connected or disconnected at any time.
      When the spa receives a command from a client, it executes it, then if the command has modified the state of the spa, it sends an event to all connected clients.
      @warning Thus a client must not block its process to wait for an event from the spa or the system will be blocked.
   */
-  class Server : public ControlPanel {
+  class SpaServer : public ControlPanel {
     public:
       /**
          @brief Default constructor
       */
-      Server ();
+      SpaServer ();
 
       /**
          @brief Add a client to the server
@@ -94,7 +94,7 @@ namespace SpaIot {
          Configures each of the buttons and initializes and connect with the spa.
           Must be called in the setup() function after \c addClient().
          @warning All clients must be added and its begin() method must be called before calling this method.
-         @param settings Server settings, contains the name of the spa hardware settings
+         @param settings SpaServer settings, contains the name of the spa hardware settings
                 that must be stored in the registry beforehand.
          @return true if the server is started successfully, false otherwise
       */
@@ -117,17 +117,17 @@ namespace SpaIot {
       bool handle ();
 
       /**
-         @brief Returns the Server Settings
+         @brief Returns the SpaServer Settings
 
-         @return the Server Settings, or nullptr if not set
+         @return the SpaServer Settings, or nullptr if not set
       */
       const ServerSettings   *settings() const;
 
     protected:
       class Private;
-      Server (Private &dd);
+      SpaServer (Private &dd);
     private:
-      PIMPL_DECLARE_PRIVATE (Server)
+      PIMPL_DECLARE_PRIVATE (SpaServer)
   };
 
 }

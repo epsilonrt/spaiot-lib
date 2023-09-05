@@ -17,7 +17,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   //
-  //                            Server
+  //                            SpaServer
   //
   //----------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // static
-  const std::map<Event::Type, uint16_t> Server::Private::PreviousValuesDefault = {
+  const std::map<Event::Type, uint16_t> SpaServer::Private::PreviousValuesDefault = {
     {Event::Type::PowerOn, UnsetValue8},
     {Event::Type::FilterOn, UnsetValue8},
     {Event::Type::BubbleOn, UnsetValue8},
@@ -41,12 +41,12 @@ namespace SpaIot {
   };
 
   //----------------------------------------------------------------------------
-  Server::Private::Private (Server *q) : ControlPanel::Private (q),
+  SpaServer::Private::Private (SpaServer *q) : ControlPanel::Private (q),
     settings (nullptr), previousPublishTime (0), previousValues (PreviousValuesDefault)
   {}
 
   //----------------------------------------------------------------------------
-  Server::Private::Private (Server *q, const HardwareSettings &hwsettings) :
+  SpaServer::Private::Private (SpaServer *q, const HardwareSettings &hwsettings) :
     ControlPanel::Private (q, hwsettings),
     settings (nullptr), previousPublishTime (0), previousValues (PreviousValuesDefault)
   {}
@@ -55,8 +55,8 @@ namespace SpaIot {
   // set previous value
   // if set power to false, set all other states to false
   // return true if the value is set
-  bool Server::Private::setPreviousValue (Event::Type type, uint16_t value) {
-    PIMPL_Q (Server);
+  bool SpaServer::Private::setPreviousValue (Event::Type type, uint16_t value) {
+    PIMPL_Q (SpaServer);
 
     if (previousValues.count (type) == 0) {
 
@@ -74,14 +74,14 @@ namespace SpaIot {
 
   //------------------------------------------------------------------------------
   // Sets the previous state of the event
-  bool Server::Private::setPreviousValue (const Event &event) {
+  bool SpaServer::Private::setPreviousValue (const Event &event) {
 
     return setPreviousValue (event.type(), event.value());
   }
 
   //------------------------------------------------------------------------------
   // Return previous value for an event type
-  uint16_t Server::Private::previousValue (Event::Type type) {
+  uint16_t SpaServer::Private::previousValue (Event::Type type) {
 
     if (type == Event::Type::SetDesiredTemp) {
 
@@ -97,14 +97,14 @@ namespace SpaIot {
 
   //------------------------------------------------------------------------------
   // return previous value of the event
-  uint16_t Server::Private::previousValue (const Event &event) {
+  uint16_t SpaServer::Private::previousValue (const Event &event) {
 
     return previousValue (event.type());
   }
 
   //------------------------------------------------------------------------------
   // send value only if it is changed
-  bool Server::Private::sendValue (const Event &event) {
+  bool SpaServer::Private::sendValue (const Event &event) {
 
     if (setPreviousValue (event)) {
 
@@ -122,7 +122,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // Protected constructor with private implementation
-  Server::Server (Private &dd) : ControlPanel (dd)
+  SpaServer::SpaServer (Private &dd) : ControlPanel (dd)
   {}
 
   //----------------------------------------------------------------------------
@@ -131,13 +131,13 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   // Default constructor
   // Call the protected constructor with private implementation
-  Server::Server() :
-    Server (*new Private (this))
+  SpaServer::SpaServer() :
+    SpaServer (*new Private (this))
   {}
 
   //------------------------------------------------------------------------------
-  bool Server::begin (const ServerSettings &settings, unsigned long waitingTimeMs) {
-    PIMPL_D (Server);
+  bool SpaServer::begin (const ServerSettings &settings, unsigned long waitingTimeMs) {
+    PIMPL_D (SpaServer);
 
     TEST_PRINTF ("%s:%d: Load config. %s, %d clients",
                  __PRETTY_FUNCTION__, __LINE__, settings.spaModel().c_str(), clientCount());
@@ -148,10 +148,10 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  void Server::end () {
+  void SpaServer::end () {
 
     if (isOpen()) {
-      PIMPL_D (Server);
+      PIMPL_D (SpaServer);
 
       for (auto &elmt : d->clients) {
         SpaClient *client = elmt.second;
@@ -164,11 +164,11 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  bool Server::handle () {
+  bool SpaServer::handle () {
     bool isEventsProcessed = false;
 
     if (isOpen() && isReady()) { // if the spa is ready
-      PIMPL_D (Server);
+      PIMPL_D (SpaServer);
       unsigned long now = millis();
 
       if ( (now - d->previousPublishTime) >= d->settings->publishInterval()) { // if the publish interval is reached
@@ -413,15 +413,15 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  const ServerSettings *Server::settings() const {
-    PIMPL_D (const Server);
+  const ServerSettings *SpaServer::settings() const {
+    PIMPL_D (const SpaServer);
 
     return d->settings;
   }
 
   //------------------------------------------------------------------------------
-  bool Server::addClient (SpaClient &client) {
-    PIMPL_D (Server);
+  bool SpaServer::addClient (SpaClient &client) {
+    PIMPL_D (SpaServer);
 
     if (d->clients.count (client.className()) == 0) {
 
@@ -432,15 +432,15 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  int Server::clientCount () const {
-    PIMPL_D (const Server);
+  int SpaServer::clientCount () const {
+    PIMPL_D (const SpaServer);
 
     return d->clients.size();
   }
 
   //------------------------------------------------------------------------------
-  SpaClient *Server::client (const String &className) const {
-    PIMPL_D (const Server);
+  SpaClient *SpaServer::client (const String &className) const {
+    PIMPL_D (const SpaServer);
 
     if (d->clients.count (className) != 0) {
 
@@ -450,8 +450,8 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  bool Server::removeClient (const String &className) {
-    PIMPL_D (Server);
+  bool SpaServer::removeClient (const String &className) {
+    PIMPL_D (SpaServer);
 
     if (d->clients.count (className) != 0) {
 
@@ -462,13 +462,13 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  bool Server::removeClient (const char *className) {
+  bool SpaServer::removeClient (const char *className) {
 
     return removeClient (String (className));
   }
 
   //------------------------------------------------------------------------------
-  bool Server::removeClient (const SpaClient &client) {
+  bool SpaServer::removeClient (const SpaClient &client) {
 
     return removeClient (client.className());
   }

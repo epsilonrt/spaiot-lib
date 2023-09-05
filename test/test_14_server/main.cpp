@@ -7,7 +7,7 @@
 // We use a DIY board connected to a SSP spa.
 #include <unity.h>
 #include <config/hwconfig.h>
-#include <server.h>
+#include <spaserver.h>
 #include <spaiotdebug.h>
 #include "testclient.h"
 

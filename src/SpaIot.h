@@ -13,7 +13,7 @@
  */
 #pragma once
 
-#include "server.h"
+#include "spaserver.h"
 #include "spaclient.h"
 #include "config/hwconfig.h"
 

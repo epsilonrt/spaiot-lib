@@ -15,7 +15,7 @@
 
 #include <map>
 #include "../event.h"
-#include "../server.h"
+#include "../spaserver.h"
 #include "controlpanel_p.h"
 
 namespace SpaIot {

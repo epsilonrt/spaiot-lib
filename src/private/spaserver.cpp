@@ -8,7 +8,7 @@
    permission of ϵIoT.
 */
 #include <cmath>
-#include "server_p.h"
+#include "spaserver_p.h"
 #include "unittest_p.h"
 #include "../spaclient.h"
 

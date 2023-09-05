@@ -21,7 +21,7 @@ using namespace SpaIot;
 
 //----------------------------------------------------------------------------
 TestClient::Private::Private (TestClient *q) :
-  SpaIot::Client::Private ("TestClient", q),
+  SpaClient::Private ("TestClient", q),
   nextTest (TestInit),
   startTestTime (0),
   powerOnTime (0) {}
@@ -261,7 +261,7 @@ void TestClient::Private::testSetDesiredTemp () {
 
 //----------------------------------------------------------------------------
 // Protected constructor with private implementation
-TestClient::TestClient (Private &dd) : Client (dd) {}
+TestClient::TestClient (Private &dd) : SpaClient (dd) {}
 
 //----------------------------------------------------------------------------
 // API
@@ -372,7 +372,7 @@ bool TestClient::begin() {
   PIMPL_D (TestClient);
 
   d->nextTest = Private::TestInit;
-  return Client::begin();
+  return SpaClient::begin();
 }
 
 //----------------------------------------------------------------------------

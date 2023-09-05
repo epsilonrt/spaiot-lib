@@ -18,7 +18,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   //
-  //                            Client
+  //                            SpaClient
   //
   //----------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ namespace SpaIot {
   // Private implementation
 
   //----------------------------------------------------------------------------
-  Client::Private::Private (const char *className, Client *q) :
+  SpaClient::Private::Private (const char *className, SpaClient *q) :
     className (className),
     q_ptr (q),
     isopen (false) {
@@ -56,13 +56,13 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  Client::Private::Private (const char *className, const std::set<Event::Type> &sEvents, Client *q) :
+  SpaClient::Private::Private (const char *className, const std::set<Event::Type> &sEvents, SpaClient *q) :
     Private (className, q) {
 
     subscribedEvents = sEvents;
   }
   //----------------------------------------------------------------------------
-  void Client::Private::pushToSpa (const Event &event) {
+  void SpaClient::Private::pushToSpa (const Event &event) {
 
     if (event.type() != Event::NoEvent && event.type() != Event::AnyEvent) {
 
@@ -74,7 +74,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool Client::Private::pullFromSpa (Event &event) {
+  bool SpaClient::Private::pullFromSpa (Event &event) {
 
     if (! inQ.empty()) {
 
@@ -86,7 +86,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool Client::Private::pollSpaEvents () {
+  bool SpaClient::Private::pollSpaEvents () {
     Event event;
 
     while (pullFromSpa (event)) {
@@ -107,7 +107,7 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  uint16_t Client::Private::spaValue (Event::Type type) const {
+  uint16_t SpaClient::Private::spaValue (Event::Type type) const {
 
     if (spaValues.count (type) > 0) {
 
@@ -118,49 +118,49 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // Protected constructor with private implementation
-  Client::Client (Private &dd) : d_ptr (&dd) {}
+  SpaClient::SpaClient (Private &dd) : d_ptr (&dd) {}
 
   //----------------------------------------------------------------------------
   // API
 
   //----------------------------------------------------------------------------
   // Protected constructor with private implementation
-  Client::Client (const char *className) :
-    Client (*new Private (className)) {}
+  SpaClient::SpaClient (const char *className) :
+    SpaClient (*new Private (className)) {}
 
   //----------------------------------------------------------------------------
   // Default constructor
   // Call the protected constructor with private implementation
-  Client::Client() :
-    Client (*new Private ("Client")) {}
+  SpaClient::SpaClient() :
+    SpaClient (*new Private ("SpaClient")) {}
 
   //----------------------------------------------------------------------------
   // Destructor
   // No default implementation, unique_ptr will call the destructor of the
   // private implementation
-  Client::~Client() {}
+  SpaClient::~SpaClient() {}
 
   //----------------------------------------------------------------------------
-  Client::Client (std::initializer_list<Event::Type> subscribedEvents) :
-    Client (*new Private ("Client", std::set<Event::Type> (subscribedEvents)))
+  SpaClient::SpaClient (std::initializer_list<Event::Type> subscribedEvents) :
+    SpaClient (*new Private ("SpaClient", std::set<Event::Type> (subscribedEvents)))
   {}
 
   //----------------------------------------------------------------------------
-  Client::Client (const std::set<Event::Type> &subscribedEvents) :
-    Client (*new Private ("Client", subscribedEvents))
+  SpaClient::SpaClient (const std::set<Event::Type> &subscribedEvents) :
+    SpaClient (*new Private ("SpaClient", subscribedEvents))
   {}
 
   // ---------------------------------------------------------------------------
   // Copy constructor
-  Client::Client (const Client &other) :
-    Client (*new Private (*other.d_ptr)) {}
+  SpaClient::SpaClient (const SpaClient &other) :
+    SpaClient (*new Private (*other.d_ptr)) {}
 
   // ---------------------------------------------------------------------------
   // Assignment operator
-  Client &Client::operator= (const Client &other) {
+  SpaClient &SpaClient::operator= (const SpaClient &other) {
 
     if (this != &other) {
-      PIMPL_D (Client);
+      PIMPL_D (SpaClient);
 
       d->outQ = other.d_func()->outQ;
       d->inQ = other.d_func()->inQ;
@@ -172,23 +172,23 @@ namespace SpaIot {
 
   // ---------------------------------------------------------------------------
   // Move constructor
-  Client::Client (Client &&other) = default;
+  SpaClient::SpaClient (SpaClient &&other) = default;
 
   // ---------------------------------------------------------------------------
   // Move assignment operator
-  Client &Client::operator= (Client &&other) = default;
+  SpaClient &SpaClient::operator= (SpaClient &&other) = default;
 
   //----------------------------------------------------------------------------
-  bool Client::isNull() const {
+  bool SpaClient::isNull() const {
 
     return d_ptr == nullptr;
   }
 
   //----------------------------------------------------------------------------
-  bool Client::isEmpty() const {
+  bool SpaClient::isEmpty() const {
 
     if (!isNull()) {
-      PIMPL_D (const Client);
+      PIMPL_D (const SpaClient);
 
       return d->outQ.empty() && d->inQ.empty() && d->subscribedEvents.empty();
     }
@@ -196,11 +196,11 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  void Client::clear() {
+  void SpaClient::clear() {
 
     if (isNull()) {
 
-      d_ptr.reset (new Private ("Client"));
+      d_ptr.reset (new Private ("SpaClient"));
     }
     else {
 
@@ -211,8 +211,8 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool Client::operator== (const Client &other) const {
-    PIMPL_D (const Client);
+  bool SpaClient::operator== (const SpaClient &other) const {
+    PIMPL_D (const SpaClient);
 
     return d->outQ == other.d_func()->outQ &&
            d->inQ == other.d_func()->inQ &&
@@ -221,17 +221,17 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  bool Client::operator!= (const Client &other) const {
-    PIMPL_D (const Client);
+  bool SpaClient::operator!= (const SpaClient &other) const {
+    PIMPL_D (const SpaClient);
 
     return ! (*this == other);
   }
 
   //----------------------------------------------------------------------------
-  bool Client::write (const Event &event) {
+  bool SpaClient::write (const Event &event) {
 
     if (event.type() != Event::NoEvent && event.type() != Event::AnyEvent) {
-      PIMPL_D (Client);
+      PIMPL_D (SpaClient);
 
       if (d->subscribedEvents.empty() || d->subscribedEvents.count (event.type()) > 0) {
 
@@ -243,8 +243,8 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  Event Client::read () {
-    PIMPL_D (Client);
+  Event SpaClient::read () {
+    PIMPL_D (SpaClient);
     Event event;
 
     if (available()) {
@@ -256,8 +256,8 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  Event Client::read (Event::Type type) {
-    PIMPL_D (Client);
+  Event SpaClient::read (Event::Type type) {
+    PIMPL_D (SpaClient);
     Event event;
 
     if (available()) {
@@ -277,109 +277,109 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   // protected
-  void Client::pushToSpa (const Event &event) {
-    PIMPL_D (Client);
+  void SpaClient::pushToSpa (const Event &event) {
+    PIMPL_D (SpaClient);
 
     d->pushToSpa (event);
   }
 
   //----------------------------------------------------------------------------
   // protected
-  bool Client::pullFromSpa (Event &event) {
-    PIMPL_D (Client);
+  bool SpaClient::pullFromSpa (Event &event) {
+    PIMPL_D (SpaClient);
 
     return d->pullFromSpa (event);
   }
 
   //----------------------------------------------------------------------------
   // protected
-  bool Client::pollSpaEvents () {
-    PIMPL_D (Client);
+  bool SpaClient::pollSpaEvents () {
+    PIMPL_D (SpaClient);
 
     return d->pollSpaEvents();
   }
 
   //----------------------------------------------------------------------------
   // protected
-  uint16_t Client::spaValue (Event::Type type) const {
-    PIMPL_D (const Client);
+  uint16_t SpaClient::spaValue (Event::Type type) const {
+    PIMPL_D (const SpaClient);
 
     return d->spaValue (type);
   }
 
   //----------------------------------------------------------------------------
-  void Client::subscribe (std::initializer_list<Event::Type> subscribedEvents) {
+  void SpaClient::subscribe (std::initializer_list<Event::Type> subscribedEvents) {
 
     subscribe (std::set<Event::Type> (subscribedEvents));
   }
 
   //----------------------------------------------------------------------------
-  void Client::subscribe (std::set<Event::Type> subscribedEvents) {
-    PIMPL_D (Client);
+  void SpaClient::subscribe (std::set<Event::Type> subscribedEvents) {
+    PIMPL_D (SpaClient);
 
     d->subscribedEvents = subscribedEvents;
   }
 
   //----------------------------------------------------------------------------
-  void Client::subscribe (Event::Type event) {
-    PIMPL_D (Client);
+  void SpaClient::subscribe (Event::Type event) {
+    PIMPL_D (SpaClient);
 
     d->subscribedEvents.insert (event);
   }
 
   //----------------------------------------------------------------------------
-  bool Client::isSubscribed (const Event::Type &event) const {
-    PIMPL_D (const Client);
+  bool SpaClient::isSubscribed (const Event::Type &event) const {
+    PIMPL_D (const SpaClient);
 
     return d->subscribedEvents.empty() || d->subscribedEvents.count (event) > 0;
   }
 
   //----------------------------------------------------------------------------
-  const std::set<Event::Type> &Client::subscribedEvents() const {
-    PIMPL_D (const Client);
+  const std::set<Event::Type> &SpaClient::subscribedEvents() const {
+    PIMPL_D (const SpaClient);
 
     return d->subscribedEvents;
   }
 
   //----------------------------------------------------------------------------
-  int Client::available() const {
-    PIMPL_D (const Client);
+  int SpaClient::available() const {
+    PIMPL_D (const SpaClient);
 
     return d->outQ.size();
   }
 
   //----------------------------------------------------------------------------
-  bool Client::begin () {
-    PIMPL_D (Client);
+  bool SpaClient::begin () {
+    PIMPL_D (SpaClient);
 
     d->isopen = true;
     return true;
   }
 
   //---------------------------------------------------------------------------
-  bool Client::isOpen () const {
-    PIMPL_D (const Client);
+  bool SpaClient::isOpen () const {
+    PIMPL_D (const SpaClient);
 
     return d->isopen;
   }
 
   //----------------------------------------------------------------------------
-  void Client::end () {
-    PIMPL_D (Client);
+  void SpaClient::end () {
+    PIMPL_D (SpaClient);
 
     d->isopen = false;
   }
 
   //----------------------------------------------------------------------------
-  bool Client::handle () {
-    PIMPL_D (Client);
+  bool SpaClient::handle () {
+    PIMPL_D (SpaClient);
 
     return d->pollSpaEvents();
   }
 
   //----------------------------------------------------------------------------
-  const String &Client::className() const {
-    PIMPL_D (const Client);
+  const String &SpaClient::className() const {
+    PIMPL_D (const SpaClient);
 
     return d->className;
   }

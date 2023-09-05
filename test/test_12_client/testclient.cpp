@@ -26,7 +26,7 @@ void TestClient::Private::printEvent (const char *msg, Event e) {
 
 //----------------------------------------------------------------------------
 // Protected constructor with private implementation
-TestClient::TestClient (Private &dd) : Client (dd) {}
+TestClient::TestClient (Private &dd) : SpaClient (dd) {}
 
 //----------------------------------------------------------------------------
 // API

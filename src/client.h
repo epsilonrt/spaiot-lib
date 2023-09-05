@@ -20,7 +20,7 @@
 namespace SpaIot {
 
   /**
-     @brief Client class
+     @brief SpaClient class
 
      This class is used to interface the spa with the external world (MQTT, HTTP, Alexa, ...).
      It's a base class that must be derived to implement the protocol with an external library (PubSubClient, SinricPro...).
@@ -38,67 +38,67 @@ namespace SpaIot {
      |  Server  |                                        | Protected | <---> External world (MQTT, HTTP, Alexa, ...)
      |  (SPA)   | read()  <-- OOOOOOOO <---- pushToSpa() |    API    |       implements the protocol with an external library
      +----------+               FiFo                     +-----------+
-                [ --------------   SpaIot::Client   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
+                [ --------------   SpaClient   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
      @endverbatim
 
      The communication between server and clients is asynchronous, clients can be connected or disconnected at any time.
      When the spa receives a command from a client, it executes it, then if the command has modified the state of the spa, it sends an event to all connected clients.
      @warning Thus a client must not block its process to wait for an event from the spa or the system will be blocked.
   */
-  class Client {
+  class SpaClient {
     public:
 
       /**
-         @brief Construct a new default Client object
+         @brief Construct a new default SpaClient object
 
          The subscribed events list is empty, all events may be sent to the client or the spa
       */
-      Client();
+      SpaClient();
 
       /**
          @brief Destructor
       */
-      virtual ~Client();
+      virtual ~SpaClient();
 
       /**
-         @brief Construct a new Client object with the specified subscribed events
+         @brief Construct a new SpaClient object with the specified subscribed events
 
          @param subscribedEvents The events subscribed by the client, only the events in the list will be sent to the client or the spa
       */
-      Client (std::initializer_list<Event::Type> subscribedEvents);
+      SpaClient (std::initializer_list<Event::Type> subscribedEvents);
 
       /**
-         @brief Construct a new Client object with the specified subscribed events
+         @brief Construct a new SpaClient object with the specified subscribed events
 
          @param subscribedEvents  The events subscribed by the client, only the events in the list will be sent to the client or the spa
       */
-      Client (const std::set<Event::Type> &subscribedEvents);
+      SpaClient (const std::set<Event::Type> &subscribedEvents);
 
       /**
         @brief Copy Constructor
       */
-      Client (const Client &other);
+      SpaClient (const SpaClient &other);
 
       /**
          @brief Move Constructor
          after the move, @b other is null, other.clear() **must be called** if it is to be used again
       */
-      Client (Client &&other);
+      SpaClient (SpaClient &&other);
 
       /**
-         @brief Sets the Client object to be equal to @b other.
+         @brief Sets the SpaClient object to be equal to @b other.
       */
-      Client &operator= (const Client &other);
+      SpaClient &operator= (const SpaClient &other);
 
       /**
          @brief Move assignment
           after the move, @b other is null, other.clear() **must be called** if it is to be used again
       */
-      Client &operator= (Client &&other);
+      SpaClient &operator= (SpaClient &&other);
 
       /**
-         @brief Clears the Client object
-         After the call to this function, the Client object is the same as one that has been default constructed
+         @brief Clears the SpaClient object
+         After the call to this function, the SpaClient object is the same as one that has been default constructed
       */
       virtual void clear();
 
@@ -115,22 +115,22 @@ namespace SpaIot {
       /**
          The function returns true if the two objects are equal
 
-         @param other the other Client object to compare to
+         @param other the other SpaClient object to compare to
 
          @return The return value is a boolean value.  It is true if the two objects are
          equal, and false if they are not equal.
       */
-      virtual bool operator== (const Client &other) const;
+      virtual bool operator== (const SpaClient &other) const;
 
       /**
          The function returns true if the two objects are not equal
 
-         @param other the other Client object to compare to
+         @param other the other SpaClient object to compare to
 
          @return The return value is a boolean value.  It is true if the two objects are
          not equal, and false if they are equal.
       */
-      virtual bool operator!= (const Client &other) const;
+      virtual bool operator!= (const SpaClient &other) const;
 
       /**
          @brief Add subscribed events
@@ -242,16 +242,16 @@ namespace SpaIot {
       virtual const String &className() const;
 
     protected:
-      /** @name Client Protected API
+      /** @name SpaClient Protected API
 
           Used by client-derived classes to communicate the outside world to the spa
           @{
       */
       
       /**
-         @brief Construct a new Client object with the specified class name
+         @brief Construct a new SpaClient object with the specified class name
       */
-      Client (const char *className);
+      SpaClient (const char *className);
 
       /**
          @brief This client push an event to the spa
@@ -291,9 +291,9 @@ namespace SpaIot {
 
     protected:
       class Private;
-      Client (Private &dd);
+      SpaClient (Private &dd);
       std::unique_ptr<Private> d_ptr;
     private:
-      PIMPL_DECLARE_PRIVATE (Client)
+      PIMPL_DECLARE_PRIVATE (SpaClient)
   };
 }

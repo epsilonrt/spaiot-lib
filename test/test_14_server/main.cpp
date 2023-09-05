@@ -36,16 +36,16 @@ void test_getters () {
 }
 
 void test_setters () {
-  SpaIot::Client client2;
+  SpaIot::SpaClient client2;
 
   TEST_ASSERT (client.className() == "TestClient");
-  TEST_ASSERT (client2.className() == "Client");
+  TEST_ASSERT (client2.className() == "SpaClient");
 
   TEST_ASSERT_TRUE (server.addClient (client));
   TEST_ASSERT_EQUAL (server.client("TestClient"), &client);
 
   TEST_ASSERT_TRUE (server.addClient (client2));
-  TEST_ASSERT_EQUAL (server.client("Client"), &client2);
+  TEST_ASSERT_EQUAL (server.client("SpaClient"), &client2);
 
   TEST_ASSERT_EQUAL (server.clientCount(), 2);
 
@@ -54,7 +54,7 @@ void test_setters () {
   TEST_ASSERT_EQUAL (server.clientCount(), 1);
 
   TEST_ASSERT_TRUE (server.addClient (client2));
-  TEST_ASSERT_TRUE (server.removeClient ("Client"));
+  TEST_ASSERT_TRUE (server.removeClient ("SpaClient"));
   TEST_ASSERT_EQUAL (server.clientCount(), 1);
 }
 

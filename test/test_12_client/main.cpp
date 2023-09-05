@@ -1,5 +1,5 @@
 //
-// Unit Test for the class SpaIot::SpaIot::Client
+// Unit Test for the class SpaClient
 // How to run:
 // pio test -f test_12_client -v
 // -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
@@ -25,24 +25,24 @@ const std::initializer_list <Event::Type> subscriptionList2 = {Event::Type::Powe
 const std::set <Event::Type> subscriptionSet2 (subscriptionList2);
 
 void test_constructor_null (void) {
-  SpaIot::Client s; // Client is a class defined in the ESP32 core, so we need to disambiguate with the SpaIot namespace
+  SpaClient s; // SpaClient is a class defined in the ESP32 core, so we need to disambiguate with the SpaIot namespace
 
   TEST_ASSERT_TRUE (s.isEmpty());
   TEST_ASSERT_FALSE (s.isNull());
-  TEST_ASSERT_EQUAL_STRING (s.className().c_str(), "Client");
+  TEST_ASSERT_EQUAL_STRING (s.className().c_str(), "SpaClient");
 }
 
 void test_constructor_notnull (void) {
-  SpaIot::Client s1 (subscriptionList1);
-  SpaIot::Client s2 (subscriptionSet1);
+  SpaClient s1 (subscriptionList1);
+  SpaClient s2 (subscriptionSet1);
 
   TEST_ASSERT_FALSE (s1.isEmpty());
   TEST_ASSERT_FALSE (s2.isEmpty());
 }
 
 void test_getters (void) {
-  SpaIot::Client s1 ;
-  SpaIot::Client s2 (subscriptionList2);
+  SpaClient s1 ;
+  SpaClient s2 (subscriptionList2);
 
   TEST_ASSERT_TRUE (s1.isEmpty());
   TEST_ASSERT_TRUE (s1.subscribedEvents().empty());
@@ -59,7 +59,7 @@ void test_getters (void) {
 }
 
 void test_setters (void) {
-  SpaIot::Client s1;
+  SpaClient s1;
 
   s1.subscribe (Event::Type::PowerOn);
   TEST_ASSERT_TRUE (s1.isSubscribed (Event::Type::PowerOn));
@@ -75,18 +75,18 @@ void test_setters (void) {
 }
 
 void test_comparison (void) {
-  SpaIot::Client s1 (subscriptionList1);
-  SpaIot::Client s2 (subscriptionList1);
-  SpaIot::Client s3 (subscriptionList2);
+  SpaClient s1 (subscriptionList1);
+  SpaClient s2 (subscriptionList1);
+  SpaClient s3 (subscriptionList2);
 
   TEST_ASSERT (s1 == s2);
   TEST_ASSERT (s2 != s3);
 }
 
 void test_copy (void) {
-  SpaIot::Client s1;
-  SpaIot::Client s2 (subscriptionList1);
-  SpaIot::Client s3 (s2);
+  SpaClient s1;
+  SpaClient s2 (subscriptionList1);
+  SpaClient s3 (s2);
 
   s1 = s2;
   TEST_ASSERT (s2 == s1);
@@ -94,11 +94,11 @@ void test_copy (void) {
 }
 
 void test_move (void) {
-  const SpaIot::Client s1 (subscriptionList1);
+  const SpaClient s1 (subscriptionList1);
 
   // Test move constructor
-  SpaIot::Client s2 = s1;
-  SpaIot::Client s3 = std::move (s2);
+  SpaClient s2 = s1;
+  SpaClient s3 = std::move (s2);
   TEST_ASSERT (s3 == s1);
   TEST_ASSERT_TRUE (s2.isNull());
 

@@ -32,7 +32,7 @@ namespace SpaIot {
       uint16_t previousValue (const Event &event);
 
     public:
-      std::map<String, SpaIot::Client *> clients;
+      std::map<String, SpaClient *> clients;
       const ServerSettings *settings;
       unsigned long previousPublishTime;
       std::map<Event::Type, uint16_t> previousValues;

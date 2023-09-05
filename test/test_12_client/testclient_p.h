@@ -15,11 +15,11 @@
 #include <private/client_p.h>
 #include "testclient.h"
 
-class TestClient::Private : public SpaIot::Client::Private {
+class TestClient::Private : public SpaClient::Private {
   public:
-    Private () : SpaIot::Client::Private ("TestClient") {}
+    Private () : SpaClient::Private ("TestClient") {}
     Private (std::set<SpaIot::Event::Type> subscribedEvents) :
-      SpaIot::Client::Private ("TestClient", subscribedEvents) {}
+      SpaClient::Private ("TestClient", subscribedEvents) {}
     static void printEvent (const char *msg, SpaIot::Event e);
     static const std::map <SpaIot::Event::Type, String> EventTypeToString;
 };

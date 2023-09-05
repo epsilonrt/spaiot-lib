@@ -46,13 +46,13 @@ class MqttSettings {
 
 // The SpaMqttClientClass class
 // Interconnects the spa and the MQTT broker
-class SpaMqttClientClass : public SpaIot::Client {
+class SpaMqttClientClass : public SpaIot::SpaClient {
   public:
     // Constructor
     SpaMqttClientClass ();
 
     // setting up the client and connecting to the spa and the MQTT broker
-    void begin (::Client &client, const MqttSettings &settings);
+    void begin (Client &client, const MqttSettings &settings);
 
     // reconnecting to the MQTT broker
     void reconnect ();

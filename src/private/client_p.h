@@ -19,10 +19,10 @@
 
 namespace SpaIot {
 
-  class Client::Private {
+  class SpaClient::Private {
     public:
-      Private (const char *className, Client *q = nullptr);
-      Private (const char *className, const std::set<Event::Type> &subscribedEvents, Client *q = nullptr);
+      Private (const char *className, SpaClient *q = nullptr);
+      Private (const char *className, const std::set<Event::Type> &subscribedEvents, SpaClient *q = nullptr);
       virtual ~Private() {}
 
       void pushToSpa (const Event &event);
@@ -34,7 +34,7 @@ namespace SpaIot {
       std::queue<Event> inQ;  // in queue, events received from the spa
       std::set<Event::Type> subscribedEvents; // events subscribed by the client
       const String className;
-      Client *const q_ptr;
+      SpaClient *const q_ptr;
       bool isopen;
       std::map <SpaIot::Event::Type, uint16_t> spaValues;
   };

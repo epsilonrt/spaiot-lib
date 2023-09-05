@@ -26,11 +26,11 @@ const std::map<SpaIot::Event::Type, String> SpaMqttClientClass::TypeToMqttTopic 
 };
 
 // Constructor
-SpaMqttClientClass::SpaMqttClientClass () : Client ("SpaMqttClientClass") {}
+SpaMqttClientClass::SpaMqttClientClass () : SpaClient ("SpaMqttClientClass") {}
 
 
 // setting up the client
-void SpaMqttClientClass::begin (::Client &client, const MqttSettings &settings) {
+void SpaMqttClientClass::begin (Client &client, const MqttSettings &settings) {
 
   this->settings = settings;
   mqtt.setClient (client);

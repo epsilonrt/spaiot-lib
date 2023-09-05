@@ -15,7 +15,7 @@
 
 #include <client.h>
 
-class TestClient : public SpaIot::Client {
+class TestClient : public SpaIot::SpaClient {
   public:
     TestClient ();
     TestClient (std::initializer_list <SpaIot::Event::Type> subscribedEvents);

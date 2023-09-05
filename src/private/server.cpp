@@ -110,7 +110,7 @@ namespace SpaIot {
 
       for (auto &elmt : clients) {
 
-        Client *client = elmt.second;
+        SpaClient *client = elmt.second;
         TEST_PRINTF ("%s:%d: Send event %s to %s",
                      __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), client->className().c_str());
         client->write (event);
@@ -154,7 +154,7 @@ namespace SpaIot {
       PIMPL_D (Server);
 
       for (auto &elmt : d->clients) {
-        Client *client = elmt.second;
+        SpaClient *client = elmt.second;
 
         client->end();
       }
@@ -273,7 +273,7 @@ namespace SpaIot {
 
       // read data from the client, and execute the command to the spa
       for (auto &elmt : d->clients) {
-        Client *client = elmt.second;
+        SpaClient *client = elmt.second;
 
         if (client->handle()) {
 
@@ -420,7 +420,7 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  bool Server::addClient (Client &client) {
+  bool Server::addClient (SpaClient &client) {
     PIMPL_D (Server);
 
     if (d->clients.count (client.className()) == 0) {
@@ -439,7 +439,7 @@ namespace SpaIot {
   }
 
   //------------------------------------------------------------------------------
-  Client *Server::client (const String &className) const {
+  SpaClient *Server::client (const String &className) const {
     PIMPL_D (const Server);
 
     if (d->clients.count (className) != 0) {
@@ -466,9 +466,9 @@ namespace SpaIot {
 
     return removeClient (String (className));
   }
-  
+
   //------------------------------------------------------------------------------
-  bool Server::removeClient (const Client &client) {
+  bool Server::removeClient (const SpaClient &client) {
 
     return removeClient (client.className());
   }

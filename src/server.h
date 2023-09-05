@@ -17,7 +17,7 @@
 #include "controlpanel.h"
 
 namespace SpaIot {
-  class Client;
+  class SpaClient;
   /**
      @brief Server class
 
@@ -31,7 +31,7 @@ namespace SpaIot {
      |  Server  |                                        | Protected | <---> External world (MQTT, HTTP, Alexa, ...)
      |  (SPA)   | read()  <-- OOOOOOOO <---- pushToSpa() |    API    |       implements the protocol with an external library
      +----------+               FiFo                     +-----------+
-                [ --------------   SpaIot::Client   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
+                [ --------------   SpaClient   --------------   ] [ --- External library (PubSubClient, SinricPro...) ---]
      @endverbatim
 
      The communication between server and clients is asynchronous, clients can be connected or disconnected at any time.
@@ -49,10 +49,10 @@ namespace SpaIot {
          @brief Add a client to the server
 
          Must be called in the setup() function before \c begin().
-         @param client Client to add
+         @param client SpaClient to add
          @return true if the client is added successfully, false otherwise
       */
-      bool addClient (Client &client);
+      bool addClient (SpaClient &client);
 
       /**
          @brief Return the number of clients added to the server
@@ -65,7 +65,7 @@ namespace SpaIot {
           @param className the name of the client class
           @return the client with the specified className, or nullptr if not found
       */
-      Client *client (const String &className) const;
+      SpaClient *client (const String &className) const;
 
       /**
          @brief Remove a client from the server
@@ -86,7 +86,7 @@ namespace SpaIot {
 
          @param client the client to remove
       */
-      bool removeClient (const Client &client);
+      bool removeClient (const SpaClient &client);
 
       /**
          @brief Start the server
@@ -104,7 +104,7 @@ namespace SpaIot {
          @brief Stop the server
 
          This method must be called in the main loop when the server is no longer needed.
-         It closes the server and stops the server services and the client services with Client::end().
+         It closes the server and stops the server services and the client services with SpaClient::end().
       */
       void end ();
 

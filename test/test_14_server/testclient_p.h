@@ -15,7 +15,7 @@
 #include <private/client_p.h>
 #include "testclient.h"
 
-class TestClient::Private : public SpaIot::Client::Private {
+class TestClient::Private : public SpaIot::SpaClient::Private {
   public:
     Private (TestClient *q);
     Private (std::set<SpaIot::Event::Type> subscribedEvents, TestClient *q);

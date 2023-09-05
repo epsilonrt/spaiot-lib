@@ -11,7 +11,7 @@
    SpaIot library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY;
 */
-#include "client_p.h"
+#include "spaclient_p.h"
 #include "unittest_p.h"
 
 namespace SpaIot {

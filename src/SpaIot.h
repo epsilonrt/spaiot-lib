@@ -14,6 +14,6 @@
 #pragma once
 
 #include "server.h"
-#include "client.h"
+#include "spaclient.h"
 #include "config/hwconfig.h"
 

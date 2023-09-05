@@ -15,7 +15,7 @@
 
 #include <queue>
 #include <map>
-#include "../client.h"
+#include "../spaclient.h"
 
 namespace SpaIot {
 

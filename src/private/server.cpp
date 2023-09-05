@@ -10,7 +10,7 @@
 #include <cmath>
 #include "server_p.h"
 #include "unittest_p.h"
-#include "../client.h"
+#include "../spaclient.h"
 
 
 namespace SpaIot {

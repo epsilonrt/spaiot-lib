@@ -12,7 +12,7 @@
    but WITHOUT ANY WARRANTY;
 */
 #pragma once
-#include <private/client_p.h>
+#include <private/spaclient_p.h>
 #include "testclient.h"
 
 class TestClient::Private : public SpaClient::Private {

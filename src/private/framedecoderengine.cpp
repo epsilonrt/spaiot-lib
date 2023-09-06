@@ -3,11 +3,7 @@
    This file is part of SpaIot library <https://github.com/epsilonrt/spaiot-lib>
    This file is based on DIYSCIP (c) by Geoffroy HUBERT
 
-   SpaIot library is licensed under a
-   Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-
-   You should have received a copy of the license along with this
-   work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+   SPDX-License-Identifier: BSD-3-Clause
 
    SpaIot library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY;

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['rawstatus_277',['rawStatus',['../class_spa_iot_1_1_frame_decoder.html#aa178cc819094b5a2bf8fb3413640a664',1,'SpaIot::FrameDecoder']]],
-  ['read_278',['read',['../class_spa_iot_1_1_client.html#a5c1416247a5dadcc2385b9ee42efa155',1,'SpaIot::Client::read()'],['../class_spa_iot_1_1_client.html#ab5feac9d3bca904aeb7a5f5d3ffbef98',1,'SpaIot::Client::read(Event::Type type)']]],
-  ['registercontains_279',['registerContains',['../class_spa_iot_1_1_button_controller.html#aa77b8ffd76f72e2c7168a04676e5bf76',1,'SpaIot::ButtonController::registerContains()'],['../class_spa_iot_1_1_hardware_settings.html#a1511aff32e0847a5b0f9757064f53999',1,'SpaIot::HardwareSettings::registerContains()']]],
-  ['release_280',['release',['../class_spa_iot_1_1_button.html#a12465a595e9abcc1ca6cd11558cb0a11',1,'SpaIot::Button']]],
-  ['removeclient_281',['removeClient',['../class_spa_iot_1_1_server.html#a1f413d6a6d5b4c954a4c44dbca44f49b',1,'SpaIot::Server::removeClient(const String &amp;className)'],['../class_spa_iot_1_1_server.html#adfd2697630d6e92e390b0211a61c2e40',1,'SpaIot::Server::removeClient(const char *className)'],['../class_spa_iot_1_1_server.html#a1f4644efdd6bbfe85413acfb9dda3c64',1,'SpaIot::Server::removeClient(const Client &amp;client)']]]
+  ['rawstatus_303',['rawStatus',['../class_spa_iot_1_1_frame_decoder.html#aa178cc819094b5a2bf8fb3413640a664',1,'SpaIot::FrameDecoder']]],
+  ['read_304',['read',['../class_spa_iot_1_1_spa_client.html#affa6f8a95b62c1f10a6a3c58c8360497',1,'SpaIot::SpaClient::read()'],['../class_spa_iot_1_1_spa_client.html#a25d3458adbc237beb65180b34672959e',1,'SpaIot::SpaClient::read(Event::Type type)']]],
+  ['registercontains_305',['registerContains',['../class_spa_iot_1_1_button_controller.html#aa77b8ffd76f72e2c7168a04676e5bf76',1,'SpaIot::ButtonController::registerContains()'],['../class_spa_iot_1_1_hardware_settings.html#a1511aff32e0847a5b0f9757064f53999',1,'SpaIot::HardwareSettings::registerContains()']]],
+  ['release_306',['release',['../class_spa_iot_1_1_button.html#a12465a595e9abcc1ca6cd11558cb0a11',1,'SpaIot::Button']]],
+  ['removeclient_307',['removeClient',['../class_spa_iot_1_1_spa_server.html#acafbbe588e3d331d72b525a43548b7e7',1,'SpaIot::SpaServer::removeClient(const String &amp;className)'],['../class_spa_iot_1_1_spa_server.html#ac1792a5225b51ac6357c1740047e98c6',1,'SpaIot::SpaServer::removeClient(const char *className)'],['../class_spa_iot_1_1_spa_server.html#ade60a5f476e240a8f63a3ac5a44975b8',1,'SpaIot::SpaServer::removeClient(const SpaClient &amp;client)']]]
 ];

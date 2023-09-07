@@ -1,5 +1,5 @@
 <map id="SpaIot::FrameDecoder" name="SpaIot::FrameDecoder">
 <area shape="rect" id="node1" title="This class decodes information from the technical block of the spa." alt="" coords="5,5,172,32"/>
 <area shape="rect" id="node2" href="$class_spa_iot_1_1_control_panel.html" title="Control Panel." alt="" coords="12,80,165,107"/>
-<area shape="rect" id="node3" href="$class_spa_iot_1_1_server.html" title="Server class." alt="" coords="32,155,145,181"/>
+<area shape="rect" id="node3" href="$class_spa_iot_1_1_spa_server.html" title="SpaServer class." alt="" coords="20,155,157,181"/>
 </map>

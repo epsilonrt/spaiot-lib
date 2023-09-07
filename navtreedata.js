@@ -39,6 +39,7 @@ var NAVTREE =
         [ "Control of push buttons", "index.html#autotoc_md17", null ]
       ] ]
     ] ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespace Members", "namespacemembers.html", [
       [ "All", "namespacemembers.html", null ],
       [ "Functions", "namespacemembers_func.html", null ],
@@ -63,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_spa_iot_1_1_hardware_settings.html#ae687e463852fe5aca16b638780a3c0b9"
+"class_spa_iot_1_1_multiplexer.html#a91747cbe6c6fbd3f72f3862261cde3e2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

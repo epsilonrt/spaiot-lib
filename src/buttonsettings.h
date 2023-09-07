@@ -148,7 +148,7 @@ namespace SpaIot {
       |:--------:|:---------:|:---:|
       |  Filter  | Scip2MuxA |  A1 |
       |  Bubble  | Scip2MuxA |  A3 |
-      |  TempDwn | Scip2MuxA |  A7 |
+      | TempDown | Scip2MuxA |  A7 |
       |   Power  | Scip2MuxB |  B2 |
       |  TempUp  | Scip2MuxB |  B4 |
       | TempUnit | Scip2MuxB |  B5 |
@@ -170,7 +170,7 @@ namespace SpaIot {
       |:--------:|:--------------:|:---:|
       |  Filter  | SpaIot8266MuxA |  A1 |
       |  Bubble  | SpaIot8266MuxA |  A3 |
-      |  TempDwn | SpaIot8266MuxA |  A7 |
+      | TempDown | SpaIot8266MuxA |  A7 |
       |   Power  | SpaIot8266MuxB |  B2 |
       |  TempUp  | SpaIot8266MuxB |  B4 |
       | TempUnit | SpaIot8266MuxB |  B5 |
@@ -192,7 +192,7 @@ namespace SpaIot {
       |:--------:|:------------:|:---:|
       |  Filter  | SpaIot32MuxA |  A1 |
       |  Bubble  | SpaIot32MuxA |  A3 |
-      |  TempDwn | SpaIot32MuxA |  A7 |
+      | TempDown | SpaIot32MuxA |  A7 |
       |   Power  | SpaIot32MuxB |  B2 |
       |  TempUp  | SpaIot32MuxB |  B4 |
       | TempUnit | SpaIot32MuxB |  B5 |
@@ -214,7 +214,7 @@ namespace SpaIot {
       |:--------:|:------------:|:---:|
       |  Filter  | SpaIotS3MuxA |  A1 |
       |  Bubble  | SpaIotS3MuxA |  A3 |
-      |  TempDwn | SpaIotS3MuxA |  A7 |
+      | TempDown | SpaIotS3MuxA |  A7 |
       |   Power  | SpaIotS3MuxB |  B2 |
       |  TempUp  | SpaIotS3MuxB |  B4 |
       | TempUnit | SpaIotS3MuxB |  B5 |

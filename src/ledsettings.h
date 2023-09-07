@@ -134,13 +134,48 @@ namespace SpaIot  {
       PIMPL_DECLARE_PRIVATE (LedSettings)
   };
 
+  /** @addtogroup HardwareSettings
+     @{
+     @name Leds
+     @{
+  */
+
   /**
      @brief Leds settings for the Ssp SPA
+
+     See below for the description of the settings:
+
+     @code
+      |    Button   | Bit |
+      |:-----------:|:---:|
+      |    Power    |  A0 |
+      |    Heater   |  A7 |
+      | HeatReached |  B1 |
+      |    Bubble   |  B2 |
+      |    Filter   |  B4 |
+     @endcode 
   */
   extern const std::map<int, LedSettings> SspLeds;
 
   /**
      @brief Leds settings for the Sjb SPA
+
+     See below for the description of the settings:
+
+     @code
+      |    Button   | Bit |
+      |:-----------:|:---:|
+      |    Power    |  A0 |
+      |    Bubble   |  A1 |
+      |    Heater   |  A7 |
+      | HeatReached |  B1 |
+      |     Jet     |  B2 |
+      |    Filter   |  B4 |
+      |  Sanitizer  |  B5 |
+     @endcode 
   */
   extern const std::map<int, LedSettings> SjbLeds;
+
+  /** @} */
+  /** @} */
 }

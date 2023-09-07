@@ -208,8 +208,14 @@ namespace SpaIot {
   //                            Settings
   //
   //----------------------------------------------------------------------------
-  const HardwareSettings Scip2Ssp (ScipBus, SspLeds, Scip2SspButtons);
-  const HardwareSettings Scip2Sjb (ScipBus, SjbLeds, Scip2SjbButtons);
+  const HardwareSettings Scip2Ssp (Scip2Bus, SspLeds, Scip2SspButtons);
+  const HardwareSettings Scip2Sjb (Scip2Bus, SjbLeds, Scip2SjbButtons);
+  const HardwareSettings SpaIot8266Ssp (SpaIot8266Bus, SspLeds, SpaIot8266SspButtons);
+  const HardwareSettings SpaIot8266Sjb (SpaIot8266Bus, SjbLeds, SpaIot8266SjbButtons);
+  const HardwareSettings SpaIot32Ssp (SpaIot32Bus, SspLeds, SpaIot32SspButtons);
+  const HardwareSettings SpaIot32Sjb (SpaIot32Bus, SjbLeds, SpaIot32SjbButtons);
+  const HardwareSettings SpaIotS3Ssp (SpaIotS3Bus, SspLeds, SpaIotS3SspButtons);
+  const HardwareSettings SpaIotS3Sjb (SpaIotS3Bus, SjbLeds, SpaIotS3SjbButtons);
 
   /*
      WARNING
@@ -218,7 +224,13 @@ namespace SpaIot {
   */
   std::map<String, const HardwareSettings *> HardwareSettings::Private::Register {
     {"SCIP2SSP", &Scip2Ssp},
-    {"SCIP2SJB", &Scip2Sjb}
+    {"SCIP2SJB", &Scip2Sjb},
+    {"SPAIOT8266SSP", &SpaIot8266Ssp},
+    {"SPAIOT8266SJB", &SpaIot8266Sjb},
+    {"SPAIOT32SSP", &SpaIot32Ssp},
+    {"SPAIOT32SJB", &SpaIot32Sjb},
+    {"SPAIOTS3SSP", &SpaIotS3Ssp},
+    {"SPAIOTS3SJB", &SpaIotS3Sjb}
   };
 }
 //------------------------------------------------------------------------------

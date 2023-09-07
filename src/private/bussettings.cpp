@@ -181,6 +181,9 @@ namespace SpaIot {
   //                            Settings
   //
   //----------------------------------------------------------------------------
-  const BusSettings ScipBus (DataPin, ClkPin, HoldPin);
+  const BusSettings Scip2Bus (DataPin, ClkPin, HoldPin);
+  const BusSettings SpaIot8266Bus (12, 14, 13);
+  const BusSettings SpaIot32Bus (23, 18, 19);
+  const BusSettings SpaIotS3Bus (11, 12, 10);
 }
 //------------------------------------------------------------------------------

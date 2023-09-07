@@ -132,13 +132,196 @@ namespace SpaIot {
       PIMPL_DECLARE_PRIVATE (ButtonSettings)
   };
 
+  /** @addtogroup HardwareSettings
+     @{
+     @name Buttons
+     @{
+  */
+
   /**
-     @brief
+     @brief ButtonSettings for the SSP Spa with Scip2 board
+
+     Buttons are connected to the following pins:
+
+     @code
+      |  Button  |    Mux    | Bit |
+      |:--------:|:---------:|:---:|
+      |  Filter  | Scip2MuxA |  A1 |
+      |  Bubble  | Scip2MuxA |  A3 |
+      |  TempDwn | Scip2MuxA |  A7 |
+      |   Power  | Scip2MuxB |  B2 |
+      |  TempUp  | Scip2MuxB |  B4 |
+      | TempUnit | Scip2MuxB |  B5 |
+      |  Heater  | Scip2MuxB |  B7 |
+     @endcode
+
+    @see Scip2MuxA
+    @see Scip2MuxB
   */
   extern const std::map<int, ButtonSettings> Scip2SspButtons;
 
   /**
-     @brief
+     @brief ButtonSettings for the SSP Spa with SpaIot board (ESP8266 version)
+
+     Buttons are connected to the following pins:
+
+     @code
+      |  Button  |       Mux      | Bit |
+      |:--------:|:--------------:|:---:|
+      |  Filter  | SpaIot8266MuxA |  A1 |
+      |  Bubble  | SpaIot8266MuxA |  A3 |
+      |  TempDwn | SpaIot8266MuxA |  A7 |
+      |   Power  | SpaIot8266MuxB |  B2 |
+      |  TempUp  | SpaIot8266MuxB |  B4 |
+      | TempUnit | SpaIot8266MuxB |  B5 |
+      |  Heater  | SpaIot8266MuxB |  B7 |
+     @endcode
+
+    @see SpaIot8266MuxA
+    @see SpaIot8266MuxB
+  */
+  extern const std::map<int, ButtonSettings> SpaIot8266SspButtons;
+
+  /**
+     @brief ButtonSettings for the SSP Spa with SpaIot board (ESP32 version)
+
+     Buttons are connected to the following pins:
+
+     @code
+      |  Button  |      Mux     | Bit |
+      |:--------:|:------------:|:---:|
+      |  Filter  | SpaIot32MuxA |  A1 |
+      |  Bubble  | SpaIot32MuxA |  A3 |
+      |  TempDwn | SpaIot32MuxA |  A7 |
+      |   Power  | SpaIot32MuxB |  B2 |
+      |  TempUp  | SpaIot32MuxB |  B4 |
+      | TempUnit | SpaIot32MuxB |  B5 |
+      |  Heater  | SpaIot32MuxB |  B7 |
+     @endcode
+
+    @see SpaIot32MuxA
+    @see SpaIot32MuxB
+  */
+  extern const std::map<int, ButtonSettings> SpaIot32SspButtons;
+
+  /**
+     @brief ButtonSettings for the SSP Spa with SpaIot board (ESP32 S3 version)
+
+     Buttons are connected to the following pins:
+
+     @code
+      |  Button  |      Mux     | Bit |
+      |:--------:|:------------:|:---:|
+      |  Filter  | SpaIotS3MuxA |  A1 |
+      |  Bubble  | SpaIotS3MuxA |  A3 |
+      |  TempDwn | SpaIotS3MuxA |  A7 |
+      |   Power  | SpaIotS3MuxB |  B2 |
+      |  TempUp  | SpaIotS3MuxB |  B4 |
+      | TempUnit | SpaIotS3MuxB |  B5 |
+      |  Heater  | SpaIotS3MuxB |  B7 |
+     @endcode
+
+    @see SpaIotS3MuxA
+    @see SpaIotS3MuxB
+  */
+  extern const std::map<int, ButtonSettings> SpaIotS3SspButtons;
+
+  /**
+     @brief ButtonSettings for the SJB Spa with Scip2 board
+
+     Buttons are connected to the following pins:
+
+     @code
+      |   Button  |    Mux    | Bit |
+      |:---------:|:---------:|:---:|
+      | Sanitizer | Scip2MuxA |  A0 |
+      |    Jet    | Scip2MuxA |  A1 |
+      |   Bubble  | Scip2MuxA |  A3 |
+      |   Filter  | Scip2MuxA |  A7 |
+      |  TempDown | Scip2MuxB |  B1 |
+      |   Power   | Scip2MuxB |  B2 |
+      |   TempUp  | Scip2MuxB |  B4 |
+      |  TempUnit | Scip2MuxB |  B5 |
+      |   Heater  | Scip2MuxB |  B7 |
+     @endcode
+
+    @see Scip2MuxA
+    @see Scip2MuxB
   */
   extern const std::map<int, ButtonSettings> Scip2SjbButtons;
+
+  /**
+     @brief ButtonSettings for the SJB Spa with SpaIot board (ESP8266 version)
+
+     Buttons are connected to the following pins:
+
+     @code
+      |   Button  |       Mux      | Bit |
+      |:---------:|:--------------:|:---:|
+      | Sanitizer | SpaIot8266MuxA |  A0 |
+      |    Jet    | SpaIot8266MuxA |  A1 |
+      |   Bubble  | SpaIot8266MuxA |  A3 |
+      |   Filter  | SpaIot8266MuxA |  A7 |
+      |  TempDown | SpaIot8266MuxB |  B1 |
+      |   Power   | SpaIot8266MuxB |  B2 |
+      |   TempUp  | SpaIot8266MuxB |  B4 |
+      |  TempUnit | SpaIot8266MuxB |  B5 |
+      |   Heater  | SpaIot8266MuxB |  B7 |
+     @endcode
+
+    @see SpaIot8266MuxA
+    @see SpaIot8266MuxB
+  */
+  extern const std::map<int, ButtonSettings> SpaIot8266SjbButtons;
+
+  /**
+     @brief ButtonSettings for the SJB Spa with SpaIot board (ESP32 version)
+
+     Buttons are connected to the following pins:
+
+     @code
+      |   Button  |       Mux      | Bit |
+      |:---------:|:--------------:|:---:|
+      | Sanitizer | SpaIot32MuxA |  A0 |
+      |    Jet    | SpaIot32MuxA |  A1 |
+      |   Bubble  | SpaIot32MuxA |  A3 |
+      |   Filter  | SpaIot32MuxA |  A7 |
+      |  TempDown | SpaIot32MuxB |  B1 |
+      |   Power   | SpaIot32MuxB |  B2 |
+      |   TempUp  | SpaIot32MuxB |  B4 |
+      |  TempUnit | SpaIot32MuxB |  B5 |
+      |   Heater  | SpaIot32MuxB |  B7 |
+     @endcode
+
+    @see SpaIot32MuxA
+    @see SpaIot32MuxB
+  */
+  extern const std::map<int, ButtonSettings> SpaIot32SjbButtons;
+
+  /**
+     @brief ButtonSettings for the SJB Spa with SpaIot board (ESP32 S3 version)
+
+     Buttons are connected to the following pins:
+
+     @code
+      |   Button  |      Mux     | Bit |
+      |:---------:|:------------:|:---:|
+      | Sanitizer | SpaIotS3MuxA |  A0 |
+      |    Jet    | SpaIotS3MuxA |  A1 |
+      |   Bubble  | SpaIotS3MuxA |  A3 |
+      |   Filter  | SpaIotS3MuxA |  A7 |
+      |  TempDown | SpaIotS3MuxB |  B1 |
+      |   Power   | SpaIotS3MuxB |  B2 |
+      |   TempUp  | SpaIotS3MuxB |  B4 |
+      |  TempUnit | SpaIotS3MuxB |  B5 |
+      |   Heater  | SpaIotS3MuxB |  B7 |
+     @endcode
+
+    @see SpaIotS3MuxA
+    @see SpaIotS3MuxB
+  */
+  extern const std::map<int, ButtonSettings> SpaIotS3SjbButtons;
+
+  /** @} */
+  /** @} */
 }

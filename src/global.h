@@ -14,13 +14,13 @@
 #include <pImpl.h>
 
 #ifndef SPAIOT_DATA_PIN
-#define SPAIOT_DATA_PIN 12 // Default data pin for ESP32 and ESP8266
+#define SPAIOT_DATA_PIN 12
 #endif
 #ifndef SPAIOT_CLK_PIN
-#define SPAIOT_CLK_PIN 14 // Default clock pin for ESP32 and ESP8266
+#define SPAIOT_CLK_PIN 14
 #endif
 #ifndef SPAIOT_HOLD_PIN
-#define SPAIOT_HOLD_PIN 13 // Default hold pin for ESP32 and ESP8266
+#define SPAIOT_HOLD_PIN 13
 #endif
 
 //! SpaIot name space

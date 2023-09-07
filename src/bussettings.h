@@ -48,7 +48,7 @@ namespace SpaIot  {
 
       /**
          The constructor takes a list of pins
-         
+
          The list of pins must be exactly 3 pins, and the pins must be in the order { dataPin, clkPin, holdPin }
          If the list is not exactly 3 pins, the comportment is undefined.
          @param pins A list of 3 pins to use for the bus.
@@ -78,9 +78,9 @@ namespace SpaIot  {
       BusSettings &operator= (BusSettings &&other);
 
       /**
-       * @brief Clears the BusSettings object
-       * After the call to this function, the BusSettings object is the same as one that has been default constructed 
-       */
+         @brief Clears the BusSettings object
+         After the call to this function, the BusSettings object is the same as one that has been default constructed
+      */
       void clear();
 
       /**
@@ -163,8 +163,59 @@ namespace SpaIot  {
       PIMPL_DECLARE_PRIVATE (BusSettings)
   };
 
-  /**
-     @brief BusSettings for the ScipBus
+  /** @addtogroup HardwareSettings
+     @{
+     @name Buses
+     @{
   */
-  extern const BusSettings ScipBus;
+
+  /**
+     @brief BusSettings for the SpaIot
+
+     You can redefine \c SPAIOT_DATA_PIN, \c SPAIOT_CLK_PIN and \c SPAIOT_HOLD_PIN as -D option
+     when you compile your sketch for change the default pins (or with #define in your sketch before #include <SpaIot.h>)
+
+     The default pins are:
+      - \c SPAIOT_DATA_PIN = 12
+      - \c SPAIOT_CLK_PIN = 14
+      - \c SPAIOT_HOLD_PIN = 13
+  */
+  extern const BusSettings Scip2Bus;
+
+  /**
+     @brief BusSettings for the SpaIot ESP8266 Version
+
+    Connected as follows:
+      - SDATA  -> GPIO12
+      - SCLK   -> GPIO14
+      - nWR    -> GPIO13
+      .
+  */
+  extern const BusSettings SpaIot8266Bus;
+
+  /**
+     @brief BusSettings for the SpaIot ESP32 Version
+
+    Connected as follows:
+      - SDATA  -> GPIO23
+      - SCLK   -> GPIO18
+      - nWR    -> GPIO19
+      .
+  */
+  extern const BusSettings SpaIot32Bus;
+
+  /**
+     @brief BusSettings for the SpaIot ESP32S3 Version
+
+    Connected as follows:
+      - SDATA  -> GPIO11
+      - SCLK   -> GPIO12
+      - nWR    -> GPIO10
+      .
+
+  */
+  extern const BusSettings SpaIotS3Bus;
+
+  /** @} */
+  /** @} */
 }

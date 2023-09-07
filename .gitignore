@@ -7,3 +7,4 @@ html/home.htm.gz
 *.bak
 .gitignore
 docs/
+*.code-workspace

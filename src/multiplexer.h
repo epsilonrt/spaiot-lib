@@ -117,7 +117,125 @@ namespace SpaIot {
       PIMPL_DECLARE_PRIVATE (Multiplexer)
   };
 
-  extern Multiplexer Scip1Ctrl;
-  extern Multiplexer Scip2CtrlA;
-  extern Multiplexer Scip2CtrlB;
+  /** @addtogroup HardwareSettings
+     @{
+     @name Multiplexers
+     @{
+  */
+
+  /**
+     @brief The first multiplexer for the Scip2 controller
+
+     Connected as follows:
+      - A -> GPIO4
+      - B -> GPIO5
+      - C -> GPIO15
+      - INH -> GPIO16
+      .
+      may be accessed as "Scip2MuxA" in the Multiplexer Register.
+      @see Scip2MuxB
+  */
+  extern Multiplexer Scip2MuxA;
+
+  /**
+     @brief The second multiplexer for the Scip2 controller
+
+    Connected as follows:
+      - A -> GPIO4
+      - B -> GPIO5
+      - C -> GPIO15
+      - INH -> GPIO0
+      .
+      may be accessed as "Scip2MuxB" in the Multiplexer Register.
+      @see Scip2MuxA
+  */
+  extern Multiplexer Scip2MuxB;
+
+  /**
+     @brief The first multiplexer for the SpaIot controller (ESP8266 version)
+
+     Connected as follows:
+      - A -> GPIO5
+      - B -> GPIO4
+      - C -> GPIO15
+      - INH -> GPIO16
+      .
+      may be accessed as "SpaIot8266MuxA" in the Multiplexer Register.
+      @see SpaIot8266MuxB
+  */
+  extern Multiplexer SpaIot8266MuxA;
+
+  /**
+     @brief The second multiplexer for the SpaIot controller (ESP8266 version)
+
+      Connected as follows:
+        - A -> GPIO5
+        - B -> GPIO4
+        - C -> GPIO15
+        - INH -> GPIO0
+        .
+        may be accessed as "SpaIot8266MuxB" in the Multiplexer Register.
+        @see SpaIot8266MuxA
+  */
+  extern Multiplexer SpaIot8266MuxB;
+
+  /**
+     @brief The first multiplexer for the SpaIot controller (ESP32 version)
+
+      Connected as follows:
+        - A -> GPIO27
+        - B -> GPIO16
+        - C -> GPIO17
+        - INH -> GPIO33
+        .
+        may be accessed as "SpaIot32MuxA" in the Multiplexer Register.
+        @see SpaIot32MuxB
+  */
+  extern Multiplexer SpaIot32MuxA;
+
+  /**
+     @brief The second multiplexer for the SpaIot controller (ESP32 version)
+
+        Connected as follows:
+          - A -> GPIO27
+          - B -> GPIO16
+          - C -> GPIO17
+          - INH -> GPIO26
+          .
+          may be accessed as "SpaIot32MuxB" in the Multiplexer Register.
+          @see SpaIot32MuxA
+  */
+  extern Multiplexer SpaIot32MuxB;
+
+  /**
+     @brief The first multiplexer for the SpaIot controller (ESP32S3 version)
+
+      Connected as follows:
+        - A -> GPIO4
+        - B -> GPIO5
+        - C -> GPIO6
+        - INH -> GPIO7
+        .
+        may be accessed as "SpaIotS3MuxA" in the Multiplexer Register.
+        @see SpaIotS3MuxB
+  */
+  extern Multiplexer SpaIotS3MuxA;
+
+  /**
+     @brief The second multiplexer for the SpaIot controller (ESP32S3 version)
+
+        Connected as follows:
+          - A -> GPIO4
+          - B -> GPIO5
+          - C -> GPIO6
+          - INH -> GPIO15
+          .
+          may be accessed as "SpaIotS3MuxB" in the Multiplexer Register.
+          @see SpaIotS3MuxA
+
+  */
+  extern Multiplexer SpaIotS3MuxB;
+
+  /** @} */
+  /** @} */
 }

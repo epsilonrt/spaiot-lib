@@ -202,14 +202,44 @@ namespace SpaIot {
      BUT_SSP |  H |  0 |  C |  U |  0 |  P |  X | BZ |  D |  0 |  0 |  X |  B |  0 |  F |  X |
     ---------------------------------------------------------------------------*/
   const std::map<int, ButtonSettings> Scip2SspButtons = {
-    { Filter,   ButtonSettings ("Scip2CtrlA", 1) },
-    { Bubble,   ButtonSettings ("Scip2CtrlA", 3) },
-    { TempDown, ButtonSettings ("Scip2CtrlA", 7) },
+    { Filter,   ButtonSettings ("Scip2MuxA", 1) },
+    { Bubble,   ButtonSettings ("Scip2MuxA", 3) },
+    { TempDown, ButtonSettings ("Scip2MuxA", 7) },
 
-    { Power,    ButtonSettings ("Scip2CtrlB", 2) },
-    { TempUp,   ButtonSettings ("Scip2CtrlB", 4) },
-    { TempUnit, ButtonSettings ("Scip2CtrlB", 5) },
-    { Heater,   ButtonSettings ("Scip2CtrlB", 7) }
+    { Power,    ButtonSettings ("Scip2MuxB", 2) },
+    { TempUp,   ButtonSettings ("Scip2MuxB", 4) },
+    { TempUnit, ButtonSettings ("Scip2MuxB", 5) },
+    { Heater,   ButtonSettings ("Scip2MuxB", 7) }
+  };
+  const std::map<int, ButtonSettings> SpaIot8266SspButtons = {
+    { Filter,   ButtonSettings ("SpaIot8266MuxA", 1) },
+    { Bubble,   ButtonSettings ("SpaIot8266MuxA", 3) },
+    { TempDown, ButtonSettings ("SpaIot8266MuxA", 7) },
+
+    { Power,    ButtonSettings ("SpaIot8266MuxB", 2) },
+    { TempUp,   ButtonSettings ("SpaIot8266MuxB", 4) },
+    { TempUnit, ButtonSettings ("SpaIot8266MuxB", 5) },
+    { Heater,   ButtonSettings ("SpaIot8266MuxB", 7) }
+  };
+  const std::map<int, ButtonSettings> SpaIot32SspButtons = {
+    { Filter,   ButtonSettings ("SpaIot32MuxA", 1) },
+    { Bubble,   ButtonSettings ("SpaIot32MuxA", 3) },
+    { TempDown, ButtonSettings ("SpaIot32MuxA", 7) },
+
+    { Power,    ButtonSettings ("SpaIot32MuxB", 2) },
+    { TempUp,   ButtonSettings ("SpaIot32MuxB", 4) },
+    { TempUnit, ButtonSettings ("SpaIot32MuxB", 5) },
+    { Heater,   ButtonSettings ("SpaIot32MuxB", 7) }
+  };
+  const std::map<int, ButtonSettings> SpaIotS3SspButtons = {
+    { Filter,   ButtonSettings ("SpaIotS3MuxA", 1) },
+    { Bubble,   ButtonSettings ("SpaIotS3MuxA", 3) },
+    { TempDown, ButtonSettings ("SpaIotS3MuxA", 7) },
+
+    { Power,    ButtonSettings ("SpaIotS3MuxB", 2) },
+    { TempUp,   ButtonSettings ("SpaIotS3MuxB", 4) },
+    { TempUnit, ButtonSettings ("SpaIotS3MuxB", 5) },
+    { Heater,   ButtonSettings ("SpaIotS3MuxB", 7) }
   };
 
   /*         |-------------------------------------------------------------------------------|
@@ -220,16 +250,52 @@ namespace SpaIot {
    *        * hypothesis that must be verified !
     ---------------------------------------------------------------------------*/
   const std::map<int, ButtonSettings> Scip2SjbButtons = {
-    { Sanitizer,  ButtonSettings ("Scip2CtrlA", 0) },
-    { Jet,        ButtonSettings ("Scip2CtrlA", 1) }, // this will have to be checked
-    { Bubble,     ButtonSettings ("Scip2CtrlA", 3) }, // this will have to be checked
-    { Filter,     ButtonSettings ("Scip2CtrlA", 7) },
+    { Sanitizer,  ButtonSettings ("Scip2MuxA", 0) },
+    { Jet,        ButtonSettings ("Scip2MuxA", 1) }, // this will have to be checked
+    { Bubble,     ButtonSettings ("Scip2MuxA", 3) }, // this will have to be checked
+    { Filter,     ButtonSettings ("Scip2MuxA", 7) },
 
-    { TempDown,   ButtonSettings ("Scip2CtrlB", 1) },
-    { Power,      ButtonSettings ("Scip2CtrlB", 2) },
-    { TempUp,     ButtonSettings ("Scip2CtrlB", 4) },
-    { TempUnit,   ButtonSettings ("Scip2CtrlB", 5) }, // this will have to be checked
-    { Heater,     ButtonSettings ("Scip2CtrlB", 7) },
+    { TempDown,   ButtonSettings ("Scip2MuxB", 1) },
+    { Power,      ButtonSettings ("Scip2MuxB", 2) },
+    { TempUp,     ButtonSettings ("Scip2MuxB", 4) },
+    { TempUnit,   ButtonSettings ("Scip2MuxB", 5) }, // this will have to be checked
+    { Heater,     ButtonSettings ("Scip2MuxB", 7) },
+  };
+  const std::map<int, ButtonSettings> SpaIot8266SjbButtons = {
+    { Sanitizer,  ButtonSettings ("SpaIot8266MuxA", 0) },
+    { Jet,        ButtonSettings ("SpaIot8266MuxA", 1) }, // this will have to be checked
+    { Bubble,     ButtonSettings ("SpaIot8266MuxA", 3) }, // this will have to be checked
+    { Filter,     ButtonSettings ("SpaIot8266MuxA", 7) },
+
+    { TempDown,   ButtonSettings ("SpaIot8266MuxB", 1) },
+    { Power,      ButtonSettings ("SpaIot8266MuxB", 2) },
+    { TempUp,     ButtonSettings ("SpaIot8266MuxB", 4) },
+    { TempUnit,   ButtonSettings ("SpaIot8266MuxB", 5) }, // this will have to be checked
+    { Heater,     ButtonSettings ("SpaIot8266MuxB", 7) },
+  };
+  const std::map<int, ButtonSettings> SpaIot32SjbButtons = {
+    { Sanitizer,  ButtonSettings ("SpaIot32MuxA", 0) },
+    { Jet,        ButtonSettings ("SpaIot32MuxA", 1) }, // this will have to be checked
+    { Bubble,     ButtonSettings ("SpaIot32MuxA", 3) }, // this will have to be checked
+    { Filter,     ButtonSettings ("SpaIot32MuxA", 7) },
+
+    { TempDown,   ButtonSettings ("SpaIot32MuxB", 1) },
+    { Power,      ButtonSettings ("SpaIot32MuxB", 2) },
+    { TempUp,     ButtonSettings ("SpaIot32MuxB", 4) },
+    { TempUnit,   ButtonSettings ("SpaIot32MuxB", 5) }, // this will have to be checked
+    { Heater,     ButtonSettings ("SpaIot32MuxB", 7) },
+  };
+  const std::map<int, ButtonSettings> SpaIotS3SjbButtons = {
+    { Sanitizer,  ButtonSettings ("SpaIotS3MuxA", 0) },
+    { Jet,        ButtonSettings ("SpaIotS3MuxA", 1) }, // this will have to be checked
+    { Bubble,     ButtonSettings ("SpaIotS3MuxA", 3) }, // this will have to be checked
+    { Filter,     ButtonSettings ("SpaIotS3MuxA", 7) },
+
+    { TempDown,   ButtonSettings ("SpaIotS3MuxB", 1) },
+    { Power,      ButtonSettings ("SpaIotS3MuxB", 2) },
+    { TempUp,     ButtonSettings ("SpaIotS3MuxB", 4) },
+    { TempUnit,   ButtonSettings ("SpaIotS3MuxB", 5) }, // this will have to be checked
+    { Heater,     ButtonSettings ("SpaIotS3MuxB", 7) },
   };
 }
 //------------------------------------------------------------------------------

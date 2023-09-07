@@ -146,11 +146,97 @@ namespace SpaIot {
   };
 
   /**
-     @brief
+     @defgroup HardwareSettings Hardware Settings
+     @{
+  */
+
+  /**
+     @brief Hardware settings for the SSP Spa with Scip2 board
+
+     @see Scip2Bus
+     @see SspLeds
+     @see Scip2SspButtons
+
+     This settings was registered with the name "SCIP2SSP".
   */
   extern const HardwareSettings Scip2Ssp;
+
   /**
-     @brief
+     @brief Hardware settings for the SJB Spa with Scip2 board
+
+     @see Scip2Bus
+     @see SjbLeds
+     @see Scip2SjbButtons
+
+     This settings was registered with the name "SCIP2SJB".
   */
   extern const HardwareSettings Scip2Sjb;
+
+  /**
+     @brief Hardware settings for the SSP Spa with SpaIot board (ESP8266 Version)
+
+     @see SpaIot8266Bus
+     @see SspLeds
+     @see SpaIot8266SspButtons
+
+     This settings was registered with the name "SPAIOT8266SSP".
+  */
+  extern const HardwareSettings SpaIot8266Ssp;
+
+  /**
+     @brief Hardware settings for the SJB Spa with SpaIot board (ESP8266 Version)
+
+     @see SpaIot8266Bus
+     @see SjbLeds
+     @see SpaIot8266SjbButtons
+
+     This settings was registered with the name "SPAIOT8266SJB".
+  */
+  extern const HardwareSettings SpaIot8266Sjb;
+
+  /**
+     @brief Hardware settings for the SSP Spa with SpaIot board (ESP32 Version)
+
+     @see SpaIot32Bus
+     @see SspLeds
+     @see SpaIot32SspButtons
+
+     This settings was registered with the name "SPAIOT32SSP".
+  */
+  extern const HardwareSettings SpaIot32Ssp;
+
+  /**
+     @brief Hardware settings for the SJB Spa with SpaIot board (ESP32 Version)
+
+     @see SpaIot32Bus
+     @see SjbLeds
+     @see SpaIot32SjbButtons
+
+     This settings was registered with the name "SPAIOT32SJB".
+  */
+  extern const HardwareSettings SpaIot32Sjb;
+
+  /**
+     @brief Hardware settings for the SSP Spa with SpaIot board (ESP32 S3 Version)
+
+     @see SpaIotS3Bus
+     @see SspLeds
+     @see SpaIotS3SspButtons
+
+     This settings was registered with the name "SPAIOTS3SSP".
+  */
+  extern const HardwareSettings SpaIotS3Ssp;
+
+  /**
+     @brief Hardware settings for the SJB Spa with SpaIot board (ESP32 S3 Version)
+
+     @see SpaIotS3Bus
+     @see SjbLeds
+     @see SpaIotS3SjbButtons
+
+     This settings was registered with the name "SPAIOTS3SJB".
+  */
+  extern const HardwareSettings SpaIotS3Sjb;
+
+  /** @} */
 }

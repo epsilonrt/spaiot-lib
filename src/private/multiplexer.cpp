@@ -148,7 +148,7 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   void Multiplexer::end() {
-    
+
     if (isOpen()) {
       PIMPL_D (Multiplexer);
 
@@ -214,15 +214,25 @@ namespace SpaIot {
   //                             Multiplexer
   //
   //----------------------------------------------------------------------------
-  Multiplexer Scip1Ctrl ("Scip1Ctrl",  {4, 5, 15}, 16);
-  Multiplexer Scip2CtrlA ("Scip2CtrlA", {4, 5, 15}, 16);
-  Multiplexer Scip2CtrlB ("Scip2CtrlB", {4, 5, 15}, 0);
+  Multiplexer Scip2MuxA ("Scip2MuxA", {4, 5, 15}, 16);
+  Multiplexer Scip2MuxB ("Scip2MuxB", {4, 5, 15}, 0);
+  Multiplexer SpaIot8266MuxA ("SpaIot8266MuxA", {5, 4, 15}, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO16
+  Multiplexer SpaIot8266MuxB ("SpaIot8266MuxB", {5, 4, 15}, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
+  Multiplexer SpaIot32MuxA ("SpaIot32MuxA", {27, 16, 17}, 33); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO33
+  Multiplexer SpaIot32MuxB ("SpaIot32MuxB", {27, 16, 17}, 26); // A->GPIO27, B->GPIO16, C->GPIO17, INH->GPIO26
+  Multiplexer SpaIotS3MuxA ("SpaIotS3MuxA", {4, 5, 6}, 7);  // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO7
+  Multiplexer SpaIotS3MuxB ("SpaIotS3MuxB", {4, 5, 6}, 15); // A->GPIO4, B->GPIO5, C->GPIO6, INH->GPIO15
 
   std::map<String, ButtonController &>
   ButtonController::Private::Register = {
-    {"Scip1Ctrl", Scip1Ctrl},
-    {"Scip2CtrlA", Scip2CtrlA},
-    {"Scip2CtrlB", Scip2CtrlB}
+    {"Scip2MuxA", Scip2MuxA},
+    {"Scip2MuxB", Scip2MuxB},
+    {"SpaIot8266MuxA", SpaIot8266MuxA},
+    {"SpaIot8266MuxB", SpaIot8266MuxB},
+    {"SpaIot32MuxA", SpaIot32MuxA},
+    {"SpaIot32MuxB", SpaIot32MuxB},
+    {"SpaIotS3MuxA", SpaIotS3MuxA},
+    {"SpaIotS3MuxB", SpaIotS3MuxB}
   };
 
 }

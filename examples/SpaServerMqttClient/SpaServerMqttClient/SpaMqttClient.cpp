@@ -13,6 +13,7 @@ const std::map <String, Event::Type> SpaMqttClientClass::MqttCommandToType = {
   {"filter", Event::Type::FilterOn},
   {"bubble", Event::Type::BubbleOn},
   {"heater", Event::Type::HeaterOn},
+  {"heat_reached", Event::Type::HeatReached},
   {"desired_temp", Event::Type::SetDesiredTemp}
 };
 
@@ -21,6 +22,7 @@ const std::map<SpaIot::Event::Type, String> SpaMqttClientClass::TypeToMqttTopic 
   {Event::Type::FilterOn, "filter"},
   {Event::Type::BubbleOn, "bubble"},
   {Event::Type::HeaterOn, "heater"},
+  {Event::Type::HeatReached, "heat_reached"},
   {Event::Type::DesiredTemp, "desired_temp"},
   {Event::Type::WaterTemp, "water_temp"}
 };
@@ -76,7 +78,7 @@ void SpaMqttClientClass::reconnect () {
   }
 
   for (auto item : MqttCommandToType) {
-    const String & topic = item.first;
+    const String &topic = item.first;
     String command = settings.topic + "/command/" + topic;
 
     Console.printf ("The client %s subscribes to the topic %s... ", client_id.c_str(), command.c_str());

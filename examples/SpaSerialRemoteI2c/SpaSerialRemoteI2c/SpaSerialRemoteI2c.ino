@@ -25,30 +25,18 @@
 using namespace SpaIot;
 
 const unsigned long SerialBaudrate = 115200;
-
-// My bus configuration :
-#if defined(ESP8266)
-// SDATA  -> GPIO12
-// SCLK   -> GPIO14
-// nWR    -> GPIO13
-const BusSettings MyBus (12, 14, 13);
-
-#elif defined(ARDUINO_LOLIN_S3)
-// SDATA  -> GPIO23 MOSI GPIO11
-// SCLK   -> GPIO18 SCLK GPIO12
-// nWR    -> GPIO19 MISO GPIO10
-const BusSettings MyBus (11, 12, 10);
-
-#elif defined(ESP32)
-// SDATA  -> GPIO23
-// SCLK   -> GPIO18
-// nWR    -> GPIO19
-const BusSettings MyBus (23, 18, 19);
+// Define the serial console, depending on the platform
+#if defined(ARDUINO_LOLIN_S3)
+// Serial  = OTG USB
+// Serial0 = UART0 -> Default Pin GPIO18 (RX0) and GPIO17 (TX0), connected to USB-UART (CH340)
+// Serial1 = UART1 -> Default Pin GPIO18 (RX1) and GPIO17 (TX1)
+#define Console Serial0
 #else
-#error unsupported platform
+#define Console Serial
 #endif
 
 // My button controllers
+// This is a PCF8574 connected to 2 multiplexers 4051 as above
 Pcf8574Mux MyBtnCtrl ("U5", 0x38); // i2c slave address, PCF8574: 0x20 - PCF8574A: 0x38
 
 // My buttons configuration (SSP)
@@ -61,8 +49,11 @@ const std::map<int, ButtonSettings> MyButtons = {
   { TempDown, ButtonSettings (MyBtnCtrl, 23) },
   { TempUnit, ButtonSettings (MyBtnCtrl, 13) }
 };
+
 // My custom configuration
-const HardwareSettings MyConfig (MyBus, SspLeds, MyButtons);
+// You can modify the bus as you wish, but you must have the corresponding hardware
+// See https://epsilonrt.github.io/spaiot-lib/group___hardware_settings.html
+const HardwareSettings MyConfig (SpaIotS3Bus, SspLeds, MyButtons);
 
 ControlPanel spa (MyConfig);
 
@@ -74,32 +65,32 @@ bool isSetupModeTriggered;
 void setup() {
 
   delay (2000);
-  Serial.begin (SerialBaudrate);
-  Serial.println ("\nSpaIot Serial Remote Example with I2C button controller Example");
+  Console.begin (SerialBaudrate);
+  Console.println ("\nSpaIot Serial Remote Example with I2C button controller Example");
 
   Wire.begin(); // IMPORTANT LINE! PCF8574 use the default Wire object
 
   spa.begin();  // IMPORTANT LINE!
   if (spa.isOpen() == false) { // check if the connection to the spa has been open
-    Serial.println ("No spa connection found");
+    Console.println ("No spa connection found");
     for (;;); // loop always, to stop
   }
   spa.setPower (false);
 
-  Serial.println ("You can press a key to press a spa button:");
-  Serial.println ("Key   Button");
-  Serial.println ("P     Power");
-  Serial.println ("F     Filter");
-  Serial.println ("B     Bubble");
-  Serial.println ("H     Heater");
-  Serial.println ("U     Temp. Up");
-  Serial.println ("D     Temp. Down");
-  Serial.println ("C     Temp. Unit");
-  Serial.println ("Waiting for reading temperatures, it can take up to 20 seconds...");
+  Console.println ("You can press a key to press a spa button:");
+  Console.println ("Key   Button");
+  Console.println ("P     Power");
+  Console.println ("F     Filter");
+  Console.println ("B     Bubble");
+  Console.println ("H     Heater");
+  Console.println ("U     Temp. Up");
+  Console.println ("D     Temp. Down");
+  Console.println ("C     Temp. Unit");
+  Console.println ("Waiting for reading temperatures, it can take up to 20 seconds...");
 
   // Wait to read the temperature of the water, it can take 20 seconds ...
   waterTemp = spa.waitForWaterTemp();
-  Serial.printf ("waterTemp=%d'C\n", waterTemp);
+  Console.printf ("waterTemp=%d'C\n", waterTemp);
 }
 
 
@@ -110,26 +101,26 @@ void loop() {
   w = spa.waterTemp(); // Reading the temperature of the water
   if (waterTemp != w) { // If modified, it is displayed
     waterTemp = w;
-    Serial.printf ("waterTemp=%d'C\n", waterTemp);
+    Console.printf ("waterTemp=%d'C\n", waterTemp);
   }
 
   w = spa.desiredTemp(); // Reading the desired temperature
   if ( (desiredTemp != w) && (spa.isPowerOn())) { // If modified, it is displayed
     desiredTemp = w;
-    Serial.printf ("desiredTemp=%d'C\n", desiredTemp);
+    Console.printf ("desiredTemp=%d'C\n", desiredTemp);
   }
 
   b = spa.isSetupModeTriggered(); // Check if setup mode triggered
   if (isSetupModeTriggered != b) {
     isSetupModeTriggered = b;
-    Serial.printf ("isSetupModeTriggered=%d\n", isSetupModeTriggered);
+    Console.printf ("isSetupModeTriggered=%d\n", isSetupModeTriggered);
   }
 
   w = spa.rawStatus();
   if (rawStatus != w) { // If modified, it is displayed
     rawStatus = w;
-    Serial.println ("PFBHR");
-    Serial.printf ("%d%d%d%d%d\n",
+    Console.println ("PFBHR");
+    Console.printf ("%d%d%d%d%d\n",
                    spa.isPowerOn(),
                    spa.isFilterOn(),
                    spa.isBubbleOn(),
@@ -137,9 +128,9 @@ void loop() {
                    spa.isHeatReached());
   }
 
-  if (Serial.available() > 0) {
+  if (Console.available() > 0) {
     // read the incoming byte:
-    int c = Serial.read();
+    int c = Console.read();
 
     if ( (c == 'P') || (c == 'p')) {
       spa.pushButton (Power);

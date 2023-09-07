@@ -14,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        example: [examples/SpaSimple, examples/SpaStatus, examples/SpaSerialRemote, examples/SpaSerialRemoteI2c , examples/SpaHwCustom]
+        example: [examples/*/*]
+        # example: [examples/SpaSimple/SpaSimple, examples/SpaStatus/SpaStatus, examples/SpaSerialRemote/SpaSerialRemote, examples/SpaSerialRemoteI2c/SpaSerialRemoteI2c , examples/SpaHwCustom/SpaHwCustom, examples/SpaServerMqttClient/SpaServerMqttClient]
 
     steps:
 
@@ -38,6 +39,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install --upgrade platformio
     - name: Step 6 - Run build examples using PlatformIO
-      run: pio ci --lib="." -b esp12e -b esp32dev
+      run: pio ci --lib="." -b esp12e -b esp32dev -c examples/platformio.ini
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}

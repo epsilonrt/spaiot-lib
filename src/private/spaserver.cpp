@@ -88,7 +88,7 @@ namespace SpaIot {
       type = Event::Type::DesiredTemp;
     }
     if (previousValues.count (type) > 0) {
-      
+
       return previousValues[type];
     }
     TEST_PRINTF ("%s:%d: Unknown event type %d", __PRETTY_FUNCTION__, __LINE__, type);
@@ -137,13 +137,18 @@ namespace SpaIot {
 
   //------------------------------------------------------------------------------
   bool SpaServer::begin (const ServerSettings &settings, unsigned long waitingTimeMs) {
-    PIMPL_D (SpaServer);
 
-    TEST_PRINTF ("%s:%d: Load config. %s, %d clients",
-                 __PRETTY_FUNCTION__, __LINE__, settings.spaModel().c_str(), clientCount());
+    if (HardwareSettings::registerContains (settings.spaModel())) {
+      PIMPL_D (SpaServer);
 
-    d->settings = &settings;
-    ControlPanel::begin (settings.spaModel(), waitingTimeMs);
+      d->settings = &settings;
+      ControlPanel::begin (settings.spaModel(), waitingTimeMs);
+    }
+    else {
+
+      TEST_PRINTF ("%s:%d: Unknown spa model %s",
+                   __PRETTY_FUNCTION__, __LINE__, settings.spaModel().c_str());
+    }
     return ControlPanel::isOpen();
   }
 

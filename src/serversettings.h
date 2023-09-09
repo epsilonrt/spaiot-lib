@@ -31,8 +31,23 @@ namespace SpaIot  {
       */
       ServerSettings ();
 
+      /**
+         @brief Construct a new Server Settings object
+
+         @param model spa model name, it must be registered in the spa HardwarSettings registry
+         @param interval delay between two publications of the spa state if change occurs
+          (water temperature, desired temperature, sanitizer time, error code)
+      */
       ServerSettings (const String &model, unsigned long interval = 30000);
-      ServerSettings (const char * model, unsigned long interval = 30000);
+
+      /**
+         @brief Construct a new Server Settings object
+
+         @param model spa model name, it must be registered in the spa HardwarSettings registry
+         @param interval delay between two publications of the spa state if change occurs
+          (water temperature, desired temperature, sanitizer time, error code)
+      */
+      ServerSettings (const char *model, unsigned long interval = 30000);
 
       /**
         @brief Destructor
@@ -62,9 +77,9 @@ namespace SpaIot  {
       ServerSettings &operator= (ServerSettings &&other);
 
       /**
-       * @brief Clears the ServerSettings object
-       * After the call to this function, the ServerSettings object is the same as one that has been default constructed 
-       */
+         @brief Clears the ServerSettings object
+         After the call to this function, the ServerSettings object is the same as one that has been default constructed
+      */
       void clear();
 
       /**
@@ -100,7 +115,7 @@ namespace SpaIot  {
       /**
          @brief Returns the spa model name
       */
-      const String &  spaModel() const;
+      const String   &spaModel() const;
 
       /**
          @brief Returns the publish interval

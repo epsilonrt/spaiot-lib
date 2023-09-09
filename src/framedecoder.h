@@ -201,8 +201,11 @@ namespace SpaIot {
 
          Framedecoder must wait to be sure that the display does not blink and
          the value is stable before determining the temperature of the water.\n
-         It can take 20 seconds. waitForWaterTemp() can be used to wait for
+         It can take 2 seconds. waitForWaterTemp() can be used to wait for
          FrameDecoder to determine the temperature.
+         The frame decoder engine considers that the temperature is stable if the value not 
+         change during 2 seconds \c INIT_STABLE_WATER_COUNTER, 
+         thus the value is only changed if it is stable for 2 seconds.
          @return  Water temperature in °C, UnsetValue16 if it has not been determined yet.
       */
       uint16_t  waterTemp() const;

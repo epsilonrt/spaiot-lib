@@ -125,7 +125,7 @@
 #define TIMING_ON_DISPLAY(v)      (DISPLAY_UNIT(v) == DIGITH_VALUE)
 
 #define INIT_STABLE_VALUE_COUNTER   10
-#define INIT_STABLE_WATER_COUNTER   500
+#define INIT_STABLE_WATER_COUNTER   50 //! * 40ms = 2s, the water temperature is considered stable after 2s
 
 #define BLINK_DESIRED_FRAME_MAX       600
 #define BLINK_RESET_FRAME_MIN         1300

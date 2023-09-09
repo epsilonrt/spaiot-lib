@@ -21,39 +21,32 @@
 // | TempUnit |  B5 |  0 |  1 |  1 |  0 |  1 |  13 |
 #include <Arduino.h>
 #include <SpaIot.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
-
 const unsigned long SerialBaudrate = 115200;
-// Define the serial console, depending on the platform
-#if defined(ARDUINO_LOLIN_S3)
-// Serial  = OTG USB
-// Serial0 = UART0 -> Default Pin GPIO18 (RX0) and GPIO17 (TX0), connected to USB-UART (CH340)
-// Serial1 = UART1 -> Default Pin GPIO18 (RX1) and GPIO17 (TX1)
-#define Console Serial0
-#else
-#define Console Serial
-#endif
 
 // My button controllers
 // This is a PCF8574 connected to 2 multiplexers 4051 as above
-Pcf8574Mux MyBtnCtrl ("U5", 0x38); // i2c slave address, PCF8574: 0x20 - PCF8574A: 0x38
+Pcf8574Mux Mux ("U5", 0x38); // i2c slave address, PCF8574: 0x20 - PCF8574A: 0x38
 
 // My buttons configuration (SSP)
 const std::map<int, ButtonSettings> MyButtons = {
-  { Power,    ButtonSettings (MyBtnCtrl, 10) },
-  { Filter,   ButtonSettings (MyBtnCtrl, 17) },
-  { Bubble,   ButtonSettings (MyBtnCtrl, 19) },
-  { Heater,   ButtonSettings (MyBtnCtrl, 15) },
-  { TempUp,   ButtonSettings (MyBtnCtrl, 12) },
-  { TempDown, ButtonSettings (MyBtnCtrl, 23) },
-  { TempUnit, ButtonSettings (MyBtnCtrl, 13) }
+    { Filter,   ButtonSettings (Mux, 16 + 1) },
+    { Bubble,   ButtonSettings (Mux, 16 + 3) },
+    { TempDown, ButtonSettings (Mux, 16 + 7) },
+
+    { Power,    ButtonSettings (Mux, 8 + 2) },
+    { TempUp,   ButtonSettings (Mux, 8 + 4) },
+    { TempUnit, ButtonSettings (Mux, 8 + 5) },
+    { Heater,   ButtonSettings (Mux, 8 + 7) }
 };
 
 // My custom configuration
 // You can modify the bus as you wish, but you must have the corresponding hardware
 // See https://epsilonrt.github.io/spaiot-lib/group___hardware_settings.html
-const HardwareSettings MyConfig (SpaIotS3Bus, SspLeds, MyButtons);
+// MyBus is defined in MyBoardSettings.h
+const HardwareSettings MyConfig (MyBus, SspLeds, MyButtons);
 
 ControlPanel spa (MyConfig);
 
@@ -69,7 +62,6 @@ void setup() {
   Console.println ("\nSpaIot Serial Remote Example with I2C button controller Example");
 
   Wire.begin(); // IMPORTANT LINE! PCF8574 use the default Wire object
-
   spa.begin();  // IMPORTANT LINE!
   if (spa.isOpen() == false) { // check if the connection to the spa has been open
     Console.println ("No spa connection found");

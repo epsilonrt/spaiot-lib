@@ -6,26 +6,15 @@
 // after 24 hours.
 #include <Arduino.h>
 #include <SpaIot.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
 const unsigned long SerialBaudrate = 115200;
-// Define the serial console, depending on the platform
-#if defined(ARDUINO_LOLIN_S3)
-// Serial  = OTG USB
-// Serial0 = UART0 -> Default Pin GPIO18 (RX0) and GPIO17 (TX0), connected to USB-UART (CH340)
-// Serial1 = UART1 -> Default Pin GPIO18 (RX1) and GPIO17 (TX1)
-#define Console Serial0
-#else
-#define Console Serial
-#endif
 const unsigned long TimerTime = (12 * 60 * 60); // 12 hours in seconds
 
-// My Spa Control Panel
-// You can choose another spa model, but you must have the corresponding hardware
-// See https://epsilonrt.github.io/spaiot-lib/group___hardware_settings.html
-// You can also define your own spa model, See SpaHwCustom example
-ControlPanel spa ("SPAIOTS3SSP");
+// My Spa Control Panel, SpaModel is defined in MyBoardSettings.h
+ControlPanel spa (SpaModel);
 
 unsigned long timer;
 uint16_t waterTemp;
@@ -46,7 +35,7 @@ void setup() {
   waterTemp = spa.waitForWaterTemp();
   Console.printf ("waterTemp=%d'C\n", waterTemp);
 
-  Console.printf ("Waiting to rearm filter every %lu seconds...", TimerTime);
+  Console.printf ("Waiting to rearm filter every %lu seconds...\n", TimerTime);
 }
 
 void loop() {

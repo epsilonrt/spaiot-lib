@@ -5,26 +5,14 @@
 // temperature and LED status.
 #include <Arduino.h>
 #include <SpaIot.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
 const unsigned long SerialBaudrate = 115200;
-// Define the serial console, depending on the platform
-#if defined(ARDUINO_LOLIN_S3)
-// Serial  = OTG USB
-// Serial0 = UART0 -> Default Pin GPIO18 (RX0) and GPIO17 (TX0), connected to USB-UART (CH340)
-// Serial1 = UART1 -> Default Pin GPIO18 (RX1) and GPIO17 (TX1)
-#define Console Serial0
-#else
-#define Console Serial
-#endif
 
-// My Spa Control Panel
-// You can choose another spa model, but you must have the corresponding hardware
-// See https://epsilonrt.github.io/spaiot-lib/group___hardware_settings.html
-// You can also define your own spa model, See SpaHwCustom example
-ControlPanel spa ("SPAIOTS3SSP");
-
+// My Spa Control Panel, SpaModel is defined in MyBoardSettings.h
+ControlPanel spa (SpaModel);
 
 uint16_t waterTemp;
 uint16_t desiredTemp;

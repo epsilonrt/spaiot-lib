@@ -5,26 +5,8 @@
 #pragma once
 
 #include <Arduino.h>
-#include <WiFi.h>
 #include <PubSubClient.h>
 #include <SpaIot.h>
-
-// Define the serial console, depending on the platform
-#if defined(ESP8266)
-#define Console Serial
-
-#elif defined(ARDUINO_LOLIN_S3)
-// Serial  = OTG USB
-// Serial0 = UART0 -> Default Pin GPIO18 (RX0) and GPIO17 (TX0), connected to USB-UART (CH340)
-// Serial1 = UART1 -> Default Pin GPIO18 (RX1) and GPIO17 (TX1)
-#define Console Serial0 
-
-#elif defined(ESP32)
-#define Console Serial
-
-#else
-#error unsupported platform
-#endif
 
 // The MqttSettings class
 // Contains the settings to connect to the MQTT broker

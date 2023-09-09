@@ -4,6 +4,7 @@
 // This example shows how to connect a spa to a MQTT broker.
 
 #include "SpaMqttClient.h"
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
@@ -133,10 +134,11 @@ bool SpaMqttClientClass::handle () {
 // callback function
 // called when a message mqtt arrives
 void SpaMqttClientClass::mqttCallback (char *topic, byte *payload, unsigned int length)  {
-  String p (payload, length);
+  String p; 
   String t (topic);
   Event event;
 
+  p.concat ((char *) payload, length);
   Console.printf ("MQTT Message arrived in topic: %s=%s\n", topic, p.c_str());
   t.remove (0, t.lastIndexOf ("/") + 1); // remove the prefix to get the command
 

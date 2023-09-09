@@ -7,6 +7,7 @@
 
 // Define the SpaMqttClient class and Serial Console
 #include <SpaIot.h>
+#include "MyBoardSettings.h"
 #include "SpaMqttClient.h"
 
 using namespace SpaIot;
@@ -19,16 +20,14 @@ const char *password = "WIFI_PASSWD";  // Enter Wi-Fi password
 // Configure the MQTT broker connection (MQTT_LOGIN and MQTT_PASSWD are optional)
 MqttSettings settings ("broker.hivemq.com", "MQTT_LOGIN", "MQTT_PASSWD");
 
+// My Spa Server settings
+const ServerSettings MyServerSettings (SpaModel);
+
+// The WiFi client used to connect to the MQTT broker
+WiFiClient wifiClient;
+
 // Create the spa server
 SpaServer spa;
-
-// My Hardware settings
-// You can choose another spa model, but you must have the corresponding hardware
-// See https://epsilonrt.github.io/spaiot-lib/group___hardware_settings.html
-// You can also define your own spa model, See SpaHwCustom example
-const ServerSettings MyServerSettings ("SPAIOTS3SSP");
-
-WiFiClient espClient;
 
 void setup() {
 
@@ -53,7 +52,7 @@ void setup() {
   spa.addClient (SpaMqttClient);
 
   // client connecting to the mqtt broker
-  SpaMqttClient.begin (espClient, settings);
+  SpaMqttClient.begin (wifiClient, settings);
 
   // then begin the server
   if (spa.begin (MyServerSettings)) {

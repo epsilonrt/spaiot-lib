@@ -1785,7 +1785,7 @@ It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html
 
 <p>Water temperature in °C. </p>
 <p>Framedecoder must wait to be sure that the display does not blink and the value is stable before determining the temperature of the water.<br  />
-It can take 20 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
+It can take 2 seconds. <a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e" title="Wait until the water temperature could be read.">waitForWaterTemp()</a> can be used to wait for <a class="el" href="class_spa_iot_1_1_frame_decoder.html" title="This class decodes information from the technical block of the spa.">FrameDecoder</a> to determine the temperature. The frame decoder engine considers that the temperature is stable if the value not change during 2 seconds <code>INIT_STABLE_WATER_COUNTER</code>, thus the value is only changed if it is stable for 2 seconds. </p><dl class="section return"><dt>Returns</dt><dd>Water temperature in °C, UnsetValue16 if it has not been determined yet. </dd></dl>
 
 </div>
 </div>

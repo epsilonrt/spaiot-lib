@@ -1,6 +1,8 @@
 var class_spa_iot_1_1_server_settings =
 [
     [ "ServerSettings", "class_spa_iot_1_1_server_settings.html#a5e5f8351bdb51cb8f83a22d53f1e9096", null ],
+    [ "ServerSettings", "class_spa_iot_1_1_server_settings.html#a320fdeeb39e6687005868d6525bdc3be", null ],
+    [ "ServerSettings", "class_spa_iot_1_1_server_settings.html#ae056bb5b3e07216ff9dbb0303425f29a", null ],
     [ "~ServerSettings", "class_spa_iot_1_1_server_settings.html#ae067cb0730eec5a4b41c60d3a97bca80", null ],
     [ "ServerSettings", "class_spa_iot_1_1_server_settings.html#ac33241f3b9863ae1854e01cdd91dbc10", null ],
     [ "ServerSettings", "class_spa_iot_1_1_server_settings.html#aa9335706788fd47a6410dddb6b75df26", null ],

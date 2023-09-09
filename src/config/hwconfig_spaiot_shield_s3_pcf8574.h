@@ -27,9 +27,9 @@
 namespace SpaIot {
 
   // My bus configuration :
-  // SDATA  -> GPIO23 MOSI GPIO11
-  // SCLK   -> GPIO18 SCLK GPIO12
-  // nWR    -> GPIO19 MISO GPIO10
+  // SDATA  -> MOSI GPIO11
+  // SCLK   -> SCLK GPIO12
+  // nWR    -> MISO GPIO10
   const BusSettings busSettings (11, 12, 10);
 
   // My button controller

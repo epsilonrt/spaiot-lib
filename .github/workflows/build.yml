@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        example: [examples/*/*]
-        # example: [examples/SpaSimple/SpaSimple, examples/SpaStatus/SpaStatus, examples/SpaSerialRemote/SpaSerialRemote, examples/SpaSerialRemoteI2c/SpaSerialRemoteI2c , examples/SpaHwCustom/SpaHwCustom, examples/SpaServerMqttClient/SpaServerMqttClient]
+        # example: [examples/*/*]
+        example: [examples/SpaSimple/SpaSimple, examples/SpaStatus/SpaStatus, examples/SpaSerialRemote/SpaSerialRemote, examples/SpaSerialRemoteI2c/SpaSerialRemoteI2c , examples/SpaHwCustom/SpaHwCustom, examples/SpaServerMqttClient/SpaServerMqttClient]
 
     steps:
     - uses: actions/checkout@v3

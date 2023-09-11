@@ -238,5 +238,50 @@ namespace SpaIot {
   */
   extern const HardwareSettings SpaIotS3Sjb;
 
+
+  /**
+     @brief Hardware settings for the SSP Spa with SpaIot Extended board with PCF8574A (ESP32 Version)
+
+     @see SpaIot32Bus
+     @see SspLeds
+     @see SpaIot8574SspButtons
+
+     This settings was registered with the name "SPAIOT328574SSP".
+  */
+  extern const HardwareSettings SpaIot328574Ssp;
+
+  /**
+     @brief Hardware settings for the SJB Spa with SpaIot Extended board with PCF8574A (ESP32 Version)
+
+     @see SpaIot32Bus
+     @see SjbLeds
+     @see SpaIot8574SjbButtons
+
+     This settings was registered with the name "SPAIOT328574SJB".
+  */
+  extern const HardwareSettings SpaIot328574Sjb;
+
+  /**
+     @brief Hardware settings for the SSP Spa with SpaIot Extended board with PCF8574A (ESP32 S3 Version)
+
+     @see SpaIotS3Bus
+     @see SspLeds
+     @see SpaIot8574SspButtons
+
+     This settings was registered with the name "SPAIOTS38574SSP".
+  */
+  extern const HardwareSettings SpaIotS38574Ssp;
+
+  /**
+     @brief Hardware settings for the SJB Spa with SpaIot Extended board with PCF8574A (ESP32 S3 Version)
+
+     @see SpaIotS3Bus
+     @see SjbLeds
+     @see SpaIot8574SjbButtons
+
+     This settings was registered with the name "SPAIOTS38574SJB".
+  */
+  extern const HardwareSettings SpaIotS38574Sjb;
+
   /** @} */
 }

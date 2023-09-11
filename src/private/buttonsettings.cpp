@@ -241,6 +241,16 @@ namespace SpaIot {
     { TempUnit, ButtonSettings ("SpaIotS3MuxB", 5) },
     { Heater,   ButtonSettings ("SpaIotS3MuxB", 7) }
   };
+  const std::map<int, ButtonSettings> SpaIot8574SspButtons = {
+    { Filter,   ButtonSettings ("SpaIotPcf8574Mux", 16 + 1) },
+    { Bubble,   ButtonSettings ("SpaIotPcf8574Mux", 16 + 3) },
+    { TempDown, ButtonSettings ("SpaIotPcf8574Mux", 16 + 7) },
+
+    { Power,    ButtonSettings ("SpaIotPcf8574Mux", 8 + 2) },
+    { TempUp,   ButtonSettings ("SpaIotPcf8574Mux", 8 + 4) },
+    { TempUnit, ButtonSettings ("SpaIotPcf8574Mux", 8 + 5) },
+    { Heater,   ButtonSettings ("SpaIotPcf8574Mux", 8 + 7) }
+  };
 
   /*         |-------------------------------------------------------------------------------|
              | B7 | B6 | B5 | B4 | B3 | B2 | B1 | B0 | A7 | A6 | A5 | A4 | A3 | A2 | A1 | A0 |
@@ -296,6 +306,18 @@ namespace SpaIot {
     { TempUp,     ButtonSettings ("SpaIotS3MuxB", 4) },
     { TempUnit,   ButtonSettings ("SpaIotS3MuxB", 5) }, // this will have to be checked
     { Heater,     ButtonSettings ("SpaIotS3MuxB", 7) },
+  };
+  const std::map<int, ButtonSettings> SpaIot8574SjbButtons = {
+    { Sanitizer,  ButtonSettings ("SpaIotPcf8574Mux", 16 + 0) },
+    { Jet,        ButtonSettings ("SpaIotPcf8574Mux", 16 + 1) }, // this will have to be checked
+    { Bubble,     ButtonSettings ("SpaIotPcf8574Mux", 16 + 3) }, // this will have to be checked
+    { Filter,     ButtonSettings ("SpaIotPcf8574Mux", 16 + 7) },
+
+    { TempDown,   ButtonSettings ("SpaIotPcf8574Mux", 8 + 1) },
+    { Power,      ButtonSettings ("SpaIotPcf8574Mux", 8 + 2) },
+    { TempUp,     ButtonSettings ("SpaIotPcf8574Mux", 8 + 4) },
+    { TempUnit,   ButtonSettings ("SpaIotPcf8574Mux", 8 + 5) }, // this will have to be checked
+    { Heater,     ButtonSettings ("SpaIotPcf8574Mux", 8 + 7) },
   };
 }
 //------------------------------------------------------------------------------

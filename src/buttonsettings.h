@@ -227,6 +227,33 @@ namespace SpaIot {
   extern const std::map<int, ButtonSettings> SpaIotS3SspButtons;
 
   /**
+     @brief ButtonSettings for the SSP Spa with SpaIot Extended board with PCF8574A
+
+      The buttons controller is a PCF8574A connected to 2 multiplexers 4051 as follows:
+      - The selection pins {A, B, C} of the 2 multiplexers are connected
+        respectively to {P0, P1, P2} on the PCF8574
+      - The INH pin of [A7..A0] multiplexer is connected to P3 on the PCF8574
+      - The INH pin of [B7..B0] multiplexer is connected to P4 on the PCF8574
+      .
+
+      This gives us the following values for the buttons of a SSP spa:
+     @code
+      |  Button  | BIT | P4 | P3 | P2 | P1 | P0 | DEC |
+      |:--------:|:---:|:--:|:--:|:--:|:--:|:--:|:---:|
+      |   Power  |  B2 |  0 |  1 |  0 |  1 |  0 |  10 |
+      |  Filter  |  A1 |  1 |  0 |  0 |  0 |  1 |  17 |
+      |  Bubble  |  A3 |  1 |  0 |  0 |  1 |  1 |  19 |
+      |  Heater  |  B7 |  0 |  1 |  1 |  1 |  1 |  15 |
+      |  TempUp  |  B4 |  0 |  1 |  1 |  0 |  0 |  12 |
+      | TempDown |  A7 |  1 |  0 |  1 |  1 |  1 |  23 |
+      | TempUnit |  B5 |  0 |  1 |  1 |  0 |  1 |  13 |
+     @endcode
+
+    @see SpaIotPcf8574Mux
+  */
+  extern const std::map<int, ButtonSettings> SpaIot8574SspButtons;
+
+  /**
      @brief ButtonSettings for the SJB Spa with Scip2 board
 
      Buttons are connected to the following pins:
@@ -280,8 +307,8 @@ namespace SpaIot {
      Buttons are connected to the following pins:
 
      @code
-      |   Button  |       Mux      | Bit |
-      |:---------:|:--------------:|:---:|
+      |   Button  |      Mux     | Bit |
+      |:---------:|:------------:|:---:|
       | Sanitizer | SpaIot32MuxA |  A0 |
       |    Jet    | SpaIot32MuxA |  A1 |
       |   Bubble  | SpaIot32MuxA |  A3 |
@@ -321,6 +348,35 @@ namespace SpaIot {
     @see SpaIotS3MuxB
   */
   extern const std::map<int, ButtonSettings> SpaIotS3SjbButtons;
+
+  /**
+     @brief ButtonSettings for the SJB Spa with SpaIot Extended board with PCF8574A
+
+      The buttons controller is a PCF8574A connected to 2 multiplexers 4051 as follows:
+      - The selection pins {A, B, C} of the 2 multiplexers are connected
+        respectively to {P0, P1, P2} on the PCF8574
+      - The INH pin of [A7..A0] multiplexer is connected to P3 on the PCF8574
+      - The INH pin of [B7..B0] multiplexer is connected to P4 on the PCF8574
+      .
+
+      This gives us the following values for the buttons of a SSP spa:
+     @code
+      |  Button   | BIT | P4 | P3 | P2 | P1 | P0 | DEC |
+      |:---------:|:---:|:--:|:--:|:--:|:--:|:--:|:---:|
+      |   Power   |  B2 |  0 |  1 |  0 |  1 |  0 |  10 |
+      |  Filter   |  A7 |  1 |  0 |  1 |  1 |  1 |  23 |
+      |  Bubble   |  A3 |  1 |  0 |  0 |  1 |  1 |  19 |
+      |  Heater   |  B7 |  0 |  1 |  1 |  1 |  1 |  15 |
+      |  TempUp   |  B4 |  0 |  1 |  1 |  0 |  0 |  12 |
+      | TempDown  |  B1 |  0 |  1 |  0 |  0 |  1 |  09 |
+      | TempUnit  |  B5 |  0 |  1 |  1 |  0 |  1 |  13 |
+      | Sanitizer |  A0 |  1 |  0 |  0 |  0 |  0 |  16 |
+      |    Jet    |  A1 |  1 |  0 |  0 |  0 |  1 |  17 |
+     @endcode
+
+    @see SpaIotPcf8574Mux
+  */
+  extern const std::map<int, ButtonSettings> SpaIot8574SjbButtons;
 
   /** @} */
   /** @} */

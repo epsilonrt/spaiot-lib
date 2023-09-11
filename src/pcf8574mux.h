@@ -18,7 +18,7 @@ namespace SpaIot {
      @class Pcf8574Mux
      @brief Multiplexer controlled by a PCF8574
 
-      This class implements a multiplexer for buttons that is controlled by a PCF8574. 
+      This class implements a multiplexer for buttons that is controlled by a PCF8574.
       It is a concrete class, and can be instantiated.
       This class is copyable and movable.
   */
@@ -88,4 +88,10 @@ namespace SpaIot {
       PIMPL_DECLARE_PRIVATE (Pcf8574Mux)
   };
 
+  /**
+     @brief SpaIot buttons controller with PCF8574A
+
+     may be accessed as "SpaIotPcf8574Mux" in the Multiplexer Register.
+  */
+  extern Pcf8574Mux SpaIotPcf8574Mux;
 }

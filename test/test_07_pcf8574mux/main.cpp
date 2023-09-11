@@ -20,14 +20,16 @@
 // | TempDown |  A7 |  1 |  0 |  1 |  1 |  1 |  23 |
 // | TempUnit |  B5 |  0 |  1 |  1 |  0 |  1 |  13 |
 //
-#include <spaiot_test.h>
-#include <config/hwconfig.h>
+// #include <spaiot_test.h>
+// #include <config/hwconfig.h>
+#include <unity.h>
 #include <pcf8574mux.h>
+#include <buttonsettings.h>
 
 using namespace SpaIot;
 
-const uint8_t slaveAddr = Mux.address(); // PCF8574: 0x20 - PCF8574A: 0x38
-const std::map<int, ButtonSettings> & TestButtons = DefaultConfig.buttons();
+const uint8_t slaveAddr = SpaIotPcf8574Mux.address(); // PCF8574: 0x20 - PCF8574A: 0x38
+const std::map<int, ButtonSettings> & TestButtons = SpaIot8574SspButtons;
 
 // void setUp(void) {
 // // set stuff up here

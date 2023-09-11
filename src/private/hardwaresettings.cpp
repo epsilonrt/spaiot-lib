@@ -216,6 +216,10 @@ namespace SpaIot {
   const HardwareSettings SpaIot32Sjb (SpaIot32Bus, SjbLeds, SpaIot32SjbButtons);
   const HardwareSettings SpaIotS3Ssp (SpaIotS3Bus, SspLeds, SpaIotS3SspButtons);
   const HardwareSettings SpaIotS3Sjb (SpaIotS3Bus, SjbLeds, SpaIotS3SjbButtons);
+  const HardwareSettings SpaIot328574Ssp (SpaIot32Bus, SspLeds, SpaIot8574SspButtons);
+  const HardwareSettings SpaIot328574Sjb (SpaIot32Bus, SjbLeds, SpaIot8574SjbButtons);
+  const HardwareSettings SpaIotS38574Ssp (SpaIotS3Bus, SspLeds, SpaIot8574SspButtons);
+  const HardwareSettings SpaIotS38574Sjb (SpaIotS3Bus, SjbLeds, SpaIot8574SjbButtons);
 
   /*
      WARNING
@@ -230,7 +234,11 @@ namespace SpaIot {
     {"SPAIOT32SSP", &SpaIot32Ssp},
     {"SPAIOT32SJB", &SpaIot32Sjb},
     {"SPAIOTS3SSP", &SpaIotS3Ssp},
-    {"SPAIOTS3SJB", &SpaIotS3Sjb}
+    {"SPAIOTS3SJB", &SpaIotS3Sjb},
+    {"SPAIOT328574SSP", &SpaIot328574Ssp},
+    {"SPAIOT328574SJB", &SpaIot328574Sjb},
+    {"SPAIOTS38574SSP", &SpaIotS38574Ssp},
+    {"SPAIOTS38574SJB", &SpaIotS38574Sjb}
   };
 }
 //------------------------------------------------------------------------------

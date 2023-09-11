@@ -190,5 +190,6 @@ namespace SpaIot {
     return d->pcf.address();
   }
 
+  Pcf8574Mux SpaIotPcf8574Mux ("SpaIotPcf8574Mux", 0x38);  // PCF8574: 0x20 - PCF8574A: 0x38
 }
 //------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spaiot_223',['SpaIot',['../namespace_spa_iot.html',1,'']]]
+  ['spaiot_239',['SpaIot',['../namespace_spa_iot.html',1,'']]]
 ];

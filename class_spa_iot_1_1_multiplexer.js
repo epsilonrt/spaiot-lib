@@ -11,6 +11,7 @@ var class_spa_iot_1_1_multiplexer =
     [ "deselect", "class_spa_iot_1_1_multiplexer.html#a7e598dd8a8e3fda7693f148da60840d1", null ],
     [ "end", "class_spa_iot_1_1_multiplexer.html#a576a6aaeb8ffba487e2f8f7a6520b025", null ],
     [ "getFromRegister", "class_spa_iot_1_1_multiplexer.html#aa1d18487ccd28320adfc46ef892697e4", null ],
+    [ "inhPin", "class_spa_iot_1_1_multiplexer.html#ac92c5d1818c5bfe5d5784ab50d8e0cf0", null ],
     [ "isEmpty", "class_spa_iot_1_1_multiplexer.html#a6bb0d557c83112d47e25879d6c34323e", null ],
     [ "isNull", "class_spa_iot_1_1_multiplexer.html#a88825de9d4d53dbf6af5c6202c958f29", null ],
     [ "isOpen", "class_spa_iot_1_1_multiplexer.html#a4f936c4440eed464790cc46a60b9f336", null ],
@@ -23,7 +24,8 @@ var class_spa_iot_1_1_multiplexer =
     [ "registerContains", "class_spa_iot_1_1_multiplexer.html#aa77b8ffd76f72e2c7168a04676e5bf76", null ],
     [ "select", "class_spa_iot_1_1_multiplexer.html#ac3b28b5970a971d4bdae41900bd817fc", null ],
     [ "selected", "class_spa_iot_1_1_multiplexer.html#a6fcb8925c3feccb858489238359f2f2e", null ],
-    [ "selectPin", "class_spa_iot_1_1_multiplexer.html#aa6006d48c4ebe1719a25bc5f361a3d49", null ],
-    [ "setSelectPin", "class_spa_iot_1_1_multiplexer.html#af4dd1dbaed75aad7a335045d4b8cec87", null ],
+    [ "selectPin", "class_spa_iot_1_1_multiplexer.html#a7c5855405c319d38cc66eae05c1362cf", null ],
+    [ "setInhPin", "class_spa_iot_1_1_multiplexer.html#ac1b8b523120c30cfa73b8cabf7b002c8", null ],
+    [ "setSelectPin", "class_spa_iot_1_1_multiplexer.html#a7651208940a7ea5ac2efdcc8ab62b46d", null ],
     [ "size", "class_spa_iot_1_1_multiplexer.html#a5f979e848b4c790566d556170bb216a8", null ]
 ];

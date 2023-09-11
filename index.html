@@ -164,8 +164,8 @@ Usage</h1>
 </div><!-- fragment --><ol type="1">
 <li>Declare a global variable on the <code>spa</code> control panel</li>
 </ol>
-<div class="fragment"><div class="line"><span class="comment">// Declare a global variable on the spa control panel, its model is SCIP2SSP</span></div>
-<div class="line">ControlPanel spa (<span class="stringliteral">&quot;SCIP2SSP&quot;</span>);</div>
+<div class="fragment"><div class="line"><span class="comment">// Declare a global variable on the spa control panel, its model is SPAIOT32SSP</span></div>
+<div class="line">ControlPanel spa (<span class="stringliteral">&quot;SPAIOT32SSP&quot;</span>);</div>
 </div><!-- fragment --><ol type="1">
 <li>In <code>setup()</code></li>
 </ol>
@@ -193,10 +193,31 @@ Usage</h1>
 </div><!-- fragment --><hr  />
 <h1><a class="anchor" id="autotoc_md13"></a>
 Configure the library according to the electronic part and the spa model</h1>
-<p>spaiot-lib comes with hardware configurations of DIYSCIP boards and SSP-XXX and SJB-XXX SPA models : <br  />
+<p>spaiot-lib comes with hardware configurations and SSP-XXX and SJB-XXX SPA models : <br  />
 </p><ol type="1">
-<li><b>SCIP2SSP</b> &gt; DIYSCIP v2 and SSP-XXX spa</li>
+<li><b>SCIP2SSP</b> &gt; DIYSCIP v2 and SSP-XXX spa <br  />
+</li>
 <li><b>SCIP2SJB</b> &gt; DIYSCIP v2 and SJB-XXX spa <br  />
+</li>
+<li><b>SPAIOT8266SSP</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP8266 Version and SSP-XXX spa <br  />
+</li>
+<li><b>SPAIOT8266SJB</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP8266 Version and SJB-XXX spa <br  />
+</li>
+<li><b>SPAIOT32SSP</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32 Version and SSP-XXX spa <br  />
+</li>
+<li><b>SPAIOT32SJB</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32 Version and SJB-XXX spa <br  />
+</li>
+<li><b>SPAIOTS3SSP</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32-S3 Version and SSP-XXX spa <br  />
+</li>
+<li><b>SPAIOTS3SJB</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32-S3 Version and SJB-XXX spa <br  />
+</li>
+<li><b>SPAIOT328574SSP</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32 Version with PCF8574 Mux and SSP-XXX spa <br  />
+</li>
+<li><b>SPAIOT328574SJB</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32 Version with PCF8574 Mux and SJB-XXX spa <br  />
+</li>
+<li><b>SPAIOTS38574SSP</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32-S3 Version with PCF8574 Mux and SSP-XXX spa <br  />
+</li>
+<li><b>SPAIOTS38574SJB</b> &gt; <a class="el" href="namespace_spa_iot.html" title="SpaIot name space.">SpaIot</a> ESP32-S3 Version with PCF8574 Mux and SJB-XXX spa <br  />
 </li>
 </ol>
 <p>But it possible to adapt the hardware configuration with the HardwareSettings class which is an aggregation of classes:</p><ul>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['filter_410',['Filter',['../namespace_spa_iot.html#a02d4a743082b78154c3be333d5b0fc85a9016590d668a7ba7c7757b2f523e0813',1,'SpaIot']]],
-  ['filteron_411',['FilterOn',['../class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda7d80fd0b7e15e43e2a94d69ff103d64b',1,'SpaIot::Event']]]
+  ['e_438',['E',['../class_spa_iot_1_1_multiplexer.html#a73676616b163dcf8f329bc0153ecd2afada0ff6518df711832cb5c4589b0735c9',1,'SpaIot::Multiplexer']]],
+  ['errorcode_439',['ErrorCode',['../class_spa_iot_1_1_event.html#a01a326ecb882cc0401992b31ff6c67cda5ab6d4e4594e2518ba6062845c18be42',1,'SpaIot::Event']]]
 ];

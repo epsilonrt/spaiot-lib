@@ -19,11 +19,29 @@ namespace SpaIot {
      @brief Analog multiplexer for buttons
 
       This class implements a multiplexer for buttons. It is a concrete class, and can be instantiated.
-      It is a ButtonController, and can be used as such.
-      This class is copyable and movable.
+      It is a ButtonController, and can be used as such. \n
+      This class is copyable and movable. \n
+      The multiplexer is controlled by a set of pins that select the channel to be used. The pins are
+      connected to the multiplexer in ascending order of weight: A for the least significant bit, B for
+      the second least significant bit, and so on. The pins are connected to the multiplexer in the
+      following order: A, B, C, D, E, F, G, H. The multiplexer has an inhibit pin that is used to
+      disable the multiplexer. The multiplexer is disabled when the inhibit pin is in high level.
+      That corresponds to integrated circuits like CD4051, CD4052, CD4053, CD4067, etc.
   */
   class Multiplexer : public ButtonController {
     public:
+
+      enum {
+        A = 0, /**< The order for the least significant bit */
+        B, /**< The order for the second least significant bit */
+        C, /**< The order for the third least significant bit */
+        D, /**< The order for the fourth least significant bit */
+        E, /**< The order for the fifth least significant bit */
+        F, /**< The order for the sixth least significant bit */
+        G, /**< The order for the seventh least significant bit */
+        H  /**< The order for the eighth least significant bit */
+      };
+
       /**
          @brief Constructor
 
@@ -79,20 +97,30 @@ namespace SpaIot {
       Multiplexer &operator= (Multiplexer &&other);
 
       /**
-         @brief Given a key, return the corresponding value
+         @brief Given a order, return the corresponding value
 
-         @param key The key of the parameter.
-         @return The pin number for the given key.
+         @param order The order of the parameter.
+         @return The pin number for the given order.
       */
-      int selectPin (int key) const;
+      int selectPin (int order) const;
 
       /**
-         @brief It sets the pin number for the select pin of the given key.
+         @brief It sets the pin number for the select pin of the given order.
 
-         @param key the key to be used for the pin
+         @param order the order to be used for the pin
          @param pin the pin number
       */
-      void setSelectPin (int key, int pin);
+      void setSelectPin (int order, int pin);
+
+      /**
+         @brief Get the pin number of the inhibit pin
+      */
+      int inhPin() const;
+
+      /**
+         @brief Set the pin number of the inhibit pin
+      */
+      void setInhPin (int pin);
 
       /**
         @brief Returns the number of multiplexer channels that are available

@@ -189,19 +189,33 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  int Multiplexer::selectPin (int key) const {
+  int Multiplexer::selectPin (int order) const {
     PIMPL_D (const Multiplexer);
 
-    return d->spin.at (key);
+    return d->spin.at (order);
   }
 
   //----------------------------------------------------------------------------
-  void Multiplexer::setSelectPin (int key, int pin) {
+  void Multiplexer::setSelectPin (int order, int pin) {
     PIMPL_D (Multiplexer);
 
-    d->spin[key] = pin;
+    d->spin[order] = pin;
   }
 
+  //----------------------------------------------------------------------------
+  int Multiplexer::inhPin() const {
+    PIMPL_D (const Multiplexer);
+
+    return d->inh;
+  }
+
+  //----------------------------------------------------------------------------
+  void Multiplexer::setInhPin (int pin) {
+    PIMPL_D (Multiplexer);
+
+    d->inh = pin;
+  }
+  
   //----------------------------------------------------------------------------
   int Multiplexer::size() const {
     PIMPL_D (const Multiplexer);

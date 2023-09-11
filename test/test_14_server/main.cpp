@@ -6,15 +6,14 @@
 // -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 // We use a DIY board connected to a SSP spa.
 #include <unity.h>
-#include <config/hwconfig.h>
 #include <spaserver.h>
 #include <spaiotdebug.h>
 #include "testclient.h"
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
-// We use the default configuration DefaultConfig defined in config/hwconfig.h
-// You can choose your own configuration in your platformio.ini
+// We use the default configuration SpaConfig defined in MyBoardSettings.h
 
 SpaServer server; // the server, SpaIot:: is needed because there is a SpaServer class in the Arduino framework
 ServerSettings srvsettings ("TestSpa", 30000); // the server settings, TestSpa is the name of settings added to the register in setup()
@@ -82,7 +81,7 @@ void setup() {
   delay (2000);
   Wire.begin();
 
-  HardwareSettings::addToRegister (srvsettings.spaModel(), DefaultConfig);
+  HardwareSettings::addToRegister (srvsettings.spaModel(), SpaConfig);
   UNITY_BEGIN();    // IMPORTANT LINE!
 
   RUN_TEST (test_getters);

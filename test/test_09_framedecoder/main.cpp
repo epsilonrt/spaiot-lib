@@ -3,9 +3,10 @@
 // How to run:
 // pio test -f test_09_framedecoder -v
 // -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
-#include <spaiot_test.h>
-#include <config/hwconfig.h>
+#include <unity.h>
 #include <framedecoder.h>
+#include <spaiotdebug.h>
+#include "MyBoardSettings.h"
 
 // Set to 1 to enable the loop() function that will print all changes
 #define LOOP_ENABLED 0
@@ -15,9 +16,9 @@
 using namespace SpaIot;
 
 // My bus configuration
-const BusSettings   &MyBus = DefaultConfig.bus() ;
+const BusSettings   &MyBus = SpaBus;
 // My Leds
-const std::map <int, LedSettings> &MyLeds =  DefaultConfig.leds();
+const std::map <int, LedSettings> &MyLeds =  SspLeds;
 
 uint32_t frameCounter;
 uint32_t frameDropped;

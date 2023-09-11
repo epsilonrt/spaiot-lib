@@ -20,8 +20,6 @@
 // | TempDown |  A7 |  1 |  0 |  1 |  1 |  1 |  23 |
 // | TempUnit |  B5 |  0 |  1 |  1 |  0 |  1 |  13 |
 //
-// #include <spaiot_test.h>
-// #include <config/hwconfig.h>
 #include <unity.h>
 #include <pcf8574mux.h>
 #include <buttonsettings.h>

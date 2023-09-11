@@ -7,18 +7,19 @@
 #include <Arduino.h>
 #include <unity.h>
 #include <buttonsettings.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
 const std::map<int, ButtonSettings> TestButtons = {
-  { Filter,   ButtonSettings ("Scip2MuxA", 1) },
-  { Bubble,   ButtonSettings ("Scip2MuxA", 3) },
-  { TempDown, ButtonSettings ("Scip2MuxA", 7) },
+  { Filter,   ButtonSettings (SpaMuxA, 1) },
+  { Bubble,   ButtonSettings (SpaMuxA, 3) },
+  { TempDown, ButtonSettings (SpaMuxA, 7) },
 
-  { Power,    ButtonSettings ("Scip2MuxB", 2) },
-  { TempUp,   ButtonSettings ("Scip2MuxB", 4) },
-  { TempUnit, ButtonSettings ("Scip2MuxB", 5) },
-  { Heater,   ButtonSettings ("Scip2MuxB", 7) }
+  { Power,    ButtonSettings (SpaMuxB, 2) },
+  { TempUp,   ButtonSettings (SpaMuxB, 4) },
+  { TempUnit, ButtonSettings (SpaMuxB, 5) },
+  { Heater,   ButtonSettings (SpaMuxB, 7) }
 };
 
 // void setUp(void) {
@@ -99,8 +100,8 @@ void test_move (void) {
 void test_global (void) {
   ButtonSettings s (TestButtons.at (Filter).controllerName(), TestButtons.at (Filter).id());
 
-  TEST_ASSERT (Scip2SspButtons.at (Filter) == TestButtons.at (Filter));
-  TEST_ASSERT (Scip2SspButtons == TestButtons);
+  TEST_ASSERT (SpaButtons.at (Filter) == TestButtons.at (Filter));
+  TEST_ASSERT (SpaButtons == TestButtons);
 }
 
 void setup() {

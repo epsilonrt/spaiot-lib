@@ -5,14 +5,15 @@
 // pio test -f test_10_controlpanel -v
 // -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 // We use a DIY board connected to a SSP spa.
-#include <spaiot_test.h>
-#include <config/hwconfig.h>
+#include <unity.h>
 #include <controlpanel.h>
+#include <spaiotdebug.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
-const std::map<int, ButtonSettings>  & buttonSettings = DefaultConfig.buttons();
-const std::map <int, LedSettings> & ledSettings =  DefaultConfig.leds();
+const std::map<int, ButtonSettings>  & buttonSettings = SpaButtons;
+const std::map <int, LedSettings> & ledSettings =  SspLeds;
 
 //#define DISABLE_DESIRED_TEMP
 
@@ -95,7 +96,7 @@ void test_getters () {
 
 void test_begin () {
   TEST_MESSAGE ("---> test_begin <---");
-  panel.begin (DefaultConfig);
+  panel.begin (SpaConfig);
   TEST_ASSERT_TRUE (panel.isOpen ());
 
   TEST_ASSERT (buttonSettings == panel.buttonSettings());

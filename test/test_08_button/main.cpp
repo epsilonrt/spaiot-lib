@@ -4,9 +4,9 @@
 // pio test -f test_08_button -v
 // -v for verbose, if not specified only summary is printed (no TEST_MESSAGE, no TEST_PRINTF)
 //
-#include <spaiot_test.h>
-#include <config/hwconfig.h>
+#include <unity.h>
 #include <button.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
@@ -18,7 +18,7 @@ std::initializer_list<int> sequence {Power,     Filter,   Bubble,   TempUnit,
 
 
 // My buttons configuration (SSP)
-const std::map<int, ButtonSettings> & TestButtons = DefaultConfig.buttons();
+const std::map<int, ButtonSettings> & TestButtons = SpaButtons;
 
 void setUp (void) {
 

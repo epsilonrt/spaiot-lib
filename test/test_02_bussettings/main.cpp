@@ -7,9 +7,13 @@
 #include <Arduino.h>
 #include <unity.h>
 #include <bussettings.h>
-#include <config/hwconfig.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
+
+const int dataPin = SpaBus.dataPin();;
+const int clkPin = SpaBus.clkPin();;
+const int holdPin = SpaBus.holdPin();;
 
 // void setUp(void) {
 // // set stuff up here
@@ -27,38 +31,37 @@ void test_constructor_null (void) {
 }
 
 void test_constructor_notnull (void) {
-  BusSettings s1 (DataPin, ClkPin, HoldPin);
-  BusSettings s2 {DataPin, ClkPin, HoldPin};
+  BusSettings s1 (dataPin, clkPin, holdPin);
 
+  TEST_PRINTF ("dataPin: %d, clkPin: %d, holdPin: %d\n", dataPin, clkPin, holdPin);
   TEST_ASSERT_FALSE (s1.isEmpty());
-  TEST_ASSERT_FALSE (s2.isEmpty());
 }
 
 void test_getters (void) {
-  BusSettings s (DataPin, ClkPin, HoldPin);
+  BusSettings s (dataPin, clkPin, holdPin);
 
-  TEST_ASSERT_EQUAL (DataPin, s.dataPin());
-  TEST_ASSERT_EQUAL (ClkPin, s.clkPin());
-  TEST_ASSERT_EQUAL (HoldPin, s.holdPin());
+  TEST_ASSERT_EQUAL (dataPin, s.dataPin());
+  TEST_ASSERT_EQUAL (clkPin, s.clkPin());
+  TEST_ASSERT_EQUAL (holdPin, s.holdPin());
 }
 
 void test_setters (void) {
   BusSettings s;
 
-  s.setDataPin (DataPin);
-  s.setClkPin (ClkPin);
-  s.setHoldPin (HoldPin);
-  TEST_ASSERT_EQUAL (DataPin, s.dataPin());
-  TEST_ASSERT_EQUAL (ClkPin, s.clkPin());
-  TEST_ASSERT_EQUAL (HoldPin, s.holdPin());
+  s.setDataPin (dataPin);
+  s.setClkPin (clkPin);
+  s.setHoldPin (holdPin);
+  TEST_ASSERT_EQUAL (dataPin, s.dataPin());
+  TEST_ASSERT_EQUAL (clkPin, s.clkPin());
+  TEST_ASSERT_EQUAL (holdPin, s.holdPin());
   s.clear();
   TEST_ASSERT_TRUE (s.isEmpty());
 }
 
 void test_comparison (void) {
-  BusSettings s1 (DataPin, ClkPin, HoldPin);
-  BusSettings s2 (DataPin, ClkPin, HoldPin);
-  BusSettings s3 (DataPin + 1, ClkPin + 1, HoldPin + 1);
+  BusSettings s1 (dataPin, clkPin, holdPin);
+  BusSettings s2 (dataPin, clkPin, holdPin);
+  BusSettings s3 (dataPin + 1, clkPin + 1, holdPin + 1);
 
   TEST_ASSERT (s1 == s2);
   TEST_ASSERT (s2 != s3);
@@ -66,7 +69,7 @@ void test_comparison (void) {
 
 void test_copy (void) {
   BusSettings s1;
-  BusSettings s2 (DataPin, ClkPin, HoldPin);
+  BusSettings s2 (dataPin, clkPin, holdPin);
   BusSettings s3 (s2);
 
   s1 = s2;
@@ -75,7 +78,7 @@ void test_copy (void) {
 }
 
 void test_move (void) {
-  const BusSettings s1 (DataPin, ClkPin, HoldPin);
+  const BusSettings s1 (dataPin, clkPin, holdPin);
 
   // Test move constructor
   BusSettings s2 = s1;
@@ -91,13 +94,6 @@ void test_move (void) {
   s3.clear(); // check if clear() reset the d_ptr instance
   s3 = s1;
   TEST_ASSERT (s3 == s1);
-}
-
-
-void test_global (void) {
-  BusSettings s (DataPin, ClkPin, HoldPin);
-
-  TEST_ASSERT (DefaultConfig.bus() == s);
 }
 
 void setup() {
@@ -122,7 +118,6 @@ void loop() {
     RUN_TEST (test_comparison);
     RUN_TEST (test_copy);
     RUN_TEST (test_move);
-    RUN_TEST (test_global);
 
     UNITY_END(); // stop unit testing
     done = true;

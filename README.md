@@ -96,8 +96,8 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
 2. Declare a global variable on the `spa` control panel
 
   ```cpp
-  // Declare a global variable on the spa control panel, its model is SCIP2SSP
-  ControlPanel spa ("SCIP2SSP");
+  // Declare a global variable on the spa control panel, its model is SPAIOT32SSP
+  ControlPanel spa ("SPAIOT32SSP");
   ```
 
 
@@ -133,9 +133,19 @@ See [examples](https://github.com/epsilonrt/spaiot-lib/tree/master/examples) on 
 
 ## Configure the library according to the electronic part and the spa model
 
-spaiot-lib comes with hardware configurations of DIYSCIP boards and SSP-XXX and SJB-XXX SPA models :  
-1. **SCIP2SSP** > DIYSCIP v2 and SSP-XXX spa
+spaiot-lib comes with hardware configurations and SSP-XXX and SJB-XXX SPA models :  
+1. **SCIP2SSP** > DIYSCIP v2 and SSP-XXX spa  
 2. **SCIP2SJB** > DIYSCIP v2 and SJB-XXX spa  
+3. **SPAIOT8266SSP** > SpaIot ESP8266 Version and SSP-XXX spa  
+4. **SPAIOT8266SJB** > SpaIot ESP8266 Version and SJB-XXX spa  
+5. **SPAIOT32SSP** > SpaIot ESP32 Version and SSP-XXX spa  
+6. **SPAIOT32SJB** > SpaIot ESP32 Version and SJB-XXX spa  
+7. **SPAIOTS3SSP** > SpaIot ESP32-S3 Version and SSP-XXX spa  
+8. **SPAIOTS3SJB** > SpaIot ESP32-S3 Version and SJB-XXX spa  
+9. **SPAIOT328574SSP** > SpaIot ESP32 Version with PCF8574 Mux and SSP-XXX spa  
+10. **SPAIOT328574SJB** > SpaIot ESP32 Version with PCF8574 Mux and SJB-XXX spa  
+11. **SPAIOTS38574SSP** > SpaIot ESP32-S3 Version with PCF8574 Mux and SSP-XXX spa  
+12. **SPAIOTS38574SJB** > SpaIot ESP32-S3 Version with PCF8574 Mux and SJB-XXX spa  
 
 But it possible to adapt the hardware configuration with the HardwareSettings class which is an aggregation of classes:
 - BusSettings that defines the configuration of the synchronous serial link,

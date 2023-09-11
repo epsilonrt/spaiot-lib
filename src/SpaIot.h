@@ -15,5 +15,4 @@
 
 #include "spaserver.h"
 #include "spaclient.h"
-#include "config/hwconfig.h"
 

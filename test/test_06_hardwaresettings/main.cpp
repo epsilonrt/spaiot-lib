@@ -8,12 +8,12 @@
 #include <unity.h>
 #include <hardwaresettings.h>
 #include <type_name.h>
-#include <config/hwconfig.h>
+#include "MyBoardSettings.h"
 
 using namespace SpaIot;
 
 // Scip2Bus
-const BusSettings &TestBus = DefaultConfig.bus();
+const BusSettings &TestBus = SpaBus;
 
 // SspLeds
 const std::map<int, LedSettings> TestSspLeds = {
@@ -33,29 +33,30 @@ const std::map<int, LedSettings> TestSjbLeds = {
   { Filter,         LedSettings (12) },
   { Sanitizer,      LedSettings (13) }
 };
+
 // Scip2SspButtons
 const std::map<int, ButtonSettings> TestSspButtons = {
-  { Filter,   ButtonSettings ("Scip2MuxA", 1) },
-  { Bubble,   ButtonSettings ("Scip2MuxA", 3) },
-  { TempDown, ButtonSettings ("Scip2MuxA", 7) },
+  { Filter,   ButtonSettings (SpaMuxA, 1) },
+  { Bubble,   ButtonSettings (SpaMuxA, 3) },
+  { TempDown, ButtonSettings (SpaMuxA, 7) },
 
-  { Power,    ButtonSettings ("Scip2MuxB", 2) },
-  { TempUp,   ButtonSettings ("Scip2MuxB", 4) },
-  { TempUnit, ButtonSettings ("Scip2MuxB", 5) },
-  { Heater,   ButtonSettings ("Scip2MuxB", 7) }
+  { Power,    ButtonSettings (SpaMuxB, 2) },
+  { TempUp,   ButtonSettings (SpaMuxB, 4) },
+  { TempUnit, ButtonSettings (SpaMuxB, 5) },
+  { Heater,   ButtonSettings (SpaMuxB, 7) }
 };
 // Scip2SjbButtons
 const std::map<int, ButtonSettings> TestSjbButtons = {
-  { Sanitizer,  ButtonSettings ("Scip2MuxA", 0) },
-  { Jet,        ButtonSettings ("Scip2MuxA", 1) }, // this will have to be checked
-  { Bubble,     ButtonSettings ("Scip2MuxA", 3) }, // this will have to be checked
-  { Filter,     ButtonSettings ("Scip2MuxA", 7) },
+  { Sanitizer,  ButtonSettings (SpaMuxA, 0) },
+  { Jet,        ButtonSettings (SpaMuxA, 1) }, // this will have to be checked
+  { Bubble,     ButtonSettings (SpaMuxA, 3) }, // this will have to be checked
+  { Filter,     ButtonSettings (SpaMuxA, 7) },
 
-  { TempDown,   ButtonSettings ("Scip2MuxB", 1) },
-  { Power,      ButtonSettings ("Scip2MuxB", 2) },
-  { TempUp,     ButtonSettings ("Scip2MuxB", 4) },
-  { TempUnit,   ButtonSettings ("Scip2MuxB", 5) }, // this will have to be checked
-  { Heater,     ButtonSettings ("Scip2MuxB", 7) },
+  { TempDown,   ButtonSettings (SpaMuxB, 1) },
+  { Power,      ButtonSettings (SpaMuxB, 2) },
+  { TempUp,     ButtonSettings (SpaMuxB, 4) },
+  { TempUnit,   ButtonSettings (SpaMuxB, 5) }, // this will have to be checked
+  { Heater,     ButtonSettings (SpaMuxB, 7) },
 };
 
 const HardwareSettings TestSSP (TestBus, TestSspLeds, TestSspButtons);
@@ -140,17 +141,17 @@ void test_global (void) {
 
   TEST_ASSERT_TRUE (HardwareSettings::addToRegister ("TEST", TestSSP));
   TEST_ASSERT_FALSE (HardwareSettings::addToRegister ("TEST", TestSSP));
-  TEST_ASSERT_FALSE (HardwareSettings::addToRegister ("SCIP2SSP", TestSSP));
-  TEST_ASSERT_FALSE (HardwareSettings::addToRegister ("SCIP2SJB", TestSJB));
+  TEST_ASSERT_FALSE (HardwareSettings::addToRegister (SspSettings, TestSSP));
+  TEST_ASSERT_FALSE (HardwareSettings::addToRegister (SjbSettings, TestSJB));
   TEST_ASSERT (HardwareSettings::getFromRegister ("TEST") == TestSSP);
 
-  const HardwareSettings &s (HardwareSettings::getFromRegister ("SCIP2SJB"));
+  const HardwareSettings &s (HardwareSettings::getFromRegister (SjbSettings));
 
   TEST_ASSERT (s == TestSJB);
   TEST_ASSERT (s.bus() == TestSJB.bus());
   TEST_ASSERT (s.leds() == TestSJB.leds());
   TEST_ASSERT (s.buttons() == TestSJB.buttons());
-  TEST_ASSERT (HardwareSettings::getFromRegister ("SCIP2SSP") == TestSSP);
+  TEST_ASSERT (HardwareSettings::getFromRegister (SspSettings) == TestSSP);
 }
 
 void setup() {

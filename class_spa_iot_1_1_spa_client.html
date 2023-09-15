@@ -369,7 +369,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>Process the client. </p>
 <p>This method must be called periodically in the main loop. It will be call by <code><a class="el" href="class_spa_iot_1_1_spa_server.html#a60aadb539dcb6f5ce830831a86c7ae97" title="Process spa events and handle client requests.">SpaServer::handle()</a></code> to process the client tasks. The default implementation call <code><a class="el" href="class_spa_iot_1_1_spa_client.html#a38e8cb4f18cfab539b7dd53603622092" title="This client poll events from the spa.">pollSpaEvents()</a></code> and returns true if events have been polled. It should be reimplemented in derived classes to process the client tasks.</p>
-<dl class="section return"><dt>Returns</dt><dd>true if events have been processed, false otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if events have been processed from spa, false otherwise </dd></dl>
 
 </div>
 </div>

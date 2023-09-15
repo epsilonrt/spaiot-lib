@@ -26,6 +26,22 @@
 using namespace SpaIot;
 const unsigned long SerialBaudrate = 115200;
 
+// My button controllers
+// This is a PCF8574 connected to 2 multiplexers 4051 as above
+Pcf8574Mux Mux ("U5", 0x38); // i2c slave address, PCF8574: 0x20 - PCF8574A: 0x38
+
+// My buttons configuration (SSP)
+const std::map<int, ButtonSettings> MyButtons = {
+    { Filter,   ButtonSettings (Mux, 16 + 1) },
+    { Bubble,   ButtonSettings (Mux, 16 + 3) },
+    { TempDown, ButtonSettings (Mux, 16 + 7) },
+
+    { Power,    ButtonSettings (Mux, 8 + 2) },
+    { TempUp,   ButtonSettings (Mux, 8 + 4) },
+    { TempUnit, ButtonSettings (Mux, 8 + 5) },
+    { Heater,   ButtonSettings (Mux, 8 + 7) }
+};
+
 // My custom configuration
 // You can modify the bus as you wish, but you must have the corresponding hardware
 // See https://epsilonrt.github.io/spaiot-lib/group___hardware_settings.html

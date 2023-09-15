@@ -12,7 +12,6 @@
 #include "unittest_p.h"
 #include "../spaclient.h"
 
-
 namespace SpaIot {
 
   //----------------------------------------------------------------------------
@@ -270,7 +269,8 @@ namespace SpaIot {
 
           if (d->previousValue (type) != isOn) {
 
-            TEST_PRINTF (">>>>>>> %s:  previous  %d, current %d", Event::typeToString (type), d->previousValue (type), isOn);
+            TEST_PRINTF ("%s:%d:>>>>>>>:  previous  %d, current %d",
+                         __PRETTY_FUNCTION__, __LINE__, d->previousValue (type), isOn);
             d->sendValue (Event (type, isOn));
           }
         }
@@ -280,12 +280,12 @@ namespace SpaIot {
       for (auto &elmt : d->clients) {
         SpaClient *client = elmt.second;
 
-        if (client->handle()) {
+        if (client->handle() || client->available() > 0) {
 
           isEventsProcessed = true;
 
           // read data from the client
-          while (client->available()) {
+          while (client->available() > 0) {
 
             Event event = client->read();
             if (event.value() != d->previousValue (event)) { // if the value is changed
@@ -299,7 +299,7 @@ namespace SpaIot {
                   if (setPower (isOn) == event.value()) {
 
                     TEST_PRINTF ("%s:%d: Power changed to %s",
-                                 __PRETTY_FUNCTION__, __LINE__, isOn ? "on" : "off");
+                                 __PRETTY_FUNCTION__, __LINE__, isOn ? "On" : "Off");
 
                   }
                   else {
@@ -324,7 +324,7 @@ namespace SpaIot {
                     if (d->setKeyOn (event.type(), isOn) == event.value()) {
 
                       TEST_PRINTF ("%s:%d: %s changed to %s",
-                                   __PRETTY_FUNCTION__, __LINE__, Event::typeToString (event.type()).c_str(), isOn ? "on" : "off");
+                                   __PRETTY_FUNCTION__, __LINE__, Event::typeToString (event.type()).c_str(), isOn ? "On" : "Off");
                     }
                     else {
 
@@ -342,7 +342,7 @@ namespace SpaIot {
                     if (setHeater (isOn) == event.value()) {
 
                       TEST_PRINTF ("%s:%d: %s changed to %s",
-                                   __PRETTY_FUNCTION__, __LINE__, Event::typeToString (event.type()).c_str(), isOn ? "on" : "off");
+                                   __PRETTY_FUNCTION__, __LINE__, Event::typeToString (event.type()).c_str(), isOn ? "On" : "Off");
                     }
                     else {
 

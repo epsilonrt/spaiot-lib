@@ -68,6 +68,8 @@ namespace SpaIot {
 
       if (subscribedEvents.empty() || subscribedEvents.count (event.type()) > 0) {
 
+        TEST_PRINTF ("%s:%d: Push Event %s, time: %d",
+                     __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
         outQ.push (event);
       }
     }
@@ -80,6 +82,8 @@ namespace SpaIot {
 
       event = inQ.front();
       inQ.pop();
+      TEST_PRINTF ("%s:%d: Pull Event %s, time: %d",
+                   __PRETTY_FUNCTION__, __LINE__, event.toString().c_str(), millis());
       return true;
     }
     return false;

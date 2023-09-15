@@ -15,6 +15,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include "private/unittest_p.h"
 
 #if ! defined(NODEBUG_SPAIOT) && defined(DEBUG_ESP_PORT)
   #define SPAIOT_DBG(...)   { DEBUG_ESP_PORT.printf(__VA_ARGS__); DEBUG_ESP_PORT.println(""); }

@@ -13,6 +13,11 @@
 #include <unity.h>
 // #warning "Compiling for unit testing"
 #else
-#define TEST_PRINTF(message, ...) 
-#define TEST_MESSAGE(message) 
+#ifdef DEBUG_SERIAL_PORT
+#define TEST_PRINTF(fmt,...)  { DEBUG_SERIAL_PORT.printf_P(PSTR(fmt),##__VA_ARGS__); DEBUG_SERIAL_PORT.println(""); }
+#define TEST_MESSAGE(message)  { DEBUG_SERIAL_PORT.println(F(message)); }
+#else
+#define TEST_PRINTF(fmt,...)
+#define TEST_MESSAGE(message)
+#endif
 #endif

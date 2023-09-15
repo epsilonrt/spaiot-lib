@@ -230,7 +230,7 @@ namespace SpaIot {
          The default implementation call \c pollSpaEvents() and returns true if events have been polled.
          It should be reimplemented in derived classes to process the client tasks.
 
-         @return true if events have been processed, false otherwise
+         @return true if events have been processed from spa, false otherwise
       */
       virtual bool handle();
 

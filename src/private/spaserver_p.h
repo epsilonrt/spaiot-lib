@@ -32,6 +32,7 @@ namespace SpaIot {
       const ServerSettings *settings;
       unsigned long previousPublishTime;
       std::map<Event::Type, uint16_t> previousValues;
+      bool vacation;
 
       static const std::map<Event::Type, uint16_t> PreviousValuesDefault;
     private:

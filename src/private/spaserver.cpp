@@ -33,6 +33,7 @@ namespace SpaIot {
     {Event::Type::SanitizerOn, UnsetValue8},
     {Event::Type::HeaterOn, UnsetValue8},
     {Event::Type::HeatReached, UnsetValue8},
+    {Event::Type::VacationMode, UnsetValue8},
     {Event::Type::WaterTemp, UnsetValue16}, // read only
     {Event::Type::DesiredTemp, UnsetValue16},
     {Event::Type::SanitizerTime, UnsetValue16},
@@ -41,13 +42,15 @@ namespace SpaIot {
 
   //----------------------------------------------------------------------------
   SpaServer::Private::Private (SpaServer *q) : ControlPanel::Private (q),
-    settings (nullptr), previousPublishTime (0), previousValues (PreviousValuesDefault)
+    settings (nullptr), previousPublishTime (0), previousValues (PreviousValuesDefault),
+    vacation (false)
   {}
 
   //----------------------------------------------------------------------------
   SpaServer::Private::Private (SpaServer *q, const HardwareSettings &hwsettings) :
     ControlPanel::Private (q, hwsettings),
-    settings (nullptr), previousPublishTime (0), previousValues (PreviousValuesDefault)
+    settings (nullptr), previousPublishTime (0), previousValues (PreviousValuesDefault),
+    vacation (false)
   {}
 
   //------------------------------------------------------------------------------
@@ -171,7 +174,7 @@ namespace SpaIot {
   bool SpaServer::handle () {
     bool isEventsProcessed = false;
 
-    if (isOpen() && isReady()) { // if the spa is ready
+    if (isReady()) { // if the spa is ready
       PIMPL_D (SpaServer);
       unsigned long now = millis();
 
@@ -265,12 +268,12 @@ namespace SpaIot {
         Event::Type type = s.first;
 
         if (Event::TypeIsBoolean (type)) { // if the event is boolean (on/off)
-          uint8_t isOn = (type == Event::Type::HeaterOn ? isHeaterOn() : isLedOn (type));
+          uint8_t isOn = (type == Event::Type::HeaterOn ? isHeaterOn() : (type == Event::Type::VacationMode ? isVacationMode() : isLedOn (type)));
 
           if (d->previousValue (type) != isOn) {
 
-            TEST_PRINTF ("%s:%d:>>>>>>>:  previous  %d, current %d",
-                         __PRETTY_FUNCTION__, __LINE__, d->previousValue (type), isOn);
+            TEST_PRINTF ("%s:%d: %s >>>>>>> previous  %d, current %d",
+                         __PRETTY_FUNCTION__, __LINE__, Event::typeToString (type).c_str(), d->previousValue (type), isOn);
             d->sendValue (Event (type, isOn));
           }
         }
@@ -300,7 +303,6 @@ namespace SpaIot {
 
                     TEST_PRINTF ("%s:%d: Power changed to %s",
                                  __PRETTY_FUNCTION__, __LINE__, isOn ? "On" : "Off");
-
                   }
                   else {
 
@@ -405,6 +407,16 @@ namespace SpaIot {
                   }
                   break;
 
+                case Event::Type::VacationMode:
+                  if (d->previousValue (Event::Type::PowerOn) == true) {
+                    bool isOn = (event.value() == true);
+
+                    setVacationMode (isOn);
+                    TEST_PRINTF ("%s:%d: %s changed to %s",
+                                 __PRETTY_FUNCTION__, __LINE__, Event::typeToString (event.type()).c_str(), isOn ? "On" : "Off");
+                  }
+                  break;
+
                 default:
                   break;
               }
@@ -413,6 +425,29 @@ namespace SpaIot {
         }
       }
 
+      // Vacation Mode
+      if (isVacationMode() == true) {
+
+        if (isPowerOn() == false) {
+
+          setVacationMode (false);
+        }
+        else if (isPowerOn() == true) {
+          if (isFilterOn() == false) {
+
+            if (setFilter (true)) {
+                
+                TEST_PRINTF ("%s:%d: Vacation Mode, Filter changed to On",
+                            __PRETTY_FUNCTION__, __LINE__);
+              }
+              else {
+  
+                TEST_PRINTF ("%s:%d: Vacation Mode, Unable to set Filter: On",
+                            __PRETTY_FUNCTION__, __LINE__);
+            }
+          }
+        }
+      }
     }
     return isEventsProcessed;
   }
@@ -476,6 +511,20 @@ namespace SpaIot {
   bool SpaServer::removeClient (const SpaClient &client) {
 
     return removeClient (client.className());
+  }
+
+  //------------------------------------------------------------------------------
+  uint8_t SpaServer::isVacationMode () const {
+    PIMPL_D (const SpaServer);
+
+    return d->vacation;
+  }
+
+  //------------------------------------------------------------------------------
+  void SpaServer::setVacationMode (bool isOn) {
+    PIMPL_D (SpaServer);
+
+    d->vacation = isOn;
   }
 
 }

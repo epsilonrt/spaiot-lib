@@ -42,6 +42,7 @@ namespace SpaIot {
         SanitizerTime,                    //!< Remaining sanitation time in hours
         ErrorCode,                        //!< Error code displayed by the control panel, 0 if no error
         AmbientTemperature,               //!< Ambient temperature in °C (if air temperature sensor is available)
+        VacationMode,                     //!< Vacation mode, boolean, true when the vacation mode is on, false when the vacation mode is off
         NoEvent = -1,                     //!< No event
         AnyEvent = -2                     //!< Any event
       };

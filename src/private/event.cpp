@@ -44,7 +44,8 @@ namespace SpaIot {
     {Event::Type::ErrorCode, "ErrorCode"},
     {Event::Type::AmbientTemperature, "AmbientTemperature"},
     {Event::Type::NoEvent, "NoEvent"},
-    {Event::Type::AnyEvent, "AnyEvent"}
+    {Event::Type::AnyEvent, "AnyEvent"},
+    {Event::Type::VacationMode, "VacationMode"}
   };
 
   //----------------------------------------------------------------------------
@@ -203,7 +204,7 @@ namespace SpaIot {
     return (type == Type::PowerOn || type == Type::FilterOn ||
             type == Type::BubbleOn || type == Type::JetOn ||
             type == Type::HeaterOn || type == Type::SanitizerOn ||
-            type == Type::HeatReached);
+            type == Type::HeatReached || type == Type::VacationMode);
   }
 
 }

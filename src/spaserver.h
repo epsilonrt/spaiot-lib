@@ -119,6 +119,23 @@ namespace SpaIot {
       */
       const ServerSettings   *settings() const;
 
+      /**
+         @brief Set the Vacation Mode
+
+         When the vacation mode is activated, the filtration is always active.
+         If the spa timer stops the filtration, the filtration is restarted.
+         The user can not stop the filtration, the only way to stop it is to deactivate the vacation mode or to stop the spa.
+         @param v  true for ON, false for OFF
+      */
+      void setVacationMode (bool v = true);
+
+      /**
+         @brief Returns the state of the vacation mode
+         q
+         @return true if the vacation mode is ON, false if the vacation mode is OFF, UnsetValue8 if not set
+      */
+      uint8_t isVacationMode() const;
+
     protected:
       class Private;
       SpaServer (Private &dd);

@@ -58,9 +58,9 @@ namespace SpaIot {
   //----------------------------------------------------------------------------
   // may be used for Power, Filter, Bubble and Jet
   uint8_t ControlPanel::Private::setKeyOn (int key, bool v) {
+    PIMPL_Q (ControlPanel);
 
-    if (isopen) {
-      PIMPL_Q (ControlPanel);
+    if (q->isOpen()) {
       uint8_t b = q->isLedOn (key);
 
       if (q->hasButton (key) && b != UnsetValue8) {
@@ -105,7 +105,7 @@ namespace SpaIot {
   ControlPanel::ControlPanel (const String &hwSettingsName) :
     ControlPanel (*new Private (this, HardwareSettings::getFromRegister (hwSettingsName)))
   {}
-  
+
   //----------------------------------------------------------------------------
   void ControlPanel::end() {
 

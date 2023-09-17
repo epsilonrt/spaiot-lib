@@ -34,5 +34,5 @@ jobs:
     - name: Run tests on the embedded target
       env:
         PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
-        PLATFORMIO_DEFAULT_ENVS: ${{ github.event.inputs.environment }}
-      run: platformio remote test -r -i test_07_pcf8574mux
+        PLATFORMIO_DEFAULT_ENVS: ${{ inputs.environment }}
+      run: platformio remote test -r

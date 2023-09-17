@@ -21,7 +21,11 @@ Multiplexer MuxA ("U3", {5, 4, 15}, 16); // A->GPIO5, B->GPIO4, C->GPIO15, INH->
 Multiplexer MuxB ("U4", {5, 4, 15}, 0);  // A->GPIO5, B->GPIO4, C->GPIO15, INH->GPIO0
 
 #elif defined(ARDUINO_LOLIN_S3)
-#define Console Serial0
+#if ARDUINO_USB_CDC_ON_BOOT
+#define Console Serial0 
+#else
+#define Console Serial
+#endif
 // SDATA  -> GPIO23 MOSI GPIO11
 // SCLK   -> GPIO18 SCLK GPIO12
 // nWR    -> GPIO19 MISO GPIO10

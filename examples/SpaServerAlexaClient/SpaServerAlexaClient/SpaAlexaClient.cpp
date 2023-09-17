@@ -48,7 +48,7 @@ SpaAlexaClient::SpaAlexaClient () :
   isConnected (false), isHeaterOn (false), isFilterOn (false),
   thermostatMode (OffMode), desiredTemp (0) {
 
-  // subscribe (SubsribedEvents);
+  subscribe (SubsribedEvents);
 }
 
 // return the thermostat id

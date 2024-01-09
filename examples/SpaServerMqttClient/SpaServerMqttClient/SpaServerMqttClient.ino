@@ -4,8 +4,21 @@
 // This example shows how to connect a spa to a MQTT broker.
 // You must have a MQTT broker installed on your network !
 // You can use MQTT Explorer to interact with your spa
+// This program publishes events from the spa to the MQTT broker in the topic "epsilonrt/spaiot" :
+// - power : on/off
+// - filter : on/off
+// - bubble : on/off
+// - heater : on/off
+// - heat_reached : on/off
+// - desired_temp : temperature
+// - water_temp : temperature
+// and subscribes to the topic "epsilonrt/spaiot" to receive commands from the MQTT broker :
+// - command/power : on/off
+// - command/filter : on/off
+// - command/bubble : on/off
+// - command/heater : on/off
+// - command/desired_temp : temperature
 
-// Define the SpaMqttClient class and Serial Console
 #include <SpaIot.h>
 #include "MyBoardSettings.h"
 #include "SpaMqttClient.h"
@@ -17,8 +30,8 @@ const unsigned long SerialBaudrate = 115200;
 const char *ssid = "WIFI_SSID"; // Enter your Wi-Fi name
 const char *password = "WIFI_PASSWD";  // Enter Wi-Fi password
 
-// Configure the MQTT broker connection (MQTT_LOGIN and MQTT_PASSWD are optional)
-MqttSettings settings ("broker.hivemq.com", "MQTT_LOGIN", "MQTT_PASSWD");
+// Configure the MQTT broker connection, enter your MQTT broker IP address or DNS name, login and password, and the topic prefix
+MqttSettings settings ("MQTT_URL", "MQTT_LOGIN", "MQTT_PASSWD", "epsilonrt/spaiot");
 
 // My Spa Server settings
 const ServerSettings MyServerSettings (SpaModel);

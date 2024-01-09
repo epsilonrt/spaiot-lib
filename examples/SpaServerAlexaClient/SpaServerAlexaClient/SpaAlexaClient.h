@@ -3,6 +3,17 @@
 //
 // This example shows how to command a spa using Alexa.
 // It use SinricPro library to connect to Alexa.
+// To control Alexa, say:
+// - Alexa! start the spa
+// - Alexa! stop the spa
+// - Alexa! put the spa in automatic mode (filter ON, automatically rearmed)
+// - Alexa! put the spa in economic mode (filter ON)
+// - Alexa! put the spa in heating mode
+// - Alexa! put the spa in stop mode
+// - Alexa! what is the temperature in the spa?
+// - Alexa! how much is the spa set to?
+// - Alexa! set the spa temperature to 32°
+// - Alexa! increase the spa temperature by 2°
 #pragma once
 
 #include <Arduino.h>
@@ -65,8 +76,8 @@ class SpaAlexaClient : public SpaIot::SpaClient {
     bool isConnected; // true if the client is connected to the Alexa service
     bool isHeaterOn; // true if the heater is on
     bool isFilterOn; // true if the filter is on
-    uint16_t desiredTemp; // the last desired temperature
     Mode thermostatMode; // the last thermostat mode
+    uint16_t desiredTemp; // the last desired temperature
 
     AlexaSettings settings; // the settings to connect to the Alexa service
 

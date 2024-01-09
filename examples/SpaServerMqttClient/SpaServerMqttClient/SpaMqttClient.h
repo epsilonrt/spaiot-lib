@@ -28,6 +28,21 @@ class MqttSettings {
 
 // The SpaMqttClientClass class
 // Interconnects the spa and the MQTT broker
+// This class publishes events from the spa to the MQTT broker in the topic "epsilonrt/spaiot" :
+// - power : on/off
+// - filter : on/off
+// - bubble : on/off
+// - heater : on/off
+// - heat_reached : on/off
+// - desired_temp : temperature
+// - water_temp : temperature
+// and subscribes to the topic "epsilonrt/spaiot" to receive commands from the MQTT broker :
+// - command/power : on/off
+// - command/filter : on/off
+// - command/bubble : on/off
+// - command/heater : on/off
+// - command/desired_temp : temperature
+
 class SpaMqttClientClass : public SpaIot::SpaClient {
   public:
     // Constructor

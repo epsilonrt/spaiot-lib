@@ -3,6 +3,17 @@
 //
 // This example shows how to command a spa using Alexa.
 // It use SinricPro library to connect to Alexa.
+// To control Alexa, say:
+// - Alexa! start the spa
+// - Alexa! stop the spa
+// - Alexa! put the spa in automatic mode (filter ON, automatically rearmed)
+// - Alexa! put the spa in economic mode (filter ON)
+// - Alexa! put the spa in heating mode
+// - Alexa! put the spa in stop mode
+// - Alexa! what is the temperature in the spa?
+// - Alexa! how much is the spa set to?
+// - Alexa! set the spa temperature to 32°
+// - Alexa! increase the spa temperature by 2°
 
 #include <SpaIot.h>
 #include "MyBoardSettings.h"

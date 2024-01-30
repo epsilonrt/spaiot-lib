@@ -203,8 +203,8 @@ namespace SpaIot {
          the value is stable before determining the temperature of the water.\n
          It can take 2 seconds. waitForWaterTemp() can be used to wait for
          FrameDecoder to determine the temperature.
-         The frame decoder engine considers that the temperature is stable if the value not 
-         change during 2 seconds \c INIT_STABLE_WATER_COUNTER, 
+         The frame decoder engine considers that the temperature is stable if the value not
+         change during 2 seconds \c INIT_STABLE_WATER_COUNTER,
          thus the value is only changed if it is stable for 2 seconds.
          @return  Water temperature in °C, UnsetValue16 if it has not been determined yet.
       */
@@ -299,6 +299,16 @@ namespace SpaIot {
          @return  Water temperature in °C, UnsetValue16 if it has not been determined yet.
       */
       uint16_t waitForWaterTemp (unsigned long MaxWaitingTimeMs = 25000) const;
+
+      /**
+         @brief Clear the setup mode trigger counter
+
+         The user can trigger a reset of settings by quickly changing
+         SpaIot::SetupTrigUnitChangeMin times the temperature unit.
+         @sa SpaIot::SetupTrigUnitChangeMin
+         This function can be used to clear the counter if the user wants to ignore the trigger.
+      */
+      void clearTempUnitChangeCounter();
 
     protected:
       class Private;

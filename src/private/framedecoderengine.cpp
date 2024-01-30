@@ -107,270 +107,278 @@ namespace SpaIot {
     }
   }
 
-//----------------------------------------------------------------------------
-void FrameDecoder::Private::Engine::clkRisingInterrupt() {
-  SINGLETON_I (Engine);
+  //----------------------------------------------------------------------------
+  void FrameDecoder::Private::Engine::clearTempUnitChangeCounter() {
 
-  SPAIOT_DBGLED_SET();
-  i.frameValue = (i.frameValue << 1) + ! digitalRead (i.busSettings.dataPin());
-  i.frameShift ++;
-  SPAIOT_DBGLED_CLR();
-}
+    counterTempUnitChanged = 0;
+    lastTempUnitChangeFrameCounter = 0;
+    lastTempUnit = 0;
+  }
+
+  //----------------------------------------------------------------------------
+  void FrameDecoder::Private::Engine::clkRisingInterrupt() {
+    SINGLETON_I (Engine);
+
+    SPAIOT_DBGLED_SET();
+    i.frameValue = (i.frameValue << 1) + ! digitalRead (i.busSettings.dataPin());
+    i.frameShift ++;
+    SPAIOT_DBGLED_CLR();
+  }
 
 
-//----------------------------------------------------------------------------
-void FrameDecoder::Private::Engine::holdRisingInterrupt() {
-  SINGLETON_I (Engine);
+  //----------------------------------------------------------------------------
+  void FrameDecoder::Private::Engine::holdRisingInterrupt() {
+    SINGLETON_I (Engine);
 
-  SPAIOT_DBGLED_SET();
-  i.frameCounter++;
+    SPAIOT_DBGLED_SET();
+    i.frameCounter++;
 
-  if (i.frameShift == FRAME_BITS_SIZE) {
-    i.frameShift = 0;
+    if (i.frameShift == FRAME_BITS_SIZE) {
+      i.frameShift = 0;
 
-    if (i.frameValue != FRAME_CUE) {
+      if (i.frameValue != FRAME_CUE) {
 
-      if (i.frameValue & FRAME_DISPLAY) {
-        byte  digit;
+        if (i.frameValue & FRAME_DISPLAY) {
+          byte  digit;
 
-        switch (i.frameValue & FRAME_DISPLAY_DIGIT_MASK) {
+          switch (i.frameValue & FRAME_DISPLAY_DIGIT_MASK) {
 
-          case FRAME_DISPLAY_OFF:
-            digit         = DIGITOFF_VALUE;
-            i.unsetDigits   = 0;
-            i.displayValue  = DISPLAY_OFF;
-            break;
+            case FRAME_DISPLAY_OFF:
+              digit         = DIGITOFF_VALUE;
+              i.unsetDigits   = 0;
+              i.displayValue  = DISPLAY_OFF;
+              break;
 
-          case FRAME_DISPLAY_DIGIT0:
-            digit = 0x0;
-            break;
+            case FRAME_DISPLAY_DIGIT0:
+              digit = 0x0;
+              break;
 
-          case FRAME_DISPLAY_DIGIT1:
-            digit = 0x1;
-            break;
+            case FRAME_DISPLAY_DIGIT1:
+              digit = 0x1;
+              break;
 
-          case FRAME_DISPLAY_DIGIT2:
-            digit = 0x2;
-            break;
+            case FRAME_DISPLAY_DIGIT2:
+              digit = 0x2;
+              break;
 
-          case FRAME_DISPLAY_DIGIT3:
-            digit = 0x3;
-            break;
+            case FRAME_DISPLAY_DIGIT3:
+              digit = 0x3;
+              break;
 
-          case FRAME_DISPLAY_DIGIT4:
-            digit = 0x4;
-            break;
-          case FRAME_DISPLAY_DIGIT5:
-            digit = 0x5;
-            break;
+            case FRAME_DISPLAY_DIGIT4:
+              digit = 0x4;
+              break;
+            case FRAME_DISPLAY_DIGIT5:
+              digit = 0x5;
+              break;
 
-          case FRAME_DISPLAY_DIGIT6:
-            digit = 0x6;
-            break;
+            case FRAME_DISPLAY_DIGIT6:
+              digit = 0x6;
+              break;
 
-          case FRAME_DISPLAY_DIGIT7:
-            digit = 0x7;
-            break;
+            case FRAME_DISPLAY_DIGIT7:
+              digit = 0x7;
+              break;
 
-          case FRAME_DISPLAY_DIGIT8:
-            digit = 0x8;
-            break;
+            case FRAME_DISPLAY_DIGIT8:
+              digit = 0x8;
+              break;
 
-          case FRAME_DISPLAY_DIGIT9:
-            digit = 0x9;
-            break;
+            case FRAME_DISPLAY_DIGIT9:
+              digit = 0x9;
+              break;
 
-          case FRAME_DISPLAY_DIGITA:
-            digit = 0xA;
-            break;
+            case FRAME_DISPLAY_DIGITA:
+              digit = 0xA;
+              break;
 
-          case FRAME_DISPLAY_DIGITC:
-            digit = 0xC;
-            break;
+            case FRAME_DISPLAY_DIGITC:
+              digit = 0xC;
+              break;
 
-          case FRAME_DISPLAY_DIGITE:
-            digit = 0xE;
-            break;
+            case FRAME_DISPLAY_DIGITE:
+              digit = 0xE;
+              break;
 
-          case FRAME_DISPLAY_DIGITF:
-            digit = 0xF;
-            break;
+            case FRAME_DISPLAY_DIGITF:
+              digit = 0xF;
+              break;
 
-          case FRAME_DISPLAY_DIGITH:
-            digit = DIGITH_VALUE; // happens on display4 when sanitizer time.
-            break;
+            case FRAME_DISPLAY_DIGITH:
+              digit = DIGITH_VALUE; // happens on display4 when sanitizer time.
+              break;
 
-          default:
-            return ;
-        }
+            default:
+              return ;
+          }
 
-        if (i.frameValue & FRAME_DISPLAY_1) {
+          if (i.frameValue & FRAME_DISPLAY_1) {
 
-          i.displayValue = (i.displayValue & 0x0FFF) + (digit << 12);
-          i.unsetDigits &= ~DISPLAY_DIGIT1;
+            i.displayValue = (i.displayValue & 0x0FFF) + (digit << 12);
+            i.unsetDigits &= ~DISPLAY_DIGIT1;
 
-          if (digit == 0xE) { // Display error, digit4 is not set
+            if (digit == 0xE) { // Display error, digit4 is not set
 
-            i.displayValue = (i.displayValue & 0xFFF0);
+              i.displayValue = (i.displayValue & 0xFFF0);
+              i.unsetDigits &= ~DISPLAY_DIGIT4;
+            }
+
+          }
+          else if (i.frameValue & FRAME_DISPLAY_2) {
+
+            i.displayValue = (i.displayValue & 0xF0FF) + (digit << 8);
+            i.unsetDigits &= ~DISPLAY_DIGIT2;
+
+          }
+          else if (i.frameValue & FRAME_DISPLAY_3) {
+
+            i.displayValue = (i.displayValue & 0xFF0F) + (digit << 4);
+            i.unsetDigits &= ~DISPLAY_DIGIT3;
+
+          }
+          else if (i.frameValue & FRAME_DISPLAY_4) {
+
+            i.displayValue = (i.displayValue & 0xFFF0) + digit;
             i.unsetDigits &= ~DISPLAY_DIGIT4;
           }
 
-        }
-        else if (i.frameValue & FRAME_DISPLAY_2) {
+          if (i.unsetDigits == 0) {
+            i.unsetDigits = DISPLAY_ALLDIGITS;
 
-          i.displayValue = (i.displayValue & 0xF0FF) + (digit << 8);
-          i.unsetDigits &= ~DISPLAY_DIGIT2;
+            if (i.displayValue == i.latestDisplayValue) {
 
-        }
-        else if (i.frameValue & FRAME_DISPLAY_3) {
+              i.stableDisplayValueCounter--;
+              if (i.stableDisplayValueCounter == 0) {
 
-          i.displayValue = (i.displayValue & 0xFF0F) + (digit << 4);
-          i.unsetDigits &= ~DISPLAY_DIGIT3;
+                i.stableDisplayValueCounter = INIT_STABLE_VALUE_COUNTER;
 
-        }
-        else if (i.frameValue & FRAME_DISPLAY_4) {
+                if (i.displayValue == DISPLAY_OFF) {
 
-          i.displayValue = (i.displayValue & 0xFFF0) + digit;
-          i.unsetDigits &= ~DISPLAY_DIGIT4;
-        }
+                  i.lastBlackDisplayFrameCounter  = i.frameCounter;
+                  i.isDisplayBlink = true;
 
-        if (i.unsetDigits == 0) {
-          i.unsetDigits = DISPLAY_ALLDIGITS;
+                  if (i.latestDesiredTemp != UnsetValue16) {
 
-          if (i.displayValue == i.latestDisplayValue) {
-
-            i.stableDisplayValueCounter--;
-            if (i.stableDisplayValueCounter == 0) {
-
-              i.stableDisplayValueCounter = INIT_STABLE_VALUE_COUNTER;
-
-              if (i.displayValue == DISPLAY_OFF) {
-
-                i.lastBlackDisplayFrameCounter  = i.frameCounter;
-                i.isDisplayBlink = true;
-
-                if (i.latestDesiredTemp != UnsetValue16) {
-
-                  i.desiredTemp = i.latestDesiredTemp;
-                }
-
-              }
-              else {
-
-                if ( (i.frameCounter - i.lastBlackDisplayFrameCounter) > BLINK_RESET_FRAME_MIN) { // blinking is over
-
-                  i.isDisplayBlink    = false;
-                  i.latestDesiredTemp = UnsetValue16;
-                }
-
-                if (NO_ERROR_ON_DISPLAY (i.displayValue)) {
-
-                  if (TIMING_ON_DISPLAY (i.displayValue)) { // sanitizer time
-
-                    i.sanitizerTime             = i.displayValue;
-                    i.lastSanitizerFrameCounter = i.frameCounter;
+                    i.desiredTemp = i.latestDesiredTemp;
                   }
-                  else if (TEMP_ON_DISPLAY (i.displayValue)) {
 
-                    if (i.isDisplayBlink && (i.errorValue == 0)) { // blinking but not in error !
+                }
+                else {
 
-                      // when blink finished, it displays water temp that should not be confused
-                      // with desired temp !
-                      // So desired temp is read just after a black screen and set at next black screen
+                  if ( (i.frameCounter - i.lastBlackDisplayFrameCounter) > BLINK_RESET_FRAME_MIN) { // blinking is over
 
-                      if ( (i.frameCounter - i.lastBlackDisplayFrameCounter) < BLINK_DESIRED_FRAME_MAX) {
+                    i.isDisplayBlink    = false;
+                    i.latestDesiredTemp = UnsetValue16;
+                  }
 
-                        i.latestDesiredTemp = i.displayValue;
-                      }
+                  if (NO_ERROR_ON_DISPLAY (i.displayValue)) {
 
+                    if (TIMING_ON_DISPLAY (i.displayValue)) { // sanitizer time
+
+                      i.sanitizerTime             = i.displayValue;
+                      i.lastSanitizerFrameCounter = i.frameCounter;
                     }
-                    else {   // not blinking
+                    else if (TEMP_ON_DISPLAY (i.displayValue)) {
 
-                      if (i.displayValue == i.latestWaterTemp) {
+                      if (i.isDisplayBlink && (i.errorValue == 0)) { // blinking but not in error !
 
-                        i.stableWaterTempCounter--;
-                        if (i.stableWaterTempCounter == 0) {
+                        // when blink finished, it displays water temp that should not be confused
+                        // with desired temp !
+                        // So desired temp is read just after a black screen and set at next black screen
 
-                          i.waterTemp = i.displayValue;
-                          i.stableWaterTempCounter = INIT_STABLE_WATER_COUNTER;
+                        if ( (i.frameCounter - i.lastBlackDisplayFrameCounter) < BLINK_DESIRED_FRAME_MAX) {
+
+                          i.latestDesiredTemp = i.displayValue;
                         }
 
                       }
-                      else {
+                      else {   // not blinking
 
-                        i.latestWaterTemp = i.displayValue;
-                        i.stableWaterTempCounter = INIT_STABLE_WATER_COUNTER;
-                      }
+                        if (i.displayValue == i.latestWaterTemp) {
 
-                      if (DISPLAY_UNIT (i.displayValue) != i.lastTempUnit) {
+                          i.stableWaterTempCounter--;
+                          if (i.stableWaterTempCounter == 0) {
 
-                        if ( (i.frameCounter - i.lastTempUnitChangeFrameCounter) < SetupTrigUnitChangeFrameCounterMax) {
+                            i.waterTemp = i.displayValue;
+                            i.stableWaterTempCounter = INIT_STABLE_WATER_COUNTER;
+                          }
 
-                          i.counterTempUnitChanged++;
                         }
                         else {
 
-                          i.counterTempUnitChanged = 0;
+                          i.latestWaterTemp = i.displayValue;
+                          i.stableWaterTempCounter = INIT_STABLE_WATER_COUNTER;
                         }
 
-                        i.lastTempUnitChangeFrameCounter = i.frameCounter;
-                        i.lastTempUnit = DISPLAY_UNIT (i.displayValue);
+                        if (DISPLAY_UNIT (i.displayValue) != i.lastTempUnit) {
+
+                          if ( (i.frameCounter - i.lastTempUnitChangeFrameCounter) < SetupTrigUnitChangeFrameCounterMax) {
+
+                            i.counterTempUnitChanged++;
+                          }
+                          else {
+
+                            i.counterTempUnitChanged = 0;
+                          }
+
+                          i.lastTempUnitChangeFrameCounter = i.frameCounter;
+                          i.lastTempUnit = DISPLAY_UNIT (i.displayValue);
+                        }
                       }
                     }
+
                   }
+                  else {   // error on display
 
+                    i.errorValue = DISPLAY2ERROR (i.displayValue);
+                    i.lastErrorChangeFrameCounter = i.frameCounter;
+                  }
                 }
-                else {   // error on display
+              }
 
-                  i.errorValue = DISPLAY2ERROR (i.displayValue);
-                  i.lastErrorChangeFrameCounter = i.frameCounter;
-                }
+            }
+            else {   // i.displayValue not stable
+
+              // While error, there is a black screen after error display
+              // not visible by eye but must not break the stable counter
+
+              if (NO_ERROR_ON_DISPLAY (i.latestDisplayValue) || (i.displayValue != DISPLAY_OFF)) {
+
+                i.latestDisplayValue = i.displayValue;
+                i.stableDisplayValueCounter = INIT_STABLE_VALUE_COUNTER;
               }
             }
 
-          }
-          else {   // i.displayValue not stable
+          } // else all digits not yet set
 
-            // While error, there is a black screen after error display
-            // not visible by eye but must not break the stable counter
+        }
+        else if (i.frameValue & FRAME_LED) {
 
-            if (NO_ERROR_ON_DISPLAY (i.latestDisplayValue) || (i.displayValue != DISPLAY_OFF)) {
+          if (i.frameValue == i.latestLedStatus) {
 
-              i.latestDisplayValue = i.displayValue;
-              i.stableDisplayValueCounter = INIT_STABLE_VALUE_COUNTER;
+            i.stableLedStatusCounter--;
+            if (i.stableLedStatusCounter == 0) {
+
+              i.rawStatus = i.frameValue;
+              i.stableLedStatusCounter = INIT_STABLE_VALUE_COUNTER;
             }
           }
+          else {
 
-        } // else all digits not yet set
-
-      }
-      else if (i.frameValue & FRAME_LED) {
-
-        if (i.frameValue == i.latestLedStatus) {
-
-          i.stableLedStatusCounter--;
-          if (i.stableLedStatusCounter == 0) {
-
-            i.rawStatus = i.frameValue;
+            i.latestLedStatus = i.frameValue;
             i.stableLedStatusCounter = INIT_STABLE_VALUE_COUNTER;
           }
         }
-        else {
+      } // else cue frame
 
-          i.latestLedStatus = i.frameValue;
-          i.stableLedStatusCounter = INIT_STABLE_VALUE_COUNTER;
-        }
-      }
-    } // else cue frame
+    }
+    else {   // esp misses some bits in frame (performance issue !?)
 
+      i.frameDropped ++;
+      i.frameShift = 0;
+    }
+    SPAIOT_DBGLED_CLR();
   }
-  else {   // esp misses some bits in frame (performance issue !?)
-
-    i.frameDropped ++;
-    i.frameShift = 0;
-  }
-  SPAIOT_DBGLED_CLR();
-}
 
 }
 //------------------------------------------------------------------------------

@@ -21,6 +21,7 @@ namespace SpaIot {
       void end();
       bool isReady() const;
       bool isOpen() const;
+      void clearTempUnitChangeCounter();
 
     public:
       BusSettings busSettings;

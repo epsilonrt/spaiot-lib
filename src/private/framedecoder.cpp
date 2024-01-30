@@ -334,5 +334,11 @@ namespace SpaIot {
     return waterTemp();
   }
 
+  //----------------------------------------------------------------------------
+  void FrameDecoder::clearTempUnitChangeCounter() {
+    PIMPL_D (FrameDecoder);
+
+    d->engine->clearTempUnitChangeCounter();
+  }
 }
 //------------------------------------------------------------------------------

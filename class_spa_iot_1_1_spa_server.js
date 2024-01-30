@@ -10,6 +10,7 @@ var class_spa_iot_1_1_spa_server =
     [ "busSettings", "class_spa_iot_1_1_spa_server.html#a3a60edeeaca5a09b716f55c4c8fb6eca", null ],
     [ "button", "class_spa_iot_1_1_spa_server.html#aa30a124972251246cbf0ede43577ad96", null ],
     [ "buttonSettings", "class_spa_iot_1_1_spa_server.html#a5a60a432127482ffddad1fd55faaadc9", null ],
+    [ "clearTempUnitChangeCounter", "class_spa_iot_1_1_spa_server.html#a3befac10da6127de68d942ae13968ea1", null ],
     [ "client", "class_spa_iot_1_1_spa_server.html#a10af34d9c28d559bb00c33d2c615ad01", null ],
     [ "clientCount", "class_spa_iot_1_1_spa_server.html#a9237ea6cd2b921239412e87098a7a5ba", null ],
     [ "desiredTemp", "class_spa_iot_1_1_spa_server.html#ad07919ec8765216dc201d0e239ee047d", null ],

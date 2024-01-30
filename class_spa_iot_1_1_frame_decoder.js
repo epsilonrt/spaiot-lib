@@ -6,6 +6,7 @@ var class_spa_iot_1_1_frame_decoder =
     [ "begin", "class_spa_iot_1_1_frame_decoder.html#abd779099d4801af40a9fb75fc818d5a9", null ],
     [ "begin", "class_spa_iot_1_1_frame_decoder.html#ab6966c66220f94452c494ad1f5fa2a7c", null ],
     [ "busSettings", "class_spa_iot_1_1_frame_decoder.html#a3a60edeeaca5a09b716f55c4c8fb6eca", null ],
+    [ "clearTempUnitChangeCounter", "class_spa_iot_1_1_frame_decoder.html#a3befac10da6127de68d942ae13968ea1", null ],
     [ "desiredTemp", "class_spa_iot_1_1_frame_decoder.html#ad07919ec8765216dc201d0e239ee047d", null ],
     [ "end", "class_spa_iot_1_1_frame_decoder.html#aedb22e2a4c0765c9823a6ad609d3666e", null ],
     [ "error", "class_spa_iot_1_1_frame_decoder.html#a83375031245ef2b93def3e06eea086fd", null ],

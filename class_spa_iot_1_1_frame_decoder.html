@@ -195,6 +195,9 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:affd776ea3539e77174a471b6fcfdf45e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e">waitForWaterTemp</a> (unsigned long MaxWaitingTimeMs=25000) const</td></tr>
 <tr class="memdesc:affd776ea3539e77174a471b6fcfdf45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until the water temperature could be read.  <a href="class_spa_iot_1_1_frame_decoder.html#affd776ea3539e77174a471b6fcfdf45e">More...</a><br /></td></tr>
 <tr class="separator:affd776ea3539e77174a471b6fcfdf45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3befac10da6127de68d942ae13968ea1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spa_iot_1_1_frame_decoder.html#a3befac10da6127de68d942ae13968ea1">clearTempUnitChangeCounter</a> ()</td></tr>
+<tr class="memdesc:a3befac10da6127de68d942ae13968ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the setup mode trigger counter.  <a href="class_spa_iot_1_1_frame_decoder.html#a3befac10da6127de68d942ae13968ea1">More...</a><br /></td></tr>
+<tr class="separator:a3befac10da6127de68d942ae13968ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class decodes information from the technical block of the spa. </p>
@@ -390,6 +393,26 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Bus settings provides at the instantiation. </p>
 <dl class="section return"><dt>Returns</dt><dd>constant reference on settings </dd></dl>
+
+</div>
+</div>
+<a id="a3befac10da6127de68d942ae13968ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3befac10da6127de68d942ae13968ea1">&#9670;&nbsp;</a></span>clearTempUnitChangeCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpaIot::FrameDecoder::clearTempUnitChangeCounter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear the setup mode trigger counter. </p>
+<p>The user can trigger a reset of settings by quickly changing <a class="el" href="namespace_spa_iot.html#a2e1e5def57d93aa38ed08cd324d62eec" title="Number of changes in temperature unit corresponding to the reset request.">SpaIot::SetupTrigUnitChangeMin</a> times the temperature unit. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="namespace_spa_iot.html#a2e1e5def57d93aa38ed08cd324d62eec" title="Number of changes in temperature unit corresponding to the reset request.">SpaIot::SetupTrigUnitChangeMin</a> This function can be used to clear the counter if the user wants to ignore the trigger. </dd></dl>
 
 </div>
 </div>

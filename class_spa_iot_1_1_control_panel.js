@@ -10,6 +10,7 @@ var class_spa_iot_1_1_control_panel =
     [ "busSettings", "class_spa_iot_1_1_control_panel.html#a3a60edeeaca5a09b716f55c4c8fb6eca", null ],
     [ "button", "class_spa_iot_1_1_control_panel.html#aa30a124972251246cbf0ede43577ad96", null ],
     [ "buttonSettings", "class_spa_iot_1_1_control_panel.html#a5a60a432127482ffddad1fd55faaadc9", null ],
+    [ "clearTempUnitChangeCounter", "class_spa_iot_1_1_control_panel.html#a3befac10da6127de68d942ae13968ea1", null ],
     [ "desiredTemp", "class_spa_iot_1_1_control_panel.html#ad07919ec8765216dc201d0e239ee047d", null ],
     [ "end", "class_spa_iot_1_1_control_panel.html#aa2746fa67de1549805a4be58401a4790", null ],
     [ "error", "class_spa_iot_1_1_control_panel.html#a83375031245ef2b93def3e06eea086fd", null ],

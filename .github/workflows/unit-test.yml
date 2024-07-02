@@ -6,11 +6,12 @@ on:
       environment:
         description: 'Build and test environment'     
         required: true
-        default: 'test_esp32s3' 
+        default: 'test_ctrl32' 
         type: choice
         options:
-          - test_esp32s3
           - test_esp32
+          - test_ctrl32
+          - test_esp32s3
           - test_esp8266
     
 jobs:

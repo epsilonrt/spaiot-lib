@@ -1,5 +1,5 @@
 /*
-   SpaIot (c) by epsilonrt - epsilonrt@gmail.com
+   SpaIot (c) by epsilonrt - epsilonrt@epsilonrt.fr
    This file is part of SpaIot <https://github.com/epsilonrt/spaiot-dev>
 
    SpaIot is the property of ϵIoT, and All rights are reserved. ϵIoT is the sole

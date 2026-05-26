@@ -10,8 +10,8 @@ var class_spa_iot_1_1_led_settings =
     [ "isEmpty", "class_spa_iot_1_1_led_settings.html#a63492d0bce5a81ecafa90ef05a1d005c", null ],
     [ "isNull", "class_spa_iot_1_1_led_settings.html#a4c4d34132fa6e52e7e24d2f1abd4d994", null ],
     [ "operator!=", "class_spa_iot_1_1_led_settings.html#a527df26e9be8b17d9b5da7a6a8091fe2", null ],
-    [ "operator=", "class_spa_iot_1_1_led_settings.html#a9813be90c939e9230202d1fee4ea08c8", null ],
-    [ "operator=", "class_spa_iot_1_1_led_settings.html#a331c9f114a6e4ed214ed217074285411", null ],
+    [ "operator=", "class_spa_iot_1_1_led_settings.html#a72f0d1118c0e1410222986840c457048", null ],
+    [ "operator=", "class_spa_iot_1_1_led_settings.html#a9897a43a24ea5ee5589716d43f9bac56", null ],
     [ "operator==", "class_spa_iot_1_1_led_settings.html#ab5245ff69eba9e6da098f15528f2af49", null ],
     [ "order", "class_spa_iot_1_1_led_settings.html#af50ec25fbc40b8948f4d2f1b43de0046", null ],
     [ "setOrder", "class_spa_iot_1_1_led_settings.html#ade26a4aec9a9c75e4aa6d52305222f5a", null ]

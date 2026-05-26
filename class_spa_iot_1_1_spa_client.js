@@ -9,7 +9,7 @@ var class_spa_iot_1_1_spa_client =
     [ "SpaClient", "class_spa_iot_1_1_spa_client.html#ad93e30560b34f57e653f8bdf37cb1c40", null ],
     [ "available", "class_spa_iot_1_1_spa_client.html#a8fe701ec0c94cb1a0adbdf1df11ab003", null ],
     [ "begin", "class_spa_iot_1_1_spa_client.html#a70ec01e4d9bb0729a92815db7a4b3295", null ],
-    [ "className", "class_spa_iot_1_1_spa_client.html#a8e51bda6f4b01240dfe98e58706143ef", null ],
+    [ "className", "class_spa_iot_1_1_spa_client.html#af8c0de3cdedb94c97678af2991eca405", null ],
     [ "clear", "class_spa_iot_1_1_spa_client.html#ab69f47d64833330bac3d0913cb8dee65", null ],
     [ "end", "class_spa_iot_1_1_spa_client.html#a162d6cece4e3413ed306b841bbf2a8d0", null ],
     [ "handle", "class_spa_iot_1_1_spa_client.html#a86eb240b6e6700d64efa2dd575011483", null ],
@@ -18,8 +18,8 @@ var class_spa_iot_1_1_spa_client =
     [ "isOpen", "class_spa_iot_1_1_spa_client.html#af5ef013846e6641456e17fd98a98651b", null ],
     [ "isSubscribed", "class_spa_iot_1_1_spa_client.html#a95ea86ce5118e9daadd10f0c8e9cc21e", null ],
     [ "operator!=", "class_spa_iot_1_1_spa_client.html#a4b2d2a3b80b856eb0bf8cf93b077a1b5", null ],
-    [ "operator=", "class_spa_iot_1_1_spa_client.html#a37c49e082e3710e2247f51be646c4da3", null ],
-    [ "operator=", "class_spa_iot_1_1_spa_client.html#a74cbfc1836b39faf57c8a11aab48b86a", null ],
+    [ "operator=", "class_spa_iot_1_1_spa_client.html#add45d566938da4621b08df189dd7eb9c", null ],
+    [ "operator=", "class_spa_iot_1_1_spa_client.html#aac67849657b50a36d2180786de36192f", null ],
     [ "operator==", "class_spa_iot_1_1_spa_client.html#ae1a62bb6ed489f3b28b08189e6812af6", null ],
     [ "pollSpaEvents", "class_spa_iot_1_1_spa_client.html#a38e8cb4f18cfab539b7dd53603622092", null ],
     [ "pullFromSpa", "class_spa_iot_1_1_spa_client.html#a05ca0fe19b85b1e0c10fba92a1859662", null ],
@@ -30,6 +30,6 @@ var class_spa_iot_1_1_spa_client =
     [ "subscribe", "class_spa_iot_1_1_spa_client.html#a9d5d673833492c7158ef1dac2311d692", null ],
     [ "subscribe", "class_spa_iot_1_1_spa_client.html#a7d6019476ac917ce23efce7d931d578e", null ],
     [ "subscribe", "class_spa_iot_1_1_spa_client.html#ab4e29bc04bf68957a2793199fbe4532d", null ],
-    [ "subscribedEvents", "class_spa_iot_1_1_spa_client.html#a5d3aadbed405bfc3241171ed71591d39", null ],
+    [ "subscribedEvents", "class_spa_iot_1_1_spa_client.html#a47893c007644117e50a7f7385bbc7c35", null ],
     [ "write", "class_spa_iot_1_1_spa_client.html#a5e17abaf2fd3505cd980e5a594e61b12", null ]
 ];

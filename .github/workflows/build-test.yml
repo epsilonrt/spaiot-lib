@@ -27,6 +27,8 @@ jobs:
         python-version: '3.9'
     - name: Install PlatformIO Core
       run: pip install --upgrade platformio
+    - name: Install intelhex (for esptool)
+      run: pip install intelhex
     - name: Run build test_esp8266 using PlatformIO
       run: pio test -e test_esp8266 --without-testing --without-uploading
     - name: Run build test_esp32 using PlatformIO

@@ -31,6 +31,8 @@ jobs:
         python-version: '3.9'
     - name: Install PlatformIO Core
       run: pip install --upgrade platformio
+    - name: Install intelhex (for esptool)
+      run: pip install intelhex
     - name: Step 6 - Run build examples using PlatformIO
       run: pio ci --lib="." -b esp12e -b esp32dev -b lolin_s3 -c examples/platformio.ini
       env:

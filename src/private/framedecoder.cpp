@@ -193,14 +193,14 @@ namespace SpaIot {
   }
 
   //----------------------------------------------------------------------------
-  unsigned int FrameDecoder::frameCounter() const {
+  uint32_t FrameDecoder::frameCounter() const {
     PIMPL_D (const FrameDecoder);
 
     return d->engine->frameCounter;
   }
 
   //----------------------------------------------------------------------------
-  unsigned int FrameDecoder::frameDropped() const {
+  uint32_t FrameDecoder::frameDropped() const {
     PIMPL_D (const FrameDecoder);
 
     return d->engine->frameDropped;

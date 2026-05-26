@@ -121,7 +121,7 @@ namespace SpaIot {
 
     SPAIOT_DBGLED_SET();
     i.frameValue = (i.frameValue << 1) + ! digitalRead (i.busSettings.dataPin());
-    i.frameShift ++;
+    i.frameShift = i.frameShift + 1;
     SPAIOT_DBGLED_CLR();
   }
 
@@ -131,7 +131,7 @@ namespace SpaIot {
     SINGLETON_I (Engine);
 
     SPAIOT_DBGLED_SET();
-    i.frameCounter++;
+    i.frameCounter = i.frameCounter + 1;
 
     if (i.frameShift == FRAME_BITS_SIZE) {
       i.frameShift = 0;
@@ -247,7 +247,7 @@ namespace SpaIot {
 
             if (i.displayValue == i.latestDisplayValue) {
 
-              i.stableDisplayValueCounter--;
+                i.stableDisplayValueCounter = i.stableDisplayValueCounter - 1;
               if (i.stableDisplayValueCounter == 0) {
 
                 i.stableDisplayValueCounter = INIT_STABLE_VALUE_COUNTER;
@@ -296,7 +296,7 @@ namespace SpaIot {
 
                         if (i.displayValue == i.latestWaterTemp) {
 
-                          i.stableWaterTempCounter--;
+                          i.stableWaterTempCounter = i.stableWaterTempCounter - 1;
                           if (i.stableWaterTempCounter == 0) {
 
                             i.waterTemp = i.displayValue;
@@ -314,7 +314,7 @@ namespace SpaIot {
 
                           if ( (i.frameCounter - i.lastTempUnitChangeFrameCounter) < SetupTrigUnitChangeFrameCounterMax) {
 
-                            i.counterTempUnitChanged++;
+                            i.counterTempUnitChanged = i.counterTempUnitChanged + 1;
                           }
                           else {
 
@@ -356,7 +356,7 @@ namespace SpaIot {
 
           if (i.frameValue == i.latestLedStatus) {
 
-            i.stableLedStatusCounter--;
+            i.stableLedStatusCounter = i.stableLedStatusCounter - 1;
             if (i.stableLedStatusCounter == 0) {
 
               i.rawStatus = i.frameValue;
@@ -374,7 +374,7 @@ namespace SpaIot {
     }
     else {   // esp misses some bits in frame (performance issue !?)
 
-      i.frameDropped ++;
+      i.frameDropped = i.frameDropped + 1;
       i.frameShift = 0;
     }
     SPAIOT_DBGLED_CLR();
